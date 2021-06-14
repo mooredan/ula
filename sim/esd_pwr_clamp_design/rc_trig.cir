@@ -1,0 +1,90 @@
+* RC trigger ckt
+
+.lib device_models/AMI_C5N.lib TT
+* .lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.temp 25
+
+.include "../esd_gen.cir"
+* .include "clamp.cir"
+
+
+* two circuits together
+* one with esd event
+X1 hvpulse esd_gen
+R1 hvpulse vdd1 0.010
+VVSS1 vss1 0 DC 0
+
+
+* Let's figure out a RC ckt
+* Goal is RC time constant of about
+* 0.1 - 1 us
+
+* power supply ramp
+* Vvdd2 vdd2 0 DC 0 PWL(0 0 1n 0 10u 5)
+
+* ESD event
+* Vvdd2 vdd2 0 DC 0 PWL(0 0 1n 0 20n 1000 40n 1000 60n 0)
+
+Rtrig vdd1 trig 62.5k
+* Ctrig trig vss2 8p
+Ctrig trig vss1 32p
+* Vvss2 vss2 0 DC 0
+
+MP1 ntrig trig vdd1 vdd1 pfet w=12.0u l=0.6u 
+MN1 ntrig trig vss1 vss1 nfet w= 6.0u l=0.6u 
+
+CL ntrig 0 0.01p 
+
+R1 ntrig g1 0.010
+
+
+* Let's put my big nfet in place and trigger it
+* manually
+* M1002 vdd1 g1 vss1 vss1 nfet w=36.3u l=0.9u
+* +  ad=98.73p pd=54.6u as=210.83p ps=51.964u
+* +  m=12
+
+* Vg1 g1 0 DC 0
+* Vg1 g1 0 DC 0 PWL(0 0 2n 0 4n 5 646n 5 651n 0)
+
+
+* What's missing in this model of the chip?
+CVDD vdd1 vss1 100pF
+RCHIP vdd1 vss1 10Meg
+
+
+
+
+
+* XC1 vdd1 vss1 clamp
+
+* * one with normal power up
+* Vsrc src 0 DC 0 pwl (0    0 
+* +                    1n   0
+* +                  201n   5)
+* VVSS2 vss2 0 DC 0
+* R2 src vdd2 0.010
+* XC2 vdd2 vss2 clamp
+
+
+.save all
+
+.tran 0.1n  15u 
+
+.control
+destroy all
+run
+
+*plot v(vdd2) v(trig) v(ntrig)
+plot v(vdd1) v(trig) v(ntrig)
+
+* plot v(hvpulse)
+* plot v(vdd1)
+* plot v(xc1.n1) 
+* plot v(xc1.g1) 
+* plot v(vdd2) v(xc2.g)
+
+.endc
+
+.end

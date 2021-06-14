@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title> ZX81 ULA in a CPLD </title>
+<style type="text/css">
+  body            { margin-left: 5%; margin-right: 5%; font-family: verdana, sans, "sans serif", monospace; color: rgb(0,0,0); background-color: rgb(255,220,0) }
+  h1              { text-align: left; color: rgb(100,0,100); font-size: 130%; margin-left: -3% }
+  h2              { text-align: left; color: rgb(100,0,100); font-size: 100%; font-weight: bold }
+  p.changes       { margin-top: 2em; margin-bottom: 2em }
+  a               { text-decoration: none; color: rgb(120,0,0) }
+  a:hover         { text-decoration: underline; color: rgb(0,80,0) }
+  table           { margin-left: 3%; margin-right: 3% }
+  td              { border-width: 0; border-style: none; padding: 1ex; vertical-align: middle }
+  em              { font-style: italic; text-decoration: none }
+  em.abbrev       { font-style: normal; text-decoration: underline }
+</style>
+</head>
+
+<body>
+
+
+<p>
+<a href="#introduction">Introduction</a><br>
+<a href="#contents">Archive contents</a><br>
+<a href="#zx81_video">ZX81 video generation</a><br>
+<a href="#building_blocks">Building blocks</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#clock_generator">Clock generator</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#hsync_generator">Horizontal sync generator</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#memory_select">/ROMCS and /RAMCS</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#shift_register">Video shift register</a><br>
+<a href="#main_schematic">The big picture</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#video_output">Video output</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#keyboard_input">Keyboard input</a><br>
+<a href="#signal_timing">Signal timing</a><br>
+<a href="#implementation">Implementation details</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#comp_video">Composite video output</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#tape_input">Tape input</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#optimization">CPLD optimization settings</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;<a href="#decoupling">Power supply decoupling</a><br>
+<a href="#history">Build history</a><br>
+<a href="#software">Software tests</a><br>
+<a href="#thanks">Acknowledgments</a><br>
+<a href="#feedback">Feedback</a><br>
+<a href="#copyrights">Copyrights</a><br>
+</p>
+
+<p class="changes">
+13 July 2012 - resistor values in composite video output adjusted to produce more standard voltage levels <br>
+11 July 2012 - updated location of Grant Searle's build-your-own ZX80/ZX81 pages <br>
+4th June 2012 - a minor addition to the &quot;composite video output&quot; section (no logic changes) <br>
+2nd June 2012, v1.10 - first public release
+</p>
+
+<hr>
+
+<h1 id="introduction"> Introduction </h1>
+
+<p> This is a CPLD re-implementation of the ULA in a <a href="http://en.wikipedia.org/wiki/ZX81">Sinclair ZX81</a>. </p>
+
+<p> The ZX81 was a very simple 8-bit home computer, with just a few chips inside: a Z80 CPU, a ROM, 1 or 2 RAM chips, and the <a href="http://en.wikipedia.org/wiki/Gate_array">ULA</a>. Its predecessor, the ZX80, was built using some 20 chips, most of which contain simple logic functions. The ZX81 had a lot in common with the ZX80 (with some improvements), and the Sinclair-designed ULA chip integrated all the simple logic IC's into a single chip. This to make for easier assembly, reduced production cost &amp; better reliability. Together with the software in ROM, the ULA is what gives a ZX81 its 'personality'. It also generates the TV image.</p>
+
+<p> ZX81's that survived are ~30 years old by now, and failing. But for some, love for this old equipment never dies. Emulators are good &amp; easy to use, but there's no substitute for the real thing. Fortunately ZX81's are not particularly difficult to repair, and almost all parts can be replaced by new ones. Except one: the ULA. The only source for a ZX81 ULA is another ZX81, and it is (or rather: was) basically a black box with unknown internals. </p>
+
+<p> That was my main motivation for this project: to find out how a ZX81 ULA works, develop something to take its place, and enable re-implementation in modern hardware. To propel the ZX81 forward in the 21st century, and make sure that it's possible to build one without needing original, 30+ year old parts. To enjoy using a ZX81 whenever the urge comes up, regardless of whether original machines are still around, and not worry about breaking 'precious', antique computing hardware. </p>
+
+<p> This is nothing new: <a href="#thanks">others</a> have built ZX81 clones using discrete logic, and it is pretty much known what the ULA does. However I wanted something more compact, more flexible, easier to move to newer hardware, and perhaps produce a small series of it. Therefore I used a modern programmable logic component -a <a href="http://en.wikipedia.org/wiki/Complex_programmable_logic_device">CPLD</a>- for the job. With the goal of figuring out what <em>exactly</em> the logic inside the ULA does. I succeeded in this task, and present the results to help others produce their own ULA or ZX81 re-implementations. I do <em>not</em> recommend using the exact same parts &amp; circuitry that I used, to replace a ZX81 ULA! Rather consider it a reference implementation of sorts, that shows internal ULA logic and enables you to implement that logic in hardware (or emulator!) of your own choice. For the record: CPLD implementations have been done before, so this is not a first. </p>
+
+<p> The CPLD used is a <a href="http://www.xilinx.com">Xilinx</a> XC9572 in 84-pin PLCC package (-15 speed grade). This is a 5V part, that has the <em>option</em> (not used here) to output 3.3V level signals. This big chip &amp; wealth of I/O pins is very useful for development, but for producing small series there exist smaller &amp; cheaper parts with a more appropriate number of I/O pins. </p>
+
+<p> Implementation was done using schematic entry in Xilinx ISE 13.4 on a Debian Linux system. For a project like this, use of a <a href="http://en.wikipedia.org/wiki/Hardware_description_language">HDL</a> like Verilog or VHDL is probably easier &amp; more flexible; chances are I'll go that route on future projects. The upside is that for many people, schematics are easier to read. :-) </p>
+
+<p> This design is mostly synchronous clocked, and has proven to work very reliable (timing- and otherwise). It should be well suited for use in other device families / speeds, or <a href="http://en.wikipedia.org/wiki/Field-programmable_gate_array">FPGA</a> implementations (for example combined with a <a href="http://opencores.org/project,t80">T80</a> or <a href="http://opencores.org/project,tv80">TV80</a> soft core). Hardware-wise it's a direct 1:1 ULA replacement, with external pins allowing selection of border color (that is: white or black ;-) and inverted screen. Analog I/O (composite video out, tape loading, SAVEing to tape, sync-based sound generation) works as expected. Software-wise it has been <em>extensively</em> <a href="#software">tested</a>, showing 100% compatible ZX81 ULA behavior. </p>
+
+
+<h1 id="contents"> Archive contents </h1>
+
+<p> Project consists of a top-level schematic, plus schematics for 4 sub-components in it. Sources can be found in directory &quot;Source&quot;. It is <em>possible</em> to re-build the project using just these 5 files: </p>
+<dl>
+  <dt> &quot;zx81_ula.sch&quot; </dt> <dd> Top-level schematic </dd>
+  <dt> &quot;clock_gen.sch&quot; </dt> <dd> Clock generation </dd>
+  <dt> &quot;hsync_gen.sch&quot; </dt> <dd> Horizontal sync (NMI) generation </dd>
+  <dt> &quot;memory_select.sch&quot; </dt> <dd> /ROMCS and /RAMCS generation </dd>
+  <dt> &quot;piso_register.sch&quot; </dt> <dd> <em class="abbrev">P</em>arallel <em class="abbrev">I</em>n, <em class="abbrev">S</em>erial <em class="abbrev">O</em>ut shift register that moves the pixels to the screen </dd>
+</dl>
+
+<p> <em>Desired</em> pinout is set using the file &quot;device_settings.ucf&quot;. </p>
+
+<p> You can start a new project in ISE Project Navigator, add above files as sources, make some edits, go through synthesize, translate, fit process &amp; re-create a CPLD configuration file that way. For your convenience I have included the project file &quot;ZX81_ula.xise&quot; that can be opened directly, this lets ISE know what files are used, how they relate to each other &amp; various other settings. If you open the top-level schematic, ISE will be missing the contents of the 4 sub-components, because the schematic refers to symbol files that were <em>generated from</em> the other schematics (for use as building blocks). To avoid this problem, these &quot;*.sym&quot; files are also included. </p>
+
+<p> During implementation, a variety of files are generated. The most important ones can be found in directory &quot;Generated&quot;. </p>
+
+<p> First the all-important CPLD configuration file &quot;zx81_ula.jed&quot;, which is used to configure (program) a blank XC9572 part. Note: there exists hardware + software to do this job without the Xilinx tools. From what I understand, such software would use a .svf or .xsvf file to tell it how to bit-bang JTAG signals to erase / program / verify the CPLD. For this reason I've generated &amp; included these files too. </p>
+
+<p> The various report files can be important to find out if results are meeting requirements. For example: pin use as it is finally decided, is found in &quot;Fitter report.txt&quot; (near the bottom). When changes are made, you may find that pin use is not the same as what you <em>wanted</em> it to be... Also the many different settings used by the ISE tools, are logged in these reports - useful for reference and to reproduce builds. For convenience, I've included screenshots of various option dialogs: <a href="Pictures/Settings 1 (synthesis).png">1</a> <a href="Pictures/Settings 2 (HDL options).png">2</a> <a href="Pictures/Settings 3 (Xilinx specific options).png">3</a> <a href="Pictures/Settings 4 (translate).png">4</a> <a href="Pictures/Settings 5 (fitter).png">5</a>. </p>
+
+
+<h1 id="zx81_video"> ZX81 video generation </h1>
+
+<p> Image generation in the ZX81 is a very intricate co-operation between Z80, ULA, ROM and (to a lesser degree) RAM. In terms of technical complexity (# of logic gates etc), simple. Conceptually, not so much - it's difficult to grasp how it all works. Regular ZX81 display, in a nutshell: </p>
+<ul>
+<li> In the upper part of the screen, the ULA generates blank lines, the Z80 counts those until active display area is reached, while executing application code / BASIC programs. </li>
+<li> RAM holds an area called the DFILE, containing character codes. </li>
+<li> When the Z80 tries to <em>execute</em> a mirror location of the DFILE (in the upper 32K of the Z80 address space), the ULA grabs the character code, but feeds the Z80 a NOP instruction (= a forced NOP cycle). </li>
+<li> The character code is used as a partial ROM address, which contains the actual black &amp; white dot pattern. </li>
+<li> In the Z80 refresh cycle that follows, this pixel data is loaded into a shift register in the ULA. </li>
+<li> The pixels are shifted out to the screen at a rate of 6.5 MHz, which is exactly 2x the Z80 clock frequency. Duration for 8 pixels equals 4 Z80 clock cycles, <em>exactly</em> the time it takes the Z80 to execute a NOP. This is no coincidence - it's what <em>makes</em> it work. </li>
+<li> Repeated 32 times, a single horizontal line of 256 pixels has been sent to the screen. </li>
+<li> A non-character code causes the Z80 to resume normal execution, but it can't do much else than wait for the beginning of the next screen line. </li>
+<li> Repeated 192 times, the active part of the screen has been drawn, and the Z80 has 'wasted' about 3/4 of its time executing NOPs. This time <em>can</em> be used to execute application code instead --&gt; blank screen (= FAST mode). </li>
+<li> In the bottom part of the screen, again a bit of counting blank lines &amp; execute BASIC programs. </li>
+<li> Then a vertical sync pulse is generated. This (again) is a Z80 job, and during this time the Z80 also scans the keyboard. </li>
+<li> Repeat all this 50 or 60 times a second! The number of lines on top &amp; bottom is taken from a system variable (MARGIN, address 16424), this allows adjustment for 50 Hz (PAL) or 60 Hz (NTSC) display. The system variable is set by reading bit 6 of I/O port FEh (ULA pin 22). </li>
+</ul>
+
+<p> Some of this process is fixed in hardware (the ULA, resistors separating ROM/RAM from ULA/Z80 data lines), some of it is ROM code. In practice, ZX81 display generation turned out to be remarkably flexible, and various high-resolution schemes were produced. Some using ROM data (= pseudo Hi-Res), some using pixel data stored in RAM (= true Hi-Res, this works with internal RAM, or 16K RAM pack with a small hardware mod). Sir Clive missed this Hi-Res capability by just a few logic gates... :-( </p>
+
+
+<h1 id="building_blocks"> Building blocks </h1>
+
+<p> In general, CPLD pin and internal signal names starting with lowercase (a-z) indicate active-high signals. Signal names starting with &quot;/&quot; or uppercase (A-Z) indicate active-low signals. <p>
+
+
+<h2 id="clock_generator"> Clock generator </h2>
+
+<p> The ZX81 uses a 6.5 MHz ceramic resonator as timing reference, and the surrounding circuit is connected using a single ULA pin (35). This CPLD design brings its own clock oscillator &amp; as a result, this is the only signal on the ULA socket that is not used/connected. The ceramic resonator on the ZX81 board is not used anymore. </p>
+
+<p> The crystal oscillator uses a 13 MHz crystal, with circuit below: </p>
+
+<p><img src="Pictures/Crystal_oscillator.png" width=369 height=275 alt="crystal oscillator" title="Actual component values"></p>
+
+<p> The inverter is part of the CPLD design, the other parts are external. This oscillator circuit might not work well with a FPGA, with a CPLD it <em>might</em> not be recommended but it does work. Better would be to use a ready-built crystal oscillator and feed its output to a single CPLD pin. </p>
+
+<p> The 13 MHz is not used directly, but divided by flip-flops into nice 50/50 duty cycle, synchronized clocks of 6.5 (= pixel clock) and 3.25 MHz (= Z80 CPU clock). The inverted CPU clock is output to the ULA socket pin (14), on the ZX81 board this goes through a transistor buffer that inverts the signal again. Therefore internal CPLD signal &quot;cpuclk&quot; is -roughly- the same as the clock signal that the Z80 sees. </p>
+
+<p> Both 3.25 MHz signals are mapped onto global clock pins to promote robust, problem-free clocking of CPLD internal circuitry. This is not done for the 6.5 MHz signal: use as a global clock signal implies routing it to a dedicated CPLD pin, but in general it's better <em>not</em> to route signals to I/O pins if it can be avoided. This signal is less critical since it isn't used anywhere that affects CPU operation, therefore I kept it internal-only. </p>
+
+<p><img src="Pictures/Clock_generator.png" width=946 height=496 alt="clock generator" title="Also see top-level schematic"></p>
+
+<p> The FD design elements are D-type flip-flops that are clocked on the rising edge of their <em class="abbrev">C</em>lock input (1/6th 74174 equivalent, without /CLEAR input). </p>
+
+
+<h2 id="hsync_generator"> Horizontal sync generator </h2>
+
+<p> Horizontal sync pulses are generated using an 8-bit synchronous counter. That is: a counter that only changes state on the rising edge of its clock input, with all Q outputs updating simultaneous. Other control inputs don't have immediate effect, only determine what happens during clock transitions. </p>
+
+<p> The counter is clocked with the 3.25 MHz CPU clock signal. It is reset <em>on the next clock tick</em> when the Z80 indicates an interrupt acknowledge, or the maximum count (206) was reached. This results in a 207-cycle period, the exact duration of a single screen line (63.7 &micro;sec = 15.7 kHz line frequency). </p>
+
+<p> The top AND gate decodes count 11001110 (206). <br>
+The middle AND gate decodes counts 0001xxxx (16-31), this creates a 16-cycle (4.92 &micro;sec) hsync pulse. <br>
+The bottom AND gate decodes counts 00100000-00101110 (32-46), this creates a 15-cycle (4.62 &micro;sec) &quot;back porch&quot; pulse that <em>always</em> follows a hsync pulse. </p>
+
+<p> The 16-cycle delay from interrupt acknowledge to hsync (counts 0-15) isn't very critical, but an expert in the matter determined that this is how it works on a real ZX81. Read: maximum timing compatibility. </p>
+
+<p> The synchronous nature of this counter ensures there are no ripple effects when the count is incremented, this should make the hsync and back porch pulses glitch-free. </p>
+
+<p><img src="Pictures/Hsync_generator.png" width=829 height=832 alt="hsync generator" title="Horizontal sync generator"></p>
+
+<p> The CB4RE design elements are 4-bit synchronous counters, with (also) synchronous <em class="abbrev">R</em>eset and <em class="abbrev">C</em>lock <em class="abbrev">E</em>nable input, and <em class="abbrev">T</em>erminal <em class="abbrev">C</em>ount output (= all Q outputs 1). The TC output is used to cascade two 4-bit counters into an 8-bit one. <em class="abbrev">C</em>lock <em class="abbrev">E</em>nable <em class="abbrev">O</em>ut isn't used. </p>
+
+
+<h2 id="memory_select"> /ROMCS and /RAMCS </h2>
+
+<p> This is the simplest part of the design. It could easily be incorporated in the top-level schematic, but modularity is a good thing. :-) </p>
+
+<p> Most ZX81 clones use only /MREQ and A14 signals to produce /ROMCS and /RAMCS. During development, the CPLD was run side-by-side with the ULA, and using only /MREQ and A14 did not work. It was later found that in a forced NOP cycle, /ROMCS signal extends beyond /MREQ active period. For this reason a &quot;stretch&quot; input was added, to extend /ROMCS or /RAMCS active period in a forced NOP cycle. This complicates the circuit slightly, but has several advantages: </p>
+<ul>
+<li> /ROMCS timing matches real ZX81 behavior more closely. </li>
+<li> ROM and RAM chips get a bit more time to produce pixel data (access time). </li>
+<li> You get a longer timing window to load this pixel data into the video shift register - and thus more ways to do this. </li>
+</ul>
+<p> By applying this stretch signal to /MREQ <em>before</em> combining with A14, the improved signal timing applies to both /ROMCS (regular ZX81 display / pseudo Hi-Res) and /RAMCS (true Hi-Res). For regular memory access, /ROMCS and /RAMCS timing is the same as when only /MREQ and A14 is used. </p>
+
+<p><img src="Pictures/Memory_select.png" width=664 height=279 alt="memory select" title="ROM and RAM chip select"></p>
+
+<p> Note: It should be easy to modify /ROMCS or /RAMCS logic while leaving this signal timing intact. If you do, make sure that for any combination of /MREQ and A14 (and perhaps other address lines) /ROMCS and /RAMCS are <em>never</em> active at the same time! </p>
+
+
+<h2 id="shift_register"> Video shift register </h2>
+
+<p> Pixels are streamed to the screen at a rate of 6.5 MHz, continuous &amp; regardless of where pixel data comes from. This enables a crisp image with constant width pixels on every screen line. Pixel data is loaded 8 bits at a time through the A-H inputs, whenever &quot;load_enable&quot; is active at the rising edge of the clock input. This data is then shifted through the flip-flops in A -&gt; H direction towards the &quot;serial_out&quot; output, so data loaded through H (data bit 7) is the first to hit the screen. When &quot;load_enable&quot; is inactive (read: when no DFILE execution takes place), pixel data is clocked in through the &quot;serial_in&quot; input. For regular ZX81 display this input sets the border 'color'. For software that uses modified display routines, this color <em>may</em> show up elsewhere on the screen. </p>
+
+<p> XOR gates provide the necessary &quot;inverted character&quot; function (controlled by bit 7 of the character code). In principle a single XOR gate could be used, but that requires control of when to start &amp; when to stop inverting the pixel stream. The shown configuration is easier to understand, robust, and turned out to consume few CPLD resources. Therefore I preferred this solution. </p>
+
+<p> <a href="Pictures/Video_shift_register.png"><img src="Pictures/Thumbs/Video_shift_register.png" width=146 height=312 alt="video shift register" title="Click for fullsize"></a> </p>
+
+<p> The FDSR design elements are D-type flip-flops triggered on the rising edge of their <em class="abbrev">C</em>lock input, with synchronous <em class="abbrev">S</em>et and <em class="abbrev">R</em>eset input. Set takes precedence over reset, but in the configuration shown, at most 1 of these will be active at any time. </p>
+
+<p> Okay... so far for the building blocks. Let's move on to: </p>
+
+
+<h1 id="main_schematic"> The big picture </h1>
+
+<p> Main schematic follows the ZX80 circuit in some ways; both for practical &amp; compatibility reasons. Parts that control timing are designed to mimic ZX81 behavior, with reliable operation (non-critical timing) being an important consideration. </p>
+
+<p> Clock generator use is straightforward: 6.5 MHz clock going to the video shift register, 3.25 MHz CPU clock going to hsync generator &amp; some flip-flops that time events (lower right corner), inverted CPU clock also going to one of these flip-flops, the character latch, and ULA socket pin. Note that non-inverted CPU clock is also available on a CPLD pin due to its use as global clock signal. But it is <em>not</em> used externally! </p>
+
+<p> Horizontal sync generator uses 3.25 MHz CPU clock, /IORQ and /M1 to produce hsync and back_porch signals used in the video circuitry. </p>
+
+<p> I/O port decoding (including a keyboard read signal) is done by the AND gates shown in the upper middle. Next to it 2 flip-flops that control the software-generated vertical sync, and whether the Z80 receives NMI's. A high input on &quot;zx80_zx81&quot; lets NMI's pass through as in a ZX81, a low input disables NMI's as in a ZX80. I have a pull-up + jumper to ground on this pin, with the ZX81 ROM it causes an annoying flicker upon each key press (= loss of screen synchronization, as expected). I didn't test this CPLD design with a ZX80 ROM, so this 'feature' might be incomplete (hsync generator?). </p>
+
+<p> Next to the clock generator is another counter (upper left), reset by a vertical sync and incremented by horizontal sync pulses. The 3 counter bits track the screen line <em>within</em> characters (0-7), and are gated onto A0-A2 during a Z80 refresh cycle. Note that A0/A1 are also used as inputs (bi-directional), A2 is output only. </p>
+
+
+<h2 id="video_output"> Video output </h2>
+
+<p> I read somewhere that hsync pulses are supposed to continue during a vsync (hsync pulses in which voltage rises from sync level to black level). This did not work correctly, so I simply NORed these signals as is often done. Which causes a vsync to mask any hsync pulses, read: output is at sync level for the entire duration of vsync, regardless of hsync pulses. This seems to be expected behavior. </p>
+
+<p> Signal "border" selects the fill color when the video shift register runs 'empty'. When 0, black pixels are produced. When 1, white pixels are produced as on a real ZX81. </p>
+
+<p> Signal "Invert_screen" does what its name suggests. When 0, the entire screen (including border) is inverted. When 1, the screen is not inverted. </p>
+
+<p> Together these inputs allow selection of any color combination for active display area and border. Both inputs are safe to change during operation. On my development ZX81, I have pull-ups on these signals, with a jumper to ground. Other options would be DIP switches or even software control. </p>
+
+<p> The resulting pixel stream (video) is put through an AND gate that masks the output (luminance) to 0 whenever <em>any</em> of vsync, hsync or back_porch is active. 1st: in combination with Csync, voltages on the composite video signal are reduced to 3 levels: sync level, black level, and white level. Following a horizontal sync, the output is kept at black level for the duration of back_porch signal, this should make sure TV's produce bright white &amp; deep black. For how to combine Csync &amp; luminance into a composite video signal, <a href="#comp_video">see below</a>. </p>
+
+<p> 2nd, this makes it easy to use any signal as video stream. For example if a random number generator where connected to "video", one would expect to get snow on the screen but still with stable image synchronization and proper black &amp; white levels. Same with almost white, almost black, screens with big horizontal / vertical bars etc. </p>
+
+<p> It's easy to modify the design to output separate sync signals. Together with the pixel stream in digital form, this makes it possible to use any display equipment that supports the same horizontal &amp; vertical frequencies. For example <a href="http://en.wikipedia.org/wiki/Color_Graphics_Adapter" title="Color Graphics Adapter">CGA</a> or <a href="http://en.wikipedia.org/wiki/Enhanced_Graphics_Adapter" title="Enhanced Graphics Adapter">EGA</a> monitors, or output blue-on-black on a SCART equipped TV. </p>
+
+
+<h2 id="keyboard_input"> Keyboard input </h2>
+
+<p> A read of I/O port FEh (any I/O port with A0 low) gates Kbd0-4 signals onto the data bus. Bit 5 isn't used. Bit 6 has the 50/60 Hz select signal (usa_uk). The ULA has an internal pull-up on this pin, for a CPLD where this can't be programmed, an external pull-up is needed. 0 selects 60 Hz (NTSC), 1 selects 50 Hz (PAL). Bit 7 is the tape input. </p>
+
+<p> It has been said that ULA data lines are open collector outputs. I can't confirm this, but to be safe I've implemented things to behave that way. Originally I used 2 sets of tri-state buffers, one for keyboard signals and one for forcing NOPs. But ISE design software kept complaining about it, and CPLD resource use wasn't optimal. So I reduced this to 1 tri-state buffer per data line, and worked out the logic on when it should be pulled low. This worked out well, and CPLD resource use was down. So this part of the schematic is an optimization, rather than aiming for readability... </p>
+
+<p> <a href="Pictures/The_big_picture.png"><img src="Pictures/Thumbs/The_big_picture.png" width=420 height=420 alt="main schematic" title="Click for fullsize"></a> </p>
+
+<p> BUFE design element is a tri-state buffer with active-high <em class="abbrev">E</em>nable. When E is low, the output is in high impedance state. When E is high, whatever is on the input is passed onto the output. </p>
+
+<p> FDC design element is a D-type flip-flop with asynchronous clear (CLR). When CLR is high, the flip-flop is reset to 0. When CLR is low, data is clocked in on the low-to-high transition of the <em class="abbrev">C</em>lock input (1/6th 74174 equivalent, but with active-high clear). </p>
+
+<p> FD4CE design element is a 4-bit register with asynchronous clear (CLR) and <em class="abbrev">C</em>lock <em class="abbrev">E</em>nable input. When CLR is high, the register is reset to 0. When CE is low, clock transitions are ignored. When CLR is low and CE is high, data is clocked in on the low-to-high transition of the <em class="abbrev">C</em>lock input. </p>
+
+<p> CB4CE design element is a 4-bit binary counter with asynchronous clear (CLR) and <em class="abbrev">C</em>lock <em class="abbrev">E</em>nable. When CLR is high, the counter is reset to 0. When CE is low, clock transitions are ignored. When CLR is low and CE is high, the counter is incremented on the low-to-high transition of the <em class="abbrev">C</em>lock input. Q3, <em class="abbrev">C</em>lock <em class="abbrev">E</em>nable <em class="abbrev">O</em>ut, and <em class="abbrev">T</em>erminal <em class="abbrev">C</em>ount outputs aren't used. </p>
+
+<p> For more details on design elements: see Xilinx's CPLD Libraries Guide (UG606) and/or documentation that comes with your ISE install. Note that these design elements are only available for use in some CPLD families! So when targeting another CPLD family, it might be necessary to use other forms of design entry like Verilog or VHDL. </p>
+
+
+<h1 id="signal_timing"> Signal timing </h1>
+
+<p> The picture below shows somewhat 'beautified' timing for clock, Z80 and internal CPLD signals, and what happens on Z80/ULA side of the data bus resistors. In active display area, using standard ROM display routines. Inside this area the ULA feeds NOP instructions to the Z80, while grabbing character codes &amp; pixel data from the data bus. </p>
+
+<p> Z80 clock cycles are numbered T1, T2, T3 etc, each starting with a rising edge, and ending with the rising edge of the next T state. One T state for previous/next NOP instruction is shown, to ease understanding of how signal timing flows from one instruction to the next. For more timing diagrams &amp; related specifications, please refer to Z80 CPU datasheets. Also ZX80/ZX81 guru Grant Searle has some very helpful <a href="http://searle.hostei.com/grant/zx80/zx80ScopePics.html">scope pix</a> on his site. </p>
+
+<p> Both signals /MREQ and /M1 active indicates an opcode fetch. This signal (m1_cycle) is clocked into a flip-flop at the <em>falling</em> edge of each Z80 clock cycle. Its output is active during opcode fetches, from falling edge T2 until falling edge T3. This signal is clocked into a 2nd flip-flop on the <em>rising</em> edge of each Z80 clock cycle (= exactly halfway the active period of 1st flip-flop's output). Its output (m1_cycle_T3) is active during the T3 cycle that follows. This is clocked into a 3rd flip-flop, also on the rising edge of each Z80 clock cycle. Its output (m1_cycle_T4) is active during the final T4 cycle. <p>
+
+<p> Signals m1_cycle_T3 and m1_cycle_T4 are ORed into a substitute refresh signal (rfsh). Following an opcode fetch, it is active for the entire T3+T4 period, and therefore well suited to control address lines. Z80's /RFSH signal can be used instead (done during development!), but it is not available on any ULA socket pin. </p>
+
+<p> Clocking the character latch occurs at the <em>falling</em> edge of each Z80 clock cycle, when /MREQ is active and rfsh <em>not</em> active. Read: on every memory access, at the <em>falling</em> edge of T2 (for regular read/writes, perhaps in T3 as well). In an opcode fetch cycle, RAM has had about 3/4 clock cycle (~230 ns) to come up with the data. In the refresh cycle that follows, &quot;char_latch_enable&quot; is inactive and the latched character code gated onto A3-A8 as partial ROM address (together with the line count to A0-A2). Note that this happens for <em>every</em> refresh cycle, even when no forced NOP execution takes place, using whatever opcode was latched. That's how things work in a ZX80, and -probably- in a ZX81 as well. Fortunately the Z80 is not reading or writing data during refresh cycles... :-) </p>
+
+<p> The AND gate (left of the flip-flops) checks some conditions for a forced NOP cycle: A15 high (upper 32K), /HALT not active, and bit 6 of the opcode = 0. This signal (forced_NOP_start) is clocked into the character latch together with the opcode bits. The corresponding output (forced_NOP_cycle) indicates whether a forced NOP cycle is underway. Combined with the 1st flip-flop's output, this produces a signal (force_NOP) that forces the data lines low. When this happens, they are held low roughly from falling edge T2 until falling edge T3. The Z80 samples the opcode around the rising edge of T3 - nicely halfway. </p>
+
+<p> Signals forced_NOP_cycle AND m1_cycle_T4 produce signal &quot;forced_NOP_T4&quot;, which is used to extend /ROMCS or /RAMCS until the end of T4. ANDed with /MREQ, this provides &quot;load_enable&quot;, which is active during the end of T4 (when /MREQ has gone inactive). Pixel data is clocked into the video shift register at the next rising edge of the 6.5 MHz pixel clock, which is at the end of T4 (= start of the next T1 cycle), immediately followed by /ROMCS or /RAMCS being deactivated. The memory chip has had about 1.25 clock cycle (~380 ns) to produce the pixel data, so this setup should work even with <em>very</em> slow ROMs. </p>
+
+<p><img src="Pictures/Signal_timing.png" width=950 height=650 alt="signal timing"></p>
+
+
+<h2> Notes: </h2>
+
+<ul>
+<li> The white arrows indicate points in time where data is read by the CPLD or Z80. </li>
+<li> The dotted lines show timing for regular instruction fetches, that is: ones that are not forced NOPs. </li>
+<li> During forced NOP execution, bits 0-5 of the latched opcode contain the character code, bit 6 was 0 (as stated above), and the remaining bit (7) indicates an inverse character (invert). </li>
+<li> In a sequence of forced NOPs, signal &quot;forced_NOP_cycle&quot; will be active continuous and therefore wasn't included in the timing diagram. </li>
+<li> Only A14 is shown because it's the only address line used to produce /ROMCS and /RAMCS. During instruction fetch from RAM it will be high (read from 4000-7FFFh or C000-FFFFh area), during refresh it will be supplied by Z80's I register, and low for regular ZX81 display or pseudo Hi-Res modes (pixel data from ROM = 0000-3FFFh or 8000-BFFFh area). </li>
+<li> For true Hi-Res modes, the pixel data will come from RAM. And thus, during refresh A14 will stay high (read from 4000-7FFFh or C000-FFFFh area) and /RAMCS will be active a 2nd time instead of /ROMCS. Timing for that 2nd /RAMCS active period is the same as /ROMCS timing in the diagram. </li>
+<li> The ZX81 schematic shows that ROM address signals A0-A8 can be controlled by the ULA (as is done in refresh cycles). But this is <em>not</em> the case for RAM address signals, they are always supplied by the Z80! No doubt that true Hi-Res schemes take this into account. Also note that /INT input (= <em>maskable</em> interrupt) is tied to Z80's A6 line. </li>
+<li> Some Hi-Res demo's or custom display routines may use weird mixes of DFILE and normal Z80 execution, irregular sync generation and so on. Understanding what happens exactly for such software, is an exercise left up to the reader. ;-) </li>
+<li> When the data lines are forced low, /RAMCS is still active: the data bus series resistors allow the ULA (CPLD) to override the RAM's output. If the timing were changed such that neither /ROMCS or /RAMCS is active when the data lines are forced low, it <em>should</em> be okay to replace these series resistors with wires (idea: use &quot;force_NOP&quot; as disable for /ROMCS and /RAMCS ?). </li>
+<li> When data lines are released into high-impedance state, pull-up resistors will pull them to +5V, but possibly a lot slower than shown in the picture. </li>
+<li> Periods marked &quot;?&quot; indicate times where a memory chip has gone active, but data can't be trusted because access time hasn't passed yet. The picture shows a reasonable value of ~150 ns for both ROM and RAM - actual fitted chips may be faster or slower. </li>
+<li> Z80 /RD signal was left out because it's not very important for understanding what happens, and its timing is virtually identical to 1st /MREQ active period. </li>
+<li> PC stands for Z80's <em class="abbrev">P</em>rogram <em class="abbrev">C</em>ounter. </li>
+</ul>
+
+
+<h1 id="implementation"> Implementation details </h1>
+
+
+<h2 id="comp_video"> Composite video output </h2>
+
+<p> In true Sinclair fashion, composite video output is kept to a bare minimum: </p>
+<ul>
+<li> A 220 &Omega; resistor is tied to the luminance output pin. </li>
+<li> A 390 &Omega; resistor is tied to the Csync output pin. </li>
+<li> The other ends of these resistors are tied together, and to the ULA socket pin (16). </li>
+</ul>
+
+<p> Adding a small capacitor from this point to ground (I used 560 pF ceramic), creates an RC filter that makes black &lt;-&gt; white signal transitions 'softer' (less high-frequency components). Which may reduce overshoot / undershoot issues &amp; improve overall image quality. A value too low has little effect, a value too high will blur individual pixels. For example, check the look of graphics characters that contain dithered gray. </p>
+
+<p> The ULA socket pin goes to the TV modulator, inside it I have routed the signal directly to the cinch connector (center pin). I haven't tried how it works with a TV modulator in between; composite video output is both easier &amp; provides a better image. Be sure to check that no other components on the ZX81 board (apart from the mic circuit) are loading this signal! </p>
+
+<p> When loaded with 75 &Omega; (in the TV / monitor), this produces a composite video signal with proper voltage levels. The load is well within what an XC9572 can deal with. With 5V I/O voltage, XC9500 family outputs usually don't go entirely up to the Vcc rail; with modest load, a high level output voltage will be around 3.5-4V. Composite voltage levels are then around 0V sync level, 0.46V black level, and 1.23V white level - adjust resistor values as desired. Due to the small DC average (&lt; 1V), you can connect this to TV's / monitors without a series capacitor in the signal. </p>
+
+<p> Sync-based sound generation works, but very weak (low volume). </p>
+
+<p> For a production version I might consider external buffering. Perhaps a discrete logic IC, transistor buffer or video opamp in between. Whatever you do: make sure there's at least some series resistors in the signal path, to protect against <a href="http://en.wikipedia.org/wiki/Electrostatic_discharge">electrostatic discharge</a> or mistakes in connecting display equipment! </p>
+
+
+<h2 id="tape_input"> Tape input </h2>
+
+<p> Regular ZX81 board circuitry provides enough protection against electrostatic discharge or overvoltages; loading software should work as-is. On the ZX81 board I added 2 resistors to the &quot;tape_in&quot; pin (47 k&Omega; to ground, 150 k&Omega; to +5V), to increase sensitivity and provide a defined bias voltage of ~1.2V. When this bias voltage was ~1.4V or higher, loading didn't improve and interrupting tape load with BREAK (space) didn't work anymore. Perhaps the tape input needs to see a logic 0 every now &amp; then for BREAK to be recognized..? </p>
+
+<p> Loading from a laptop's headphone output works with volume from 53 - 100%. <br>
+Loading from a tape recorder works with volume at about 30 - 50%. Of course this depends on equipment used. </p>
+
+<p> SAVEing to tape &amp; loading software back in works. The mic output goes via the video signal, so in case of problems you might try and adjust component values in the mic circuit on the ZX81 board. When designing a ZX81 clone that doesn't serve as ULA replacement, you might consider a separate mic output that doesn't include hsync pulses in the signal. I didn't investigate mic output further since I never use SAVEing to tape anyway. </p>
+
+
+<h2 id="optimization"> CPLD optimization settings </h2>
+
+<p> I chose area/density as logic optimization setting. The logic is fast enough, optimizing for density maximizes the space left to add functions to the design (and it's easier to see how much space that is). If you modify the design and feel it's done, you might optimize for speed instead to obtain the fastest logic that the CPLD's resources can provide. </p>
+
+<p> Macrocell power setting was set to "low". The power saving is significant, and it made no sense to waste power on speed that's not needed. The XC9572-15 is the slowest CPLD in my inventory, and I was pleasantly surprised that the crystal oscillator still worked in this setting. The <a href="Generated/Timing report.html">timing report</a> gives an Xin-Xout delay of 23.5 ns, each half period of a 13 MHz cycle is 38.5 ns. That's pretty close... I would have preferred 1 or 2 macrocells with the clock generator on high speed / high power, and the other macrocells in low power setting, but didn't figure out how to do this selectively. For faster parts like -10, -7 speed grades this would be less of an issue. </p>
+
+<p> Unused I/O pins were configured as programmable ground (= extra ground connections of sorts), and connected to ground. In a development setting it may be easier / safer to disable this option, configuring unused I/O's as input. These can then be connected to any supply, other signal, or left disconnected (= not recommended, but not really a problem either). </p>
+
+<p> When the CPLD is erased for re-configuration, all I/O's go into a high-impedance state. I realized this <em>might</em> cause /ROMCS and /RAMCS to float &amp; become active at the same time, causing a short circuit between ROM and RAM chip data lines. XC9500 family datasheet states that under these circumstances pull-up resistors are enabled on I/O pins. I'm not relying on that: to be safe, I added weak pull-ups (100 k&Omega;) to these signals on the ZX81 board. </p>
+
+
+<h2 id="decoupling"> Power supply decoupling </h2>
+
+<p> Is very important, if you want a stable working system. At a minimum, place several 100 nF ceramic capacitors close to Vcc/ground pins of the CPLD, as is usual for digital circuits. Quality / suitable type(s) of capacitors and the shortest possible, low-impedance connections to CPLD supply pins, are more important than total capacity. Several small capacitors in different / strategic places are more effective than 1 large capacitor. Also see Xilinx documentation for power supply decoupling guidelines. </p>
+
+
+<h1 id="history"> Build history </h1>
+
+<p> For your enjoyment: some pictures taken in various stages of development. Note that in screenshots below, colors are not accurate: white is bright white, and black is deep black. Faint vertical lines in the Rezurrection screenshot are photography artifacts not visible in the actual TV image. And unlike the screenshots, the overall image is very crisp. </p>
+
+<p> At first I had the board mounted on some spacers, an ULA hanging under the board, and 2 video outputs: an ULA-generated one (showing regular ZX81 screen), and a CPLD-generated one (showing very little at first). As development progressed, gradually CPLD signals were wired up, and ULA outputs were disconnected. On the board pictures below, the ULA was already removed, with the CPLD generating the sole video output. The 7805 regulator was replaced with a switching regulator, which in turn was replaced by the even smaller Tracopower TSR 1-2450. Total power consumption is down to about 0.8W, with regulator losses some 0.2W of that. Keyboard connectors go via a wiring adapter to a Dk'tronics keyboard for the ZX Spectrum. Tape input is a stereo -&gt; mono cable that comes from a laptop headphone output. </p>
+
+<p> To tidy up the wiring &amp; increase the chance of fitting the board into a case, I soldered an extra thin circuit board onto the bottom of a PLCC socket. All supply connections &amp; unused I/O's connect directly to this; it also carries a bunch of passive components. Note that this board never saw an etching bath; conducting areas are separated by small channels that were carved out using a Dremel cutting tool. The result is about the smallest that a) uses this particular IC housing, and b) didn't require a 3rd party to produce a professional PCB. It should be possible to produce a functional equivalent that is about the size of a 40-pin DIP socket (for example using an XC9572XL in 64-pin VQFP housing). </p>
+
+<table>
+<tr>
+  <td><a href="Pictures/History/01 Early screenshot.jpg" title="An early screenshot (Psion's Bomber). 1 data line missing, inverted characters not yet implemented, garbage in the border"><img src="Pictures/Thumbs/01 Early screenshot.jpg" width=205 height=154 alt="Bomber screenshot"></a></td>
+  <td><a href="Pictures/History/02 Experimental v1.jpg" title="Experimental v1 board setup, JTAG programmer in upper left corner"><img src="Pictures/Thumbs/02 Experimental v1.jpg" width=205 height=154 alt="Experimental v1 board"></a></td>
+  <td><a href="Pictures/History/03 Rezurrection demo (white-on-black).jpg" title="Rezurrection 4K demo, screen inverted"><img src="Pictures/Thumbs/03 Rezurrection demo (white-on-black).jpg" width=205 height=154 alt="Rezurrection demo"></a></td>
+  <td><a href="Pictures/History/04 Mini circuit board.jpg" title="Mini circuit board"><img src="Pictures/Thumbs/04 Mini circuit board.jpg" width=205 height=154 alt="Mini circuit board"></a></td>
+</tr>
+<tr>
+  <td><a href="Pictures/History/05 Soldered onto PLCC socket.jpg" title="Soldered onto a PLCC socket"><img src="Pictures/Thumbs/05 Soldered onto PLCC socket.jpg" width=205 height=154 alt="Soldered onto PLCC socket"></a></td>
+  <td><a href="Pictures/History/06 Fully wired (bottom view).jpg" title="Fully wired up (bottom view)"><img src="Pictures/Thumbs/06 Fully wired (bottom view).jpg" width=205 height=154 alt="Wired up (bottom view)"></a></td>
+  <td><a href="Pictures/History/07 Fully wired (side view).jpg" title="Fully wired up (side view). Note the SMD resistors that form the composite video output"><img src="Pictures/Thumbs/07 Fully wired (side view).jpg" width=205 height=154 alt="Wired up (side view)"></a></td>
+  <td><a href="Pictures/History/08 Fully wired (top view).jpg" title="Fully wired up (top view)"><img src="Pictures/Thumbs/08 Fully wired (top view).jpg" width=205 height=154 alt="Wired up (top view)"></a></td>
+</tr>
+<tr>
+  <td><a href="Pictures/History/09 Plugged into ULA socket.jpg" title="Plugged into the ULA socket"><img src="Pictures/Thumbs/09 Plugged into ULA socket.jpg" width=205 height=154 alt="Plugged into ULA socket"></a></td>
+  <td><a href="Pictures/History/10 Side view.jpg" title="Side view, showing vertical height"><img src="Pictures/Thumbs/10 Side view.jpg" width=205 height=154 alt="Side view"></a></td>
+  <td><a href="Pictures/History/11 Z80 clearance.jpg" title="Modulator &amp; Z80 clearance. Some bits of the modulator cover were clipped off to increase clearance"><img src="Pictures/Thumbs/11 Z80 clearance.jpg" width=205 height=154 alt="Z80 clearance"></a></td>
+  <td><a href="Pictures/History/12 Regulator replaced (again).jpg" title="Various changes to the power circuit, CMOS Z80. Top wires are for JTAG"><img src="Pictures/Thumbs/12 Regulator replaced (again).jpg" width=205 height=154 alt="Regulator replaced (again)"></a></td>
+</tr>
+</table>
+
+<p> (click any picture for a larger version) </p>
+
+
+<h1 id="software"> Software tests </h1>
+
+<p> The following software has been run on the exact same version of the CPLD design that's provided here, and found to behave <em>exactly</em> the same as on a ZX81 with Sinclair-supplied ULA. </p>
+
+<h2> Hi-Res demo's: </h2>
+<ul>
+<li> 1K Hi-Res demo by Wilf Rigter </li>
+<li> 25thanni by Bodo Wenzel (has scrolling text in the border area) </li>
+<li> Puzzle99 by Bodo Wenzel (a slide puzzle demo) </li>
+<li> Rezurrection 4K (also uses the border area) </li>
+<li> Somewhat Less Limited Capabilities </li>
+<li> There Are No Limits </li>
+<li> Some other unnamed Hi-Res demo's </li>
+</ul>
+
+<h2> Hi-Res games: </h2>
+<ul>
+<li> Booster </li>
+<li> Dan's Revenge </li>
+<li> Forty Niner </li>
+<li> Guus Flater (a slide puzzle) </li>
+<li> Manic Miner </li>
+<li> MicroMouse Goes De-bugging </li>
+<li> Rock Crush </li>
+<li> Rocket Man </li>
+<li> Sea Mines </li>
+<li> Z-Xtricator </li>
+</ul>
+
+<h2> Other: </h2>
+<ul>
+<li> ClckFreq by Carlo Delhez (a speed test) </li>
+<li> Graphics Toolkit demo </li>
+<li> Multi-scroll demo by Andy Rea </li>
+<li> Survival (a 1K demo) </li>
+<li> Wa-Tor (fish + shark simulation, has a Hi-Res title screen) </li>
+<li> ZXTEST2.P (a small test program that makes the display bob up &amp; down 1 pixel) </li>
+<li> Loads &amp; loads of regular ZX81 software </li>
+</ul>
+
+<p> The ZX81 used for these tests has an internal 16K RAM expansion that is Hi-Res capable like regular ZX81 built-in RAM (aka WRX Hi-Res, which basically means the RAM outputs data during Z80 refresh cycles). It has some other modifications that don't affect software, and is otherwise a bog standard ZX81. Both NMOS and CMOS Z80's (various manufacturers &amp; speed versions) were used during development. </p>
+
+<h1 id="thanks"> Acknowledgments </h1>
+
+<p> For me, this project would not have been possible without building on the work of others. In no particular order, special thanks goes to: </p>
+
+<ul>
+<li> Grant Searle, for his wonderful <a href="http://searle.hostei.com/grant/zx80/zx80.html">build-your-own ZX80/ZX81</a> project. </li>
+<li> <a href="http://www.user.dccnet.com/wrigter">Wilf Rigter</a>, for his ZX97Lite project and the excellent ZX81 video tutorial. </li>
+<li> Andy Rea, for inspiring me by working on a similar project around the same time I did (and putting a number of his ULA replacement boards in the world). </li>
+<li> All the people on RWAP's <a href="http://www.rwapservices.co.uk/ZX80_ZX81/forums">ZX80 / ZX81 forum</a>, for providing a fun, interesting &amp; helpful community to participate in. </li>
+<li> Rich Mellor, for providing that forum. </li>
+<li> The many other ZX81 fans, for their projects, their work in compiling documentation and putting various bits &amp; pieces online. </li>
+</ul>
+
+
+<h1 id="feedback"> Feedback </h1>
+
+<p> It will probably be revisited, but I don't intend to maintain this as a (semi-)regularly updated project. In the meanwhile I'd be happy to hear what you do with it, or if you have questions <em>that aren't answered by this document</em>. Also known as: &quot;<em class="abbrev">R</em>ead <em class="abbrev">T</em>he <em class="abbrev">F</em>ine <em class="abbrev">M</em>anual&quot;. </p>
+
+<p> For contact info, please check: <a href="http://bitcycle.org" title="visit Bitcycle.org">Bitcycle.org</a> </p>
+
+
+<h1 id="copyrights"> Copyrights </h1>
+
+<p> Licensing conditions are given in the file &quot;<a href="License.txt" title="A bit of lawyer-speak - hopefully not too much ;-)">License.txt</a>&quot;. For personal or in-house use, they do not form any restriction &amp; you can ignore. When you pass copies on to others, or want to re-use materials for your own website, they basically mean you should not try to hide where it came from. And if you put a modified version out there, contribute that modification(s) back to the community. </p>
+
+<p> Distributing copies does not require you to accept the license: just if you violate it, then under copyright law you don't have permission to distribute copies anymore. The easiest way to respect the license, is to distribute this archive as a whole, unmodified. If you want to include changes, the preferred method is to <em>add</em> changed files to the archive, so that recipients can compare with originals. If you want to pass an individual source- or programming file on to someone else, simply let &quot;License.txt&quot; go along for the ride. </p>
+
+<p> Some report files contain a &quot;&copy; Xilinx&quot; message; I'm not sure what it refers to: the exact file, as produced by ISE? A set of HTML tags? Table formatting, color combinations used? Including these files might fall under fair use, and Xilinx <em>probably</em> won't mind. In case of worries about liabilities, it is acceptable to simply remove those file(s) - end users can re-generate them as needed. </p>
+
+<p> You are free to use documentation or images, edit them, and upload somewhere as long as you give me credit (a link back to my site is preferred). </p>
+
+<p>  If you just use this design to get your head around what the ULA does (its <em>function</em>), and then create something all by yourself that has a similar function, you would of course be free to license that any way you want. </p>
+
+<p> That's it - enjoy! </p>
+
+
+
+</body>
+</html>
+

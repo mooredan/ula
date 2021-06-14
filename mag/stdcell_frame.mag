@@ -1,0 +1,47 @@
+magic
+tech amic5n
+timestamp 1622320036
+<< nwell >>
+rect -130 550 580 1495
+<< nselect >>
+rect -10 0 460 430
+<< pselect >>
+rect -10 670 460 1440
+<< metal1 >>
+rect -120 1555 -30 1660
+rect 30 1555 120 1660
+rect 180 1555 270 1660
+rect 330 1555 420 1660
+rect 480 1555 570 1660
+rect 0 1395 450 1485
+rect 0 -45 450 45
+rect -120 -250 -30 -115
+rect 30 -250 120 -115
+rect 180 -250 270 -115
+rect 330 -250 420 -115
+rect 480 -250 570 -115
+rect 630 -250 720 -115
+rect 780 -250 870 -115
+<< metal2 >>
+rect -410 1555 785 1645
+rect -410 1395 785 1485
+rect -410 1235 785 1325
+rect -410 1075 785 1165
+rect -410 915 785 1005
+rect -410 755 785 845
+rect -410 595 785 685
+rect -410 435 785 525
+rect -410 275 785 365
+rect -410 115 785 205
+rect -410 -45 785 45
+rect -410 -205 785 -115
+<< bb >>
+rect 0 1550 450 1660
+rect 0 -255 450 -115
+<< labels >>
+flabel metal1 s 105 -25 105 -25 2 FreeSans 400 0 0 0 vss
+port 12 ne
+flabel metal1 s 95 1415 95 1415 2 FreeSans 400 0 0 0 vdd
+port 11 ne
+flabel nwell -80 575 -80 575 2 FreeSans 400 0 0 0 vdd
+<< end >>

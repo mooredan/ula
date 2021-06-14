@@ -1,0 +1,35 @@
+magic
+tech scmos
+timestamp 1590120046
+<< nwell >>
+rect 10 9 49 32
+<< nselect >>
+rect 11 10 19 31
+rect 40 10 48 31
+rect 71 10 79 31
+rect 100 10 108 31
+<< nsubstratendiff >>
+rect 13 12 17 29
+rect 42 12 46 29
+rect 73 12 77 29
+rect 102 12 106 29
+<< genericcontact >>
+rect 14 26 16 28
+rect 43 26 45 28
+rect 74 26 76 28
+rect 103 26 105 28
+rect 14 13 16 15
+rect 43 13 45 15
+rect 74 13 76 15
+rect 103 13 105 15
+<< metal1 >>
+rect 13 12 17 29
+rect 42 12 46 29
+rect 73 12 77 29
+rect 102 12 106 29
+<< pseudo_rnwell >>
+rect 77 29 102 30
+rect 77 11 102 12
+<< rnwell >>
+rect 77 12 102 29
+<< end >>

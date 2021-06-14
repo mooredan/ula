@@ -1,0 +1,18 @@
+* clamp.cir
+.SUBCKT clamp vdd vss
+
+* RC
+R1 vdd n1   86.8e3
+C1 n1   vss 250e-15
+
+* predriver
+* Inverter to drive BIG NFET
+MP1 g1 n1 vdd vdd pfet w=12.0u l=0.6u 
+MN1 g1 n1 vss vss nfet w= 6.0u l=0.6u 
+
+*     D   G  S   B
+M1002 vdd g1 vss vss nfet w=36.3u l=0.9u
++  ad=98.73p pd=54.6u as=210.83p ps=51.964u
++  m=12
+
+.ENDS clamp

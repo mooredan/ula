@@ -1,0 +1,131 @@
+* Transient simulation of pad_x0_top and pad_in_top
+*
+* CMOS inverter for the crystal pad
+
+.include mag/pad_in_top.cir
+.include mag/pad_x0_top.cir
+.include mag/schmitt.cir
+.include device_models/9C_6p500MAAJ_T.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.100
+
+.csparam tgt_freq={FREQ}
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+* Vsrc src 0 DC 0 SIN({VO} {VA} {FREQ})
+Vsrc src 0 DC 2.5 AC 0.025
+Rsrc src 0 50
+
+Cin src srcx 1.0e-6
+vin srcx in DC 0
+
+* .subckt pad_in_top pad xpad   vdd vss
+* .subckt pad_x0_top pad xpad a vdd vss
+* .subckt schmitt z a vdd vss
+
+* clk_in : input to schmitt trigger - internal signal
+* xpad   : internal connection between external input and input to inverter
+xpad_xin  in  xpad          vdd vss pad_in_top 
+xpad_xout out clk_in xpad   vdd vss pad_x0_top 
+
+* feedback resistor around inverter
+Rf out in 2.2Meg
+
+* net "a" to schmitt trigger
+xschmitt clk_out clk_in vdd vss schmitt
+Czl clk_out 0 0.1e-12
+
+Rd out n1 10k
+
+
+* xtal load capacitance - target: 18pF
+C2 n1 0 33p
+
+V1 n1 n2 DC 0
+
+* 6.5 MHz crystal
+xxtal n2 B 9C_6p500MAAJ_T
+
+C1 B   0 33p
+RBL B 0 5.0Meg
+
+* load of Xin input
+Cxin B 0 7p
+
+
+* Ca clk_in 0 0.5e-12
+* Ra clk_in 0 1Meg
+
+
+
+* RL out 0 1.0k
+* CL out 0 30.0e-12
+
+* .save all @r.xdut.rin1[i] @Cout[i]
+* .save all @m.xdut.xpad_io_top_0.m1002[id]
+* +         @m.xdut.xpad_io_top_0.m1010[id]
+.save all
+
+* .dc Va 0 {VDD_VAL} 0.001
+
+* .tran 0.1n {PER*5}
+.ac lin 101 6.498Meg 6.502Meg
+
+.control
+destroy all
+run
+setplot ac1 
+
+let vxtal = v(n2) - v(B)
+let pxtal = vxtal * i(v1)
+
+* let freq = $&tgt_freq
+* let per = 1.0 / freq
+* let start_time = per * 3.0
+* let stop_time = per * 4.0
+* 
+* meas tran in_vpp PP v(in) from=start_time to=stop_time
+* meas tran out_vpp PP v(out) from=start_time to=stop_time
+* 
+* meas tran in_tymax MAX_AT v(in) from=start_time to=stop_time
+* meas tran out_tymax MAX_AT v(out) from=start_time to=stop_time
+* 
+* let vgain = out_vpp / in_vpp
+* let vgaindb = 20 * log10(vgain)
+* print vgaindb
+* 
+* let dt = out_tymax - in_tymax
+* print dt
+* let dt_pct = dt / per
+* print dt_pct
+* let dt_degrees = (dt_pct * 360)
+* print dt_degrees
+
+* echo $&tgt_freq
+* destroy all
+
+* plot v(in) v(out)
+* plot v(in) v(a) v(clk_out) 
+* plot v(in) v(out) v(b) 
+* plot mag(v(out))
+plot mag(v(b))
+
+* echo $&tgt_freq
+
+
+.endc
+
+.end

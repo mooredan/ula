@@ -1,0 +1,522 @@
+%! PostScript set of library objects for XCircuit
+%  Version: 3.10
+%  Library name is: project
+%  Author: Daniel Moore <mooredan@macbookpro.local>
+%
+
+% Depend project::inv_b digital::invert
+% Depend project::dlyinv_b digital::invert
+% Depend project::inv_c digital::invert
+% Depend project::nor2_c digital::nor
+% Depend project::nand2_c digital::nand
+% Depend project::nand2_b digital::nand
+% Depend project::buf_c digital::buffer
+% Depend project::buf_b digital::buffer
+% Depend project::and2_b digital::_and
+% Depend project::nor2_b digital::nor
+% Depend project::dlybuf_b digital::buffer
+
+% XCircuitLib library objects
+/project::INV_D {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+0 1.000 -256 -256 256 -256 256 256 -256 256 4 polygon
+1 1.000 272 0 256 0 2 polygon
+1.000 0.000 0.000 scb
+(Z) {/Times-Roman cf} 2 20 0.000 1.000 272 0 pinlabel
+sce
+(Z) {/Times-Roman cf} 2 23 0.000 1.000 240 0 label
+1 1.000 -272 0 -256 0 2 polygon
+1.000 0.000 0.000 scb
+(A) {/Times-Roman cf} 2 23 0.000 1.000 -272 0 pinlabel
+sce
+(A) {/Times-Roman cf} 2 20 0.000 1.000 -240 0 label
+1 1.000 0 -272 0 -256 2 polygon
+1.000 0.000 0.000 scb
+(vss) {/Times-Roman cf} 2 23 270.000 1.000 0 -272 pinlabel
+sce
+(vss) {/Times-Roman cf} 2 20 270.000 1.000 0 -240 label
+1 1.000 0 272 0 256 2 polygon
+1.000 0.000 0.000 scb
+(vdd) {/Times-Roman cf} 2 23 90.000 1.000 0 272 pinlabel
+sce
+(vdd) {/Times-Roman cf} 2 20 90.000 1.000 0 240 label
+0.000 0.000 1.000 scb
+(INV_D) {/Times-Roman cf} 2 21 0.000 1.000 0 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 0 -64 label
+0.180 0.545 0.341 scb
+mark ( %pZ %pA %pvdd %pvss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 0 -448 infolabel
+endgate
+} def
+
+/project::DFF_E {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 176 160 160 160 2 polygon
+1.000 0.000 0.000 scb
+(Q) {/Times-Roman cf} 2 20 0.000 1.000 176 160 pinlabel
+sce
+(Q) {/Times-Roman cf} 2 23 0.000 1.000 144 160 label
+1 1.000 -16 160 0 160 2 polygon
+1.000 0.000 0.000 scb
+(D) {/Times-Roman cf} 2 23 0.000 1.000 -16 160 pinlabel
+sce
+(D) {/Times-Roman cf} 2 20 0.000 1.000 16 160 label
+1 1.000 -16 96 0 96 2 polygon
+1.000 0.000 0.000 scb
+(CK) {/Times-Roman cf} 2 23 0.000 1.000 -16 96 pinlabel
+sce
+(CK) {/Times-Roman cf} 2 20 0.000 1.000 16 96 label
+0.000 0.000 1.000 scb
+(DFF_E) {/Times-Roman cf} 2 21 0.000 1.000 80 32 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 32 240 label
+0.180 0.545 0.341 scb
+mark ( %pQ %pD %pCK vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 
+17 0.000 1.000 96 -64 infolabel
+sce
+0 1.000 0 0 0 224 160 224 160 0 4 polygon
+endgate
+} def
+
+/project::dffposx1 {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 176 160 160 160 2 polygon
+1.000 0.000 0.000 scb
+(q) {/Times-Roman cf} 2 20 0.000 1.000 176 160 pinlabel
+sce
+(q) {/Times-Roman cf} 2 23 0.000 1.000 144 160 label
+1 1.000 -16 160 0 160 2 polygon
+1.000 0.000 0.000 scb
+(d) {/Times-Roman cf} 2 23 0.000 1.000 -16 160 pinlabel
+sce
+(d) {/Times-Roman cf} 2 20 0.000 1.000 16 160 label
+1 1.000 -16 96 0 96 2 polygon
+1.000 0.000 0.000 scb
+(ck) {/Times-Roman cf} 2 23 0.000 1.000 -16 96 pinlabel
+sce
+(ck) {/Times-Roman cf} 2 20 0.000 1.000 16 96 label
+0.000 0.000 1.000 scb
+(dffposx1) {/Times-Roman cf} 2 21 0.000 1.000 80 32 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 32 240 label
+0.180 0.545 0.341 scb
+mark ( %pq %pd %pck vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 
+17 0.000 1.000 96 -64 infolabel
+sce
+0 1.000 0 0 0 224 160 224 160 0 4 polygon
+endgate
+} def
+
+/project::dff_d_v2 {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 176 160 160 160 2 polygon
+1.000 0.000 0.000 scb
+(q) {/Times-Roman cf} 2 20 0.000 1.000 176 160 pinlabel
+sce
+(q) {/Times-Roman cf} 2 23 0.000 1.000 144 160 label
+1 1.000 -16 160 0 160 2 polygon
+1.000 0.000 0.000 scb
+(d) {/Times-Roman cf} 2 23 0.000 1.000 -16 160 pinlabel
+sce
+(d) {/Times-Roman cf} 2 20 0.000 1.000 16 160 label
+1 1.000 -16 96 0 96 2 polygon
+1.000 0.000 0.000 scb
+(ck) {/Times-Roman cf} 2 23 0.000 1.000 -16 96 pinlabel
+sce
+(ck) {/Times-Roman cf} 2 20 0.000 1.000 16 96 label
+0.000 0.000 1.000 scb
+(dff_d_v2) {/Times-Roman cf} 2 21 0.000 1.000 80 32 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 32 240 label
+0.180 0.545 0.341 scb
+mark ( %pq %pd %pck vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 
+17 0.000 1.000 96 -64 infolabel
+sce
+0 1.000 0 0 0 224 160 224 160 0 4 polygon
+endgate
+} def
+
+/project::dffr_d {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 176 160 160 160 2 polygon
+1.000 0.000 0.000 scb
+(q) {/Times-Roman cf} 2 20 0.000 1.000 176 160 pinlabel
+sce
+(q) {/Times-Roman cf} 2 23 0.000 1.000 144 160 label
+1 1.000 -16 160 0 160 2 polygon
+1.000 0.000 0.000 scb
+(d) {/Times-Roman cf} 2 23 0.000 1.000 -16 160 pinlabel
+sce
+(d) {/Times-Roman cf} 2 20 0.000 1.000 16 160 label
+1 1.000 -16 96 0 96 2 polygon
+1.000 0.000 0.000 scb
+(ck) {/Times-Roman cf} 2 23 0.000 1.000 -16 96 pinlabel
+sce
+(ck) {/Times-Roman cf} 2 20 0.000 1.000 16 96 label
+0.000 0.000 1.000 scb
+(dffr_d) {/Times-Roman cf} 2 21 0.000 1.000 80 32 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 32 240 label
+0.180 0.545 0.341 scb
+mark ( %pq %pd %pck vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 
+17 0.000 1.000 96 -64 infolabel
+sce
+0 1.000 0 0 0 224 160 224 160 0 4 polygon
+endgate
+} def
+
+/project::xor2x1 {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+0 1.000 -256 -256 256 -256 256 256 -256 256 4 polygon
+1 1.000 272 0 256 0 2 polygon
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 272 0 pinlabel
+sce
+(z) {/Times-Roman cf} 2 23 0.000 1.000 240 0 label
+1 1.000 -272 -32 -256 -32 2 polygon
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 23 0.000 1.000 -272 -32 pinlabel
+sce
+(a) {/Times-Roman cf} 2 20 0.000 1.000 -240 -32 label
+1 1.000 -272 32 -256 32 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 -272 32 pinlabel
+sce
+(b) {/Times-Roman cf} 2 20 0.000 1.000 -240 32 label
+0.000 0.000 1.000 scb
+(xor2x1) {/Times-Roman cf} 2 21 0.000 1.000 0 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 0 -64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 0 -448 infolabel
+endgate
+} def
+
+/digital::invert {
+% trivial
+begingate
+0 1.000 -32 -40 -32 40 40 0 3 polygon
+1 1.000 48 0 8 0.000 360.000 xcarc
+1 1.000 -32 0 -48 0 2 polygon
+1 1.000 56 0 64 0 2 polygon
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In) {/Times-Roman cf} 2 7 0.000 1.000 -48 0 pinlabel
+endgate
+} def
+
+/project::inv_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(inv_b) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -144 infolabel
+sce
+1.000 0.000 48 0 digital::invert
+endgate
+} def
+
+/project::dlyinv_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(dlyinv_b) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -144 infolabel
+sce
+1.000 0.000 48 0 digital::invert
+endgate
+} def
+
+/project::inv_c {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(inv_c) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 48 0 digital::invert
+endgate
+} def
+
+/digital::nor {
+% trivial
+begingate
+1 1.000 -64 48 -35 48 2 polygon
+1 1.000 -64 -48 -35 -48 2 polygon
+1 1.000 -128 0 80 -37.000 37.000 xcarc
+1 1.000 56 0 8 0.000 360.000 xcarc
+1 1.000 -35 -48 96 30.000 90.000 xcarc
+1 1.000 -35 48 96 270.000 330.000 xcarc
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In.1) {/Times-Roman cf} 2 7 0.000 1.000 -56 32 pinlabel
+(In.2) {/Times-Roman cf} 2 7 0.000 1.000 -56 -32 pinlabel
+endgate
+} def
+
+/project::nor2_c {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 160 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 32 pinlabel
+0.000 0.000 1.000 scb
+(nor2_c) {/Times-Roman cf} 2 21 0.000 1.000 128 -48 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 48 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 80 0 digital::nor
+1 1.000 0 32 32 32 2 polygon
+1 1.000 0 -32 16 -32 2 polygon
+1 1.000 16 -32 32 -32 2 polygon
+1 1.000 144 0 160 0 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 0 -32 pinlabel
+endgate
+} def
+
+/digital::nand {
+% trivial
+begingate
+1 1.000 0 -48 -64 -48 -64 48 0 48 4 polygon
+1 1.000 56 0 8 0.000 360.000 xcarc
+1 1.000 0 0 48 -90.000 90.000 xcarc
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In.1) {/Times-Roman cf} 2 7 0.000 1.000 -64 32 pinlabel
+(In.2) {/Times-Roman cf} 2 7 0.000 1.000 -64 -32 pinlabel
+endgate
+} def
+
+/project::nand2_c {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 96 0 80 0 2 polygon
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 96 0 pinlabel
+sce
+1 1.000 -64 -32 -48 -32 2 polygon
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 23 0.000 1.000 -64 32 pinlabel
+sce
+1 1.000 -64 32 -48 32 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 -64 -32 pinlabel
+0.000 0.000 1.000 scb
+(nand2_c) {/Times-Roman cf} 2 21 0.000 1.000 32 -64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 -16 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 32 -144 infolabel
+sce
+1.000 0.000 16 0 digital::nand
+endgate
+} def
+
+/project::nand2_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 96 0 80 0 2 polygon
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 96 0 pinlabel
+sce
+1 1.000 -64 -32 -48 -32 2 polygon
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 23 0.000 1.000 -64 32 pinlabel
+sce
+1 1.000 -64 32 -48 32 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 -64 -32 pinlabel
+0.000 0.000 1.000 scb
+(nand2_b) {/Times-Roman cf} 2 21 0.000 1.000 32 -64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 -16 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 32 -144 infolabel
+sce
+1.000 0.000 16 0 digital::nand
+endgate
+} def
+
+/digital::buffer {
+% trivial
+begingate
+0 1.000 -32 -40 -32 40 40 0 3 polygon
+1 1.000 -32 0 -48 0 2 polygon
+1 1.000 40 0 64 0 2 polygon
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In) {/Times-Roman cf} 2 7 0.000 1.000 -48 0 pinlabel
+endgate
+} def
+
+/project::buf_c {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(buf_c) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 48 0 digital::buffer
+endgate
+} def
+
+/project::buf_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(buf_b) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 48 0 digital::buffer
+endgate
+} def
+
+/project::ckgen_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+0 1.000 -256 -256 256 -256 256 256 -256 256 4 polygon
+1 1.000 272 -32 256 -32 2 polygon
+1.000 0.000 0.000 scb
+(ck) {/Times-Roman cf} 2 20 0.000 1.000 272 -32 pinlabel
+sce
+(ck) {/Times-Roman cf} 2 23 0.000 1.000 240 -32 label
+1 1.000 272 32 256 32 2 polygon
+1.000 0.000 0.000 scb
+(nck) {/Times-Roman cf} 2 20 0.000 1.000 272 32 pinlabel
+sce
+(nck) {/Times-Roman cf} 2 23 0.000 1.000 240 32 label
+1 1.000 -272 0 -256 0 2 polygon
+1.000 0.000 0.000 scb
+(ckin) {/Times-Roman cf} 2 23 0.000 1.000 -272 0 pinlabel
+sce
+(ckin) {/Times-Roman cf} 2 20 0.000 1.000 -240 0 label
+0.000 0.000 1.000 scb
+(ckgen_b) {/Times-Roman cf} 2 21 0.000 1.000 0 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 0 -64 label
+0.180 0.545 0.341 scb
+mark ( %pck %pnck %pckin vdd vss %n) @index @class (spice:) {/Times-Roman cf} 
+ctmk 17 0.000 1.000 0 -448 infolabel
+endgate
+} def
+
+/digital::_and {
+% trivial
+begingate
+1 1.000 0 -48 -64 -48 -64 48 0 48 4 polygon
+1 1.000 0 0 48 -90.000 90.000 xcarc
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 48 0 pinlabel
+(In.1) {/Times-Roman cf} 2 7 0.000 1.000 -64 32 pinlabel
+(In.2) {/Times-Roman cf} 2 7 0.000 1.000 -64 -32 pinlabel
+endgate
+} def
+
+/project::and2_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 96 0 80 0 2 polygon
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 96 0 pinlabel
+sce
+1 1.000 -64 -32 -48 -32 2 polygon
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 23 0.000 1.000 -64 32 pinlabel
+sce
+1 1.000 -64 32 -48 32 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 -64 -32 pinlabel
+0.000 0.000 1.000 scb
+(and2_b) {/Times-Roman cf} 2 21 0.000 1.000 32 -64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 -16 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 32 -144 infolabel
+sce
+1.000 0.000 16 0 digital::_and
+1 1.000 64 0 80 0 2 polygon
+endgate
+} def
+
+/project::nor2_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 160 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 32 pinlabel
+0.000 0.000 1.000 scb
+(nor2_b) {/Times-Roman cf} 2 21 0.000 1.000 128 -48 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 48 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 80 0 digital::nor
+1 1.000 0 32 32 32 2 polygon
+1 1.000 0 -32 16 -32 2 polygon
+1 1.000 16 -32 32 -32 2 polygon
+1 1.000 144 0 160 0 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 0 -32 pinlabel
+endgate
+} def
+
+/project::dlybuf_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(dlybuf_b) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 48 0 digital::buffer
+endgate
+} def
+
+/project::ecard {
+begingate
+1.000 0.000 0.000 scb
+(v.p) {/Times-Roman cf} 2 9 0.000 1.000 -32 64 pinlabel
+0.647 0.165 0.165 scb
+(V) {hS} {/Times-Roman cf} 3 20 0.000 0.700 16 -16 label
+1.000 0.000 0.000 scb
+(v.m) {/Times-Roman cf} 2 13 0.000 1.000 -32 -64 pinlabel
+sce
+(+) {/Symbol cf} 2 5 0.000 1.000 -32 14 label
+(-) {/Symbol cf} 2 5 0.000 1.000 -32 -22 label
+0.180 0.545 0.341 scb
+( %pv.p %pv.m ) (spice:) {/Times-Roman cf} 3 20 360.000 1.000 -128 -160 
+infolabel
+sce
+1 1.000 -32 32 -32 64 2 polygon
+1 1.000 -32 -32 -32 -64 2 polygon
+1 1.000 -32 -32 0 0 -32 32 -64 0 -32 -32 5 polygon
+0.000 0.000 1.000 scb
+{/Times-Roman cf} 1 20 0.000 0.700 16 16 label
+{/Times-Roman cf} 1 20 0.000 0.700 48 64 label
+endgate
+} def
+
+
+% EndLib

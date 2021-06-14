@@ -1,0 +1,95 @@
+
+# Pinout for XC9572 in 84-pin PLCC package
+# include as source file & edit as desired
+# or don't include as sourcefile to let fitter choose pins
+
+NET Csync LOC=P1 ;
+NET a14 LOC=P2 ;
+NET luminance LOC=P3 ;
+NET Ramcs LOC=P4 ;
+# pin 5 -
+NET Romcs LOC=P6 ;
+NET Xout LOC=P7 ;
+# pin 8 is GND
+NET cpuclk_inv LOC=P9 | BUFG=CLK | SLEW='FAST' ;
+# pin 10 -
+NET Nmi LOC=P11 ;
+NET cpuclk LOC=P12 | BUFG=CLK | SLEW='FAST' ;
+NET 'Halt' LOC=P13 ;
+NET Xin LOC=P14 ;
+NET a15 LOC=P15 ;
+# pin 16 is GND
+NET d7 LOC=P17 ;
+NET tape_in LOC=P18 ;
+# pin 19 -
+# pin 20 -
+# pin 21 -
+# pin 22 is VCC_IO
+# pin 23 -
+# pin 24 -
+NET d6 LOC=P25 ;
+NET usa_uk LOC=P26 ;
+# pin 27 is GND
+# pin 28 is TDI
+# pin 29 is TMS
+# pin 30 is TCK
+NET d5 LOC=P31 ;
+NET d4 LOC=P32 ;
+NET Kbd4 LOC=P33 ;
+NET d3 LOC=P34 ;
+NET Kbd3 LOC=P35 ;
+# pin 36 -
+NET d2 LOC=P37 ;
+# pin 38 is VCC_INT
+NET Kbd2 LOC=P39 ;
+# pin 40 -
+NET d1 LOC=P41 ;
+# pin 42 is GND
+NET Kbd1 LOC=P43 ;
+# pin 44 -
+NET d0 LOC=P45 ;
+# pin 46 -
+NET Kbd0 LOC=P47 ;
+# pin 48 -
+# pin 49 is GND
+# pin 50 -
+NET a3 LOC=P51 ;
+# pin 52 -
+NET a4 LOC=P53 ;
+NET a5 LOC=P54 ;
+# pin 55 -
+NET a6 LOC=P56 ;
+# pin 57 -
+# pin 58 -
+# pin 59 is TDO
+# pin 60 is GND
+# pin 61 -
+# pin 62 -
+NET zx80_zx81 LOC=P63 ;
+# pin 64 is VCC_IO
+NET border LOC=P65 ;
+# pin 66 -
+NET Invert_screen LOC=P67 ;
+NET a7 LOC=P68 ;
+# pin 69 -
+NET a8 LOC=P70 ;
+# pin 71 -
+NET a2 LOC=P72 ;
+# pin 73 is VCC_INT
+NET a1 LOC=P74 ;
+NET a0 LOC=P75 ;
+# pin 76 -
+NET Rd LOC=P77 ;
+# pin 78 is VCC_INT
+NET Iorq LOC=P79 ;
+NET Wr LOC=P80 ;
+# pin 81 -
+NET Mreq LOC=P82 ;
+# pin 83 -
+NET M1 LOC=P84 ;
+
+# Timing constraints
+
+INST "Xin" TNM = Xosc_input ;
+INST "Xout" TNM = Xosc_output ;
+TIMESPEC TS_osc = FROM "Xosc_input" TO "Xosc_output" 24 ns ;

@@ -1,0 +1,16 @@
+*
+.subckt schmitt z a vdd vss
+
+* W6/W4 = 2.95
+M4 n2 a vdd vdd pfet w=5.7u  l=0.6u
+M5 z  a  n2 vdd pfet w=15.4u l=0.6u
+* M6 n2 z vss vdd pfet w=16.8u l=0.6u
+M6 n2 z vss vdd pfet w=15.4u l=0.6u
+
+
+* W3/W1 = 3.55
+* M3 n1 z vdd vss nfet w=10.5u  l=0.6u
+M3 n1 z vdd vss nfet w=6u  l=0.6u
+M2  z a  n1 vss nfet w=6u     l=0.6u
+M1 n1 a vss vss nfet w=3u     l=0.6u
+.ends

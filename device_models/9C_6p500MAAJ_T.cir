@@ -1,0 +1,64 @@
+*
+* TXC Corporation
+*
+* MFR P/N: 9C-6.500MAAJ-T
+* ESR: 80 ohms max
+* Shunt capacitance: 7pF max
+* Frequency: 6.5 MHz
+* Load capacitance: 18 pF
+* Drive level: 1-500 uW, 100uW typical
+*
+* Original model calculations
+* =====================================
+* Q = XL / R = (2 * pi * f * L) / R
+* ==>  L = (Q * R) / (2 * pi * f)
+* Q typ: 20,000 - 200,000
+* L ==> 39.2 - 392 mH
+*
+*
+* f = 1 / (2 * pi * sqrt(L * C))
+* w^2 = 1 / (L * C)
+* C = 1 / (L * w^2)
+*
+*
+* Original model
+* =====================================
+* .subckt 9C_6p500MAAJ_T A B
+* C0 A B 7.0e-12
+* L1 A n1 76.394e-3
+* C1 n1 n2 7.8479e-15
+* R1 n2 B 80
+* * Q = 39000
+* .ends
+*
+*
+* Revised model
+* =====================================
+* Model based upon matlab program crystal_params.m
+*
+* Refer to Intel App Note AP-155 (iap155.pdf)
+* "Oscillators for Microcontrollers" by
+* Tom Williamson
+* June 1983
+* https://ecee.colorado.edu/~mcclurel/iap155.pdf
+*
+* Model for crystal in "parallel" mode
+* L1 is fixed, then C1 is emperically derived to
+* get fa = 6.5 MHz
+* R1 is calculated from cap values and ESR
+*
+* Pmax @ 5V is estimated to be 540 uW
+*
+* Values are on par with values in the app note
+*
+* fa =  6500000.00000
+* fs =  6498979.69095
+* R1 =  41.472
+* Pmax =  0.00054042
+* 
+.subckt 9C_6p500MAAJ_T A B
+L1 A n1 76.394e-3
+C1 n1 n2 7.850379528255e-15;
+R1 n2 B 41.472 
+C0 A B 7.0e-12
+.ends

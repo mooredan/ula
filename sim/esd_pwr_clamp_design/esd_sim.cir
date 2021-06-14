@@ -1,0 +1,87 @@
+* Sizing of nfet for ESD power clamp
+
+.lib device_models/AMI_C5N.lib TT
+* .lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param RS=0.01
+
+.temp 25
+
+.include "../esd_gen.cir"
+X1 hvpulse esd_gen
+
+* resistor to measure current
+* and isolate the nfet
+R1 hvpulse vdd 0.010
+
+* turn on the nfet - get the current profile
+* try to get the FET to pass 3A !
+Vg  g 0 DC 5
+
+* ground the source
+* to the same as the esd generator
+Vvss vss 0 DC 0
+
+*     D   G  S   B
+M1002 vdd g  vss vss nfet w=36.3u l=0.9u
++  ad=98.73p pd=54.6u as=210.83p ps=51.964u
++  m=1
+
+.save all
+
+.tran 0.1n 500n
+
+.control
+destroy all
+run
+alter @m1002[m]=2
+run
+alter @m1002[m]=4
+run
+alter @m1002[m]=8
+run
+alter @m1002[m]=12
+run
+
+setplot tran1
+let id = 100*(v(hvpulse)-v(vdd))
+meas tran vvdd find v(vdd) at=200n
+meas tran vvdd find v(vdd) at=400n
+* print vvdd
+print maximum(id)
+
+setplot tran2
+let id = 100*(v(hvpulse)-v(vdd))
+meas tran vvdd find v(vdd) at=200n
+meas tran vvdd find v(vdd) at=400n
+print maximum(id)
+
+setplot tran3
+let id = 100*(v(hvpulse)-v(vdd))
+meas tran vvdd find v(vdd) at=200n
+meas tran vvdd find v(vdd) at=400n
+print maximum(id)
+
+setplot tran4
+let id = 100*(v(hvpulse)-v(vdd))
+meas tran vvdd find v(vdd) at=200n
+meas tran vvdd find v(vdd) at=400n
+print maximum(id)
+
+setplot tran5
+let id = 100*(v(hvpulse)-v(vdd))
+meas tran vvdd find v(vdd) at=200n
+meas tran vvdd find v(vdd) at=400n
+print maximum(id)
+
+* plot v(hvpulse)
+* plot v(vdd)
+* * current
+* * plot 100*(v(hvpulse)-v(vdd))
+* plot id
+* 
+* print maximum(id)
+
+.endc
+
+.end

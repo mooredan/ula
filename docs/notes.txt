@@ -1,0 +1,169 @@
+ON Semiconductor C5 (0.5 um) CMOS process
+===============================================
+
+Variants: C5F
+          C5N
+
+Feature size: 0.50
+Default metal: 3
+Voltage: 5
+
+From: https://www.mosis.com/vendors/view/on-semiconductor/c5
+
+Process Family Description
+This non-silicided CMOS process has 3 metal layers and 2 poly layers,
+and a high resistance layer. Stacked contacts are supported.
+The process is for 5 volt applications. MOSIS orders EPI wafers for 
+this process. Non-EPI (bulk) is an additional cost option and not 
+available for MEP submissions. For further information, see the 
+ON Semiconductor Foundry Mixed-Signal Offerings web page.
+
+C5N Process
+PiP (poly2 over poly) capacitors (950 aF/µm²) and the 
+HRP (High Resistance) option are available on multiproject runs.
+
+C5F Process
+The C5F process offers the above layers of C5N plus 
+Thick_Gate, N_Minus_Implant (Npblk), and P_Minus_Implant (Ppblk).
+
+
+Design Rules
+This process supports the following design rules.
+
+Design Rules	        Lambda1	Feature Size1	Availablility
+-----------------------------------------------------
+ON Semi C5F/N Rules	n/a	0.60	        MOSIS, ON Semiconductor
+SCMOS_SUBM	        0.30	0.60	        MOSIS in PDF
+SCMOS	                0.35	0.60            MOSIS in PDF
+                                (after sizing)
+
+i
+
+
+From http://www.onsemi.com/PowerSolutions/content.do?id=16693
+
+Product Description
+Optimized for 5 V mixed-signal applications, the C5 process family from 
+ON Semiconductor offers a medium-density, high-performance mixed-signal 
+technology capable of integrating complex analog functions, digital 
+content and 20 V capability. This process delivers the advantages of a 
+dedicated mixed-signal 0.5 µm process without the costs associated with 
+the extra mask steps of a BCD process. Low-voltage transistors are also 
+available for the 0.5 µm process making it well-suited for 
+low-power applications.
+
+Features
+2 or 3 metal layers
+Poly to poly capacitors
+EEPROM
+Schottky diodes
+High voltage I/O – 12/20 V
+High-resistance poly
+Low-voltage modules
+
+Process Characteristics
+============================================
+Operating Voltage	5, 12 V
+Substrate Material	P-Type, Bulk or EPI
+Drawn Transistor Length	0.6 µm
+Gate Oxide Thickness	13.5 nm
+Contact/Via Size	0.5 µm
+Contacted Gate Pitch	3.9 µm
+Top Metal Thickness	675 nm
+Contacted Metal Pitch
+   Metal 1	1.5 µm
+   Metal 2, 3	1.6 µm
+   Metal Composition	TiN/AlCu/TiN
+
+Sample Process Options
+Mask Layers*
+Standard CMOS with 20 V extended drain	13/15
+Plus double poly cap	14/16
+All of the above plus 1,000 Ω/square resistor	15/17
+All of the above plus 12 V gate	16/18
+All of the above plus low Vt devices	19/21
+* 2 Metal/3 Metal. 
+
+Standard Transistors
+====================================
+N-Channel	Typical Value	Unit
+Vt		0.7	V
+Idsat		450	µA/µm
+
+P-Channel
+Vt		-0.9	V
+Idsat		-260	µA/µm
+
+Resistors
+Typical Value	Unit
+Poly		25	Ω/square
+Hi-R Poly	1000	Ω/square
+N-Diffusion	80	Ω/square
+P-Diffusion	110	Ω/square
+N-Well		855	Ω/square
+
+Capacitors
+Poly-Poly	Typical Value	Unit
+Area	0.9	fF/µm²
+Periphery	0.065	fF/µm
+
+
+
+
+
+From: https://www.mosis.com/pages/design/flows/design-flow-scmos-kits
+====================================================================
+Projects submitted to MOSIS for fabrication can be designed using either 
+layout design rules and layers specific to a process (vendor native rules) 
+or (for some processes) vendor-independent, scalable rules (SCMOS rules). 
+These rule sets cannot be mixed within a design.
+
+The table below contains links to design kits, technology files, cell libraries, 
+IP, and other design support for a variety of CAD tools for various processes 
+available through MOSIS that use SCMOS rules.
+
+Foundry	Comparable Process1	Technology Codes 
+(Link to Layer Map)	Lambda	Design Kit	DRC, LVS, Extraction	Cell Libraries	Pads
+ON Semi	0.50 micron, 1P3M, C5	SCN3M SCN3M_SUBM	0.35 0.30	Mentor ASIC Design Kit,
+
+Magic , 
+
+Electric	Cadence, Diva 
+
+Polyteda	Tanner (SUBM) 
+  CIF 
+  GDS 
+
+Oklahoma State (SUBM3)	SCMOS_SUBM 
+  CIF 
+  GDS 
+
+Magic
+0.50 micron, 2P3M, C5	SCN3ME SCN3ME_SUBM	0.35 0.30	Mentor ASIC Design Kit,
+
+Magic, 
+
+Electric	Polyteda	Tanner (SUBM) 
+  CIF 
+  GDS 
+
+Oklahoma State (SUBM3)	SCN3ME_SUBM 
+
+Magic	
+
+
+
+
+
+This might be the Cadence design tech file: NCSU_TechLib_ami06
+
+DEFINE NCSU_TechLib_ami06 /export/cadence/UofU_SYNS_v1_2/UTFSM_libraries/ncsu-cdk-1.6.0.beta/lib/NCSU_TechLib_ami06
+
+
+lambda = 0.3 um
+min poly = 2 lambda  (drawn 0.6 um)
+
+USE SCN3M_SUBM
+
+
+

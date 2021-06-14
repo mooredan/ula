@@ -1,0 +1,257 @@
+magic
+tech amic5n
+timestamp 1608317706
+<< nwell >>
+rect -120 1470 3180 2430
+rect -120 870 600 1470
+rect 2460 870 3180 1470
+<< nselect >>
+rect 120 1710 360 2220
+rect 0 60 480 750
+rect 2580 60 3060 750
+<< pselect >>
+rect 0 2220 480 2310
+rect 0 1710 120 2220
+rect 360 1710 480 2220
+rect 0 990 480 1710
+rect 2580 990 3060 2310
+<< poly2 >>
+rect 570 1200 720 1350
+rect 2040 1200 2220 1350
+<< poly2capcontact >>
+rect 965 1835 2215 1945
+<< poly2capcontact >>
+rect 905 515 2215 625
+<< poly2cap >>
+rect 900 1650 2280 2130
+rect 840 240 2280 900
+<< poly2contact >>
+rect 605 1265 655 1315
+<< poly2contact >>
+rect 2135 1265 2185 1315
+<< ntransistor >>
+rect 210 390 270 690
+rect 2790 120 2850 690
+<< ptransistor >>
+rect 210 1050 270 1620
+rect 2790 1050 2850 2250
+<< ndiffusion >>
+rect 60 390 210 690
+rect 270 390 420 690
+rect 2640 120 2790 690
+rect 2850 120 3000 690
+<< pdiffusion >>
+rect 60 1050 210 1620
+rect 270 1050 420 1620
+rect 2640 1050 2790 2250
+rect 2850 1050 3000 2250
+<< nsubstratendiff >>
+rect 180 1770 300 2160
+<< polysilicon >>
+rect 210 1620 270 1680
+rect 720 1500 2460 2310
+rect 2790 2250 2850 2310
+rect 210 960 270 1050
+rect 60 780 270 960
+rect 210 690 270 780
+rect 210 330 270 390
+rect 660 60 2460 1050
+rect 2790 960 2850 1050
+rect 2640 780 2850 960
+rect 2790 690 2850 780
+rect 2790 60 2850 120
+<< polycontact >>
+rect 755 2225 805 2275
+<< polycontact >>
+rect 905 2225 955 2275
+<< polycontact >>
+rect 1055 2225 1105 2275
+<< polycontact >>
+rect 1205 2225 1255 2275
+<< polycontact >>
+rect 1355 2225 1405 2275
+<< polycontact >>
+rect 1535 2225 1585 2275
+<< polycontact >>
+rect 1685 2225 1735 2275
+<< polycontact >>
+rect 1835 2225 1885 2275
+<< polycontact >>
+rect 1985 2225 2035 2275
+<< polycontact >>
+rect 2135 2225 2185 2275
+<< polycontact >>
+rect 2285 2225 2335 2275
+<< pdcontact >>
+rect 2675 2165 2725 2215
+<< nsubstratencontact >>
+rect 215 2075 265 2125
+<< polycontact >>
+rect 755 2075 805 2125
+<< polycontact >>
+rect 2375 2075 2425 2125
+<< pdcontact >>
+rect 2915 2105 2965 2155
+<< pdcontact >>
+rect 2675 1985 2725 2035
+<< polycontact >>
+rect 755 1925 805 1975
+<< polycontact >>
+rect 2375 1925 2425 1975
+<< pdcontact >>
+rect 2915 1955 2965 2005
+<< nsubstratencontact >>
+rect 215 1805 265 1855
+<< pdcontact >>
+rect 2675 1835 2725 1885
+<< polycontact >>
+rect 755 1775 805 1825
+<< polycontact >>
+rect 2375 1775 2425 1825
+<< pdcontact >>
+rect 2915 1775 2965 1825
+<< pdcontact >>
+rect 2675 1685 2725 1735
+<< polycontact >>
+rect 755 1625 805 1675
+<< polycontact >>
+rect 2375 1625 2425 1675
+<< pdcontact >>
+rect 2915 1595 2965 1645
+<< pdcontact >>
+rect 2675 1535 2725 1585
+<< pdcontact >>
+rect 95 1475 145 1525
+<< pdcontact >>
+rect 335 1475 385 1525
+<< pdcontact >>
+rect 2675 1385 2725 1435
+<< pdcontact >>
+rect 2915 1415 2965 1465
+<< pdcontact >>
+rect 95 1265 145 1315
+<< pdcontact >>
+rect 335 1265 385 1315
+<< pdcontact >>
+rect 2675 1235 2725 1285
+<< pdcontact >>
+rect 2915 1235 2965 1285
+<< pdcontact >>
+rect 95 1085 145 1135
+<< pdcontact >>
+rect 335 1085 385 1135
+<< pdcontact >>
+rect 2915 1085 2965 1135
+<< polycontact >>
+rect 125 845 175 895
+<< polycontact >>
+rect 695 845 745 895
+<< polycontact >>
+rect 2705 845 2755 895
+<< polycontact >>
+rect 695 695 745 745
+<< polycontact >>
+rect 2375 695 2425 745
+<< ndcontact >>
+rect 95 605 145 655
+<< ndcontact >>
+rect 335 605 385 655
+<< ndcontact >>
+rect 2675 605 2725 655
+<< ndcontact >>
+rect 2915 605 2965 655
+<< polycontact >>
+rect 695 545 745 595
+<< polycontact >>
+rect 2375 545 2425 595
+<< ndcontact >>
+rect 95 455 145 505
+<< ndcontact >>
+rect 335 455 385 505
+<< ndcontact >>
+rect 2675 455 2725 505
+<< polycontact >>
+rect 695 395 745 445
+<< polycontact >>
+rect 2375 395 2425 445
+<< ndcontact >>
+rect 2915 395 2965 445
+<< ndcontact >>
+rect 2675 305 2725 355
+<< polycontact >>
+rect 695 245 745 295
+<< polycontact >>
+rect 2375 245 2425 295
+<< ndcontact >>
+rect 2915 215 2965 265
+<< ndcontact >>
+rect 2675 155 2725 205
+<< polycontact >>
+rect 695 95 745 145
+<< polycontact >>
+rect 845 95 895 145
+<< polycontact >>
+rect 995 95 1045 145
+<< polycontact >>
+rect 1145 95 1195 145
+<< polycontact >>
+rect 1295 95 1345 145
+<< polycontact >>
+rect 1445 95 1495 145
+<< polycontact >>
+rect 1595 95 1645 145
+<< polycontact >>
+rect 1745 95 1795 145
+<< polycontact >>
+rect 1895 95 1945 145
+<< polycontact >>
+rect 2045 95 2095 145
+<< polycontact >>
+rect 2195 95 2245 145
+<< polycontact >>
+rect 2345 95 2395 145
+<< metal1 >>
+rect 0 2280 3060 2370
+rect 60 2160 180 2280
+rect 720 2190 2520 2280
+rect 60 1770 300 2160
+rect 60 1050 180 1770
+rect 300 1350 420 1560
+rect 720 1500 840 2190
+rect 2100 1500 2220 1830
+rect 2340 1500 2460 2190
+rect 300 1230 690 1350
+rect 90 810 210 930
+rect 60 90 180 690
+rect 300 420 420 1230
+rect 2100 1110 2250 1500
+rect 2640 1200 2760 2280
+rect 660 180 780 1050
+rect 2100 990 2790 1110
+rect 2100 630 2220 990
+rect 2340 180 2460 870
+rect 2670 810 2790 990
+rect 660 90 2520 180
+rect 2640 90 2760 690
+rect 2880 180 3000 2190
+rect 0 0 3060 90
+<< high_resist >>
+rect 720 1350 2040 1410
+rect 720 1140 2040 1200
+<< poly2_high_resist >>
+rect 720 1200 2040 1350
+<< labels >>
+flabel metal1 s 330 780 330 780 2 FreeSans 400 0 0 0 n1
+flabel metal1 s 150 870 150 870 2 FreeSans 400 0 0 0 a
+port 2 ne
+flabel metal1 s 30 2340 30 2340 2 FreeSans 400 0 0 0 vdd
+port 3 ne
+flabel metal1 s 30 30 30 30 2 FreeSans 400 0 0 0 vss
+port 4 ne
+flabel metal1 s 2160 1380 2160 1380 2 FreeSans 400 0 0 0 n2
+flabel metal1 s 2940 810 2940 810 2 FreeSans 400 0 0 0 z
+port 1 ne
+flabel poly2_high_resist s 1320 1260 1320 1260 2 FreeSans 400 0 0 0 r0
+<< checkpaint >>
+rect -130 -10 3190 2440
+<< end >>

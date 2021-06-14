@@ -1,0 +1,64 @@
+* Output transition times
+.include mag/dly_test.cir
+.include mag/dly_c.cir
+.include mag/nand2_b.cir
+.include mag/inv_c.cir
+.include mag/subc_2.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.temp 25
+
+.param VDD_VAL=5
+
+* power supply
+vvdd vdd 0 DC VDD_VAL
+vvss vss 0 DC 0
+
+
+* vnpd  npd 0 DC 0 PULSE(0 {VDD_VAL} 10n 4.8n 4.8n 80n 220n)
+* va    a 0 DC 0 PULSE(0 {VDD_VAL} 10n 4.8n 4.8n 80n 220n)
+va    a 0 DC 0 PULSE(0 {VDD_VAL} 10n 4.8n 4.8n 45.2n 100n)
+
+
+* output load
+* cpad pad vgnd 50p
+* vvgnd vgnd 0 DC 0
+
+* add small load to core side of the
+* input series resistor
+
+
+.save all
+
+.tran 0.1n 900n
+
+.control
+destroy all
+run
+
+setplot tran1
+plot v(a) v(zout)
+plot  v(node1)  v(node2)
+
+* let vdd_max = maximum(v(vdd))
+* let vol = vdd_max * 0.1
+* let voh = vdd_max * 0.9
+* 
+* print vdd_max
+* print vol
+* print voh
+* 
+* 
+* meas tran nputlh TRIG v(xdut.npu) VAL=vol RISE=1 TARG v(xdut.npu) VAL=voh RISE=1
+* meas tran nputhl TRIG v(xdut.npu) VAL=voh FALL=2 TARG v(xdut.npu) VAL=vol FALL=2
+* meas tran padtlh TRIG v(pad) VAL=vol RISE=2 TARG v(pad) VAL=voh RISE=2
+* 
+* meas tran pdtlh TRIG v(xdut.pd) VAL=vol RISE=1 TARG v(xdut.pd) VAL=voh RISE=1
+* meas tran pdthl TRIG v(xdut.pd) VAL=voh FALL=2 TARG v(xdut.pd) VAL=vol FALL=2
+* meas tran padthl TRIG v(pad) VAL=voh FALL=1 TARG v(pad) VAL=vol FALL=1
+
+.endc
+
+.end

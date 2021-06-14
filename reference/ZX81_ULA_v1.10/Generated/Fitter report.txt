@@ -1,0 +1,843 @@
+ 
+cpldfit:  version O.87xd                            Xilinx Inc.
+                                  Fitter Report
+Design Name: zx81_ula                            Date:  5- 5-2012,  2:09AM
+Device Used: XC9572-15-PC84
+Fitting Status: Successful
+
+*************************  Mapped Resource Summary  **************************
+
+Macrocells     Product Terms    Function Block   Registers      Pins           
+Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
+59 /72  ( 82%) 139 /360  ( 39%) 102/144 ( 71%)   35 /72  ( 49%) 44 /69  ( 64%)
+
+** Function Block Resources **
+
+Function    Mcells      FB Inps     Signals     Pterms      IO          
+Block       Used/Tot    Used/Tot    Used        Used/Tot    Used/Tot    
+FB1          16/18       23/36       23          39/90       8/18
+FB2          15/18       31/36       31          49/90       5/17
+FB3          13/18       18/36       18          17/90       8/17
+FB4          15/18       30/36       30          34/90       4/17
+             -----       -----                   -----       -----     
+             59/72      102/144                 139/360     25/69 
+
+* - Resource is exhausted
+
+** Global Control Resources **
+
+Signal 'cpuclk_inv' mapped onto global clock net GCK1.
+Signal 'cpuclk' mapped onto global clock net GCK3.
+Global output enable net(s) unused.
+Global set/reset net(s) unused.
+
+** Pin Resources **
+
+Signal Type    Required     Mapped  |  Pin Type            Used    Total 
+------------------------------------|------------------------------------
+Input         :   19          19    |  I/O              :    40      63
+Output        :   13          13    |  GCK/IO           :     2       3
+Bidirectional :   10          10    |  GTS/IO           :     1       2
+GCK           :    2           2    |  GSR/IO           :     1       1
+GTS           :    0           0    |
+GSR           :    0           0    |
+                 ----        ----
+        Total     44          44
+
+** Power Data **
+
+There are 0 macrocells in high performance mode (MCHP).
+There are 59 macrocells in low power mode (MCLP).
+End of Mapped Resource Summary
+**************************  Errors and Warnings  ***************************
+
+WARNING:Cpld - Unable to retrieve the path to the iSE Project Repository. Will
+   use the default filename of 'zx81_ula.ise'.
+*************************  Summary of Mapped Logic  ************************
+
+** 25 Outputs **
+
+Signal                            Total Total Loc     Pin  Pin     Pin     Pwr  Slew Reg Init
+Name                              Pts   Inps          No.  Type    Use     Mode Rate State
+Ramcs                             2     4     FB1_1   4    I/O     O       LOW  FAST 
+Csync                             2     5     FB1_2   1    I/O     O       LOW  FAST 
+Romcs                             2     4     FB1_3   6    I/O     O       LOW  FAST 
+Xout                              1     1     FB1_4   7    I/O     O       LOW  FAST 
+luminance                         8     11    FB1_6   3    I/O     O       LOW  FAST 
+Nmi                               1     6     FB1_7   11   I/O     O       LOW  FAST 
+cpuclk_inv                        2     2     FB1_9   9    GCK/I/O GCK/O   LOW  FAST SET
+cpuclk                            1     1     FB1_14  12   GCK/I/O GCK/O   LOW  FAST RESET
+a7                                3     6     FB2_4   68   I/O     O       LOW  FAST RESET
+a8                                3     6     FB2_5   70   I/O     O       LOW  FAST RESET
+a2                                4     8     FB2_8   72   I/O     O       LOW  FAST RESET
+a1                                4     7     FB2_9   74   GSR/I/O I/O     LOW  FAST RESET
+a0                                3     6     FB2_10  75   I/O     I/O     LOW  FAST RESET
+d6                                1     1     FB3_1   25   I/O     I/O     LOW  FAST 
+d7                                1     1     FB3_2   17   I/O     I/O     LOW  FAST 
+d5                                1     2     FB3_3   31   I/O     I/O     LOW  FAST 
+d4                                1     1     FB3_4   32   I/O     I/O     LOW  FAST 
+d3                                1     1     FB3_6   34   I/O     I/O     LOW  FAST 
+d1                                1     1     FB3_12  41   I/O     I/O     LOW  FAST 
+d2                                1     1     FB3_15  37   I/O     I/O     LOW  FAST 
+d0                                1     1     FB3_16  45   I/O     I/O     LOW  FAST 
+a3                                3     6     FB4_3   51   I/O     O       LOW  FAST RESET
+a5                                3     6     FB4_6   54   I/O     O       LOW  FAST RESET
+a4                                3     6     FB4_11  53   I/O     O       LOW  FAST RESET
+a6                                3     6     FB4_14  56   I/O     O       LOW  FAST RESET
+
+** 34 Buried Nodes **
+
+Signal                            Total Total Loc     Pwr  Reg Init
+Name                              Pts   Inps          Mode State
+hsync_sym/q7                      2     9     FB1_10  LOW  RESET
+hsync_sym/q6                      2     8     FB1_11  LOW  RESET
+hsync_sym/q3                      2     5     FB1_12  LOW  RESET
+hsync_sym/q2                      2     4     FB1_13  LOW  RESET
+hsync_sym/q1                      2     3     FB1_15  LOW  RESET
+$OpTx$FX_DC$40                    2     7     FB1_16  LOW  
+hsync_sym/q5                      4     9     FB1_17  LOW  RESET
+hsync_sym/q4                      4     8     FB1_18  LOW  RESET
+XLXN_520/XLXN_520_TRST            1     2     FB2_6   LOW  
+$OpTx$FX_DC$53                    1     3     FB2_7   LOW  
+invert                            2     5     FB2_11  LOW  RESET
+video_shifter/XLXN_87             4     5     FB2_12  LOW  RESET
+video_shifter/XLXN_85             4     5     FB2_13  LOW  RESET
+video_shifter/XLXN_83             4     5     FB2_14  LOW  RESET
+video_shifter/XLXN_77             4     5     FB2_15  LOW  RESET
+video_shifter/XLXN_26             4     5     FB2_16  LOW  RESET
+forced_NOP_cycle                  4     7     FB2_17  LOW  RESET
+black_on_white                    4     5     FB2_18  LOW  RESET
+clk_6m5                           1     1     FB3_11  LOW  RESET
+vsync                             2     5     FB3_13  LOW  RESET
+XLXN_368/XLXN_368_TRST            2     6     FB3_14  LOW  
+XLXN_368$BUF6/XLXN_368$BUF6_TRST  2     6     FB3_17  LOW  
+NMI_on                            2     4     FB3_18  LOW  RESET
+m1_cycle_T4                       1     1     FB4_5   LOW  RESET
+m1_cycle_T3                       1     1     FB4_7   LOW  RESET
+hsync_sym/XLXI_2/Q0               1     2     FB4_8   LOW  RESET
+XLXN_226                          1     2     FB4_9   LOW  RESET
+XLXN_368$BUF5/XLXN_368$BUF5_TRST  2     6     FB4_10  LOW  
+XLXN_368$BUF4/XLXN_368$BUF4_TRST  2     6     FB4_12  LOW  
+XLXN_368$BUF3/XLXN_368$BUF3_TRST  2     6     FB4_13  LOW  
+XLXN_368$BUF2/XLXN_368$BUF2_TRST  2     6     FB4_15  LOW  
+XLXN_368$BUF0/XLXN_368$BUF0_TRST  2     6     FB4_16  LOW  
+video_shifter/XLXN_81             4     5     FB4_17  LOW  RESET
+video_shifter/XLXN_79             4     5     FB4_18  LOW  RESET
+
+** 19 Inputs **
+
+Signal                            Loc     Pin  Pin     Pin     
+Name                                      No.  Type    Use     
+a14                               FB1_5   2    I/O     I
+Halt                              FB1_10  13   I/O     I
+tape_in                           FB1_12  18   I/O     I
+Xin                               FB1_15  14   I/O     I
+a15                               FB1_17  15   I/O     I
+zx80_zx81                         FB2_1   63   I/O     I
+Invert_screen                     FB2_3   67   I/O     I
+Rd                                FB2_11  77   GTS/I/O I
+Iorq                              FB2_12  79   I/O     I
+Wr                                FB2_13  80   I/O     I
+Mreq                              FB2_16  82   I/O     I
+M1                                FB2_17  84   I/O     I
+Kbd3                              FB3_7   35   I/O     I
+usa_uk                            FB3_9   26   I/O     I
+Kbd4                              FB3_11  33   I/O     I
+Kbd1                              FB3_13  43   I/O     I
+Kbd2                              FB3_17  39   I/O     I
+Kbd0                              FB4_5   47   I/O     I
+border                            FB4_15  65   I/O     I
+
+Legend:
+Pin No. - ~ - User Assigned
+**************************  Function Block Details  ************************
+Legend:
+Total Pt     - Total product terms used by the macrocell signal
+Imp Pt       - Product terms imported from other macrocells
+Exp Pt       - Product terms exported to other macrocells
+               in direction shown
+Unused Pt    - Unused local product terms remaining in macrocell
+Loc          - Location where logic was mapped in device
+Pin Type/Use - I  - Input             GCK - Global Clock
+               O  - Output            GTS - Global Output Enable
+              (b) - Buried macrocell  GSR - Global Set/Reset
+X(@)         - Signal used as input (wire-AND input) to the macrocell logic.
+               The number of Signals Used may exceed the number of FB Inputs
+               Used due to wire-ANDing in the switch matrix.
+Pin No.      - ~  - User Assigned
+*********************************** FB1  ***********************************
+Number of function block inputs used/remaining:               23/13
+Number of signals used by logic mapping into function block:  23
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+Ramcs                 2       0     0   3     FB1_1   4     I/O     O
+Csync                 2       0     0   3     FB1_2   1     I/O     O
+Romcs                 2       0     0   3     FB1_3   6     I/O     O
+Xout                  1       0     0   4     FB1_4   7     I/O     O
+(unused)              0       0   \/2   3     FB1_5   2     I/O     I
+luminance             8       3<-   0   0     FB1_6   3     I/O     O
+Nmi                   1       0   /\1   3     FB1_7   11    I/O     O
+(unused)              0       0     0   5     FB1_8   5     I/O     
+cpuclk_inv            2       0     0   3     FB1_9   9     GCK/I/O GCK/O
+hsync_sym/q7          2       0     0   3     FB1_10  13    I/O     I
+hsync_sym/q6          2       0     0   3     FB1_11  10    GCK/I/O (b)
+hsync_sym/q3          2       0     0   3     FB1_12  18    I/O     I
+hsync_sym/q2          2       0     0   3     FB1_13  20    I/O     (b)
+cpuclk                1       0     0   4     FB1_14  12    GCK/I/O GCK/O
+hsync_sym/q1          2       0     0   3     FB1_15  14    I/O     I
+$OpTx$FX_DC$40        2       0     0   3     FB1_16  23    I/O     (b)
+hsync_sym/q5          4       0     0   1     FB1_17  15    I/O     I
+hsync_sym/q4          4       0     0   1     FB1_18  24    I/O     (b)
+
+Signals Used by Logic in Function Block
+  1: $OpTx$FX_DC$40.LFBK   9: black_on_white       17: hsync_sym/q4.LFBK 
+  2: Invert_screen        10: clk_6m5              18: hsync_sym/q5.LFBK 
+  3: Iorq                 11: cpuclk_OBUF.LFBK     19: hsync_sym/q6.LFBK 
+  4: M1                   12: forced_NOP_cycle     20: hsync_sym/q7.LFBK 
+  5: Mreq                 13: hsync_sym/XLXI_2/Q0  21: m1_cycle_T4 
+  6: NMI_on               14: hsync_sym/q1.LFBK    22: vsync 
+  7: Xin                  15: hsync_sym/q2.LFBK    23: zx80_zx81 
+  8: a14                  16: hsync_sym/q3.LFBK   
+
+Signal                        1         2         3         4 Signals FB
+Name                0----+----0----+----0----+----0----+----0 Used    Inputs
+Ramcs                ....X..X...X........X................... 4       4
+Csync                ................XXXX.X.................. 5       5
+Romcs                ....X..X...X........X................... 4       4
+Xout                 ......X................................. 1       1
+luminance            .X......X...XXXXXXXX.X.................. 11      11
+Nmi                  .....X..........XXXX..X................. 6       6
+cpuclk_inv           .........XX............................. 2       2
+hsync_sym/q7         X...........XXXXXXXX.................... 9       9
+hsync_sym/q6         X...........XXXXXXX..................... 8       8
+hsync_sym/q3         X...........XXXX........................ 5       5
+hsync_sym/q2         X...........XXX......................... 4       4
+cpuclk               .........X.............................. 1       1
+hsync_sym/q1         X...........XX.......................... 3       3
+$OpTx$FX_DC$40       ..XX.........XXX..XX.................... 7       7
+hsync_sym/q5         X...........XXXXXXXX.................... 9       9
+hsync_sym/q4         X...........XXXXX.XX.................... 8       8
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB2  ***********************************
+Number of function block inputs used/remaining:               31/5
+Number of signals used by logic mapping into function block:  31
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB2_1   63    I/O     I
+(unused)              0       0     0   5     FB2_2   69    I/O     
+(unused)              0       0     0   5     FB2_3   67    I/O     I
+a7                    3       0     0   2     FB2_4   68    I/O     O
+a8                    3       0     0   2     FB2_5   70    I/O     O
+XLXN_520/XLXN_520_TRST
+                      1       0     0   4     FB2_6   71    I/O     (b)
+$OpTx$FX_DC$53        1       0     0   4     FB2_7   76    GTS/I/O (b)
+a2                    4       0     0   1     FB2_8   72    I/O     O
+a1                    4       0     0   1     FB2_9   74    GSR/I/O I/O
+a0                    3       0     0   2     FB2_10  75    I/O     I/O
+invert                2       0     0   3     FB2_11  77    GTS/I/O I
+video_shifter/XLXN_87
+                      4       0     0   1     FB2_12  79    I/O     I
+video_shifter/XLXN_85
+                      4       0     0   1     FB2_13  80    I/O     I
+video_shifter/XLXN_83
+                      4       0     0   1     FB2_14  81    I/O     (b)
+video_shifter/XLXN_77
+                      4       0     0   1     FB2_15  83    I/O     (b)
+video_shifter/XLXN_26
+                      4       0     0   1     FB2_16  82    I/O     I
+forced_NOP_cycle      4       0     0   1     FB2_17  84    I/O     I
+black_on_white        4       0     0   1     FB2_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: $OpTx$FX_DC$53.LFBK  12: XLXN_517.LFBK                22: hsync_sym/q7 
+  2: Halt                 13: XLXN_518.LFBK                23: invert.LFBK 
+  3: Mreq                 14: XLXN_520/XLXN_520_TRST.LFBK  24: m1_cycle_T3 
+  4: d0.PIN               15: a15                          25: m1_cycle_T4 
+  5: d1.PIN               16: border                       26: video_shifter/XLXN_26.LFBK 
+  6: d4.PIN               17: clk_6m5                      27: video_shifter/XLXN_81 
+  7: d5.PIN               18: forced_NOP_cycle.LFBK        28: video_shifter/XLXN_83.LFBK 
+  8: d6.PIN               19: hsync_sym/q4                 29: video_shifter/XLXN_85.LFBK 
+  9: d7.PIN               20: hsync_sym/q5                 30: video_shifter/XLXN_87.LFBK 
+ 10: XLXN_434.LFBK        21: hsync_sym/q6                 31: vsync 
+ 11: XLXN_435.LFBK       
+
+Signal                        1         2         3         4 Signals FB
+Name                0----+----0----+----0----+----0----+----0 Used    Inputs
+a7                   ..X..X...X...X.........XX............... 6       6
+a8                   ..X...X...X..X.........XX............... 6       6
+XLXN_520/XLXN_520_TRST 
+                     .......................XX............... 2       2
+$OpTx$FX_DC$53       ..X..............X......X............... 3       3
+a2                   ...........XXX....XXXX........X......... 8       8
+a1                   ...........X.X....XXXX........X......... 7       7
+a0                   .............X....XXXX........X......... 6       6
+invert               ..X.....X.............XXX............... 5       5
+video_shifter/XLXN_87 
+                     X......X........X.....X.....X........... 5       5
+video_shifter/XLXN_85 
+                     X.....X.........X.....X....X............ 5       5
+video_shifter/XLXN_83 
+                     X....X..........X.....X...X............. 5       5
+video_shifter/XLXN_77 
+                     X...X...........X.....X..X.............. 5       5
+video_shifter/XLXN_26 
+                     X..X...........XX.....X................. 5       5
+forced_NOP_cycle     .XX....X......X..X.....XX............... 7       7
+black_on_white       X.......X.......X.....X......X.......... 5       5
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB3  ***********************************
+Number of function block inputs used/remaining:               18/18
+Number of signals used by logic mapping into function block:  18
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+d6                    1       0     0   4     FB3_1   25    I/O     I/O
+d7                    1       0     0   4     FB3_2   17    I/O     I/O
+d5                    1       0     0   4     FB3_3   31    I/O     I/O
+d4                    1       0     0   4     FB3_4   32    I/O     I/O
+(unused)              0       0     0   5     FB3_5   19    I/O     
+d3                    1       0     0   4     FB3_6   34    I/O     I/O
+(unused)              0       0     0   5     FB3_7   35    I/O     I
+(unused)              0       0     0   5     FB3_8   21    I/O     
+(unused)              0       0     0   5     FB3_9   26    I/O     I
+(unused)              0       0     0   5     FB3_10  40    I/O     
+clk_6m5               1       0     0   4     FB3_11  33    I/O     I
+d1                    1       0     0   4     FB3_12  41    I/O     I/O
+vsync                 2       0     0   3     FB3_13  43    I/O     I
+XLXN_368/XLXN_368_TRST
+                      2       0     0   3     FB3_14  36    I/O     (b)
+d2                    1       0     0   4     FB3_15  37    I/O     I/O
+d0                    1       0     0   4     FB3_16  45    I/O     I/O
+XLXN_368$BUF6/XLXN_368$BUF6_TRST
+                      2       0     0   3     FB3_17  39    I/O     I
+NMI_on                2       0     0   3     FB3_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: Iorq               7: Wr                                13: XLXN_368$BUF5/XLXN_368$BUF5_TRST 
+  2: Kbd0               8: XLXN_226                          14: XLXN_368$BUF6/XLXN_368$BUF6_TRST.LFBK 
+  3: a0.PIN             9: XLXN_368$BUF0/XLXN_368$BUF0_TRST  15: XLXN_368/XLXN_368_TRST.LFBK 
+  4: a1.PIN            10: XLXN_368$BUF2/XLXN_368$BUF2_TRST  16: Xin 
+  5: NMI_on.LFBK       11: XLXN_368$BUF3/XLXN_368$BUF3_TRST  17: forced_NOP_cycle 
+  6: Rd                12: XLXN_368$BUF4/XLXN_368$BUF4_TRST  18: tape_in 
+
+Signal                        1         2         3         4 Signals FB
+Name                0----+----0----+----0----+----0----+----0 Used    Inputs
+d6                   ........X............................... 1       1
+d7                   ..............X......................... 1       1
+d5                   .......X........X....................... 2       2
+d4                   .........X.............................. 1       1
+d3                   ..........X............................. 1       1
+clk_6m5              ...............X........................ 1       1
+d1                   ............X........................... 1       1
+vsync                X.X.XXX................................. 5       5
+XLXN_368/XLXN_368_TRST 
+                     X.X..X.X........XX...................... 6       6
+d2                   ...........X............................ 1       1
+d0                   .............X.......................... 1       1
+XLXN_368$BUF6/XLXN_368$BUF6_TRST 
+                     XXX..X.X........X....................... 6       6
+NMI_on               X.XX..X................................. 4       4
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*********************************** FB4  ***********************************
+Number of function block inputs used/remaining:               30/6
+Number of signals used by logic mapping into function block:  30
+Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
+Name                Pt      Pt    Pt  Pt               #    Type    Use
+(unused)              0       0     0   5     FB4_1   46    I/O     
+(unused)              0       0     0   5     FB4_2   44    I/O     
+a3                    3       0     0   2     FB4_3   51    I/O     O
+(unused)              0       0     0   5     FB4_4   52    I/O     
+m1_cycle_T4           1       0     0   4     FB4_5   47    I/O     I
+a5                    3       0     0   2     FB4_6   54    I/O     O
+m1_cycle_T3           1       0     0   4     FB4_7   55    I/O     (b)
+hsync_sym/XLXI_2/Q0   1       0     0   4     FB4_8   48    I/O     (b)
+XLXN_226              1       0     0   4     FB4_9   50    I/O     (b)
+XLXN_368$BUF5/XLXN_368$BUF5_TRST
+                      2       0     0   3     FB4_10  57    I/O     (b)
+a4                    3       0     0   2     FB4_11  53    I/O     O
+XLXN_368$BUF4/XLXN_368$BUF4_TRST
+                      2       0     0   3     FB4_12  58    I/O     (b)
+XLXN_368$BUF3/XLXN_368$BUF3_TRST
+                      2       0     0   3     FB4_13  61    I/O     (b)
+a6                    3       0     0   2     FB4_14  56    I/O     O
+XLXN_368$BUF2/XLXN_368$BUF2_TRST
+                      2       0     0   3     FB4_15  65    I/O     I
+XLXN_368$BUF0/XLXN_368$BUF0_TRST
+                      2       0     0   3     FB4_16  62    I/O     (b)
+video_shifter/XLXN_81
+                      4       0     0   1     FB4_17  66    I/O     (b)
+video_shifter/XLXN_79
+                      4       0     0   1     FB4_18        (b)     (b)
+
+Signals Used by Logic in Function Block
+  1: $OpTx$FX_DC$40    11: d1.PIN            21: XLXN_520/XLXN_520_TRST 
+  2: $OpTx$FX_DC$53    12: d2.PIN            22: clk_6m5 
+  3: Iorq              13: d3.PIN            23: forced_NOP_cycle 
+  4: Kbd1              14: a0.PIN            24: hsync_sym/XLXI_2/Q0.LFBK 
+  5: Kbd2              15: Rd                25: invert 
+  6: Kbd3              16: XLXN_226.LFBK     26: m1_cycle_T3.LFBK 
+  7: Kbd4              17: XLXN_430.LFBK     27: m1_cycle_T4.LFBK 
+  8: M1                18: XLXN_431.LFBK     28: usa_uk 
+  9: Mreq              19: XLXN_432.LFBK     29: video_shifter/XLXN_77 
+ 10: d0.PIN            20: XLXN_433.LFBK     30: video_shifter/XLXN_79.LFBK 
+
+Signal                        1         2         3         4 Signals FB
+Name                0----+----0----+----0----+----0----+----0 Used    Inputs
+a3                   ........XX......X...X....XX............. 6       6
+m1_cycle_T4          .........................X.............. 1       1
+a5                   ........X..X......X.X....XX............. 6       6
+m1_cycle_T3          ...............X........................ 1       1
+hsync_sym/XLXI_2/Q0  X......................X................ 2       2
+XLXN_226             .......XX............................... 2       2
+XLXN_368$BUF5/XLXN_368$BUF5_TRST 
+                     ..XX.........XXX......X................. 6       6
+a4                   ........X.X......X..X....XX............. 6       6
+XLXN_368$BUF4/XLXN_368$BUF4_TRST 
+                     ..X.X........XXX......X................. 6       6
+XLXN_368$BUF3/XLXN_368$BUF3_TRST 
+                     ..X..X.......XXX......X................. 6       6
+a6                   ........X...X......XX....XX............. 6       6
+XLXN_368$BUF2/XLXN_368$BUF2_TRST 
+                     ..X...X......XXX......X................. 6       6
+XLXN_368$BUF0/XLXN_368$BUF0_TRST 
+                     ..X..........XXX......X....X............ 6       6
+video_shifter/XLXN_81 
+                     .X..........X........X..X....X.......... 5       5
+video_shifter/XLXN_79 
+                     .X.........X.........X..X...X........... 5       5
+                    0----+----1----+----2----+----3----+----4
+                              0         0         0         0
+*******************************  Equations  ********************************
+
+********** Mapped Logic **********
+
+
+$OpTx$FX_DC$40 <= ((NOT Iorq AND NOT M1)
+	OR (hsync_sym/q6.LFBK AND hsync_sym/q7.LFBK AND 
+	hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND hsync_sym/q2.LFBK));
+
+
+$OpTx$FX_DC$53 <= (Mreq AND m1_cycle_T4 AND forced_NOP_cycle.LFBK);
+
+
+Csync <= NOT (((vsync)
+	OR (hsync_sym/q4.LFBK AND NOT hsync_sym/q5.LFBK AND 
+	NOT hsync_sym/q6.LFBK AND NOT hsync_sym/q7.LFBK)));
+
+
+
+FDCPE_NMI_on: FDCPE port map (NMI_on,'1',NMI_on_C,NMI_on_CLR,'0');
+NMI_on_C <= (NOT a0.PIN AND NOT Iorq AND NOT Wr);
+NMI_on_CLR <= (NOT Iorq AND NOT Wr AND NOT a1.PIN);
+
+
+Nmi <= NOT ((zx80_zx81 AND NMI_on AND hsync_sym/q4.LFBK AND 
+	NOT hsync_sym/q5.LFBK AND NOT hsync_sym/q6.LFBK AND NOT hsync_sym/q7.LFBK));
+
+
+Ramcs <= NOT (((NOT Mreq AND a14)
+	OR (forced_NOP_cycle AND m1_cycle_T4 AND a14)));
+
+
+Romcs <= NOT (((NOT Mreq AND NOT a14)
+	OR (forced_NOP_cycle AND m1_cycle_T4 AND NOT a14)));
+
+FDCPE_XLXN_226: FDCPE port map (XLXN_226,XLXN_226_D,cpuclk_inv,'0','0');
+XLXN_226_D <= (NOT Mreq AND NOT M1);
+
+
+XLXN_368$BUF0/XLXN_368$BUF0_TRST <= ((forced_NOP_cycle AND XLXN_226.LFBK)
+	OR (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT usa_uk));
+
+
+XLXN_368$BUF2/XLXN_368$BUF2_TRST <= ((forced_NOP_cycle AND XLXN_226.LFBK)
+	OR (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT Kbd4));
+
+
+XLXN_368$BUF3/XLXN_368$BUF3_TRST <= ((forced_NOP_cycle AND XLXN_226.LFBK)
+	OR (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT Kbd3));
+
+
+XLXN_368$BUF4/XLXN_368$BUF4_TRST <= ((forced_NOP_cycle AND XLXN_226.LFBK)
+	OR (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT Kbd2));
+
+
+XLXN_368$BUF5/XLXN_368$BUF5_TRST <= ((forced_NOP_cycle AND XLXN_226.LFBK)
+	OR (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT Kbd1));
+
+
+XLXN_368$BUF6/XLXN_368$BUF6_TRST <= ((forced_NOP_cycle AND XLXN_226)
+	OR (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT Kbd0));
+
+
+XLXN_368/XLXN_368_TRST <= ((forced_NOP_cycle AND XLXN_226)
+	OR (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT tape_in));
+
+
+XLXN_520/XLXN_520_TRST <= (NOT m1_cycle_T3 AND NOT m1_cycle_T4);
+
+
+Xout <= NOT Xin;
+
+FTCPE_a0: FTCPE port map (a0_I,'1',a0_C,vsync,'0');
+a0_C <= (hsync_sym/q4 AND NOT hsync_sym/q5 AND NOT hsync_sym/q6 AND 
+	NOT hsync_sym/q7);
+a0 <= a0_I when a0_OE = '1' else 'Z';
+a0_OE <= NOT XLXN_520/XLXN_520_TRST.LFBK;
+
+FTCPE_a1: FTCPE port map (a1_I,XLXN_517.LFBK,a1_C,vsync,'0');
+a1_C <= (hsync_sym/q4 AND NOT hsync_sym/q5 AND NOT hsync_sym/q6 AND 
+	NOT hsync_sym/q7);
+a1 <= a1_I when a1_OE = '1' else 'Z';
+a1_OE <= NOT XLXN_520/XLXN_520_TRST.LFBK;
+
+FTCPE_a2: FTCPE port map (a2_I,a2_T,a2_C,vsync,'0');
+a2_T <= (XLXN_517.LFBK AND XLXN_518.LFBK);
+a2_C <= (hsync_sym/q4 AND NOT hsync_sym/q5 AND NOT hsync_sym/q6 AND 
+	NOT hsync_sym/q7);
+a2 <= a2_I when a2_OE = '1' else 'Z';
+a2_OE <= NOT XLXN_520/XLXN_520_TRST.LFBK;
+
+FTCPE_a3: FTCPE port map (a3_I,a3_T,cpuclk_inv,'0','0');
+a3_T <= ((NOT Mreq AND d0.PIN AND NOT XLXN_430.LFBK AND 
+	NOT m1_cycle_T3.LFBK AND NOT m1_cycle_T4.LFBK)
+	OR (NOT Mreq AND NOT d0.PIN AND XLXN_430.LFBK AND 
+	NOT m1_cycle_T3.LFBK AND NOT m1_cycle_T4.LFBK));
+a3 <= a3_I when a3_OE = '1' else 'Z';
+a3_OE <= NOT XLXN_520/XLXN_520_TRST;
+
+FTCPE_a4: FTCPE port map (a4_I,a4_T,cpuclk_inv,'0','0');
+a4_T <= ((NOT Mreq AND d1.PIN AND NOT m1_cycle_T3.LFBK AND 
+	NOT m1_cycle_T4.LFBK AND NOT XLXN_431.LFBK)
+	OR (NOT Mreq AND NOT d1.PIN AND NOT m1_cycle_T3.LFBK AND 
+	NOT m1_cycle_T4.LFBK AND XLXN_431.LFBK));
+a4 <= a4_I when a4_OE = '1' else 'Z';
+a4_OE <= NOT XLXN_520/XLXN_520_TRST;
+
+FTCPE_a5: FTCPE port map (a5_I,a5_T,cpuclk_inv,'0','0');
+a5_T <= ((NOT Mreq AND d2.PIN AND NOT m1_cycle_T3.LFBK AND 
+	NOT m1_cycle_T4.LFBK AND NOT XLXN_432.LFBK)
+	OR (NOT Mreq AND NOT d2.PIN AND NOT m1_cycle_T3.LFBK AND 
+	NOT m1_cycle_T4.LFBK AND XLXN_432.LFBK));
+a5 <= a5_I when a5_OE = '1' else 'Z';
+a5_OE <= NOT XLXN_520/XLXN_520_TRST;
+
+FTCPE_a6: FTCPE port map (a6_I,a6_T,cpuclk_inv,'0','0');
+a6_T <= ((NOT Mreq AND d3.PIN AND NOT m1_cycle_T3.LFBK AND 
+	NOT m1_cycle_T4.LFBK AND NOT XLXN_433.LFBK)
+	OR (NOT Mreq AND NOT d3.PIN AND NOT m1_cycle_T3.LFBK AND 
+	NOT m1_cycle_T4.LFBK AND XLXN_433.LFBK));
+a6 <= a6_I when a6_OE = '1' else 'Z';
+a6_OE <= NOT XLXN_520/XLXN_520_TRST;
+
+FTCPE_a7: FTCPE port map (a7_I,a7_T,cpuclk_inv,'0','0');
+a7_T <= ((NOT Mreq AND NOT m1_cycle_T3 AND NOT m1_cycle_T4 AND d4.PIN AND 
+	NOT XLXN_434.LFBK)
+	OR (NOT Mreq AND NOT m1_cycle_T3 AND NOT m1_cycle_T4 AND NOT d4.PIN AND 
+	XLXN_434.LFBK));
+a7 <= a7_I when a7_OE = '1' else 'Z';
+a7_OE <= NOT XLXN_520/XLXN_520_TRST.LFBK;
+
+FTCPE_a8: FTCPE port map (a8_I,a8_T,cpuclk_inv,'0','0');
+a8_T <= ((NOT Mreq AND NOT m1_cycle_T3 AND NOT m1_cycle_T4 AND d5.PIN AND 
+	NOT XLXN_435.LFBK)
+	OR (NOT Mreq AND NOT m1_cycle_T3 AND NOT m1_cycle_T4 AND NOT d5.PIN AND 
+	XLXN_435.LFBK));
+a8 <= a8_I when a8_OE = '1' else 'Z';
+a8_OE <= NOT XLXN_520/XLXN_520_TRST.LFBK;
+
+FDCPE_black_on_white: FDCPE port map (black_on_white,black_on_white_D,clk_6m5,'0','0');
+black_on_white_D <= ((NOT video_shifter/XLXN_87.LFBK AND NOT $OpTx$FX_DC$53.LFBK)
+	OR (d7.PIN AND NOT invert.LFBK AND $OpTx$FX_DC$53.LFBK)
+	OR (NOT d7.PIN AND invert.LFBK AND $OpTx$FX_DC$53.LFBK));
+
+FTCPE_clk_6m5: FTCPE port map (clk_6m5,'1',NOT Xin,'0','0');
+
+FTCPE_cpuclk: FTCPE port map (cpuclk,'1',clk_6m5,'0','0');
+
+FDCPE_cpuclk_inv: FDCPE port map (cpuclk_inv,cpuclk_OBUF.LFBK,clk_6m5,'0','0');
+
+
+d0_I <= '0';
+d0 <= d0_I when d0_OE = '1' else 'Z';
+d0_OE <= XLXN_368$BUF6/XLXN_368$BUF6_TRST.LFBK;
+
+
+d1_I <= '0';
+d1 <= d1_I when d1_OE = '1' else 'Z';
+d1_OE <= XLXN_368$BUF5/XLXN_368$BUF5_TRST;
+
+
+d2_I <= '0';
+d2 <= d2_I when d2_OE = '1' else 'Z';
+d2_OE <= XLXN_368$BUF4/XLXN_368$BUF4_TRST;
+
+
+d3_I <= '0';
+d3 <= d3_I when d3_OE = '1' else 'Z';
+d3_OE <= XLXN_368$BUF3/XLXN_368$BUF3_TRST;
+
+
+d4_I <= '0';
+d4 <= d4_I when d4_OE = '1' else 'Z';
+d4_OE <= XLXN_368$BUF2/XLXN_368$BUF2_TRST;
+
+
+d5_I <= '0';
+d5 <= d5_I when d5_OE = '1' else 'Z';
+d5_OE <= (forced_NOP_cycle AND XLXN_226);
+
+
+d6_I <= '0';
+d6 <= d6_I when d6_OE = '1' else 'Z';
+d6_OE <= XLXN_368$BUF0/XLXN_368$BUF0_TRST;
+
+
+d7_I <= '0';
+d7 <= d7_I when d7_OE = '1' else 'Z';
+d7_OE <= XLXN_368/XLXN_368_TRST.LFBK;
+
+FDCPE_forced_NOP_cycle: FDCPE port map (forced_NOP_cycle,forced_NOP_cycle_D,cpuclk_inv,'0','0');
+forced_NOP_cycle_D <= ((Mreq AND forced_NOP_cycle.LFBK)
+	OR (m1_cycle_T3 AND forced_NOP_cycle.LFBK)
+	OR (m1_cycle_T4 AND forced_NOP_cycle.LFBK)
+	OR (NOT d6.PIN AND a15 AND Halt AND NOT Mreq AND NOT m1_cycle_T3 AND 
+	NOT m1_cycle_T4));
+
+FDCPE_hsync_sym/XLXI_2/Q0: FDCPE port map (hsync_sym/XLXI_2/Q0,hsync_sym/XLXI_2/Q0_D,cpuclk,'0','0');
+hsync_sym/XLXI_2/Q0_D <= (NOT $OpTx$FX_DC$40 AND NOT hsync_sym/XLXI_2/Q0.LFBK);
+
+FDCPE_hsync_sym/q1: FDCPE port map (hsync_sym/q1,hsync_sym/q1_D,cpuclk,'0','0');
+hsync_sym/q1_D <= ((hsync_sym/XLXI_2/Q0 AND NOT hsync_sym/q1.LFBK AND 
+	NOT $OpTx$FX_DC$40.LFBK)
+	OR (NOT hsync_sym/XLXI_2/Q0 AND hsync_sym/q1.LFBK AND 
+	NOT $OpTx$FX_DC$40.LFBK));
+
+FTCPE_hsync_sym/q2: FTCPE port map (hsync_sym/q2,hsync_sym/q2_T,cpuclk,'0','0');
+hsync_sym/q2_T <= ((hsync_sym/q2.LFBK AND $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q1.LFBK AND 
+	NOT $OpTx$FX_DC$40.LFBK));
+
+FTCPE_hsync_sym/q3: FTCPE port map (hsync_sym/q3,hsync_sym/q3_T,cpuclk,'0','0');
+hsync_sym/q3_T <= ((hsync_sym/q3.LFBK AND $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q1.LFBK AND 
+	hsync_sym/q2.LFBK AND NOT $OpTx$FX_DC$40.LFBK));
+
+FTCPE_hsync_sym/q4: FTCPE port map (hsync_sym/q4,hsync_sym/q4_T,cpuclk,'0','0');
+hsync_sym/q4_T <= ((hsync_sym/q4.LFBK AND $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q4.LFBK AND 
+	hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND hsync_sym/q2.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND NOT hsync_sym/q6.LFBK AND 
+	hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND hsync_sym/q2.LFBK AND 
+	NOT $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND NOT hsync_sym/q7.LFBK AND 
+	hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND hsync_sym/q2.LFBK AND 
+	NOT $OpTx$FX_DC$40.LFBK));
+
+FTCPE_hsync_sym/q5: FTCPE port map (hsync_sym/q5,hsync_sym/q5_T,cpuclk,'0','0');
+hsync_sym/q5_T <= ((hsync_sym/q5.LFBK AND $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q4.LFBK AND 
+	hsync_sym/q5.LFBK AND hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND 
+	hsync_sym/q2.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q4.LFBK AND 
+	NOT hsync_sym/q6.LFBK AND hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND 
+	hsync_sym/q2.LFBK AND NOT $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q4.LFBK AND 
+	NOT hsync_sym/q7.LFBK AND hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND 
+	hsync_sym/q2.LFBK AND NOT $OpTx$FX_DC$40.LFBK));
+
+FTCPE_hsync_sym/q6: FTCPE port map (hsync_sym/q6,hsync_sym/q6_T,cpuclk,'0','0');
+hsync_sym/q6_T <= ((hsync_sym/q6.LFBK AND $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q4.LFBK AND 
+	hsync_sym/q5.LFBK AND hsync_sym/q3.LFBK AND hsync_sym/q1.LFBK AND 
+	hsync_sym/q2.LFBK AND NOT $OpTx$FX_DC$40.LFBK));
+
+FDCPE_hsync_sym/q7: FDCPE port map (hsync_sym/q7,hsync_sym/q7_D,cpuclk,'0','0');
+hsync_sym/q7_D <= ((hsync_sym/q7.LFBK AND NOT $OpTx$FX_DC$40.LFBK)
+	OR (hsync_sym/XLXI_2/Q0 AND hsync_sym/q4.LFBK AND 
+	hsync_sym/q5.LFBK AND hsync_sym/q6.LFBK AND hsync_sym/q3.LFBK AND 
+	hsync_sym/q1.LFBK AND hsync_sym/q2.LFBK AND NOT $OpTx$FX_DC$40.LFBK));
+
+FTCPE_invert: FTCPE port map (invert,invert_T,cpuclk_inv,'0','0');
+invert_T <= ((NOT Mreq AND NOT m1_cycle_T3 AND NOT m1_cycle_T4 AND d7.PIN AND 
+	NOT invert.LFBK)
+	OR (NOT Mreq AND NOT m1_cycle_T3 AND NOT m1_cycle_T4 AND NOT d7.PIN AND 
+	invert.LFBK));
+
+
+luminance <= NOT (((vsync)
+	OR (NOT hsync_sym/q4.LFBK AND hsync_sym/q5.LFBK AND 
+	NOT hsync_sym/q6.LFBK AND NOT hsync_sym/q7.LFBK AND NOT hsync_sym/q1.LFBK)
+	OR (NOT hsync_sym/q4.LFBK AND hsync_sym/q5.LFBK AND 
+	NOT hsync_sym/q6.LFBK AND NOT hsync_sym/q7.LFBK AND NOT hsync_sym/q2.LFBK)
+	OR (NOT hsync_sym/q4.LFBK AND hsync_sym/q5.LFBK AND 
+	NOT hsync_sym/q6.LFBK AND NOT hsync_sym/q7.LFBK AND NOT hsync_sym/q3.LFBK)
+	OR (black_on_white AND NOT Invert_screen)
+	OR (NOT black_on_white AND Invert_screen)
+	OR (hsync_sym/q4.LFBK AND NOT hsync_sym/q5.LFBK AND 
+	NOT hsync_sym/q6.LFBK AND NOT hsync_sym/q7.LFBK)
+	OR (NOT hsync_sym/XLXI_2/Q0 AND NOT hsync_sym/q4.LFBK AND 
+	hsync_sym/q5.LFBK AND NOT hsync_sym/q6.LFBK AND NOT hsync_sym/q7.LFBK)));
+
+FDCPE_m1_cycle_T3: FDCPE port map (m1_cycle_T3,XLXN_226.LFBK,cpuclk,'0','0');
+
+FDCPE_m1_cycle_T4: FDCPE port map (m1_cycle_T4,m1_cycle_T3.LFBK,cpuclk,'0','0');
+
+FDCPE_video_shifter/XLXN_26: FDCPE port map (video_shifter/XLXN_26,video_shifter/XLXN_26_D,clk_6m5,'0','0');
+video_shifter/XLXN_26_D <= ((NOT border AND NOT $OpTx$FX_DC$53.LFBK)
+	OR (d0.PIN AND NOT invert.LFBK AND $OpTx$FX_DC$53.LFBK)
+	OR (NOT d0.PIN AND invert.LFBK AND $OpTx$FX_DC$53.LFBK));
+
+FDCPE_video_shifter/XLXN_77: FDCPE port map (video_shifter/XLXN_77,video_shifter/XLXN_77_D,clk_6m5,'0','0');
+video_shifter/XLXN_77_D <= ((NOT $OpTx$FX_DC$53.LFBK AND NOT video_shifter/XLXN_26.LFBK)
+	OR (d1.PIN AND NOT invert.LFBK AND $OpTx$FX_DC$53.LFBK)
+	OR (NOT d1.PIN AND invert.LFBK AND $OpTx$FX_DC$53.LFBK));
+
+FDCPE_video_shifter/XLXN_79: FDCPE port map (video_shifter/XLXN_79,video_shifter/XLXN_79_D,clk_6m5,'0','0');
+video_shifter/XLXN_79_D <= ((NOT video_shifter/XLXN_77 AND NOT $OpTx$FX_DC$53)
+	OR (invert AND NOT d2.PIN AND $OpTx$FX_DC$53)
+	OR (NOT invert AND d2.PIN AND $OpTx$FX_DC$53));
+
+FDCPE_video_shifter/XLXN_81: FDCPE port map (video_shifter/XLXN_81,video_shifter/XLXN_81_D,clk_6m5,'0','0');
+video_shifter/XLXN_81_D <= ((NOT $OpTx$FX_DC$53 AND NOT video_shifter/XLXN_79.LFBK)
+	OR (invert AND NOT d3.PIN AND $OpTx$FX_DC$53)
+	OR (NOT invert AND d3.PIN AND $OpTx$FX_DC$53));
+
+FDCPE_video_shifter/XLXN_83: FDCPE port map (video_shifter/XLXN_83,video_shifter/XLXN_83_D,clk_6m5,'0','0');
+video_shifter/XLXN_83_D <= ((NOT video_shifter/XLXN_81 AND NOT $OpTx$FX_DC$53.LFBK)
+	OR (d4.PIN AND NOT invert.LFBK AND $OpTx$FX_DC$53.LFBK)
+	OR (NOT d4.PIN AND invert.LFBK AND $OpTx$FX_DC$53.LFBK));
+
+FDCPE_video_shifter/XLXN_85: FDCPE port map (video_shifter/XLXN_85,video_shifter/XLXN_85_D,clk_6m5,'0','0');
+video_shifter/XLXN_85_D <= ((NOT $OpTx$FX_DC$53.LFBK AND NOT video_shifter/XLXN_83.LFBK)
+	OR (d5.PIN AND NOT invert.LFBK AND $OpTx$FX_DC$53.LFBK)
+	OR (NOT d5.PIN AND invert.LFBK AND $OpTx$FX_DC$53.LFBK));
+
+FDCPE_video_shifter/XLXN_87: FDCPE port map (video_shifter/XLXN_87,video_shifter/XLXN_87_D,clk_6m5,'0','0');
+video_shifter/XLXN_87_D <= ((NOT $OpTx$FX_DC$53.LFBK AND NOT video_shifter/XLXN_85.LFBK)
+	OR (d6.PIN AND NOT invert.LFBK AND $OpTx$FX_DC$53.LFBK)
+	OR (NOT d6.PIN AND invert.LFBK AND $OpTx$FX_DC$53.LFBK));
+
+FDCPE_vsync: FDCPE port map (vsync,'1',vsync_C,vsync_CLR,'0');
+vsync_C <= (NOT a0.PIN AND NOT Rd AND NOT Iorq AND NOT NMI_on.LFBK);
+vsync_CLR <= (NOT Iorq AND NOT Wr);
+
+Register Legend:
+ FDCPE (Q,D,C,CLR,PRE); 
+ FTCPE (Q,D,C,CLR,PRE); 
+ LDCP  (Q,D,G,CLR,PRE); 
+
+******************************  Device Pin Out *****************************
+
+Device : XC9572-15-PC84
+
+
+   --------------------------------------------------------------  
+  /11 10 9  8  7  6  5  4  3  2  1  84 83 82 81 80 79 78 77 76 75 \
+ | 12                                                          74 | 
+ | 13                                                          73 | 
+ | 14                                                          72 | 
+ | 15                                                          71 | 
+ | 16                                                          70 | 
+ | 17                                                          69 | 
+ | 18                                                          68 | 
+ | 19                                                          67 | 
+ | 20                                                          66 | 
+ | 21                       XC9572-15-PC84                     65 | 
+ | 22                                                          64 | 
+ | 23                                                          63 | 
+ | 24                                                          62 | 
+ | 25                                                          61 | 
+ | 26                                                          60 | 
+ | 27                                                          59 | 
+ | 28                                                          58 | 
+ | 29                                                          57 | 
+ | 30                                                          56 | 
+ | 31                                                          55 | 
+ | 32                                                          54 | 
+ \ 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 /
+   --------------------------------------------------------------  
+
+
+Pin Signal                         Pin Signal                        
+No. Name                           No. Name                          
+  1 Csync                            43 Kbd1                          
+  2 a14                              44 PGND                          
+  3 luminance                        45 d0                            
+  4 Ramcs                            46 PGND                          
+  5 PGND                             47 Kbd0                          
+  6 Romcs                            48 PGND                          
+  7 Xout                             49 GND                           
+  8 GND                              50 PGND                          
+  9 cpuclk_inv                       51 a3                            
+ 10 PGND                             52 PGND                          
+ 11 Nmi                              53 a4                            
+ 12 cpuclk                           54 a5                            
+ 13 Halt                             55 PGND                          
+ 14 Xin                              56 a6                            
+ 15 a15                              57 PGND                          
+ 16 GND                              58 PGND                          
+ 17 d7                               59 TDO                           
+ 18 tape_in                          60 GND                           
+ 19 PGND                             61 PGND                          
+ 20 PGND                             62 PGND                          
+ 21 PGND                             63 zx80_zx81                     
+ 22 VCC                              64 VCC                           
+ 23 PGND                             65 border                        
+ 24 PGND                             66 PGND                          
+ 25 d6                               67 Invert_screen                 
+ 26 usa_uk                           68 a7                            
+ 27 GND                              69 PGND                          
+ 28 TDI                              70 a8                            
+ 29 TMS                              71 PGND                          
+ 30 TCK                              72 a2                            
+ 31 d5                               73 VCC                           
+ 32 d4                               74 a1                            
+ 33 Kbd4                             75 a0                            
+ 34 d3                               76 PGND                          
+ 35 Kbd3                             77 Rd                            
+ 36 PGND                             78 VCC                           
+ 37 d2                               79 Iorq                          
+ 38 VCC                              80 Wr                            
+ 39 Kbd2                             81 PGND                          
+ 40 PGND                             82 Mreq                          
+ 41 d1                               83 PGND                          
+ 42 GND                              84 M1                            
+
+
+Legend :  NC  = Not Connected, unbonded pin
+         PGND = Unused I/O configured as additional Ground pin
+         TIE  = Unused I/O floating -- must tie to VCC, GND or other signal
+         VCC  = Dedicated Power Pin
+         GND  = Dedicated Ground Pin
+         TDI  = Test Data In, JTAG pin
+         TDO  = Test Data Out, JTAG pin
+         TCK  = Test Clock, JTAG pin
+         TMS  = Test Mode Select, JTAG pin
+  PROHIBITED  = User reserved pin
+****************************  Compiler Options  ****************************
+
+Following is a list of all global compiler options used by the fitter run.
+
+Device(s) Specified                         : xc9572-15-PC84
+Optimization Method                         : DENSITY
+Multi-Level Logic Optimization              : ON
+Ignore Timing Specifications                : OFF
+Default Register Power Up Value             : LOW
+Keep User Location Constraints              : ON
+What-You-See-Is-What-You-Get                : OFF
+Exhaustive Fitting                          : OFF
+Keep Unused Inputs                          : OFF
+Slew Rate                                   : FAST
+Power Mode                                  : LOW
+Ground on Unused IOs                        : ON
+Global Clock Optimization                   : ON
+Global Set/Reset Optimization               : OFF
+Global Ouput Enable Optimization            : OFF
+FASTConnect/UIM optimzation                 : ON
+Local Feedback                              : ON
+Pin Feedback                                : OFF
+Input Limit                                 : 36
+Pterm Limit                                 : 90

@@ -1,0 +1,58 @@
+* Figure out ideal Wp / Wn ratio
+* .include mag/pad_nwellres.cir
+* .include mag/inv_c.cir
+
+.lib device_models/AMI_C5N.lib TT
+* .lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.temp 25
+
+.param VDD_VAL=5
+
+* power supply
+vvdd vdd 0 DC VDD_VAL
+vvss vss 0 DC 0
+
+Va a 0 DC 0
+
+
+M1001 z a vdd vdd pfet w=12.6u l=0.6u
+M1000 z a vss vss nfet w=5.1u l=0.6u
+
+
+.save all
+
+.dc Va 0 5 0.001
+.tran 0.1n 900n
+
+.control
+destroy all
+run
+
+setplot dc1
+plot v(z) v(a)
+
+* setplot tran1
+* plot v(npu) v(pad)
+* plot  v(pd)  v(pad)
+* 
+* let vdd_max = maximum(v(vdd))
+* let vol = vdd_max * 0.1
+* let voh = vdd_max * 0.9
+* 
+* print vdd_max
+* print vol
+* print voh
+* 
+* 
+* meas tran nputlh TRIG v(npu) VAL=vol RISE=1 TARG v(npu) VAL=voh RISE=1
+* meas tran nputhl TRIG v(npu) VAL=voh FALL=2 TARG v(npu) VAL=vol FALL=2
+* meas tran padtlh TRIG v(pad) VAL=vol RISE=2 TARG v(pad) VAL=voh RISE=2
+* 
+* meas tran pdtlh TRIG v(pd) VAL=vol RISE=1 TARG v(pd) VAL=voh RISE=1
+* meas tran pdthl TRIG v(pd) VAL=voh FALL=2 TARG v(pd) VAL=vol FALL=2
+* meas tran padthl TRIG v(pad) VAL=voh FALL=1 TARG v(pad) VAL=vol FALL=1
+
+.endc
+
+.end

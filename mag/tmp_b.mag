@@ -1,0 +1,22 @@
+magic
+tech scmos
+timestamp 1544837550
+<< metal1 >>
+rect 18 76 33 79
+rect 18 27 22 31
+rect 18 0 22 3
+use inv_b  inv_b_0
+timestamp 1544837550
+transform 1 0 0 0 1 0
+box 0 0 24 81
+use inv_b  inv_b_1
+timestamp 1544837550
+transform 1 0 16 0 1 0
+box 0 0 24 81
+<< labels >>
+rlabel metal1 s 19 28 19 28 2 n1
+rlabel metal1 s 6 78 6 78 2 vdd
+rlabel metal1 s 8 29 8 29 2 a
+rlabel metal1 s 32 27 32 27 2 z
+rlabel metal1 s 19 1 19 1 2 vss
+<< end >>

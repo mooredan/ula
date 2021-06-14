@@ -1,0 +1,11 @@
+magic
+tech amic5n
+timestamp 1609902703
+<< error_p >>
+rect 0 100000 100000 100100
+rect -100 0 0 100000
+rect 100000 0 100100 100000
+rect 0 -100 100000 0
+<< poly2_high_resist >>
+rect 0 0 100000 100000
+<< end >>

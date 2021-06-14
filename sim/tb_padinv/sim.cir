@@ -1,0 +1,94 @@
+* Transient analysis of 74HCU04 Inverter
+
+.include mag/padinv.sp
+* .include nxp_hc/dip.s
+.include device_models/C5_models.txt
+
+.param VCC_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      TT={PER * 0.1}
+
+
+* power supply
+Vvcc vcc 0 DC VCC_VAL
+Vvss vss 0 DC 0
+
+* input signal
+* with 50 ohm output impedance
+* SIN(VO VA FREQ) VO=offset VA=amplitude
+Vin ns 0  DC 5  AC {VCC_VAL/2.5} SIN({VCC_VAL} {VCC_VAL/2.5} FREQ)
+Rin ns nt0 50
+
+* RG-58/C transmission line - lossless
+Tin nt0 0 in 0 Z0=50 TD=5.05e-9
+
+* input termination
+* at dut
+RTin in 0 50
+
+* DUT
+Xdut out in vcc vss padinv
+* Rf in out 100Meg
+
+* output load
+Cout out 0 50p
+* Rout out 0 10k
+
+* .op
+* .dc Vin 0 {VCC_VAL} 0.001
+
+* .save all @r.xdut.rin1[i] @Cout[i]
+.save all
+
+* .op
+* .tran 0.1n {PER * 5}
+.dc Vin 0 10 0.1
+* .ac lin 101 6.0Meg 7.0Meg
+
+.control
+destroy all
+run
+* setplot tran1
+setplot dc1 
+plot v(in) v(out)
+
+* setplot ac1
+* plot vdb(out)
+
+* let idx = 50 
+* 
+* while idx < 51 
+*   let zin = v(in) / l.xdut.xpk14.l1#branch
+*   print idx
+*   print zin[idx]
+*   print abs(zin[idx])
+*   print abs(frequency[idx])
+*   print real(zin[idx])
+*   print imag(zin[idx])
+*   let Xin = imag(zin[idx])
+*   print mag(zin[idx])
+*   print ph(zin[idx]) * 180 / pi
+*   let omega = 2 * pi * abs(frequency[idx])
+*   let Xcin = -Xin
+*   let Cin = 1 / (omega * Xcin)
+*   print Cin
+* 
+* *  let zout = v(out) / l.xdut.lout2#branch
+* *  print zout[idx]
+* *  print abs(zout[idx])
+* *  print real(zout[idx])
+* *  print imag(zout[idx])
+* *  let Xout = imag(zout[idx])
+* *  print mag(zout[idx])
+* *  print ph(zout[idx]) * 180 / pi
+* *  let Xcout = -Xout
+* *  let Cout = 1 / (omega * Xcout)
+* *  print Cout
+*   
+*  
+*   let idx = idx + 1
+* end
+.endc
+
+.end

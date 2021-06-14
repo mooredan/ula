@@ -1,0 +1,20 @@
+
+
+Metal1 pitch: 1.5um = 0.9um width + 0.6um spacing
+M1W: 
+
+
+Metal 2 pitch: 1.6um = 0.9um width + 0.7um spacing
+Above is practical pitch contacted to metal1
+Design rule: Min 0.7um width for metal2
+  
+
+
+
+Metal3:  M3W: 0.8um   M3SP: 0.7um spacing
+Pitch: 1.6um = 0.8um width + 0.8 um spacing
+
+
+Standaaaaaaard cell: 14 metal2 pitches high: 22.4
+
+Metal2 is horizontal, first track is split

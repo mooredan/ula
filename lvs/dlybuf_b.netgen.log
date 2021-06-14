@@ -1,0 +1,32 @@
+Netgen 1.5.115 compiled on Tue Feb 12 19:57:21 PST 2019
+Warning: netgen command 'global' use fully-qualified name '::netgen::global'
+Reading netlist file ../mag/dlybuf_b.sp
+Call to undefined subcircuit dlyinv_b
+Creating placeholder cell definition.
+Reading netlist file ../ps/dlybuf_b.sp
+Call to undefined subcircuit dlyinv_b
+Creating placeholder cell definition.
+Reading setup file setup.lvs.tcl
+Error setup.lvs.tcl:2 (ignoring), No such cell!
+Error setup.lvs.tcl:3 (ignoring), No such cell!
+Error setup.lvs.tcl:4 (ignoring), No such cell!
+Warning:  There were errors reading the setup file
+Comparison output logged to file dlybuf_b.comp.log
+Logging to file "dlybuf_b.comp.log" enabled
+Contents of circuit 1:  Circuit: 'dlybuf_b'
+Circuit dlybuf_b contains 2 device instances.
+  Class: dlyinv_b              instances:   2
+Circuit contains 6 nets.
+Contents of circuit 2:  Circuit: 'dlybuf_b'
+Circuit dlybuf_b contains 2 device instances.
+  Class: dlyinv_b              instances:   2
+Circuit contains 5 nets.
+
+Circuit 1 contains 2 devices, Circuit 2 contains 2 devices.
+Circuit 1 contains 5 nets,    Circuit 2 contains 5 nets.
+
+Netlists match uniquely.
+Result: Circuits match uniquely.
+Logging to file "dlybuf_b.comp.log" disabled
+LVS Done.
+Circuits match uniquely.

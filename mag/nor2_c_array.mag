@@ -1,0 +1,68 @@
+magic
+tech amic5n
+timestamp 1621804370
+use nor2_c  nor2_c_0 ~/projects/ula/mag
+timestamp 1621803154
+transform 1 0 105 0 1 0
+box -105 -45 1065 2455
+use nor2_c  nor2_c_1
+timestamp 1621803154
+transform 1 0 1065 0 1 0
+box -105 -45 1065 2455
+use nor2_c  nor2_c_6
+timestamp 1621803154
+transform 1 0 105 0 -1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_7
+timestamp 1621803154
+transform 1 0 1065 0 -1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_2
+timestamp 1621803154
+transform -1 0 2985 0 1 0
+box -105 -45 1065 2455
+use nor2_c  nor2_c_5
+timestamp 1621803154
+transform -1 0 2985 0 -1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_3
+timestamp 1621803154
+transform 1 0 2985 0 1 0
+box -105 -45 1065 2455
+use nor2_c  nor2_c_4
+timestamp 1621803154
+transform 1 0 2985 0 -1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_15
+timestamp 1621803154
+transform 1 0 2985 0 1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_14
+timestamp 1621803154
+transform 1 0 2985 0 -1 9600
+box -105 -45 1065 2455
+use nor2_c  nor2_c_13
+timestamp 1621803154
+transform -1 0 2985 0 1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_12
+timestamp 1621803154
+transform -1 0 2985 0 -1 9600
+box -105 -45 1065 2455
+use nor2_c  nor2_c_11
+timestamp 1621803154
+transform 1 0 105 0 1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_10
+timestamp 1621803154
+transform 1 0 1065 0 1 4800
+box -105 -45 1065 2455
+use nor2_c  nor2_c_9
+timestamp 1621803154
+transform 1 0 105 0 -1 9600
+box -105 -45 1065 2455
+use nor2_c  nor2_c_8
+timestamp 1621803154
+transform 1 0 1065 0 -1 9600
+box -105 -45 1065 2455
+<< end >>

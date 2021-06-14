@@ -1,0 +1,40 @@
+magic
+tech scmos
+timestamp 1593609991
+<< metal1 >>
+rect 10 13 14 25
+rect 170 13 182 34
+rect 336 15 340 25
+rect 48 -108 50 -104
+rect 163 -145 167 -139
+rect 323 -145 327 -140
+<< metal2 >>
+rect -5 -66 11 -60
+rect -5 -145 12 -139
+<< metal3 >>
+rect 155 886 182 911
+use pad_io_bot  pad_io_bot_0
+timestamp 1593609088
+transform 1 0 -5 0 1 -66
+box -4 -79 364 85
+use pad_io_top  pad_io_top_0
+timestamp 1592886655
+transform 1 0 -5 0 1 19
+box -3 -2 363 1037
+<< labels >>
+rlabel metal1 s 174 21 174 21 2 xpad
+rlabel metal1 s 11 19 11 19 2 pd
+rlabel metal1 s 337 19 337 19 2 npu
+rlabel metal1 s 164 -143 164 -143 2 oe
+port 4 ne
+rlabel metal1 s 325 -144 325 -144 2 dout
+port 2 ne
+rlabel metal3 s 163 895 163 895 2 pad
+port 1 ne
+rlabel metal1 s 49 -106 49 -106 2 din
+port 3 ne
+rlabel metal2 s 4 -63 4 -63 2 vdd
+port 5 ne
+rlabel metal2 s 2 -143 2 -143 2 vss
+port 6 ne
+<< end >>

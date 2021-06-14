@@ -1,0 +1,98 @@
+magic
+tech scmos
+timestamp 1570906456
+<< error_s >>
+rect -151 2 -149 14
+<< nwell >>
+rect 21 -48 35 51
+rect 60 -48 77 0
+<< metal1 >>
+rect -289 78 43 81
+rect 1 75 3 78
+rect -298 50 -289 54
+rect -13 50 7 54
+rect 15 50 39 54
+rect -298 -32 -294 50
+rect 1 4 3 8
+rect -289 0 18 4
+rect 16 -1 18 0
+rect -298 -36 -280 -32
+rect 21 -46 25 39
+rect 1 -50 4 -46
+rect 16 -50 25 -46
+rect 28 -46 32 50
+rect 55 -1 71 2
+rect 74 -8 78 22
+rect 67 -12 78 -8
+rect 67 -46 71 -12
+rect 28 -50 36 -46
+rect 54 -50 71 -46
+rect 21 -53 25 -50
+rect 21 -57 40 -53
+rect 50 -57 59 -53
+rect -289 -77 55 -74
+<< metal2 >>
+rect 21 35 49 39
+rect -289 0 53 4
+rect 33 -57 60 -53
+<< gv1 >>
+rect 22 36 24 38
+rect 46 36 48 38
+rect -287 1 -285 3
+rect -282 1 -280 3
+rect -277 1 -275 3
+rect -272 1 -270 3
+rect -267 1 -265 3
+rect -91 1 -89 3
+rect -24 1 -22 3
+rect -7 1 -5 3
+rect -2 1 0 3
+rect 36 1 38 3
+rect 41 1 43 3
+rect 35 -56 37 -54
+rect 56 -56 58 -54
+use dlybuf_b  dlybuf_b_1
+timestamp 1544968112
+transform 1 0 -295 0 -1 81
+box 0 0 296 79
+use inv_b  2
+timestamp 1570906456
+transform 1 0 -3 0 -1 81
+box 0 0 24 81
+use and2_b  0
+timestamp 1544843994
+transform 1 0 28 0 -1 81
+box 0 0 49 81
+use dlybuf_b  dlybuf_b_0
+timestamp 1544968112
+transform -1 0 7 0 1 -77
+box 0 0 296 79
+use inv_b  4
+timestamp 1570906456
+transform -1 0 22 0 1 -77
+box 0 0 24 81
+use nor2_b  5
+timestamp 1544843706
+transform 1 0 32 0 1 -77
+box 0 0 28 81
+<< labels >>
+rlabel metal1 s -11 44 -11 44 2 n3
+rlabel metal1 s 23 79 23 79 2 vss
+rlabel metal1 s 52 -55 52 -55 2 ckin
+port 3 ne
+rlabel metal2 s 46 1 46 1 2 vdd
+port 4 ne
+rlabel metal1 s 73 -10 73 -10 2 nck
+port 2 ne
+rlabel metal1 s 68 54 68 54 2 ck
+port 1 ne
+rlabel metal1 s 25 53 25 53 2 n4
+rlabel metal1 s 2 -49 2 -49 2 n1
+rlabel metal1 s 20 -76 20 -76 2 vss
+rlabel metal1 s -26 -76 -26 -76 2 vss
+port 5 ne
+rlabel metal1 s -296 2 -296 2 2 n2
+rlabel metal1 s -288 -76 -288 -76 2 vss
+rlabel metal1 s -288 80 -288 80 2 vss
+rlabel metal2 s -284 2 -284 2 2 vdd
+<< end >>

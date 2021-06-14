@@ -1,0 +1,76 @@
+* Input capacitance 
+*
+
+.subckt dut a b
+R1 a n1 10k
+C1 n1 b 1f 
+.ends
+
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.100
+
+.csparam tgt_freq={FREQ}
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+Vsrc_dc n1 0 DC {VDD_VAL / 2.0}
+Vsrc src n1 DC 0 AC {VA}
+
+vin src xin DC 0
+
+xdut xin xout dut 
+
+Vxout xout 0 DC 0
+
+
+.save all
+
+.ac lin 20001 0.01Meg 20.01Meg
+
+.control
+destroy all
+run
+
+setplot ac1 
+* plot mag(v(a)) mag(v(pad))
+
+let gaindb = 20 * log10(mag(v(xout))/mag(v(xin)))
+let f = re(frequency)
+let v_xin = v(xin)
+let i_xin = i(vin)
+let z_xin = v_xin / i_xin
+let xc = -im(z_xin)
+let c_xin = 1 / (2 * pi * f * xc)
+
+* locate index of frequency in question
+let idx = 0
+let len = length(frequency)
+
+dowhile idx < len
+   if frequency[idx] >= 6.5e6
+      break
+   end
+   let idx = idx + 1
+end
+   
+print idx
+print frequency[idx]
+print z_xin[idx]
+print re(z_xin[idx])
+print mag(z_xin[idx])
+print ph(z_xin[idx])
+print ph(z_xin[idx]) * 180 / pi
+print c_xin[idx]
+
+.endc
+
+.end

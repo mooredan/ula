@@ -1,0 +1,64 @@
+magic
+tech amic5n
+timestamp 1623442779
+use inv_a  inv_a_1
+timestamp 1623433989
+transform 1 0 -80 0 -1 2880
+box -130 -45 580 1495
+use inv_a  inv_a_2
+timestamp 1623433989
+transform -1 0 820 0 -1 2880
+box -130 -45 580 1495
+use inv_a  inv_a_3
+timestamp 1623433989
+transform 1 0 820 0 -1 2880
+box -130 -45 580 1495
+use nor2_b  nor2_b_2
+timestamp 1623425891
+transform -1 0 3855 0 -1 2880
+box -130 -45 1180 1495
+use nor2_b  nor2_b_1
+timestamp 1623425891
+transform 1 0 1755 0 -1 2880
+box -130 -45 1180 1495
+use inv_a  inv_a_0
+timestamp 1623433989
+transform 1 0 3600 0 1 0
+box -130 -45 580 1495
+use nor2_b  nor2_b_3
+timestamp 1623425891
+transform 1 0 3855 0 -1 2880
+box -130 -45 1180 1495
+use inv_b  inv_b_0
+timestamp 1622291139
+transform 1 0 3150 0 1 0
+box -130 -45 580 1495
+use nor2_b  nor2_b_0
+timestamp 1623425891
+transform 1 0 4050 0 1 0
+box -130 -45 1180 1495
+use nand2_b  nand2_b_0
+timestamp 1623372921
+transform 1 0 5100 0 1 0
+box -130 -45 880 1495
+use dff_c5n  dff_c5n_0
+timestamp 1623365459
+transform 1 0 0 0 1 0
+box -130 -45 3285 1495
+use or2_b  or2_b_0
+timestamp 1623442302
+transform 1 0 4620 0 -1 0
+box -130 -45 1180 1495
+use and2_b  and2_b_1
+timestamp 1623435659
+transform 1 0 2670 0 -1 0
+box -130 -45 2080 1495
+use buf_b  buf_b_0
+timestamp 1622307144
+transform -1 0 2410 0 -1 0
+box -130 -45 730 1495
+use and2_b  and2_b_0
+timestamp 1623435659
+transform 1 0 -140 0 -1 0
+box -130 -45 2080 1495
+<< end >>

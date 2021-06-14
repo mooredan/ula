@@ -1,0 +1,35 @@
+magic
+tech scmos
+timestamp 1544968112
+<< metal1 >>
+rect 6 76 296 79
+rect 150 73 152 76
+rect 282 36 287 41
+rect 6 27 10 31
+rect 141 27 152 31
+rect 150 3 152 6
+rect 6 0 296 3
+use dlyinv_b  1
+timestamp 1544968112
+transform 1 0 146 0 1 0
+box 0 0 150 79
+use dlyinv_b  0
+timestamp 1544968112
+transform 1 0 0 0 1 0
+box 0 0 150 79
+<< labels >>
+rlabel metal1 s 284 38 284 38 2 z
+port 1 ne
+rlabel metal1 s 8 29 8 29 2 a
+port 2 ne
+rlabel metal1 s 151 76 151 76 2 vdd
+port 3 ne
+rlabel metal1 s 151 2 151 2 2 vss
+port 4 ne
+rlabel metal1 s 148 29 148 29 2 n1
+rlabel metal1 s 295 1 295 1 8 vss
+rlabel metal1 s 150 77 150 77 2 vdd
+rlabel metal1 s 150 1 150 1 2 vss
+rlabel metal1 s 7 78 7 78 2 vdd
+rlabel metal1 s 295 78 295 78 6 vdd
+<< end >>

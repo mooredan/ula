@@ -1,0 +1,60 @@
+* Output transition times
+* .include "../../mag/schmitt.cir"
+.include "../../mag/schmitt_1V.cir"
+.include "../../mag/inv_d.cir"
+.lib device_models/AMI_C5N.lib TT
+.temp 25
+.param VDD_VAL=5
+
+* power supply
+vvdd vdd 0 DC VDD_VAL
+vvss vss 0 DC 0
+
+
+va    a 0 DC 0 PWL( 0n  0.0
++                   5n  0.0
++                 105n  5.0
++                 155n  5.0
++                 255n  0.0)
+
+
+xdut n1 a vdd vss schmitt_1V
+xinv z n1 vdd vss inv_d
+
+* output load
+cz z vgnd 0.100p
+vvgnd vgnd 0 DC 0
+
+
+.save all
+
+.dc Va 0 5 0.01
+.dc Va 5 0 -0.01
+
+.tran 100p 260n
+
+.control
+destroy all
+run
+
+setplot tran2
+plot v(a) v(z)
+
+plot dc1.v(a) dc1.v(z) dc2.v(a) dc2.v(z)
+
+
+
+setplot dc1
+meas dc vli WHEN v(z)=v(a)
+setplot dc2
+meas dc vhi WHEN v(z)=v(a)
+
+let vh = vhi - dc1.vli
+print vh
+
+print 2.5 - dc1.vli
+print vhi - 2.5
+
+.endc
+
+.end

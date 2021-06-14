@@ -1,0 +1,75 @@
+* Output resistance
+
+.include mag/pad_xtal.cir
+.include mag/pad_x0_top.cir
+.include mag/pad_in_top.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+
+* SIN(VO VA FREQ) VO=offset VA=amplitude
+Vin in 0 DC 0 SIN(0 0.025 {FREQ})
+Cin in x1 245.0e-9
+
+
+
+* .subckt pad_xtal x0 x1 vdd vss
+Xdut x0 x1 vdd vss pad_xtal
+Rf x0 x1 5Meg
+
+* output load
+* Cout x0 out 245.0e-9
+
+RL x0 0 10000
+
+.save all
+
+.tran 0.1n {PER*5}
+
+.control
+   destroy all
+   run
+
+   let r1 = @rl[r]
+   setplot tran1
+   plot v(x1) v(x0)
+   plot v(in) v(out)
+   meas tran v1 MAX v(x0) from=200n to=350n
+   set r1 = "$&r1"
+   set v1 = "$&v1"
+
+
+   let r2 = r1 / 10 
+   alter Rl r2
+   set r2 = "$&r2"
+   run
+   setplot tran2
+   plot v(x1) v(x0)
+   meas tran v2 MAX v(x0) from=200n to=350n
+   set v2 = "$&v2"
+
+   echo r1: $r1
+   echo v1: $v1
+   echo r2: $r2
+   echo v2: $v2
+
+   let ro = ($r1 - $r1*($v1 / $v2) ) / (( $v1 / $v2) - ( $r1 / $r2 ))
+   print ro
+*   echo ro: $ro
+
+
+.endc
+
+.end

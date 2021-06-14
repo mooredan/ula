@@ -1,0 +1,23 @@
+magic
+tech scmos
+timestamp 1589674991
+<< nsubstratendiff >>
+rect 77 1 81 41
+rect 121 1 125 41
+<< genericcontact >>
+rect 78 31 80 33
+rect 122 29 124 31
+rect 78 10 80 12
+rect 122 8 124 10
+<< metal1 >>
+rect 77 1 81 41
+rect 121 1 125 41
+<< pseudo_rnwell >>
+rect 81 41 121 42
+rect 81 0 121 1
+<< rnwell >>
+rect 81 1 121 41
+<< labels >>
+rlabel metal1 s 78 15 78 15 2 p1
+rlabel metal1 s 122 15 122 15 2 n1
+<< end >>

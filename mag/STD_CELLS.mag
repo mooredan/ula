@@ -1,0 +1,35 @@
+magic
+tech scmos
+timestamp 1511730518
+<< metal1 >>
+rect -2 -4 2 70
+rect 20 -5 24 69
+rect 45 -5 49 69
+rect 78 -5 82 69
+rect 115 -5 119 69
+rect 148 -4 152 70
+use INV_A  INV_A_0
+timestamp 1511725682
+transform 1 0 0 0 1 0
+box -1 0 23 65
+use INV_B  INV_B_0
+timestamp 1511685112
+transform 1 0 22 0 1 0
+box -1 0 26 65
+use NOR2_A  NOR2_A_0
+timestamp 1511719214
+transform 1 0 47 0 1 0
+box -1 0 34 65
+use BUF_B  BUF_B_0
+timestamp 1511687586
+transform 1 0 80 0 1 0
+box -1 0 38 65
+use NAND2_A  NAND2_A_0
+timestamp 1511730358
+transform 1 0 117 0 1 0
+box -1 0 34 65
+use SUBC_1  SUBC_1_0
+timestamp 1511591118
+transform 1 0 150 0 1 0
+box -1 0 15 65
+<< end >>

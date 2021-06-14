@@ -1,0 +1,74 @@
+* AC simulation of pad_x0_top
+*
+* CMOS inverter for the crystal pad
+
+.include mag/pad_x0_top.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.025
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+* Vsrc src 0 DC 0 SIN({VO} {VA} {FREQ})
+vsrc src 0 DC 0 AC {VA}
+rsrc src 0 50
+
+cin src ax 1.0e-6
+vin ax a DC 0
+
+xdut pad xpad a vdd vss pad_x0_top
+rf pad a 2.2Meg
+
+rl pad 0 1.0k
+cl pad 0 30.0e-12
+
+* .save all @r.xdut.rin1[i] @Cout[i]
+* .save all @m.xdut.xpad_io_top_0.m1002[id]
+* +         @m.xdut.xpad_io_top_0.m1010[id]
+.save all
+.save @cin[i]
+.save @c.cin[i]
+
+* .dc Va 0 {VDD_VAL} 0.001
+* .tran 0.1n {PER*5}
+.ac dec 200 0.1Meg 20.0Meg
+
+.control
+destroy all
+run
+
+setplot ac1 
+* plot mag(v(a)) mag(v(pad))
+plot 20*log10(mag(v(pad))/mag(v(a)))
+
+* print frequency[55]
+let f = re(frequency)
+print f
+let vin = v(a)
+* print vin
+* print mag(vin)
+let iin = i(vin)
+* print iin
+let zin = vin / iin
+* print zin
+let xc = -im(zin)
+* print xc
+let cin = 1 / (2 * pi * f * xc)
+*print cin 
+
+plot cin
+
+.endc
+
+.end

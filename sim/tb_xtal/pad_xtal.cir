@@ -1,0 +1,6 @@
+*
+.subckt pad_xtal xout xin ckout vdd vss
+xpad_xin  xin  xpad        vdd vss pad_in_top 
+xpad_xout xout ckin xpad   vdd vss pad_x0_top 
+xschmitt ckout ckin        vdd vss schmitt_1V
+.ends

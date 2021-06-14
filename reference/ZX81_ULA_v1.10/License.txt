@@ -1,0 +1,18 @@
+
+Copyright (c) 2012 Alwin Henseler
+Bitcycle.org
+
+All rights reserved.
+
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED WARRANTY. IN NO EVENT SHALL THE AUTHOR(S) BE LIABLE FOR ANY DAMAGES ARISING FROM THE USE OF THIS SOFTWARE.
+
+Redistribution of this software, in any form whatsoever, is allowed under the following conditions:
+
+* Redistributions must include this notice complete and unmodified, either in source files, documentation or other materials provided with the distribution.
+* Modified versions of this software must be clearly marked as such.
+* If you distribute any work or product that uses a modified version of this software, then:
+    * You must publish, in source form, that modification or modified version.
+    * Such publication must imply permission for anyone to distribute that modification or modified version, under the same conditions as the original software.
+* Using this software in a "software-as-a-service" setting, shall be regarded as redistribution to users of that service.
+* Re-use (in any manner) of documentation or images is allowed, as long as credit is given. Preferably by providing a link to above website.
+

@@ -1,0 +1,2145 @@
+tech
+  format 31
+  amic5n
+end
+
+version
+ version 2020a
+ description "AMI / ON Semiconductor C5N Process 1 lambda = 0.10 um"
+end
+
+planes
+  well,w
+  select,s
+  active,a
+  metal1,m1
+  metal2,m2
+  metal3,m3
+  oxide,ox
+  comment
+  contact
+  via1,v1
+  via2,v2
+end
+
+#----------------------------
+# Tile Types
+#----------------------------
+
+types
+# Well
+  well nwell,nw
+  active rnwell,rnw
+
+# Transistors
+  active ntransistor,nfet
+  active ptransistor,pfet
+
+# Diffusions
+  select nselect,ns
+  select pselect,ps
+  active ndiffusion,ndif,green
+  active pdiffusion,pdif,brown
+  active psubstratepdiff,psd
+  active nsubstratendiff,nsd
+  active nsubstratencontact,nsc
+  active psubstratepcontact,psc
+  active ndcontact,ndc
+  active pdcontact,pdc
+
+# Poly
+  active polysilicon,poly,p
+  active polycontact,pc
+
+# Poly 2
+  active poly2,p2
+  active poly2cap,ecap
+  active high_resist,hr
+  active poly2_high_resist,phr
+  active poly2contact,p2c
+  active poly2capcontact,p2cc
+
+# Metal 1
+  metal1 metal1,m1
+  metal1 via1,m2contact,m2cut,m2c,via,v,v1
+
+# Metal 2
+  metal2 metal2,m2
+  metal2 via2,m3contact,m3cut,m3c,v2
+
+# Metal 3
+  metal3 metal3,m3,cyan
+  metal3 pad
+
+  oxide glass
+  comment comment
+  comment bb
+end
+
+contact
+  ndc  ndiff    metal1
+  pdc  pdiff    metal1
+  nsc  nsd      metal1
+  psc  psd      metal1
+  pc   poly     metal1
+  p2c  poly2    metal1
+  p2cc poly2cap metal1
+
+  via1 metal1 metal2
+  via2 metal2 metal3
+
+  stackable
+end
+
+#-----------------------------------------------------
+# Layer aliases
+#-----------------------------------------------------
+
+aliases
+
+  allnfets	   nfet
+  allpfets	   pfet
+  allfets	   allnfets,allpfets
+
+  allnactivenonfet *ndiff,*nsd
+  allnactive	   allnactivenonfet,allnfets
+  allnactivenontap *ndiff,allnfets
+  allnactivetap	   *nsd
+
+  allpactivenonfet *pdiff,*psd
+  allpactive	   allpactivenonfet,allpfets
+  allpactivenontap *pdiff,allpfets
+  allpactivetap    *psd
+
+  allactivenonfet  allnactivenonfet,allpactivenonfet
+  allactive	   allactivenonfet,allfets
+
+  allndiffcont   ndc,nsc
+  allpdiffcont   pdc,psc
+  alldiffcont	 allndiffcont,allpdiffcont
+  allpolycont    pc,p2c
+  allcont	 alldiffcont,allpolycont,p2cc
+
+  allpolynonfet	   *poly
+
+  allpoly2       *poly2,poly2,ecap,phr
+
+  allm1		 *m1
+  allm2		 *m2
+  allm3		 *m3
+
+end
+
+
+#-----------------------------------------------------
+# Layer drawing styles
+#-----------------------------------------------------
+
+styles
+ styletype  mos
+  nwell  12
+  nselect  43
+  pselect  44
+  ndiff  2
+  ndc  2 20 32
+  pdiff  4
+  pdc  4 20 32
+  nsd  3
+  nsc  3 20 32
+  psd  5
+  psc  5 20 32
+  nfet  6 7
+  pfet  8 9
+  poly  1
+  pc    1  20 32
+  metal1  20
+  via1  20 21 55
+  metal2  21
+  via2  21 22 56
+  metal3  22
+  pad  22 23 34 38
+  glass  34
+  ecap  1 10 14
+  poly2  14
+  p2c   14 20 32
+  p2cc   14 20 32
+  hr  10
+  phr  14 48
+  rnw  12 53
+  comment  45
+  bb  32
+  error_p  42
+  error_s  42
+  error_ps  42
+  magnet  54
+  rotate  57
+  fence  59
+end
+
+compose
+  compose  nfet  poly  ndiff
+  compose  pfet  poly  pdiff
+  compose  ecap  poly2 poly
+#  paint  psd   ns  ndiff
+#  paint  nsd   ps  pdiff
+#  paint  ndiff ps  psd
+#  paint  pdiff ns  nsd
+#  paint  pad  m1  pad
+#  paint  pad  m2  pad
+#  paint  pad  m3  pad
+#  paint  pad  m2c  pad
+#  paint  nfet  nwell  pfet
+#  paint  ndiff  nwell  pdiff
+#  paint  psd  nwell  nsd
+  compose  phr  poly2  hr
+  paint  hr  poly2  phr
+  paint  poly2  hr  phr
+  erase  phr  hr  poly2
+#CRE/CRM
+  paint  nwell  rnw space
+
+end
+
+connect
+  nwell,nsc/a,nsd          nwell,nsc/a,nsd
+  psc/a,psd                psc/a,psd
+  ndiff,ndc/a,pdiff,pdc/a  ndiff,ndc/a,pdiff,pdc/a
+  *poly,nfet,pfet          *poly,nfet,pfet
+  *poly2,ecap              *poly2,ecap
+  *poly2cap                *poly2cap
+  # metal1
+  *m1  *m1
+  *m2  *m2
+  *m3  *m3
+# via1  m1,m2
+# via2  m2,m3
+  pad  m1,m2,m3
+  phr  hr
+end
+
+cifoutput
+
+style gdsii
+ scalefactor 10 nanometers
+ options calma-permissive-labels
+ gridlimit 5
+
+ layer CWN nwell,rnw
+ bloat-or pdiff,pfet * 180
+ bloat-or nsd * 90
+ grow 90
+ shrink 90
+ labels nwell,rnw
+ calma 42 0
+
+ templayer TNS ns
+
+ templayer TPS ps
+
+#diffusion auto-nselect (will have priority)
+ templayer XDN
+ bloat-or ndiff * 60 psd 0
+ or TNS
+
+#diffusion auto-pselect (will have priority)
+ templayer XDP
+ bloat-or pdiff * 60 nsd 0
+ or TPS
+
+#final pselect
+ templayer FSP
+ bloat-or pdiff,pfet,psd,pfet * 60 ndiff,nsd,nfet 0
+ or XDP
+#give diff nselect priority
+ and-not XDN
+ or TPS
+ shrink 15
+ grow 15
+ grow 15
+ shrink 15
+
+#final nselect
+ templayer FSN
+ bloat-or ndiff,nfet,nsd,nfet * 60 pdiff,psd,pfet 0
+ or XDN
+#never conflict with final pselect
+ and-not FSP
+#drawn select always goes
+ or TNS
+ shrink 15
+ grow 15
+ grow 15
+ shrink 15
+
+ layer CSN FSN
+ calma 45 0
+
+ layer CSP FSP
+ calma 44 0
+
+ layer CAA ndiff,nfet,nsd,pdiff,pfet,psd,pfet,pfet
+ labels ndiff,nfet,nsd,pdiff,pfet,psd,pfet,pfet
+ calma 43 0
+
+ layer CPG poly,nfet,pfet,ecap
+ labels poly,nfet,pfet,ecap
+ calma 46 0
+
+ layer CV1 via1
+ squares 0 60 90
+ calma 50 0
+
+ layer CV2 via2
+ squares 0 60 90
+ calma 61 0
+
+ templayer XPAD1 pad
+ shrink 180
+
+ templayer XPAD2 XPAD1
+ shrink 180
+
+ layer CM3 pad
+ labels pad
+ calma 62 0
+
+ layer CV2 XPAD2
+ squares 240 60 300
+ calma 61 0
+
+ layer CM2 pad
+ labels pad
+ calma 51 0
+
+ layer CV1 XPAD2
+ squares 60 60 300
+ calma 50 0
+
+ layer CM1 pad
+ calma 49 0
+
+ layer CM1 m1
+ labels m1
+ calma 49 0
+
+ layer CM2 m2
+ labels m2
+ calma 51 0
+
+ layer CM3 m3
+ labels m3
+ calma 62 0
+
+ layer COG pad
+ shrink 600
+ labels pad
+ calma 52 0
+
+ layer COG glass
+ labels glass
+ calma 52 0
+
+ layer CHR hr,phr
+ labels hr,phr
+ calma 34 0
+
+ layer CEL poly2,ecap,phr
+ labels poly2,ecap,phr
+ calma 56 0
+
+#CRE/CRM
+ layer CRW rnw
+ labels rnw
+ calma 65 0
+
+ layer CRE rnw
+ labels rnw
+ calma 64 0
+
+ layer CX comment
+ labels comment
+ calma 63 0
+
+ layer XP pad
+ labels pad
+ calma 26 0
+
+
+#----------------------------------------------------------------
+style drc
+#----------------------------------------------------------------
+# NOTE:  This style is used for DRC only, not for GDS output
+#----------------------------------------------------------------
+ scalefactor 10  nanometers
+ options calma-permissive-labels
+
+
+ templayer nwell_with_tap
+ bloat-all nsc nwell
+
+ templayer nwell_missing_tap nwell
+ and-not nwell_with_tap
+
+
+
+
+
+#======================================================
+# Add substrate and well contacts as often as possible.
+# For bulk starting material, substrate contacts
+# should be placed every 45 μ m.
+#======================================================
+
+# Check latchup rule (45um minimum from tap P-sub CONT center to any
+# non-tap diffusion.  Note that to count as a tap, the diffusion
+# must be contacted to M1
+
+ templayer ptap_reach psc
+ # grow total is 45um.  grow in 1.0um increments to ensure that
+ # no nwell ring is crossed
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+ grow 1000
+ and-not nwell
+
+ templayer ptap_missing *ndiff
+ and-not ptap_reach
+
+#---------------------------------------------
+
+ templayer ntap_reach nsc
+ # grow total is 45um.  grow in 1.0 um increments to ensure that
+ # no nwell ring is crossed.
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+ grow 1000
+ and nwell
+
+ templayer ntap_missing *pdiff
+ and-not ntap_reach
+
+#---------------------------------------------------
+
+ templayer ntap_reach2 nsc
+ # grow total is 11.0 um in both directions (total of 22.5um)
+ #  grow in 2.0 um increments to ensure that
+ # no nwell ring is crossed.
+ grow 2000
+ and nwell
+ grow 2000
+ and nwell
+ grow 2000
+ and nwell
+ grow 2000
+ and nwell
+ grow 2000
+ and nwell
+ grow 1000
+ and nwell
+
+ templayer ntap_max_distance nwell
+ and-not ntap_reach2
+
+end
+
+
+cifinput
+
+style  amic5
+ scalefactor 10 nanometers
+ gridlimit 5
+
+ options ignore-unknown-layer-labels no-reconnect-labels
+
+ layer nwell CWN
+ and-not CWNR
+ and-not CTA
+ labels CWN
+ calma CWN 42 *
+
+ layer rnw CWN
+ and-not CWNR
+ and CRE
+ and-not CSB
+ and-not CRD
+ and-not CAA
+ and-not CPG
+ calma CWN 42 *
+
+ layer rnw CWN
+ and-not CWNR
+ and CRW
+ and-not CRD
+ and-not CAA
+ and-not CPG
+ calma CWN 42 *
+
+ layer ndiff CAA
+ and CSN
+ and-not CWNR
+ and-not CTA
+ and-not CRE
+ and-not CSB
+ and-not CPG
+ and-not CWN
+ and-not CSP
+ and-not CBA
+ labels CAA
+ calma CAA 43 *
+
+ layer pdiff CAA
+ and CSP
+ and-not CWNR
+ and-not CTA
+ and-not CRE
+ and-not CSB
+ and-not CPG
+ and CWN
+ and-not CSN
+ and-not CPS
+ and CSP
+ and-not CBA
+ labels CAA
+ calma CAA 43 *
+
+ layer nfet CAA
+ and CSN
+ and-not CWNR
+ and-not CTA
+ and CPG
+ and-not CEL
+ and-not CWN
+ and-not CSP
+ and-not CBA
+ labels CAA
+ calma CAA 43 *
+
+ layer pfet CAA
+ and CSP
+ and-not CWNR
+ and-not CTA
+ and CPG
+ and-not CEL
+ and CWN
+ and-not CSN
+ and-not CPS
+ and CSP
+ and-not CBA
+ labels CAA
+ calma CAA 43 *
+
+ layer nsd CAA
+ and CSN
+ and-not CWNR
+ and-not CTA
+ and CWN
+ and-not CSP
+ and-not CBA
+ labels CAA
+ calma CAA 43 *
+
+ layer psd CAA
+ and CSP
+ and-not CWNR
+ and-not CTA
+ and-not CWN
+ and-not CSN
+ and-not CPS
+ and CSP
+ and-not CBA
+ labels CAA
+ calma CAA 43 *
+
+
+
+ layer poly CPG
+ and-not CRE
+ labels CPG
+ calma CPG 46 *
+
+ layer via1 CV1
+ and-not COP
+ and-not CM1
+ calma CV1 50 *
+
+ layer via1 CV1
+ and-not COP
+ and-not CM2
+ calma CV1 50 *
+
+ layer via2 CV2
+ and-not COP
+ and-not CM2
+ calma CV2 61 *
+
+ layer via2 CV2
+ and-not COP
+ and-not CM3
+ calma CV2 61 *
+
+ layer m1 CM1
+ and-not CRM
+ and-not CRF
+ and-not XP
+ labels CM1
+ calma CM1 49 *
+
+ layer m2 CM2
+ and-not CRM
+ and-not CRS
+ and-not XP
+ labels CM2
+ calma CM2 51 *
+
+
+ layer m3 CM3
+ and-not CRM
+ and-not CRT
+ and-not XP
+ labels CM3
+ calma CM3 62 *
+
+
+ layer pad XP
+ labels pad
+ calma XP 26 *
+
+ layer glass COG
+ and-not COP
+ and-not XP
+ labels COG
+ calma COG 52 *
+
+ layer hr CHR
+ labels CHR
+ calma CHR 34 *
+
+ layer phr CEL
+ and CHR
+ calma CEL 56 *
+
+ layer ecap CEL
+ and CPG
+ labels CEL
+ calma CEL 56 *
+
+ layer poly2 CEL
+ and-not CPG
+ labels CEL
+ calma CEL 56 *
+
+ layer comment CX
+ labels CX
+ calma CX 63 *
+
+ calma CTA 60 *
+
+ calma CRW 65 *
+ calma CRD 66 *
+ calma CRE 64 *
+ calma CRF 71 *
+ calma CRS 72 *
+ calma CRT 73 *
+ calma CRM 70 *
+
+end
+
+mzrouter
+end
+
+
+drc
+
+style drc variants (fast),(full)
+ scalefactor 10
+ cifstyle drc
+
+variants (fast),(full)
+
+######################################################
+# N-WELL Layout Rules
+# Layer/level #1 (TUB)
+######################################################
+
+ width nwell 2500 \
+ "Min TUB Width < %d (TUBW)"
+
+ spacing nwell nwell 2000 touching_ok \
+ "Min TUB Spacing related < %d (TUBSPR)"
+
+# fix this for nwell resistors
+ width rnw 3600 \
+ "rnwell (for resistor L/W extraction) width < %d (Mosis #1.1)"
+
+
+variants (full)
+
+ cifmaxwidth nwell_missing_tap 0 bend_illegal \
+ "FLOaTing N-Wells (FLOTNW)"
+
+ cifmaxwidth ntap_max_distance 0 bend_illegal \
+ "Max Distance between N-Well taps < 22.5um (or about 50kohm) (LU)"
+
+variants (fast),(full)
+
+
+
+
+######################################################
+# ACTIVE Layout Rules
+# Layer/level #2 (DIF)
+######################################################
+
+ spacing allactive,(alldiffcont)/active allactive,(alldiffcont)/active 900 touching_ok \
+ "Min DIFfusion SPacing < %d (DIFSP)"
+
+ spacing ndiff,nfet,ndc/a,nfet psd,psc/a 900 touching_ok \
+ "N-Diffusion spacing to P-Ohmic < %d (DIFSP)"
+
+ spacing pdiff,pfet,pdc/a,pfet nsd,nsc/a 900 touching_ok \
+ "P-Diffusion spacing to N-Ohmic < %d (DIFSP)"
+
+ spacing nsd,nsc/a psd,psc/a 1800 touching_illegal \
+ "N-Ohmic spacing to P-Ohmic < %d (DIFSP*2)"
+
+ width allactive,(alldiffcont)/active 500 \
+ "Min DIFfusion Width < %d (DIFW)"
+
+ surround pdiff,pfet,pdc/active nwell 1500 abence_illegal \
+ "TuB Enclosure Of P-Diffusion < %d (TBEOPD)"
+
+
+#--------------------------------------------------------------
+# --- brought these over from SCN3ME_SUBM.30
+#--------------------------------------------------------------
+# 9 - 2700
+ spacing ndiff,ndc/a nsd,nsc/a 3300 touching_illegal \
+ "N-Diffusion spacing to N-Ohmic < %d (Rule 1: Mosis #2.3+2.4)"
+# 9 - 2700
+ spacing pdiff,pdc/a psd,psc/a 3300 touching_illegal \
+ "P-Diffusion spacing to P-Ohmic < %d (Rule 1: Mosis #2.3+2.4)"
+#--------------------------------------------------------------
+
+ surround pdiff nwell 1500 abence_illegal \
+ "TuB Enclosure Of P-Diffusion < %d (TBEOPD)"
+
+
+ spacing nwell ndiff,nfet,ndc/active 1500 touching_illegal \
+ "TuB to N-Diffusion SPacing < %d (TBNDSP)"
+
+ spacing ndiff,nfet pdiff,pfet 3000 touching_illegal \
+ "N-Diffusion to P-Diffusion spacing < %d (TBEOPD + TBNDSP)"
+
+ # edge types1 types2 d OKTypes cornerTypes cornerDist error [plane]
+ edge4way *poly nfet,pfet 800 nfet,pfet 0 0 \
+ "Minimum TRANsistor Width < %d (TRANW)"
+
+# -------------------------------------------------------------------
+
+# was 2700
+ spacing ndiff nsd 3500 touching_illegal \
+ "N-Diffusion spacing to N-Ohmic < %d (Rule 2: Mosis #2.3+2.4)"
+
+# was 2700
+ spacing pdiff psd 3500 touching_illegal \
+ "P-Diffusion spacing to P-Ohmic < %d (Rule 2: Mosis #2.3+2.4)"
+
+
+
+######################################################
+
+# was 900
+ spacing psd rnw 900 touching_illegal \
+ "P-Ohmic spacing to rnw < %d (Mosis #2.4)"
+
+
+#############################################################################
+
+
+
+ spacing rnw nwell 18 touching_illegal \
+ "rnw (for resistor L/W extraction) spacing to N-well < %d (Mosis #2.3)"
+
+
+
+
+
+
+
+
+ edge4way nfet ~(nfet)/active 900 ~(psd)/active ~(nfet)/active 600 \
+ "N-Transistor space to P-Ohmic < 600 (Mosis #4.1)" active
+
+ edge4way pfet ~(pfet)/active 900 ~(nsd)/active ~(pfet)/active 600 \
+ "P-Transistor space to N-Ohmic < %d (Mosis #4.1)" active
+
+
+# ---- not valid
+# width nsd,psd,nsc/active 600 \
+# "N-Ohmic,P-Ohmic width < %d (Mosis #4.1)"
+
+
+  edge4way ndiff psd 600 ~(ndiff)/active 0 0 \
+ "P-Ohmic(that touches N-Diffusion) width < %d (Mosis #4.4)"
+
+  edge4way pdiff nsd 600 ~(pdiff)/active 0 0 \
+ "N-Ohmic(that touches P-Diffusion) width < %d (Mosis #4.4)"
+
+
+
+variants (full)
+
+ # Latchup rules
+ cifmaxwidth ptap_missing 0 bend_illegal \
+ "N-diff distance to P-tap must be < 45.0um (LU)"
+
+ cifmaxwidth ntap_missing 0 bend_illegal \
+ "P-diff distance to N-tap must be < 45.0um (LU)"
+
+variants (fast),(full)
+
+
+
+######################################################
+# POLY Layout Rules
+# Layer/level #4 (POLY1)
+######################################################
+
+ width poly,ecap,nfet,pfet,pc/active 600 \
+ "Min POLY Width < %d (POLYW)"
+
+ spacing poly,nfet,pfet,pc/active poly,nfet,pfet,pc/active 600 touching_ok \
+ "Min POLY SPacing < %d (POLYSP)"
+
+ edge4way poly ~(poly,nfet,pfet,ecap,pc)/active 200 space/a space/a 1 \
+ "Min PolY to ACtive SPacing < %d (PYACSP)"
+
+ edge4way nfet,pfet space/active,poly,pc 650 poly,pc 0 0 \
+ "Min PolY eXtension Beyond ACtive < %d (PYXBAC)" active
+
+
+
+######################################################
+# P+ Layout Rules
+# Layer/level #6 (PPLS) Copy of Layer/level #5 (NPLS)
+######################################################
+
+ edge4way pfet ~(pfet)/active 900 ~(nselect)/select ~(pfet)/active 900 \
+ "P-Transistor space to N-Select < %d (Mosis #4.1)" select
+
+ edge4way pdiff,pfet space 300 ~(nselect)/select space 300 \
+ "N-Select space to P-Diffusion < %d (NPACSP - Mosis #4.2e)" select
+
+# # except for ohmic
+# spacing nselect pdiff,psd 300 touching_ok \
+# "Min NPls to ACtive SPacing < %d (NPACSP)"
+
+ edge4way ~(pdiff,pfet,psd)/active pdiff,pfet,psd 1 ~(nselect)/select 0 0 \
+ "N-Select cannot touch P-Diffusion,P-Ohmic (Mosis #4.2f)" select
+
+ width nselect 700 \
+ "Min NPLS Width < %d (NPLSW)"
+
+ spacing nselect nselect 700 touching_ok \
+ "Min NPLS SPacing < %d (NPLSSP)"
+
+ surround nfet nselect 300 absence_illegal \
+ "Min NPLS overlap of N-FET < %d"
+
+
+
+######################################################
+# P+ Layout Rules
+# Layer/level #6 (PPLS) Copy of Layer/level #5 (NPLS)
+######################################################
+
+
+
+#########################################
+# surround doesn't work in this situation
+#########################################
+# surround (ndiff,nfet,nsd)/active nselect 300 \
+# "Min PPls Enclosure Of Active < %d (PPEOAC)" active
+
+#########################################
+# surround doesn't work in this situation
+#########################################
+# surround (pdiff,pfet,psd)/active pselect 300 \
+# "Min NPls Enclosure Of Active < %d (NPEOAC)" active
+
+
+
+ surround pfet pselect 300 absence_illegal \
+ "Min PPLS overlap of P-FET < %d (PPEOAC)"
+
+
+
+
+############################################################
+# these two are OK - effective the surround for
+# ndiff,pdff by nselect,pselect
+############################################################
+
+ edge4way space nselect,pselect 300 ~(ndiff,nfet)/active nselect 300 \
+ "N-Select space to N-Diffusion < %d (Mosis #4.2a)" active
+
+ edge4way space nselect,pselect 300 ~(pdiff,pfet)/active pselect 300 \
+ "P-Select space to P-Diffusion < %d (Mosis #4.2aa)" active
+
+############################################################
+
+
+
+
+############################################################
+# these two are OK - effective the surround for
+# substrate and well diffusions
+#
+# (need to rename)
+############################################################
+
+ edge4way space pselect 300 ~(psd)/active pselect 300 \
+ "P-Select space to P-Ohmic < %d (Mosis #4.2a)" active
+
+ edge4way space nselect 300 ~(nsd)/active nselect 300 \
+ "N-Select space to N-Ohmic < %d (Mosis #4.2a)" active
+
+############################################################
+
+
+
+ edge4way nselect,pselect space 300 ~(ndiff,nfet)/active nselect 300 \
+ "N-Select space to N-Diffusion < %d (Mosis #4.2b)" active
+
+ edge4way nselect,pselect space 300 ~(ndiff,nfet)/active space,nselect,pselect 300 \
+ "N-Select space to N-Diffusion < %d (Mosis #4.2c)" active
+
+ edge4way nselect,pselect space 300 ~(pdiff,pfet)/active pselect 300 \
+ "P-Select space to P-Diffusion < %d (Mosis #4.2bb)" active
+
+ edge4way nselect,pselect space 300 ~(pdiff,pfet)/active space,nselect,pselect 300 \
+ "P-Select space to P-Diffusion < %d (Mosis #4.2cc)" active
+
+
+ edge4way ndiff,nfet space 300 ~(pselect)/select space 300 \
+ "P-Select space to N-Diffusion < %d (PPACSP - Mosis #4.2e)" select
+
+# spacing pselect ndiff,nsd 300 touching_ok \
+# "Min PPls to ACtive SPacing < %d (PPACSP)"
+
+
+ edge4way ~(ndiff,nfet,nsd)/active ndiff,nfet,nsd 1 ~(pselect)/select 0 0 \
+ "P-Select cannot touch N-Diffusion,N-Ohmic (Mosis #4.2f)" select
+
+
+ spacing pselect pselect 700 touching_ok \
+ "Min PPLS SPacing < %d (PPLSSP)"
+
+ edge4way nfet ~(nfet)/active 900 ~(pselect)/select ~(nfet)/active 900 \
+ "N-Transistor space to P-Select < %d (Mosis #4.1)" select
+
+ width pselect 700 \
+ "Min PPLS Width < %d (PPLSW)"
+
+
+ edge4way pfet space/active,*pdiff 650 *pdiff,pfet 0 0 \
+ "Min P-Diffusion Enclosure Of GaTe < %d (PDEOGT)" active
+
+ edge4way nfet space/active,*ndiff 650 *ndiff,nfet 0 0 \
+ "Min N-Diffusion Enclosure Of GaTe < %d (NDEOGT)" active
+
+
+######################################################
+# CONTACT Layout Rules
+# Layer/level #8 (CNT)
+######################################################
+
+ spacing nfet,pfet alldiffcont 400 touching_illegal \
+ "Min Active-Contacts to any PolY Spacing < %d (ACTPYS)"
+
+# surround alldiffcont ndiff,nsd,pdiff,psd,poly,poly2,ecap 200 absence_illegal \
+# "Min ACtive/All-Poly Enclosure Of CnT (ACEOCT, APEOCT)"
+
+# surround allpolycont/active poly,poly2,ecap 200 absence_ok \
+# "Min All-Poly Enclosure Of CnT < %d (APEOCT)"
+
+# surround pc/active poly 200 absence_illegal \
+# "Min All-Poly Enclosure Of CnT < %d (APEOCT)"
+
+
+ surround nsc nsd,pdiff 300 absence_illegal \
+ "Min ACtive Enclosure (n-substrate) Of CnT < %d (ACEOCT)"
+
+ surround psc psd,ndiff 300 absence_illegal \
+ "Min ACtive Enclosure (p-substrate) Of CnT < %d (ACEOCT)"
+
+ surround ndc ndiff,psd 300 absence_illegal \
+ "Min ACtive Enclosure (n-diff) Of CnT < %d (ACEOCT)"
+
+ surround pdc pdiff,nsd 300 absence_illegal \
+ "Min ACtive Enclosure (p-diff) Of CnT < %d (ACEOCT)"
+
+ surround pc poly 200 absence_illegal \
+ "Min All-Poly Enclosure (poly) Of CnT < %d (APEOCT)"
+
+ surround p2c poly2 200 absence_illegal \
+ "Min All-Poly Enclosure (poly2) Of CnT < %d (APEOCT)"
+
+ surround p2cc ecap 200 absence_illegal \
+ "Min All-Poly Enclosure (poly2) Of CnT < %d (APEOCT)"
+
+
+
+
+
+# ---------------------------------------
+# -- Any contact to any contact spacing
+# ---------------------------------------
+
+ spacing nsc nsc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing nsc psc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing nsc pdc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing nsc ndc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing nsc pc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing nsc p2c 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing nsc p2cc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+
+
+ spacing psc psc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing psc pdc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing psc ndc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing psc pc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing psc p2c 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing psc p2cc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+
+ spacing pdc pdc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing pdc ndc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing pdc pc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing pdc p2c 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing pdc p2cc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+
+ spacing ndc ndc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing ndc pc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing ndc p2c 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing ndc p2cc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+
+ spacing pc pc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing pc p2c 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing pc p2cc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+
+ spacing p2c p2c 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+ spacing p2c p2cc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+
+ spacing p2cc p2cc 500 touching_ok \
+ "Min CNT SPacing < %d (CNTSP)"
+
+# ---------------------------------------
+# -- Contact width: 0.5um x 0.5um exactly
+# ---------------------------------------
+ width nsc 500 \
+ "Max CNT Width > 0.50 (CNTW)"
+ width psc 500 \
+ "Max CNT Width > 0.50 (CNTW)"
+ width ndc 500 \
+ "Max CNT Width > 0.50 (CNTW)"
+ width pdc 500 \
+ "Max CNT Width > 0.50 (CNTW)"
+ width pc 500 \
+ "Max CNT Width > 0.50 (CNTW)"
+ width p2c 500 \
+ "Max CNT Width > 0.50 (CNTW)"
+ width p2cc 500 \
+ "Max CNT Width > 0.50 (CNTW)"
+
+ maxwidth nsc 500 both \
+ "Max CNT Width > 0.50 (CNTW)"
+ maxwidth psc 500 both \
+ "Max CNT Width > 0.50 (CNTW)"
+ maxwidth ndc 500 both \
+ "Max CNT Width > 0.50 (CNTW)"
+ maxwidth pdc 500 both \
+ "Max CNT Width > 0.50 (CNTW)"
+ maxwidth pc 500 both \
+ "Max CNT Width > 0.50 (CNTW)"
+ maxwidth p2c 500 both \
+ "Max CNT Width > 0.50 (CNTW)"
+ maxwidth p2cc 500 both \
+ "Max CNT Width > 0.50 (CNTW)"
+
+
+
+######################################################
+# METAL 1 Layout Rules
+# Layer/level #9 (M1)
+######################################################
+
+ surround via1 *m1 200 absence_illegal \
+ "Min M1 Enclosure Of VIa < %d (M1EOVI)"
+
+# surround (allcont,via1)/m1 *m1 200 absence_illegal \
+ surround (allcont)/m1 *m1 200 absence_illegal \
+ "Min M1 Enclosure Of CnT < %d (M1EOCT)"
+
+ spacing m1,(allcont,via1)/m1 m1,(allcont,via1)/m1 600 touching_ok \
+ "Min M1 SPacing < %d (M1SP)"
+
+ width m1,(allcont,via1)/m1 600 \
+ "Min M1 Width < %d (M1W)"
+
+ widespacing m1,(allcont,via1)/m1 10000 m1,(allcont)/m1 1200 touching_ok \
+ "Min WiDe M1 to M1 SPacing < %d (WDM1SP)"
+
+
+
+
+
+######################################################
+# VIA 1 Layout Rules
+# Layer/level #10 (VIA)
+######################################################
+
+ width via1 500 \
+ "Min VIA Width < %d (VIAW)"
+
+ maxwidth via1 500 both \
+ "Max VIA Width > 0.50 (VIAW)"
+
+ spacing via1 via1 600 touching_illegal \
+ "Min VIA SPacing < %d (VIASP)"
+
+
+
+######################################################
+# METAL 2 Layout Rules
+# Layer/level #11 (M2)
+######################################################
+
+ surround via1 *m2 200 absence_illegal \
+ "Min M2 Enclosure Of VIa < %d (M2EOVI)"
+
+ spacing *m2 *m2 700 touching_illegal \
+ "Min M2 SPacing < %d (M2SP)"
+
+ width *m2 700 \
+ "Min M2 Width < %d (M2W)"
+
+ widespacing *m2 10000 *m2 1200 touching_ok \
+ "Min WiDe M2 to M2 SPacing < %d (WDM2SP)"
+
+
+######################################################
+# VIA 2 Layout Rules
+# Layer/level #12 (VIA2)
+######################################################
+
+ surround via2 *m2 200 absence_illegal \
+ "Min M2 Enclosure Of Via2 < %d (M2EOV2)"
+
+ width via2 500 \
+ "Min VI2 Width < %d (VI2W)"
+
+ maxwidth via2 500 both \
+ "Max VI2 Width > %d (VI2W)"
+
+ spacing via2 via2 800 touching_illegal \
+ "Min VI2 SPacing < %d (VI2SP)"
+
+
+######################################################
+# METAL 3 Layout Rules
+# Layer/level #13 (M3)
+######################################################
+
+ surround via2 m3 200 absence_illegal \
+ "Min M3 Enclosure Of Via2 < %d (M3EOV2)"
+
+ spacing *m3 *m3 700 touching_illegal \
+ "Min M3 SPacing < %d (M3SP)"
+
+ width *m3 800 \
+ "Min M3 Width < %d (M3W)"
+
+ widespacing *m3 10000 *m3 1200 touching_ok \
+ "Min WiDe M3 to M3 SPacing < %d (WDM3SP)"
+
+
+
+
+######################################################
+# POLY2 Layout Rules
+# Layer/level #26 (POLY2)
+######################################################
+
+ surround poly2cap,ecap,p2cc/active poly 500 absence_illegal \
+ "Min BotCap plate Enclosure Of TopCap plate < %d (BCEOTC)"
+
+ spacing poly2,(p2c,p2cc)/active ndif,pdif,nfet,pfet,nsd,psd 200 touching_illegal \
+ "Min Poly2 to ACtive SPacing < %d (P2ACSP)"
+
+ surround p2c poly2 200 absence_ok \
+ "Min Poly2 Over Field Enclosure of Contact < %d (P2OFEC)"
+
+ surround p2c poly2cap,ecap 300 absence_ok \
+ "Min Poly2 Over Poly1 Enclosure of Contact < %d (P2OP1EC)"
+
+ spacing poly2,ecap,phr,(p2c,p2cc)/active poly2,ecap,phr,p2c/active 800 touching_ok \
+ "Min POLY2 SPacing < %d (PLY2SP)"
+
+ width ecap,poly2,phr,(p2c,p2cc)/active 2000 \
+ "Min POLY2 Width < %d (POLY2W)"
+
+ spacing ecap ndif,pdif,nfet,pfet,nsd,psd 2000 touching_illegal \
+ "Min TopCap plate to ACtive SPace < %d (TCACSP)"
+
+ # spacing ecap gc 500 surround_ok \
+ # note: had to change since putting gc on plane: active
+ spacing ecap p2c 500 touching_ok \
+ "Min TopCap plate to CnT SPace < %d (TCCTSP)"
+
+ spacing ecap pselect 2000 touching_illegal \
+ "Min TopCap to PPls SPace < %d (TCPPSP)"
+
+ spacing ecap nselect 2000 touching_illegal \
+ "Min TopCap to NPls SPace < %d (TCNPSP)"
+
+ edge4way poly2 poly 1 0 0 0  \
+ "Ensure poly2/poly caps are properly formed" active
+
+# try this one
+# edge4way ~(ecap)/cap ecap 1 poly 0 0 \
+# "Ecap must touch Poly (Mosis #11.3x)" active
+
+##################################################################
+
+
+
+######################################################
+# HR POLY RESISTOR Layout Rules
+# Layer/level #27 (HIRES)
+######################################################
+# hr  : mask
+# phr : high resist poly (HIRES)
+
+ edge4way phr space/active,hr 1000 hr hr 1000 \
+ "Min HIRes Enclosure Of Poly2 < %d (HIREOP)"
+
+ width phr,hr 2000 \
+ "Min HIRES Width < %d (HIRESW)"
+
+ spacing hr hr 1000 touching_ok \
+ "Min HIRes Mask SPace < %d (HIRMSP)
+
+ spacing hr,phr *poly2,ecap,phr 1000 touching_ok \
+ "Min HIRes to Poly2 Space < %d (HIRP2S)"
+
+ spacing hr,phr pc,p2c 500 touching_illegal \
+ "Min HiR over Poly2 to Cnt SPace < %d (HRPCSP)"
+
+
+# To Do: The following needs review
+
+ spacing hr,phr hr,phr 1200 touching_ok \
+ "High-Resist spacing < %d (Mosis #27.2)"
+
+ edge4way hr,phr space 600 ~(ndiff,pdiff)/active 0 600 \
+ "High-Resist space to Diffusion < %d (Mosis #27.4)" active
+
+ edge4way hr,phr space 600 ~(poly2,ecap,phr)/contact hr,phr 600 \
+ "High-Resist space to Poly2 < %d (Mosis #27.5x)" contact
+
+ spacing nwell phr 1200 touching_illegal \
+ "N-well spacing to Silicide-Block poly2R < %d (Mosis #27.6)"
+
+ spacing phr phr 2100 touching_ok \
+ "High-Resist poly2R spacing < %d (Mosis #27.13)"
+
+# edge4way poly2,phr space 1500 ~(poly)/active space 1500 \
+# "Poly2 spacing to Poly < %d (Mosis #11.3c)" active
+
+##################################################################
+
+
+
+ width glass 3000 \
+ "COG width < %d (Mosis #10.2)"
+
+ edge4way ~(pad)/metal3 pad 20 ~(glass)/oxide pad 20 \
+ "pad overlap of COG < %d (Mosis #10.3)" oxide
+
+ edge4way pad ~(pad)/m3 1 ~(pad)/m3 (~(pad),pad)/m3 1 \
+ "Contact not rectangular (Magic rule)"
+
+#    spacing m3,pad m3,pad 900 touching_ok \
+#    "Metal3 spacing < %d (Mosis #15.2)"
+#
+
+#    edge4way ~(m3,pad)/metal3 m3,pad 1 ~(via2)/via2 0 0 \
+#    "Metal3(edge) cannot touch GV2 via (Mosis #15.3)" via2
+
+
+# spacing ecap pc/a 600 touching_illegal \
+# "Poly2 spacing to Poly contact < %d (Mosis #11.5)"
+
+
+
+
+ exact_overlap nsc
+ exact_overlap psc
+ exact_overlap ndc
+ exact_overlap pdc
+ exact_overlap pc
+ exact_overlap p2c
+
+ exact_overlap via1
+ exact_overlap via2
+
+ stepsize 400
+
+end
+
+#---------------------------------------------------
+# LEF format definitions
+#---------------------------------------------------
+lef
+
+ignore PC
+ignore CA
+
+routing m1   metal1 M1 m1 met1
+routing m2   metal2 M2 m2 met2
+routing m3   metal3 M3 m3 met3
+
+# contact m2c via1 via V1
+# contact m3c via2 V2 v2
+
+end
+
+
+#-----------------------------------------------------
+# Device and Parasitic extraction
+#-----------------------------------------------------
+extract
+ style ngspice
+ cscale 1
+ lambda 1.0
+ units	microns
+
+# step:
+# old setting for step: 100
+# skywater setting: 7
+# scmos setting: 100 
+ step    7 
+
+# sidehalo:
+# was 8 now 2.4 since 0.3um * 8 = 2.4um
+# oh, well just make it 4.0 um
+ sidehalo 4.0 
+
+ planeorder well     0
+ planeorder select   1
+ planeorder active   2
+ planeorder metal1   3
+ planeorder metal2   4
+ planeorder metal3   5
+ planeorder oxide    6
+ planeorder comment  7
+ planeorder contact  8
+ planeorder via1     9
+ planeorder via2    10
+
+ substrate *psd,space/w well $SUB
+
+##########################################################
+# Resistances are in milliohms per square
+# Optional 3rd argument is the corner adjustment fraction
+# Device values come from trtc.cor (typical corner)
+##########################################################
+# Note: not all values have been reviewed
+##########################################################
+ resist (nwell)/well              816000
+ resist (rnw)/active              816000 0.5
+ resist (*ndiff,nsd)/active        82400
+ resist (*pdiff,psd)/active       102700
+ resist (poly,nfet,pfet)/active    22300
+ resist (poly2,ecap)/active        41300
+ resist (phr)/active               41300 0.5
+ resist (allm1)/metal1                85 
+ resist (allm2)/metal2                85 
+ resist (allm3,pad)/metal3            40
+
+##########################
+# Note: not all reviewed
+##########################
+ contact ndc,nsc   30000
+ contact pdc,psc  100000
+ contact pc         7000
+ contact p2c       26800
+ contact m2c        1000
+ contact m3c        1000
+
+
+# To Do:
+#      #nwell
+#       areacap (nwell)/well   3.510
+#
+#      #rnw
+#       areacap (rnw)/active   3.510
+#       areacap (poly)/active   7.920
+#       overlap (poly)/active ~space/w   7.920
+#      # overlap (m1)/metal1 rnw/active   2.790
+#      # sideoverlap (m1)/metal1 ~(m1)/metal1 rnw/active  22.200
+
+
+################################################################################### 
+# METAL 1
+################################################################################### 
+# M1 to Substrate on Field,          Area      CM1S      0.024  0.027  0.030 fF/μm²
+# M1 to Substrate on Field,          Periphery CM1SP     0.040  0.041  0.043 fF/μm
+# M1              on Active,         Area      CM1A      0.028  0.031  0.033 fF/μm²
+# M1              on Active,         Periphery CM1AP     0.041  0.042  0.045 fF/μm
+# M1 over Poly    on Active,         Area      CM1PA     0.044  0.049  0.053 fF/μm²
+# M1 over Poly    on Active,         Periphery CM1PAP    0.012  0.013  0.015 fF/um
+# M1 over Poly    on Field,          Area      CM1P      0.047  0.055  0.064 fF/μm²
+# M1 over Poly    on Field,          Periphery CM1PP     0.016  0.019  0.026 fF/μm
+# M1 over Poly2   on Active,         Area      CM1P2A    0.040  0.044  0.048 fF/μm²
+# M1 over Poly2   on Active,         Periphery CM1P2AP   0.0096 0.010  0.012 fF/um
+# M1 over Poly2   on Field,          Area      CM1P2     0.041  0.047  0.054 fF/μm²
+# M1 over Poly2   on Field,          Periphery CM1P2P    0.015  0.016  0.022 fF/um
+# M1 over Poly2   on Poly on Active, Area      CM1P2PA   0.064  0.072  0.078 fF/μm²
+# M1 over Poly2   on Poly on Active, Periphery CM1P2PAP  0.013  0.014  0.015 fF/μm²
+# M1 over Poly2   on Poly on Field,  Area      CM1P2PFA  0.089  0.098  0.109 fF/μm²
+################################################################################### 
+#metal1
+ defaultareacap     allm1 metal1                        27
+ defaultperimeter   allm1 metal1                        41 
+ defaultareacap     allm1 metal1 nwell           well   27
+ defaultperimeter   allm1 metal1 nwell           well   41 
+
+#metal1->diff
+ defaultoverlap     allm1 metal1 allactivenonfet active 31 
+ defaultsideoverlap allm1 metal1 allactivenonfet active 42 
+
+#metal1->fet
+ defaultoverlap     allm1 metal1 allfets         active 49 
+ defaultsideoverlap allm1 metal1 allfets         active 13 
+
+#metal1->poly (non-fet)
+ defaultoverlap     allm1 metal1 allpolynonfet   active 55 
+ defaultsideoverlap allm1 metal1 allpolynonfet   active 19 
+
+# Note: Poly2 on Active is not allowed
+
+#metal1->poly2 (Field)
+ defaultoverlap     allm1 metal1 allpoly2        active 47 
+ defaultsideoverlap allm1 metal1 allpoly2        active 16
+
+
+################################################################################### 
+# METAL 2
+################################################################################### 
+# M2 to Substrate on Field, Area              CM2S      0.010  0.011  0.012  fF/μm²
+# M2 to Substrate on Field, Periphery         CM2SP     0.032  0.033  0.034  fF/μm
+# M2 on Active, Area                          CM2A      0.011  0.012  0.013  fF/μm²
+# M2 on Active, Periphery                     CM2AP     0.032  0.033  0.033  fF/μm
+# M2 over M1 on Field, Area                   CM2M1     0.029  0.032  0.035  fF/μm²
+# M2 over M1 on Field, Periphery              CM2M1P    0.020  0.023  0.025  fF/μm
+# M2 over Poly on Active, Area                CM2PA     0.013  0.014  0.016  fF/μm²
+# M2 over Poly on Active, Periphery           CM2PAP    0.0036 0.0040 0.0044 fF/um
+# M2 over Poly on Field, Area                 CM2P      0.013  0.015  0.016  fF/μm²
+# M2 over Poly on Field, Periphery            CM2PP     0.0057 0.0064 0.0070 fF/μm
+# M2 over Poly2 on Active, Area               CM2P2A    0.012  0.014  0.015  fF/μm²
+# M2 over Poly2 on Active, Periphery          CM2P2AP   0.0042 0.0047 0.0051 fF/um
+# M2 over Poly2 on Field, Area                CM2P2     0.013  0.014  0.016  fF/μm²
+# M2 over Poly2 on Field, Periphery           CM2P2P    0.0052 0.0057 0.0063 fF/um
+# M2 over Poly2 on Poly on Active, Periphery  CM2P2PAP  0.0047 0.0053 0.0058 fF/μm²
+# M2 over Poly2 on Poly on Field, Area        CM2P2PF   0.015  0.017  0.018  fF/μm²
+# M2 over Poly2 on Poly on Field, Periphery   CM2P2PFP  0.0039 0.0044 0.0048 fF/um
+################################################################################### 
+#metal2
+ defaultareacap     allm2 metal2                        11
+ defaultperimeter   allm2 metal2                        33 
+ defaultareacap     allm2 metal2 nwell           well   11
+ defaultperimeter   allm2 metal2 nwell           well   33 
+
+#metal2->diff
+ defaultoverlap     allm2 metal2 allactivenonfet active 12 
+ defaultsideoverlap allm2 metal2 allactivenonfet active 33 
+
+#metal2->metal1
+ defaultoverlap     allm2 metal2 allm1           metal1 32 
+ defaultsideoverlap allm2 metal2 allm1           metal1 23 
+
+#metal2->fet
+ defaultoverlap     allm2 metal2 allfets         active 14 
+ defaultsideoverlap allm2 metal2 allfets         active  4 
+
+#metal2->poly (non-fet)
+ defaultoverlap     allm2 metal2 allpolynonfet   active 15 
+ defaultsideoverlap allm2 metal2 allpolynonfet   active  6.4
+
+# Note: Poly2 on Active is not allowed
+
+#metal2->poly2 (Field)
+ defaultoverlap     allm1 metal2 allpoly2        active 14 
+ defaultsideoverlap allm1 metal2 allpoly2        active  5.7
+
+
+################################################################################### 
+# METAL 3
+################################################################################### 
+# M3 to Substrate on Field, Area             CM3S     0.0066  0.0073  0.0077 fF/μm²
+# M3 to Substrate on Field, Periphery        CM3SP    0.029   0.030   0.031  fF/um
+# M3 on Active, Area                         CM3A     0.0068  0.0075  0.0079 fF/μm²
+# M3 on Active, Periphery                    CM3AP    0.029   0.030   0.031  fF/μm
+# M3 over M1 on Field, Area                  CM3M1    0.011   0.013   0.014  fF/μm²
+# M3 over M1 on Field, Periphery             CM3M1P   0.009   0.010   0.011  fF/μm
+# M3 over M2 on Field, Area                  CM3M2    0.029   0.032   0.035  fF/μm²
+# M3 over M2 on Field, Periphery             CM3M2P   0.024   0.027   0.029  fF/μm
+# M3 over Poly on Active, Area               CM3PA    0.0074  0.0082  0.0091 fF/μm²
+# M3 over Poly on Active, Periphery          CM3PAP   0.0018  0.0020  0.0022 fF/μm²
+# M3 over Poly on Field, Area                CM3P     0.0077  0.0085  0.0093 fF/μm²
+# M3 over Poly on Field, Periphery           CM3PP    0.0031  0.0035  0.0038 fF/um
+# M3 over Poly2 on Active, Area              CM3P2A   0.0073  0.0081  0.0089 fF/μm²
+# M3 over Poly2 on Active, Periphery         CM3P2AP  0.0026  0.0028  0.0032 fF/um
+# M3 over Poly2 on Field, Area               CM3P2    0.0075  0.0083  0.0091 fF/μm²
+# M3 over Poly2 on Field, Periphery          CM3P2P   0.0028  0.0031  0.0034 fF/um
+# M3 over Poly2 on Poly on Active, Area      CM3P2PA  0.0080  0.0088  0.0097 fF/μm²
+# M3 over Poly2 on Poly on Field, Area       CM3P2PF  0.0083  0.0092  0.0010 fF/μm²
+# M3 over Poly2 on Poly on Field, Periphery  CM3P2PFP 0.0018  0.0020  0.0022 fF/um
+################################################################################### 
+
+#metal3
+ defaultareacap     allm3 metal3                         7.3
+ defaultperimeter   allm3 metal3                        30.0
+ defaultareacap     allm3 metal3 nwell           well    7.3
+ defaultperimeter   allm3 metal3 nwell           well   30.0
+
+#metal3->diff
+ defaultoverlap     allm3 metal3 allactivenonfet active  6.8
+ defaultsideoverlap allm3 metal3 allactivenonfet active 29 
+
+#metal3->metal1
+ defaultoverlap     allm3 metal3 allm1           metal1 13 
+ defaultsideoverlap allm3 metal3 allm1           metal1 10 
+
+#metal3->metal2
+ defaultoverlap     allm3 metal3 allm2           metal2 32 
+ defaultsideoverlap allm3 metal3 allm2           metal2 27 
+
+#metal3->fet
+ defaultoverlap     allm3 metal3 allfets         active  8.2
+ defaultsideoverlap allm3 metal3 allfets         active  2.0
+
+#metal3->poly (non-fet)
+ defaultoverlap     allm3 metal3 allpolynonfet   active  8.5
+ defaultsideoverlap allm3 metal3 allpolynonfet   active  3.5
+
+# Note: Poly2 on Active is not allowed
+
+#metal3->poly2 (Field)
+ defaultoverlap     allm1 metal3 allpoly2        active  8.3
+ defaultsideoverlap allm1 metal3 allpoly2        active  3.1
+
+################################################################################### 
+# NWELL
+################################################################################## 
+# Note: this is from parametric data from run: T15D
+#       
+ defaultareacap     nwell        well                           40
+
+################################################################################### 
+# POLY
+################################################################################## 
+# Poly on Field, Area                        CPS      0.098   0.120   0.13  fF/μm²
+# Poly on Field, Periphery                   CPSP     0.049   0.053   0.066 fF/um
+################################################################################## 
+ defaultareacap     allpolynonfet active                        120
+ defaultperimeter   allpolynonfet active                         53 
+ defaultareacap     allpolynonfet active     nwell  well        120
+ defaultperimeter   allpolynonfet active     nwell  well         53 
+
+
+################################################################################## 
+# Poly2 on Field, Area                       CP2S     0.086   0.10    0.11 fF/μm²
+# Poly2 on Field, Periphery                  CP2SP    0.052   0.056   0.068 fF/um
+# Poly2 on Active, Area                      CP2A     0.82    0.91    1.00 fF/μm²
+# Poly2 on Active, Periphery                 CP2AP    0.076   0.085   0.093 fF/μm²
+# Poly2 over Poly on Field, Area             CP2P     0.8     0.9     0.96 fF/μm²
+# Poly2 over Poly on Field, Periphery        CP2PP    0.04    0.065   0.127 fF/μm
+################################################################################## 
+ defaultareacap     *poly2 active                          100
+ defaultperimeter   *poly2 active                           56
+ defaultareacap     *poly2 active nwell           well     100
+ defaultperimeter   *poly2 active nwell           well      56
+
+# defaultareacap     phr     active                          100
+# defaultperimeter   phr     active                           56 
+
+# Note: Poly2 on Active is not allowed
+#
+# Note: Poly2 over Poly is accomodated in the device model
+#       and not handled here
+
+
+
+#################################################################
+# Intra-Line Capacitance Parameters
+#################################################################
+#
+# Note: Not explicitly defined in the design rules (Note: #43 is
+#       unavailable).  Seems to be based upon minimum spacing.
+#       Extract seems to assume full cap at 50% of 1um, so
+#       we will adjust so that the cap comes out to the 
+#       published value at minimum spacing.
+#      
+#
+#################################################################
+# M1 to M1 on Field, Space       CM1M1 0.064  0.071  0.079  fF/μm
+# M2 to M2 on Field, Space       CM2M2 0.063  0.068  0.075  fF/μm
+# M3 to M3 on Field, Space       CM3M3 0.077  0.084  0.091  fF/μm
+# Poly to Poly on Field, Space   CPP   0.031  0.037  0.039  fF/μm
+# Poly2 to Poly2 on Field, Space CP2P2 0.0031 0.0034 0.0037 fF/μm²
+#################################################################
+
+ # M1 : 71 * 0.6 / 0.5 = 85.2
+ defaultsidewall    allm1         metal1  85.2
+
+ # M2 : 68 * 0.7 / 0.5 = 95.2
+ defaultsidewall    allm2         metal2  95.2
+
+ # M3 : 84 * 0.7 / 0.5 = 117.6
+ defaultsidewall    allm3         metal3 117.6
+
+ # POLY: 37 * 0.6 / 0.5 = 44.4
+ defaultsidewall    allpolynonfet active  44.4 
+
+ # Not reviewed or adjusted yet
+ # poly2 use is sparingly and well controlled
+ # limited to poly/poly2 caps and hi-res
+ defaultsidewall    *poly2        active   3.4 
+
+
+
+
+#################################################################
+# devices
+#################################################################
+
+
+###############################################################################################
+# MOSFETS
+#
+# device mosfet model gate_types sd_types subs_types subs_node_name 
+#               [perim_cap [area_cap]] [+id_types]
+#
+# device mosfet model gate_types source_types drain_types subs_types subs_node_name 
+#               [perim_cap [area_cap]] [+id_types]
+###############################################################################################
+
+ device mosfet pfet pfet pdiff nwell   ERROR 69 219
+ device mosfet nfet nfet ndiff space/w ERROR 66 225
+
+# Not sure about these:?
+# fetresis  pfet linear		21001
+# fetresis  pfet saturation	21001
+# fetresis  nfet linear		6020
+# fetresis  nfet saturation	6020
+
+###############################################################################################
+# NWELL Resistor
+###############################################################################################
+ device resistor nwellResistor rnwell *nsd
+
+
+ # device resistor ndiffResistor rndiff *ndiff
+
+
+###############################################################################################
+# HR Poly Resistor
+# HIRES Mask layer (aka: HIR or HIR-poly) blocks Poly2 doping, which results in Poly2 with much
+# Higher Resistance.
+#
+# Format: 
+# device rsubcircuit model dev_types term_types [subs_types subs_node_name]] [+id_types] [parameters]
+###############################################################################################
+device rsubcircuit poly2hresistor (poly2_high_resist,phr)/active poly2,p2c/active space/w $SUB w=w l=l
+# device resistor poly2hresistor (poly2_high_resist,phr)/active poly2,p2c/active
+
+
+###############################################################################################
+# POLY2 / POLY Capacitor
+# Format:
+# device csubcircuit model top_types bottom_types [subs_types subs_node_name]] [+id_types] [parameters]
+###############################################################################################
+ device csubcircuit poly2capacitor ecap *poly (nwell,space)/w w=w l=l
+
+end
+
+
+#-----------------------------------------------------
+# Wiring tool definitions
+#-----------------------------------------------------
+# Review this section.....
+wiring
+# contact	pdcontact	4	metal1	0	pdiff	0
+# contact	ndcontact	4	metal1	0	ndiff	0
+# contact	pcontact	4	metal1	0	poly	0
+# contact	m2contact	4	metal1	0	metal2	0
+# contact	m3contact	5	metal2	0	metal3 1
+end
+
+
+#-----------------------------------------------------
+# Plain old router. . . 
+#-----------------------------------------------------
+router
+# layer2 metal2 3 m2 4 poly,ndiff,nsd,pdiff,psd,m1 1
+# layer1 metal1 3 m1 3
+# contacts m2contact 4
+# gridspacing 8
+end
+
+
+
+plowing
+ fixed	nfet,pfet,glass,pad
+ covered	nfet,pfet
+ drag	nfet,pfet
+
+end
+
+plot
+style colorversatec
+ ndiff yellow \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA
+ ndiff cyan \
+ 0000 5555 0000 5555 \
+ 0000 5555 0000 5555 \
+ 0000 5555 0000 5555 \
+ 0000 5555 0000 5555
+ nsd yellow \
+ 1515 2A2A 5151 A2A2 \
+ 1515 2A2A 5151 A2A2 \
+ 1515 2A2A 5151 A2A2 \
+ 1515 2A2A 5151 A2A2
+ nsd cyan \
+ 0000 1515 0000 5151 \
+ 0000 1515 0000 5151 \
+ 0000 1515 0000 5151 \
+ 0000 1515 0000 5151
+ pdiff yellow \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA
+ pdiff cyan \
+ 0000 5555 0000 5555 \
+ 0000 5555 0000 5555 \
+ 0000 5555 0000 5555 \
+ 0000 5555 0000 5555
+ pdiff magenta \
+ AAAA 0000 AAAA 0000 \
+ AAAA 0000 AAAA 0000 \
+ AAAA 0000 AAAA 0000 \
+ AAAA 0000 AAAA 0000
+ psd yellow \
+ 1515 2A2A 5151 A2A2 \
+ 1515 2A2A 5151 A2A2 \
+ 1515 2A2A 5151 A2A2 \
+ 1515 2A2A 5151 A2A2
+ psd cyan \
+ 0000 1515 0000 5151 \
+ 0000 1515 0000 5151 \
+ 0000 1515 0000 5151 \
+ 0000 1515 0000 5151
+ psd magenta \
+ 2A2A 0000 A2A2 0000 \
+ 2A2A 0000 A2A2 0000 \
+ 2A2A 0000 A2A2 0000 \
+ 2A2A 0000 A2A2 0000
+ poly magenta \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA \
+ 5555 AAAA 5555 AAAA
+ nfet yellow \
+ 0505 8282 1414 0A0A \
+ 5050 2828 4141 A0A0 \
+ 0505 8282 1414 0A0A \
+ 5050 2828 4141 A0A0
+ nfet cyan \
+ 0000 0505 0000 1414 \
+ 0000 5050 0000 4141 \
+ 0000 0505 0000 1414 \
+ 0000 5050 0000 4141
+ nfet magenta \
+ 5050 2828 4141 A0A0 \
+ 0505 8282 1414 0A0A \
+ 5050 2828 4141 A0A0 \
+ 0505 8282 1414 0A0A
+ pfet yellow \
+ 6363 A0A0 5050 2828 \
+ 3636 0A0A 0505 8282 \
+ 6363 A0A0 5050 2828 \
+ 3636 0A0A 0505 8282
+ pfet cyan \
+ 0000 5151 0000 5454 \
+ 0000 1515 0000 1515 \
+ 0000 5151 0000 5454 \
+ 0000 1515 0000 1515
+ pfet magenta \
+ 9494 0A0A 2525 8282 \
+ 4949 A0A0 5252 2828 \
+ 9494 0A0A 2525 8282 \
+ 4949 A0A0 5252 2828
+ poly2,ecap,phr yellow \
+ FFFF FFFF FFFF FFFF \
+ FFFF FFFF FFFF FFFF \
+ FFFF FFFF FFFF FFFF \
+ FFFF FFFF FFFF FFFF
+ m1 cyan \
+ AAAA 0000 AAAA 0000 \
+ AAAA 0000 AAAA 0000 \
+ AAAA 0000 AAAA 0000 \
+ AAAA 0000 AAAA 0000
+ m2 cyan \
+ 0000 1111 0000 4444 \
+ 0000 1111 0000 4444 \
+ 0000 1111 0000 4444 \
+ 0000 1111 0000 4444
+ m2 magenta \
+ 0000 4444 0000 1111 \
+ 0000 4444 0000 1111 \
+ 0000 4444 0000 1111 \
+ 0000 4444 0000 1111
+ via1 black \
+ 0000 6666 6666 0000 \
+ 0000 9999 9999 0000 \
+ 0000 6666 6666 0000 \
+ 0000 9999 9999 0000
+ pad,glass black \
+ 0300 0700 0E00 1C00 \
+ 3800 7000 E000 C000 \
+ 00C0 00E0 0070 0038 \
+ 001C 000E 0007 0003
+ nwell yellow \
+ 0800 1000 2000 4000 \
+ 8000 0001 0002 0004 \
+ 0008 0010 0020 0040 \
+ 0080 0010 0200 0400
+ nwell cyan \
+ 1000 2000 4000 8000 \
+ 0001 0002 0004 0008 \
+ 0010 0020 0040 0080 \
+ 0100 0200 0400 0800
+ via2 black \
+ 0100 0000 0000 0000 \
+ 1010 0000 0000 0000 \
+ 0001 0000 0000 0000 \
+ 1010 0000 0000 0000
+ via2 cyan \
+ 0280 0000 0820 0000 \
+ 2008 0000 8002 0000 \
+ 8002 0000 2008 0000 \
+ 0820 0000 0280 0000
+ via2 magenta \
+ 0100 06C0 0440 1830 \
+ 1010 600C 4004 8003 \
+ 0001 C006 4004 3018 \
+ 1010 0C60 0440 0380
+ via2 black \
+ 0820 0820 0820 0FE0 \
+ E00F 2008 2008 2008 \
+ 2008 2008 2008 E00F \
+ 0000 0FE0 0820 0820
+ error_p,error_s,error_ps black \
+ 0000 3C3C 4646 4A4A \
+ 5252 6262 3C3C 0000 \
+ 0000 3C3C 4646 4A4A \
+ 5252 6262 3C3C 0000
+ magnet yellow \
+ AAAA 0000 5555 0000 \
+ AAAA 0000 5555 0000 \
+ AAAA 0000 5555 0000 \
+ AAAA 0000 5555 0000
+ fence magenta \
+ FFFF 0000 0000 0000 \
+ 0000 0000 0000 0000 \
+ FFFF 0000 0000 0000 \
+ 0000 0000 0000 0000
+ rotate cyan \
+ 0000 E0E0 E0E0 E0E0 \
+ 0000 0000 0000 0000 \
+ 0000 E0E0 E0E0 E0E0 \
+ 0000 0000 0000 0000
+
+style versatec
+ pfet \
+ 07c0 0f80 1f00 3e00 \
+ 7c00 f800 f001 e003 \
+ c007 800f 001f 003e \
+ 00c7 00f8 01f0 03e0
+ nfet \
+ 1f00 0f80 07c0 03e0 \
+ 01f0 00f8 007c 003e \
+ 001f 800f c007 e003 \
+ f001 f800 7c00 3e00
+ via1 \
+ c3c3 c3c3 0000 0000 \
+ 0000 0000 c3c3 c3c3 \
+ c3c3 c3c3 0000 0000 \
+ 0000 0000 c3c3 c3c3
+ nwell \
+ 0808 0404 0202 0101 \
+ 0000 0000 0000 0000 \
+ 0808 0404 0202 0101 \
+ 0000 0000 0000 0000
+ poly,nfet,pfet \
+ 0808 0400 0202 0101 \
+ 8080 4000 2020 1010 \
+ 0808 0004 0202 0101 \
+ 8080 0040 2020 1010
+ m1 \
+ 8080 0000 0000 0000 \
+ 0808 0000 0000 0000 \
+ 8080 0000 0000 0000 \
+ 0808 0000 0000 0000
+ pad,glass \
+ 0000 0000 1c1c 3e3e \
+ 3636 3e3e 1c1c 0000 \
+ 0000 0000 1c1c 3e3e \
+ 3636 3e3e 1c1c 0000
+ nsd \
+ 0808 1414 2222 4141 \
+ 8080 4040 2020 1010 \
+ 0808 1414 2222 4141 \
+ 8080 4040 2020 1010
+ m2 \
+ 0000 1111 0000 0000 \
+ 0000 1111 0000 0000 \
+ 0000 1111 0000 0000 \
+ 0000 1111 0000 0000
+ pdiff,pfet \
+ 0000 0808 5555 8080 \
+ 0000 8080 5555 0808 \
+ 0000 0808 5555 8080 \
+ 0000 8080 5555 0808
+ psd \
+ 1414 2222 0000 2222 \
+ 4141 2222 0000 2222 \
+ 1414 2222 0000 2222 \
+ 4141 2222 0000 2222
+ ndiff,nfet \
+ 0808 1010 2020 4040 \
+ 8080 4141 2222 1414 \
+ 0808 1010 2020 4040 \
+ 8080 4141 2222 1414
+
+style gremlin
+ pfet 9
+ nfet 10
+ via1 11
+ nwell 16
+ poly,nfet,pfet 19
+ pad,glass 23
+ nsd 24
+ via1 28
+ pdiff,pfet 29
+ psd 30
+ ndiff,nfet 31
+ via1 X
+
+end

@@ -1,0 +1,76 @@
+* Transient simulation of pad_x0_top and pad_in_top
+*
+* CMOS inverter for the crystal pad
+
+* .include pad_xtal.cir
+.include mag/pad_in_top.cir
+.include mag/pad_x0_top.cir
+* .include mag/schmitt.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.100
+
+.csparam tgt_freq={FREQ}
+
+
+xpad_xin  in  net_pad        vdd vss pad_in_top 
+xpad_xout out ckin net_pad   vdd vss pad_x0_top 
+* Rf out in 2.2Meg
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+
+iac n1 out DC 0 AC 1u
+vac in n1 DC 0 
+
+.save all
+
+.ac dec 100 0.1Meg 10.00Meg
+
+.control
+destroy all
+run
+
+setplot ac1 
+* * plot mag(v(a)) mag(v(pad))
+* 
+* let gaindb = 20 * log10(mag(v(xout))/mag(v(xin)))
+let f = re(frequency)
+let v_cap = v(out)-v(in)
+let i_cap = i(vac)
+let z_cap = v_cap / i_cap
+let xc = -im(z_cap)
+let c_cap = 1 / (2 * pi * f * xc)
+* 
+* * locate index of frequency in question
+* let idx = 0
+* let len = length(frequency)
+* 
+* dowhile idx < len
+*    if frequency[idx] >= 6.5e6
+*       break
+*    end
+*    let idx = idx + 1
+* end
+*    
+* print idx
+* print frequency[idx]
+* print z_xin[idx]
+* print mag(z_xin[idx])
+* print ph(z_xin[idx])
+* print ph(z_xin[idx]) * 180 / pi
+* print c_xin[idx]
+
+.endc
+
+.end

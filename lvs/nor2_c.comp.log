@@ -1,0 +1,24 @@
+
+Subcircuit summary:
+Circuit 1: nor2_c                          |Circuit 2: nor2_c                          
+-------------------------------------------|-------------------------------------------
+pfet (4)                                   |pfet (4)                                   
+nfet (2)                                   |nfet (2)                                   
+Number of devices: 6                       |Number of devices: 6                       
+Number of nets: 7                          |Number of nets: 7                          
+---------------------------------------------------------------------------------------
+Netlists match uniquely.
+Circuits match correctly.
+
+Subcircuit pins:
+Circuit 1: nor2_c                          |Circuit 2: nor2_c                          
+-------------------------------------------|-------------------------------------------
+z                                          |z                                          
+vss                                        |vss                                        
+vdd                                        |vdd                                        
+b                                          |b                                          
+a                                          |a                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes nor2_c and nor2_c are equivalent.
+Circuits match uniquely.

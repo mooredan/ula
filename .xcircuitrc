@@ -1,0 +1,66 @@
+#---------------------------------------------------
+# .xcircuitrc startup script for large projects
+# 3/18/06 by Tim Edwards
+# For xcircuit version 3.6 or newer (Tcl/Tk version)
+#---------------------------------------------------
+
+global XCOps
+set XCOps(liboverride) 1
+
+set HOME $env(HOME)
+set PROJECT_DIR $env(PROJECT_DIR)
+# set PROJECT_NAME $env(PROJECT_NAME)
+
+# puts [info vars]
+# puts [format "HOME: %s\n" $HOME]
+# puts [format "batch_mode: %s\n" $batch_mode]
+# if {[info exists batch_mode] && $batch_mode == "true"} {
+#    set batch_mode "true"
+# } else {
+#    set batch_mode "false"
+# }
+
+if {! [info exists batch_mode]} {
+   option add *xcircuit*gridcolor "gray90"
+   option add *xcircuit*axescolor "#e0d0ab"
+   config database .xcircuit
+}
+
+config search lib  ".:$XCIRCUIT_LIB_DIR:$PROJECT_DIR/lps"
+config search file ".:$PROJECT_DIR/ps"
+
+library make c5devlib	;# create empty library 1
+library make analoglib3 ;# create empty library 2
+library make project	;# create empty library 3
+library make spicelib	;# create empty library 4
+library make generic	;# create empty library 5
+library make analog	;# create empty library 6
+# library make digital	;# create empty library 7
+# library make digitallib ;# create empty library 8
+#       library make analoglib2	;# create empty library 9
+
+library 1 load c5devlib
+library 2 load analoglib3
+catch {library 3 load project}
+catch {library 4 load spicelib}
+library 5 load generic
+library 6 load analog
+# library 7 load digital
+# library 8 load digitallib
+#      library 6 load analog     -replace
+#      library 6 load digital    -replace
+#      library 7 load analoglib2 -replace
+# library 5 load analog     -replace
+# library 6 load digital    -replace
+# library 7 load analoglib2 -replace
+
+label family Times-Roman
+
+set XCOps(spiceend) false
+set XCOps(library) project
+set XCOps(technology) project
+unset XCOps(liboverride)
+
+if {! [info exists batch_mode]} {
+   xcircuit::raiseconsole
+}

@@ -1,0 +1,48 @@
+* Output transition times
+.include mag/pad_nwellres.sp
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.temp 25
+
+.include "esd_gen.cir"
+X1 pad esd_gen
+
+* add a GGNMOS at the core side of the nwell resistor
+MNGG1 xpad vss vss vss nfet w=30.0u l=0.6u
+MNGG2 xpad vss vss vss nfet w=30.0u l=0.6u
+MNGG3 xpad vss vss vss nfet w=30.0u l=0.6u
+MNGG4 xpad vss vss vss nfet w=30.0u l=0.6u
+
+MPGG1 xpad vdd vdd vdd pfet w=30.0u l=0.6u
+MPGG2 xpad vdd vdd vdd pfet w=30.0u l=0.6u
+MPGG3 xpad vdd vdd vdd pfet w=30.0u l=0.6u
+MPGG4 xpad vdd vdd vdd pfet w=30.0u l=0.6u
+
+* power supply
+vvdd vdd 0 DC 0
+vvss vss 0 DC 0
+
+vpd  pd  0 DC 0
+vnpu npu 0 DC 0
+
+
+
+
+
+.save all
+
+.tran 0.1n 200n
+
+.control
+destroy all
+run
+
+setplot tran1
+plot v(pad)
+plot v(xpad)
+
+.endc
+
+.end

@@ -1,0 +1,51 @@
+* VOL/VOH measurement
+
+.include mag/pad_nwellres.sp
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.temp 25
+
+.param VDD_VAL=4.5
+
+* power supply
+vvdd vdd 0 DC VDD_VAL
+vvss vss 0 DC 0
+
+vnpu npu 0 DC VDD_VAL
+vpd   pd 0 DC VDD_VAL
+
+* output load
+cpad pad 0 50p
+ipad pad 0 DC -4m
+
+
+* .save all @r.xdut.rin1[i] @Cout[i]
+.save all
+
+.op
+
+* .tran 0.1n {PER * 5}
+* .dc Va 0 5 0.1
+* .ac lin 101 6.0Meg 7.0Meg
+
+.control
+destroy all
+run
+
+setplot op1
+* print v(a)
+print v(pad)
+print i(vvss)
+
+alter vpd DC 0
+alter vnpu DC 0
+alter ipad DC 4m
+run
+print v(pad)
+print i(vvdd)
+
+.endc
+
+.end

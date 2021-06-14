@@ -1,0 +1,9 @@
+* NGSPICE file created from inv_c.ext - technology: scmos
+
+.subckt inv_c z a vdd vss
+M1000 z a vss vss nfet w=5.7u l=0.6u
++  ad=8.55p pd=14.4u as=8.55p ps=14.4u
+M1001 z a vdd vdd pfet w=12u l=0.6u
++  ad=18p pd=27u as=18p ps=27u
+C0 vdd vss 5.48fF
+.ends

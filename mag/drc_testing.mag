@@ -1,0 +1,42 @@
+magic
+tech amic5n
+timestamp 1608317706
+<< nselect >>
+rect 120 60 600 750
+<< poly2 >>
+rect 570 240 870 600
+rect 960 150 1200 630
+rect 2160 180 2640 660
+<< poly2cap >>
+rect -810 240 -510 540
+rect -420 240 -30 540
+<< poly2contact >>
+rect 1115 395 1165 595
+<< poly2contact >>
+rect 2285 305 2335 355
+<< poly2contact >>
+rect 1055 185 1105 235
+<< ntransistor >>
+rect 270 120 390 690
+<< ndiffusion >>
+rect 180 120 270 690
+rect 390 120 540 690
+<< polysilicon >>
+rect 270 690 390 780
+rect -870 540 150 600
+rect -870 240 -810 540
+rect -510 240 -420 540
+rect -30 240 150 540
+rect -870 150 150 240
+rect 1500 270 1620 630
+rect 270 60 390 120
+<< polycontact >>
+rect 1535 545 1585 595
+<< metal1 >>
+rect 1080 360 1200 630
+rect 1500 510 1620 630
+rect 1020 150 1140 270
+rect 2220 240 2550 570
+<< checkpaint >>
+rect -880 -10 2650 790
+<< end >>

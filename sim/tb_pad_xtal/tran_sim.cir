@@ -1,0 +1,84 @@
+* Transient simulation of pad_x0_top and pad_in_top
+*
+* CMOS inverter for the crystal pad
+
+.include pad_xtal.cir
+.include mag/pad_in_top.cir
+.include mag/pad_x0_top.cir
+.include mag/schmitt.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.145
+
+.csparam tgt_freq={FREQ}
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+Vsrc src 0 DC 0 SIN({VO} {VA} {FREQ})
+Rsrc src 0 50
+
+Cin src srcx 1.0e-6
+vin srcx xin DC 0
+
+xdut xout xin ckout vdd vss pad_xtal
+
+Cckout ckout 0 0.1e-12
+
+Rf xout xin 2.2Meg
+
+RL xout 0 1.0k
+CL xout 0 30.0e-12
+
+.save all
+
+.tran 0.1n {PER*5}
+
+.control
+run
+setplot tran1 
+
+let freq = $&tgt_freq
+let per = 1.0 / freq
+let start_time = per * 3.0
+let stop_time = per * 4.0
+
+meas tran xin_vpp PP v(xin) from=start_time to=stop_time
+meas tran xout_vpp PP v(xout) from=start_time to=stop_time
+
+meas tran xin_tymax MAX_AT v(xin) from=start_time to=stop_time
+meas tran xout_tymax MAX_AT v(xout) from=start_time to=stop_time
+
+let vgaxin = xout_vpp / xin_vpp
+let vgaxindb = 20 * log10(vgaxin)
+print vgaxindb
+
+let dt = xout_tymax - xin_tymax
+print dt
+let dt_pct = dt / per
+print dt_pct
+let dt_degrees = (dt_pct * 360)
+print dt_degrees
+
+* echo $&tgt_freq
+* destroy all
+
+plot v(xin) v(xout)
+plot v(ckout)
+
+* echo $&tgt_freq
+
+
+.endc
+
+.end

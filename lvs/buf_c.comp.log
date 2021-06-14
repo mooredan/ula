@@ -1,0 +1,23 @@
+
+Subcircuit summary:
+Circuit 1: buf_c                           |Circuit 2: buf_c                           
+-------------------------------------------|-------------------------------------------
+pfet (2)                                   |pfet (2)                                   
+nfet (2)                                   |nfet (2)                                   
+Number of devices: 4                       |Number of devices: 4                       
+Number of nets: 5                          |Number of nets: 5                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: buf_c                           |Circuit 2: buf_c                           
+-------------------------------------------|-------------------------------------------
+a                                          |a                                          
+z                                          |z                                          
+vdd                                        |vdd                                        
+vss                                        |vss                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes buf_c and buf_c are equivalent.
+Circuits match uniquely.

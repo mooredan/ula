@@ -1,0 +1,22 @@
+* tb_esd_gen
+
+.include "esd_gen.cir"
+X1 p1 esd_gen
+
+R1 p1 0 10k
+
+.save all
+.tran 0.1n 5u 
+
+.control
+destroy all
+run
+
+setplot tran1
+plot v(p1) v(x1.n5)
+plot v(x1.n7)
+
+
+.endc
+
+.end

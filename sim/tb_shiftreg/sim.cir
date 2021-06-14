@@ -1,0 +1,71 @@
+* Transient analysis of shift reg
+
+.include ../../cir/dff_c5n.cir
+
+.lib ../../device_models/AMI_C5N.lib TT
+
+.param VDD_VAL=5
++      FREQ=1000.0Meg
++      PER={1 / FREQ}
+
+.param TT=50p
+.param CD=1f
+.param CCK=1f
+.param CQ=1f
+
+.param VDD_20PCT = {VDD_VAL * 0.20} 
+.param VDD_50PCT = {VDD_VAL * 0.50} 
+.param VDD_80PCT = {VDD_VAL * 0.80} 
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL PWL( 0 0  1u 0  2u {VDD_VAL})
+Vvss vss 0 DC 0
+
+* input clock
+Vck ck_s 0 DC 0 PULSE ( 0 {VDD_VAL} 3u {TT} {TT} {PER/2 - TT} {PER} )
+Rck_s ck_s ck 100
+Cck ck 0 {CCK}
+
+* input data
+Vd   d_s 0 DC 0 PULSE ( 0 {VDD_VAL} {3u + PER * 4 + PER / 4} {TT} {TT} {PER * 8 - TT} {PER * 16}) 
+Rd_s d_s d 100
+Cd   d   0 {CD} 
+
+* DUT
+Xdff7 q7  d ck vdd vss dff_c5n
+Xdff6 q6 q7 ck vdd vss dff_c5n
+Xdff5 q5 q6 ck vdd vss dff_c5n
+Xdff4 q4 q5 ck vdd vss dff_c5n
+Xdff3 q3 q4 ck vdd vss dff_c5n
+Xdff2 q2 q3 ck vdd vss dff_c5n
+Xdff1 q1 q2 ck vdd vss dff_c5n
+Xdff0 q  q1 ck vdd vss dff_c5n
+
+* output load
+Cq q 0 {CQ} 
+
+
+.tran 100p {3u + PER * 20}
+
+.control
+  destroy all
+
+      run
+
+      let vdd_max = maximum(v(vdd))
+      let vol  = vdd_max * 0.20
+      let voh  = vdd_max * 0.80
+      let vmid = vdd_max * 0.50
+
+      meas tran tt__ck_rise  TRIG v(ck) VAL=vol RISE=2 TARG v(ck) VAL=voh RISE=2
+
+* setplot tran1
+* plot v(vdd) v(ck) v(d) v(q)
+* plot v(ck) v(d)
+* plot v(ck)
+* plot v(d)
+* plot v(q)
+.endc
+
+.end

@@ -1,0 +1,55 @@
+* Output transition times
+.include mag/pad_nwellres.sp
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.temp 25
+
+* + FREQ=6.5Meg
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      CLOAD=10p
+
+* power supply
+vvdd vdd 0 DC VDD_VAL
+vvss vss 0 DC 0
+
+* PULSE VLO VHI TDLY TR TF PW PERIOD
+vpd  pd  0 DC 0 PULSE(0 {VDD_VAL} {PER/2.0} {TRF} {TRF} {PH-TRF} {PER})
+vnpu npu 0 DC 0 PULSE(0 {VDD_VAL} {PER/2.0} {TRF} {TRF} {PH-TRF} {PER})
+
+* output load
+cpad pad vgnd {CLOAD}
+vvgnd vgnd 0 DC 0
+
+.save all
+
+.tran 0.1n {PER * 6}
+
+.measure tran irms RMS i(vvgnd) from={PER} to={PER*4}
+
+.control
+destroy all
+run
+
+setplot tran1
+plot v(pd) v(pad)
+plot i(vvgnd)
+
+let vdd_max = maximum(v(vdd))
+let vol = vdd_max * 0.1
+let voh = vdd_max * 0.9
+
+meas tran ttlh TRIG v(pad) VAL=vol RISE=3 TARG v(pad) VAL=voh RISE=3
+meas tran tthl TRIG v(pad) VAL=voh FALL=4 TARG v(pad) VAL=vol FALL=4
+
+print vdd_max
+
+.endc
+
+.end

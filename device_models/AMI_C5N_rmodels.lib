@@ -1,0 +1,45 @@
+*
+* Resistor models for AMI Semiconductor's C5 process
+*
+* Poly2 Resistor 
+* Sheet resistance:
+*    Min:   800 ohm/sq
+*    Nom:  1000 ohm/sq
+*    Max:  1200 ohm/sq
+
+
+* Nwell Resistor
+* Sheet resistance:
+*    Min:   796   ohm/sq
+*    Nom:   825.5 ohm/sq
+*    Max:   855   ohm/sq
+* Min/Max from process reports for various
+* wafers
+*
+
+.LIB MIN
+* .MODEL poly2hresistor R ( RSH=800  DEFW=2.0u )
+.MODEL nwellResistor R ( RSH=796 DEFW=3.6u )
+
+.subckt poly2hresistor a b sub w=2.0u l=2.0u
+r0  a  n0  { ((l / 2) / w) * 800 }
+r1  n0 b   { ((l / 2) / w) * 800 }
+Cn0 n0 sub { (w * l * 0.10f) + (2 * l * 0.056f)}
+* assumme minimal poly2 for terminals
+Ca  a  sub { (w * 1.2 * 0.10f) + ((w + 1.8) * 0.056f) }
+Cb  b  sub { (w * 1.2 * 0.10f) + ((w + 1.8) * 0.056f) }
+.ends poly2hresistor
+
+.ENDL
+
+.LIB NOM
+.MODEL poly2hresistor R ( RSH=1000  DEFW=2.0u )
+.MODEL nwellResistor R ( RSH=825.5 DEFW=3.6u )
+.ENDL
+
+.LIB MAX
+.MODEL poly2hresistor R ( RSH=1200  DEFW=2.0u )
+.MODEL nwellResistor R ( RSH=855 DEFW=3.6u )
+.ENDL
+
+* vi: syntax=off

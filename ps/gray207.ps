@@ -1,0 +1,987 @@
+%!PS-Adobe-3.0
+%%Title: gray207.ps
+%%Creator: XCircuit v0.0 rev1552593485
+%%CreationDate: Sun Mar 10 19:50:40 2019
+%%Pages: 1
+%%BoundingBox: 0 0 612 792
+%%DocumentNeededResources: font Times-Roman 
+%%EndComments
+%%BeginProlog
+%
+%  PostScript prolog for output from xcircuit
+%  Version: 3.9
+%
+%  Electrical circuit (and otherwise general) drawing program
+%
+%  Written by Tim Edwards 8/5/93--4/12/16  (tim@opencircuitdesign.com)
+%  The Johns Hopkins University (1993-2004)
+%  MultiGiG, Inc. (2004-2012)
+%  Open Circuit Design (2012-2016)
+%
+%%BeginResource: procset XCIRCproc 3.9 1
+%
+% supporting definitions --- these are the primary xcircuit types.
+
+/XCIRCsave save def
+/topmat matrix currentmatrix def
+
+/fontslant { /slant exch def [1 0 slant 1 0 0] 
+    exch findfont exch makefont dup length dict /ndict exch def
+    { 1 index /FID ne { ndict 3 1 roll put } { pop pop } ifelse } forall
+    ndict definefont pop} def
+/ul { count 0 gt { dup type /stringtype eq showflag 1 eq and { gsave 
+   currentpoint topmat setmatrix 0 0 moveto 2 index stringwidth pop (_)
+   false charpath flattenpath pathbbox grestore exch pop 1 index
+   sub setlinewidth exch pop currentpoint 3 -1 roll add moveto 0
+   rlineto stroke moveto } if } if } def
+/ol { count 0 gt { dup type /stringtype eq showflag 1 eq and { gsave gsave
+   currentpoint topmat setmatrix 2 index stringwidth pop 3 index
+   true charpath flattenpath pathbbox grestore exch pop
+   exch pop topmat setmatrix (_) true charpath pathbbox grestore
+   exch pop 1 index sub setlinewidth exch pop currentpoint
+   exch 4 1 roll exch sub add moveto pop 0 rlineto stroke
+   moveto } if } if } def
+/stW { gsave currentpoint newpath moveto true charpath flattenpath
+	pathbbox pop exch pop sub grestore } def
+/Ts {mark Tabs aload pop counttomark 1 add array astore /Tabs exch def Tabs
+	0 currentpoint pop put} def
+/Tbn {mark Tabs aload pop counttomark dup 2 add 1 roll cleartomark 1 sub} def
+/Tb { 0 1 Tbn {Tabs exch get dup currentpoint pop lt
+	{currentpoint exch pop moveto exit} {pop} ifelse } for } def
+/Tf { Tbn -1 0 {Tabs exch get dup currentpoint pop gt
+	{currentpoint exch pop moveto exit} {pop} ifelse } for } def
+/qS { (aa) stW (a a) stW sub 4 div 0 Kn } def
+/hS { qS qS } def
+/pspc 0 def
+/cf0 { scalefont setfont } bind def
+/Kn { dup kY add /kY exch def rmoveto } bind def
+/ss { /fscale fscale 0.67 mul def currentfont 0.67 cf0 0 fscale0 fscale mul
+	0.33 mul neg Kn} def
+/Ss { /fscale fscale 0.67 mul def currentfont 0.67 cf0 0 fscale0 fscale mul
+	0.67 mul Kn } def
+/ns { 0 kY neg Kn /kY 0 def /fscale 1.0 def xfont0 1.0 cf0 } def
+/MR { /twidth exch def } def
+/CRx { } def
+/CR { ns 0 /Bline Bline fscale0 neg add def Bline moveto CRx } def
+/cf { dup type /realtype ne {1.0} if exch findfont exch kY 0 eq
+	{ 40 mul dup /fscale0 exch def cf0 /xfont0 currentfont def}
+	{fscale0 mul fscale mul cf0} ifelse } def
+/ctmk { counttomark dup 2 add -1 roll pop } bind def
+/label { gsave translate 0 0 moveto dup scale neg
+	/rotval exch def /twidth 100000 def /just exch def just 128 and
+	0 gt {/mshow {pop} def} {/mshow {show} def} ifelse just 16 and 0
+	gt {gsave rotval rotate 0 1 dtransform gsave pagemat setmatrix
+	idtransform exch grestore 1 0 dtransform gsave pagemat setmatrix
+	idtransform exch grestore dup abs 1e-9 lt {pop mul 0 gt} {3 1 roll
+	pop pop 0 lt} ifelse grestore {-1 /rotval rotval neg def /just just
+	dup 3 and 1 ne {3 xor} if def} {1} ifelse exch -1e-9 lt {-1 /rotval
+	rotval neg def /just just dup 12 and 4 ne {12 xor} if def} {1}
+	ifelse scale } if /showflag 0 def /fspc pspc def /Bline 0 def
+	/numlines 0 def /padding 0 array def /Tabs 0 array def
+	/fscale 1.0 def /kY 0 def gsave /CRx { linewid padding
+	aload pop numlines 1 add dup /numlines exch def array astore
+	/padding exch def /linewid 0 def } def dup 1 add copy dup 1 0
+	dtransform exch atan rotate {exch dup type /stringtype eq {gsave dup
+	gsave newpath 0 0 moveto true charpath flattenpath pathbbox pop exch
+	pop exch pop grestore currentpoint pop add dup /linewid exch def twidth
+	ge {grestore CR exch 1 add dup 2 add {CR} exch 1 roll exch} {grestore}
+	ifelse true charpath flattenpath} {dup type /arraytype eq {exec} {12
+	string cvs true charpath flattenpath} ifelse} ifelse} repeat
+	CRx /CRx {padding aload pop just 1280 and 0 gt {blockwid exch sub just
+	1024 and 0 gt {0.5 mul} if} {pop 0} ifelse 0 rmoveto numlines 1 sub
+	dup /numlines exch def array astore /padding exch def} def exch pop
+	pathbbox grestore 4 copy pop exch pop exch sub /blockwid exch def
+	3 -1 roll pop 3 1 roll just 1 and 0 gt {just 2 and
+	0 gt {exch pop neg fspc sub} {exch sub 0.5 mul neg} ifelse} {pop neg
+	fspc add} ifelse exch Bline exch just 4 and 0 gt {just 8 and 0 gt
+	{exch pop neg fspc sub} {add 0.5 mul neg} ifelse} {pop neg fspc add}
+	ifelse rotval rotate Kn currentpoint translate /showflag 1 def /Bline
+	0 def /Tabs 0 array def /fscale 1.0 def /kY 0 def CRx {dup type
+	/stringtype eq {mshow} {dup type /arraytype eq {exec} {12 string cvs
+	mshow} ifelse} ifelse} repeat grestore endclip} def
+/pinlabel { 4 index 32 and 0 ne hlevel 0 eq or { /pspc 10 def label
+	/pspc 0 def } { pop pop pop pop pop {pop} repeat } ifelse } def
+/pinglobal { pinlabel } def
+/infolabel { pinlabel } def
+/graphic { gsave 4 index cvx exec /DataSource get resetfile translate 0 0
+	moveto neg rotate dup scale cvx exec image grestore endclip} def
+
+/scb { setrgbcolor } bind def  /sce { defColor aload pop scb } bind def
+/cRedef {/defColor currentcolor 3 array astore def} def
+/begingate {dup type /dicttype ne {1 dict} if begin	% default params
+	dup type /dicttype ne {1 dict} if begin		% instanced params
+	/hlevel hlevel 1 add def /defColor currentcolor sce 3 array astore
+	def gsave sce translate 0 0 moveto neg rotate dup type /nametype
+	eq not { dup abs currentlinewidth exch div setlinewidth } { pop }
+	ifelse dup abs scale clipped 1 and 1 eq {/clipped clipped 1 add def}
+	if} bind def
+/endgate { /hlevel hlevel 1 sub def grestore defColor aload pop cRedef
+	scb end end endclip} bind def
+
+/hlevel 0 def
+/endclip {clipped 1 and 1 eq {grestore /clipped clipped 1 sub def} if} def
+/tmpa [1 0 0 1 0 0] def
+/gar {8 8 true tmpa {<c0 c0 00 00 0c 0c 00 00>} imagemask} bind
+{8 8 true tmpa {<30 70 60 02 03 07 06 20>} imagemask} bind
+{8 8 true tmpa {<0c 1e 1e 0c c0 e1 e1 c0>} imagemask} bind
+{8 8 true tmpa {<0f 0f 0f 0f f0 f0 f0 f0>} imagemask} bind
+{8 8 true tmpa {<3f f3 e1 e1 f3 3f 1e 1e>} imagemask} bind
+{8 8 true tmpa {<df cf 8f 9f fd fc f8 f9>} imagemask} bind
+{8 8 true tmpa {<ff 3f 3f ff ff f3 f3 ff>} imagemask} bind 7 array astore def
+/ppaint { gsave clip tmpa dup setmatrix pathbbox neg exch neg 4 2 roll
+  neg 4 -1 roll 2 copy gt {exch} if 8 div ceiling 8 mul 4 2 roll neg 2 copy
+  gt {exch} if 8 div ceiling 8 mul 3 -1 roll -8 5 -1 roll
+  { 3 index exch 5 exch put dup -8 3 index { 3 index
+  exch 4 exch put 3 index exec } for } for pop pop pop pop grestore } bind def
+/setstyles {
+  currentlinewidth mul setlinewidth /style exch def style 2048 and 0 gt
+  clipped 1 and 0 eq and {clip newpath /clipped clipped 1 add def} {
+  style 1 and 0 gt not {closepath} if
+  style 1024 and 0 gt {2 setlinecap 0 setlinejoin} if
+  style 2 and 0 gt {currentlinewidth 4 mul dup 2 array astore 0 setdash} if
+  style 4 and 0 gt {0.5 currentlinewidth 4 mul 2 array astore 0 setdash} if
+  gsave style 16 and 0 gt { style 224 and -5 bitshift style 256 and 0 gt {
+  7 exch sub 8 div dup 1 exch sub currentrgbcolor 3 array astore
+  {3 copy mul add 4 1 roll pop} forall pop pop setrgbcolor eofill}
+  {dup 7 lt {gar exch get ppaint} {pop eofill} ifelse} ifelse}
+  {style 256 and 0 gt {1 setgray eofill} if} ifelse grestore style 8 and 0 gt 
+  style 512 eq or {newpath} {stroke} ifelse grestore endclip} ifelse} def     
+
+/addtoy {exch dup dup 2 mul 3 add 1 roll -1 1 { 4 1 roll dup 4 1 roll add
+	4 -1 roll 2 mul 1 add index 2 mul 2 add 2 roll} for pop} def
+/addtoy1 {1 exch addtoy pop} def
+/addtoy3 {3 exch addtoy pop} def
+/addtoy4 {4 exch addtoy pop} def
+/addtox {exch dup dup 2 mul 3 add 1 roll -1 1 { 4 1 roll dup 4 1 roll 3 -1 roll
+	add exch 4 -1 roll 2 mul 1 add index 2 mul 2 add 2 roll} for pop} def
+/addtox1 {1 exch addtox pop} def
+/addtox3 {3 exch addtox pop} def
+/addtox4 {4 exch addtox pop} def
+/polygon { gsave /num exch def moveto num 1 sub {lineto} repeat setstyles } def
+/xcarc   { gsave newpath arc setstyles } def
+/elb { matrix currentmatrix 7 -1 roll 7 -1 roll translate 5 1 roll 4 -1 roll
+	3 index div 1 scale } def
+/ele { 0 4 1 roll 0 4 1 roll } bind def
+/ellipse { gsave elb newpath ele arc setmatrix setstyles } def
+/pellip  { elb ele arc setmatrix } def
+/nellip  { elb ele arcn setmatrix } def
+/spline  { gsave moveto curveto setstyles } def
+/polyc   { {lineto} repeat } bind def
+/beginpath { gsave moveto } bind def
+/endpath { setstyles } bind def
+/bop	 { 1 setlinecap 2 setlinejoin 6 setmiterlimit 0 0 0 scb cRedef
+	/clipped 0 def} def
+/psinsertion {/PSobj save def /showpage {} def /setpagedevice {pop} def bop
+	rotate translate dup scale} def
+/end_insert {PSobj restore} def
+/setpagemat {/pagemat matrix currentmatrix def} def
+/inchscale  {setpagemat 0.375 mul dup scale} def
+/cmscale    {setpagemat 0.35433071 mul dup scale} def
+
+%%EndResource
+%%EndProlog
+% XCircuit output starts here.
+
+%%BeginSetup
+
+/project::dff_d_v3 {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 176 160 160 160 2 polygon
+1.000 0.000 0.000 scb
+(q) {/Times-Roman cf} 2 20 0.000 1.000 176 160 pinlabel
+sce
+(q) {/Times-Roman cf} 2 23 0.000 1.000 144 160 label
+1 1.000 -16 160 0 160 2 polygon
+1.000 0.000 0.000 scb
+(d) {/Times-Roman cf} 2 23 0.000 1.000 -16 160 pinlabel
+sce
+(d) {/Times-Roman cf} 2 20 0.000 1.000 16 160 label
+1 1.000 -16 96 0 96 2 polygon
+1.000 0.000 0.000 scb
+(ck) {/Times-Roman cf} 2 23 0.000 1.000 -16 96 pinlabel
+sce
+(ck) {/Times-Roman cf} 2 20 0.000 1.000 16 96 label
+0.000 0.000 1.000 scb
+(dff_d_v3) {/Times-Roman cf} 2 21 0.000 1.000 80 32 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 32 240 label
+0.180 0.545 0.341 scb
+mark ( %pq %pd %pck %pnck vdd vss %n) @index @class (spice:) {/Times-Roman cf} 
+ctmk 17 0.000 1.000 96 -64 infolabel
+sce
+0 1.000 0 0 0 224 160 224 160 0 4 polygon
+1.000 0.000 0.000 scb
+(nck) {/Times-Roman cf} 2 23 0.000 1.000 -16 64 pinlabel
+sce
+1 1.000 -16 64 0 64 2 polygon
+(nck) {/Times-Roman cf} 2 20 0.000 1.000 16 64 label
+endgate
+} def
+
+/digital::xnor {
+% trivial
+begingate
+1 1.000 72 0 8 0.000 360.000 xcarc
+1 1.000 -19 -48 96 30.000 90.000 xcarc
+1 1.000 -19 48 96 270.000 330.000 xcarc
+1 1.000 -128 0 80 -37.000 37.000 xcarc
+1 1.000 -112 0 80 -37.000 37.000 xcarc
+1 1.000 -48 48 -19 48 2 polygon
+1 1.000 -48 -48 -19 -48 2 polygon
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 80 0 pinlabel
+(In.1) {/Times-Roman cf} 2 7 0.000 1.000 -56 32 pinlabel
+(In.2) {/Times-Roman cf} 2 7 0.000 1.000 -56 -32 pinlabel
+endgate
+} def
+
+/project::xnor2_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 23 0.000 1.000 -80 32 pinlabel
+(b) {/Times-Roman cf} 2 23 0.000 1.000 -80 -32 pinlabel
+0.000 0.000 1.000 scb
+(_b) {/Times-Roman cf} 2 21 0.000 1.000 0 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 64 48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 16 -112 infolabel
+sce
+1.000 0.000 0 0 digital::xnor
+1 1.000 80 0 96 0 2 polygon
+1 1.000 -80 32 -64 32 2 polygon
+1 1.000 -80 -32 -64 -32 2 polygon
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 96 0 pinlabel
+sce
+1 1.000 -64 32 -55 32 2 polygon
+1 1.000 -64 -32 -55 -32 2 polygon
+endgate
+} def
+
+/digital::invert {
+% trivial
+begingate
+0 1.000 -32 -40 -32 40 40 0 3 polygon
+1 1.000 48 0 8 0.000 360.000 xcarc
+1 1.000 -32 0 -48 0 2 polygon
+1 1.000 56 0 64 0 2 polygon
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In) {/Times-Roman cf} 2 7 0.000 1.000 -48 0 pinlabel
+endgate
+} def
+
+/project::inv_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(_b) {/Times-Roman cf} 2 21 0.000 1.000 32 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 48 48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -144 infolabel
+sce
+1.000 0.000 48 0 digital::invert
+endgate
+} def
+
+/generic::dot {
+% trivial
+begingate
+248 1.000 0 0 6 0.000 360.000 xcarc
+1.000 0.000 0.000 scb
+(x) {/Times-Roman cf} 2 29 -0.000 1.000 0 0 pinlabel
+endgate
+} def
+
+/digital::_and {
+% trivial
+begingate
+1 1.000 0 -48 -64 -48 -64 48 0 48 4 polygon
+1 1.000 0 0 48 -90.000 90.000 xcarc
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 48 0 pinlabel
+(In.1) {/Times-Roman cf} 2 7 0.000 1.000 -64 32 pinlabel
+(In.2) {/Times-Roman cf} 2 7 0.000 1.000 -64 -32 pinlabel
+endgate
+} def
+
+/project::and2_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 96 0 80 0 2 polygon
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 96 0 pinlabel
+sce
+1 1.000 -64 -32 -48 -32 2 polygon
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 23 0.000 1.000 -64 32 pinlabel
+sce
+1 1.000 -64 32 -48 32 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 -64 -32 pinlabel
+0.000 0.000 1.000 scb
+(_b) {/Times-Roman cf} 2 21 0.000 1.000 0 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 -16 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 32 -144 infolabel
+sce
+1.000 0.000 16 0 digital::_and
+1 1.000 64 0 80 0 2 polygon
+endgate
+} def
+
+/digital::nand {
+% trivial
+begingate
+1 1.000 0 -48 -64 -48 -64 48 0 48 4 polygon
+1 1.000 56 0 8 0.000 360.000 xcarc
+1 1.000 0 0 48 -90.000 90.000 xcarc
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In.1) {/Times-Roman cf} 2 7 0.000 1.000 -64 32 pinlabel
+(In.2) {/Times-Roman cf} 2 7 0.000 1.000 -64 -32 pinlabel
+endgate
+} def
+
+/project::nand2_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1 1.000 96 0 80 0 2 polygon
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 96 0 pinlabel
+sce
+1 1.000 -64 -32 -48 -32 2 polygon
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 23 0.000 1.000 -64 32 pinlabel
+sce
+1 1.000 -64 32 -48 32 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 -64 -32 pinlabel
+0.000 0.000 1.000 scb
+(_b) {/Times-Roman cf} 2 21 0.000 1.000 0 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 -16 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 32 -144 infolabel
+sce
+1.000 0.000 16 0 digital::nand
+endgate
+} def
+
+/digital::buffer {
+% trivial
+begingate
+0 1.000 -32 -40 -32 40 40 0 3 polygon
+1 1.000 -32 0 -48 0 2 polygon
+1 1.000 40 0 64 0 2 polygon
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In) {/Times-Roman cf} 2 7 0.000 1.000 -48 0 pinlabel
+endgate
+} def
+
+/project::buf_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(_b) {/Times-Roman cf} 2 21 0.000 1.000 32 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 48 48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 48 0 digital::buffer
+endgate
+} def
+
+/project::inv_c {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(inv_c) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 48 0 digital::invert
+endgate
+} def
+
+/project::buf_c {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 112 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 0 pinlabel
+0.000 0.000 1.000 scb
+(buf_c) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 48 0 digital::buffer
+endgate
+} def
+
+/digital::_or {
+% trivial
+begingate
+1 1.000 -19 -48 96 30.000 90.000 xcarc
+1 1.000 -19 48 96 270.000 330.000 xcarc
+1 1.000 -112 0 80 -37.000 37.000 xcarc
+1 1.000 -48 48 -19 48 2 polygon
+1 1.000 -48 -48 -19 -48 2 polygon
+1.000 0.000 0.000 scb
+(Out) {/Times-Roman cf} 2 4 0.000 1.000 64 0 pinlabel
+(In.1) {/Times-Roman cf} 2 7 0.000 1.000 -40 32 pinlabel
+(In.2) {/Times-Roman cf} 2 7 0.000 1.000 -40 -32 pinlabel
+endgate
+} def
+
+/project::or2_b {
+<</@link (%n) /@class (X) /@index (?) >> begingate
+1.000 0.000 0.000 scb
+(z) {/Times-Roman cf} 2 20 0.000 1.000 160 0 pinlabel
+(a) {/Times-Roman cf} 2 23 0.000 1.000 0 32 pinlabel
+0.000 0.000 1.000 scb
+(_b) {/Times-Roman cf} 2 21 0.000 1.000 80 0 label
+mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 48 64 label
+0.180 0.545 0.341 scb
+mark ( %pz %pa %pb vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+0.000 1.000 64 -128 infolabel
+sce
+1.000 0.000 80 0 digital::_or
+1 1.000 0 32 32 32 2 polygon
+1 1.000 0 -32 16 -32 2 polygon
+1 1.000 16 -32 32 -32 2 polygon
+1 1.000 144 0 160 0 2 polygon
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 23 0.000 1.000 0 -32 pinlabel
+sce
+1 1.000 32 32 41 32 2 polygon
+1 1.000 32 -32 41 -32 2 polygon
+endgate
+} def
+
+
+%%EndSetup
+
+%%Page: ./ps/gray207 1
+%%PageOrientation: Landscape
+%%PageBoundingBox: 0 0 612 792
+/pgsave save def bop
+90 rotate -92 -520 translate
+1.0000 inchscale
+2.6000 setlinewidth -1056 1769 translate
+
+1.000 0.000 0.000 scb
+(ck) {/Times-Roman cf} 2 16 0.000 1.000 64 256 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 496 176 pinlabel
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 496 336 pinlabel
+sce
+1.000 0.000 2832 128 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 224 2752 224 2 polygon
+1 1.000 2816 192 2752 192 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 224 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 192 pinlabel
+sce
+1.000 0.000 2240 320 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 320 2464 320 2 polygon
+1.000 0.000 0.000 scb
+(x[0]) {/Times-Roman cf} 2 16 0.000 1.000 2368 320 pinlabel
+(q[0]) {/Times-Roman cf} 2 16 0.000 1.000 3008 288 pinlabel
+sce
+1 1.000 2160 288 2016 288 2 polygon
+1.000 0.000 0.000 scb
+(nsel[0]) {/Times-Roman cf} 2 16 0.000 1.000 2048 288 pinlabel
+sce
+-1.000 0.000 2016 512 <</@class (X) /@link (%n) >> project::inv_b
+1 1.000 2016 512 2080 512 2 polygon
+1.000 0.000 2080 512 generic::dot
+1 1.000 1904 512 1824 512 2 polygon
+1.000 0.000 0.000 scb
+(nq[0]) {/Times-Roman cf} 2 16 0.000 1.000 1824 512 pinlabel
+sce
+1.000 0.000 2592 288 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 352 2080 352 2080 512 3 polygon
+1 1.000 2464 320 2528 320 2 polygon
+1 1.000 2688 288 2816 288 2 polygon
+1 1.000 3008 288 3104 288 3104 512 3 polygon
+1 1.000 3104 512 2080 512 2 polygon
+1.000 0.000 0.000 scb
+(d[0]) {/Times-Roman cf} 2 16 0.000 1.000 2720 288 pinlabel
+sce
+1 1.000 2528 256 2400 256 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 256 pinlabel
+sce
+1.000 0.000 2832 672 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 768 2752 768 2 polygon
+1 1.000 2816 736 2752 736 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 768 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 736 pinlabel
+sce
+1 1.000 2336 864 2464 864 2 polygon
+1.000 0.000 0.000 scb
+(nt) {/Times-Roman cf} 2 16 0.000 1.000 2368 864 pinlabel
+(t) {/Times-Roman cf} 2 16 0.000 1.000 3008 832 pinlabel
+sce
+1.000 0.000 2592 832 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2464 864 2528 864 2 polygon
+1 1.000 2688 832 2816 832 2 polygon
+1 1.000 3008 832 3104 832 3104 1056 3 polygon
+1.000 0.000 0.000 scb
+(nextt) {/Times-Roman cf} 2 16 0.000 1.000 2720 832 pinlabel
+sce
+1 1.000 2528 800 2400 800 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 800 pinlabel
+sce
+1.000 0.000 2224 864 <</@class (X) /@link (%n) >> project::inv_b
+1.000 0.000 2832 -384 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 -288 2752 -288 2 polygon
+1 1.000 2816 -320 2752 -320 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -288 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -320 pinlabel
+sce
+1.000 0.000 2240 -192 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 -192 2464 -192 2 polygon
+1.000 0.000 0.000 scb
+(x[1]) {/Times-Roman cf} 2 16 0.000 1.000 2368 -192 pinlabel
+(q[1]) {/Times-Roman cf} 2 16 0.000 1.000 3008 -224 pinlabel
+sce
+1 1.000 2160 -224 2016 -224 2 polygon
+1.000 0.000 0.000 scb
+(nsel[1]) {/Times-Roman cf} 2 16 0.000 1.000 2048 -224 pinlabel
+sce
+-1.000 0.000 2016 0 <</@class (X) /@link (%n) >> project::inv_b
+1 1.000 2016 0 2080 0 2 polygon
+1.000 0.000 2080 0 generic::dot
+1 1.000 1904 0 1824 0 2 polygon
+1.000 0.000 0.000 scb
+(nq[1]) {/Times-Roman cf} 2 16 0.000 1.000 1824 0 pinlabel
+sce
+1.000 0.000 2592 -224 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 -160 2080 -160 2080 0 3 polygon
+1 1.000 2464 -192 2528 -192 2 polygon
+1 1.000 2688 -224 2816 -224 2 polygon
+1 1.000 3008 -224 3104 -224 3104 0 3 polygon
+1 1.000 3104 0 2080 0 2 polygon
+1.000 0.000 0.000 scb
+(d[1]) {/Times-Roman cf} 2 16 0.000 1.000 2720 -224 pinlabel
+sce
+1 1.000 2528 -256 2400 -256 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 -256 pinlabel
+sce
+1.000 0.000 1920 -224 <</@class (X) /@link (%n) >> project::nand2_b
+1 1.000 1856 -192 1792 -192 2 polygon
+1 1.000 1856 -256 1792 -256 2 polygon
+1.000 0.000 0.000 scb
+(q[0]) {/Times-Roman cf} 2 16 0.000 1.000 1792 -192 pinlabel
+(t) {/Times-Roman cf} 2 16 0.000 1.000 1792 -256 pinlabel
+sce
+1.000 0.000 1904 288 project::buf_b
+1 1.000 1904 288 1792 288 2 polygon
+1.000 0.000 0.000 scb
+(t) {/Times-Roman cf} 2 16 0.000 1.000 1792 288 pinlabel
+sce
+1.000 0.000 2832 -896 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 -800 2752 -800 2 polygon
+1 1.000 2816 -832 2752 -832 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -800 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -832 pinlabel
+sce
+1.000 0.000 2240 -704 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 -704 2464 -704 2 polygon
+1.000 0.000 0.000 scb
+(x[2]) {/Times-Roman cf} 2 16 0.000 1.000 2368 -704 pinlabel
+(q[2]) {/Times-Roman cf} 2 16 0.000 1.000 3008 -736 pinlabel
+sce
+1 1.000 2160 -736 2016 -736 2 polygon
+1.000 0.000 0.000 scb
+(nsel[2]) {/Times-Roman cf} 2 16 0.000 1.000 2048 -736 pinlabel
+sce
+-1.000 0.000 2016 -512 <</@class (X) /@link (%n) >> project::inv_b
+1 1.000 2016 -512 2080 -512 2 polygon
+1.000 0.000 2080 -512 generic::dot
+1 1.000 1904 -512 1824 -512 2 polygon
+1.000 0.000 0.000 scb
+(nq[2]) {/Times-Roman cf} 2 16 0.000 1.000 1824 -512 pinlabel
+sce
+1.000 0.000 2592 -736 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 -672 2080 -672 2080 -512 3 polygon
+1 1.000 2464 -704 2528 -704 2 polygon
+1 1.000 2688 -736 2816 -736 2 polygon
+1 1.000 3008 -736 3104 -736 3104 -512 3 polygon
+1 1.000 3104 -512 2080 -512 2 polygon
+1.000 0.000 0.000 scb
+(d[2]) {/Times-Roman cf} 2 16 0.000 1.000 2720 -736 pinlabel
+sce
+1 1.000 2528 -768 2400 -768 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 -768 pinlabel
+sce
+1.000 0.000 1920 -736 <</@class (X) /@link (%n) >> project::nand2_b
+1 1.000 1856 -704 1792 -704 2 polygon
+1 1.000 1856 -768 1792 -768 2 polygon
+1.000 0.000 0.000 scb
+(q[1]) {/Times-Roman cf} 2 16 0.000 1.000 1792 -704 pinlabel
+(term2) {/Times-Roman cf} 2 16 0.000 1.000 1792 -768 pinlabel
+sce
+1.000 0.000 2832 -1408 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 -1312 2752 -1312 2 polygon
+1 1.000 2816 -1344 2752 -1344 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -1312 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -1344 pinlabel
+sce
+1.000 0.000 2240 -1216 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 -1216 2464 -1216 2 polygon
+1.000 0.000 0.000 scb
+(x[3]) {/Times-Roman cf} 2 16 0.000 1.000 2368 -1216 pinlabel
+(q[3]) {/Times-Roman cf} 2 16 0.000 1.000 3008 -1248 pinlabel
+sce
+1 1.000 2160 -1248 2016 -1248 2 polygon
+1.000 0.000 0.000 scb
+(nsel[3]) {/Times-Roman cf} 2 16 0.000 1.000 2048 -1248 pinlabel
+sce
+-1.000 0.000 2016 -1024 <</@class (X) /@link (%n) >> project::inv_b
+1 1.000 2016 -1024 2080 -1024 2 polygon
+1.000 0.000 2080 -1024 generic::dot
+1 1.000 1904 -1024 1824 -1024 2 polygon
+1.000 0.000 0.000 scb
+(nq[3]) {/Times-Roman cf} 2 16 0.000 1.000 1824 -1024 pinlabel
+sce
+1.000 0.000 2592 -1248 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 -1184 2080 -1184 2080 -1024 3 polygon
+1 1.000 2464 -1216 2528 -1216 2 polygon
+1 1.000 2688 -1248 2816 -1248 2 polygon
+1 1.000 3008 -1248 3104 -1248 3104 -1024 3 polygon
+1 1.000 3104 -1024 2080 -1024 2 polygon
+1.000 0.000 0.000 scb
+(d[3]) {/Times-Roman cf} 2 16 0.000 1.000 2720 -1248 pinlabel
+sce
+1 1.000 2528 -1280 2400 -1280 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 -1280 pinlabel
+sce
+1.000 0.000 1920 -1248 <</@class (X) /@link (%n) >> project::nand2_b
+1 1.000 1856 -1216 1792 -1216 2 polygon
+1 1.000 1856 -1280 1792 -1280 2 polygon
+1.000 0.000 0.000 scb
+(q[2]) {/Times-Roman cf} 2 16 0.000 1.000 1792 -1216 pinlabel
+(term3) {/Times-Roman cf} 2 16 0.000 1.000 1792 -1280 pinlabel
+sce
+1.000 0.000 2832 -1920 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 -1824 2752 -1824 2 polygon
+1 1.000 2816 -1856 2752 -1856 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -1824 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -1856 pinlabel
+sce
+1.000 0.000 2240 -1728 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 -1728 2464 -1728 2 polygon
+1.000 0.000 0.000 scb
+(x[4]) {/Times-Roman cf} 2 16 0.000 1.000 2368 -1728 pinlabel
+(q[4]) {/Times-Roman cf} 2 16 0.000 1.000 3008 -1760 pinlabel
+sce
+1 1.000 2160 -1760 2016 -1760 2 polygon
+1.000 0.000 0.000 scb
+(nsel[4]) {/Times-Roman cf} 2 16 0.000 1.000 2048 -1760 pinlabel
+sce
+-1.000 0.000 2016 -1536 <</@class (X) /@link (%n) >> project::inv_b
+1 1.000 2016 -1536 2080 -1536 2 polygon
+1.000 0.000 2080 -1536 generic::dot
+1 1.000 1904 -1536 1824 -1536 2 polygon
+1.000 0.000 0.000 scb
+(nq[4]) {/Times-Roman cf} 2 16 0.000 1.000 1824 -1536 pinlabel
+sce
+1.000 0.000 2592 -1760 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 -1696 2080 -1696 2080 -1536 3 polygon
+1 1.000 2464 -1728 2528 -1728 2 polygon
+1 1.000 2688 -1760 2816 -1760 2 polygon
+1 1.000 3008 -1760 3104 -1760 3104 -1536 3 polygon
+1 1.000 3104 -1536 2080 -1536 2 polygon
+1.000 0.000 0.000 scb
+(d[4]) {/Times-Roman cf} 2 16 0.000 1.000 2720 -1760 pinlabel
+sce
+1 1.000 2528 -1792 2400 -1792 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 -1792 pinlabel
+sce
+1.000 0.000 1920 -1760 <</@class (X) /@link (%n) >> project::nand2_b
+1 1.000 1856 -1728 1792 -1728 2 polygon
+1 1.000 1856 -1792 1792 -1792 2 polygon
+1.000 0.000 0.000 scb
+(q[3]) {/Times-Roman cf} 2 16 0.000 1.000 1792 -1728 pinlabel
+(term4) {/Times-Roman cf} 2 16 0.000 1.000 1792 -1792 pinlabel
+sce
+1.000 0.000 2832 -2432 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 -2336 2752 -2336 2 polygon
+1 1.000 2816 -2368 2752 -2368 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -2336 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -2368 pinlabel
+sce
+1.000 0.000 2240 -2240 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 -2240 2464 -2240 2 polygon
+1.000 0.000 0.000 scb
+(x[5]) {/Times-Roman cf} 2 16 0.000 1.000 2368 -2240 pinlabel
+(q[5]) {/Times-Roman cf} 2 16 0.000 1.000 3008 -2272 pinlabel
+sce
+1 1.000 2160 -2272 2016 -2272 2 polygon
+1.000 0.000 0.000 scb
+(nsel[5]) {/Times-Roman cf} 2 16 0.000 1.000 2048 -2272 pinlabel
+sce
+-1.000 0.000 2016 -2048 <</@class (X) /@link (%n) >> project::inv_b
+1 1.000 2016 -2048 2080 -2048 2 polygon
+1.000 0.000 2080 -2048 generic::dot
+1 1.000 1904 -2048 1824 -2048 2 polygon
+1.000 0.000 0.000 scb
+(nq[5]) {/Times-Roman cf} 2 16 0.000 1.000 1824 -2048 pinlabel
+sce
+1.000 0.000 2592 -2272 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 -2208 2080 -2208 2080 -2048 3 polygon
+1 1.000 2464 -2240 2528 -2240 2 polygon
+1 1.000 2688 -2272 2816 -2272 2 polygon
+1 1.000 3008 -2272 3104 -2272 3104 -2048 3 polygon
+1 1.000 3104 -2048 2080 -2048 2 polygon
+1.000 0.000 0.000 scb
+(d[5]) {/Times-Roman cf} 2 16 0.000 1.000 2720 -2272 pinlabel
+sce
+1 1.000 2528 -2304 2400 -2304 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 -2304 pinlabel
+sce
+1.000 0.000 1920 -2272 <</@class (X) /@link (%n) >> project::nand2_b
+1 1.000 1856 -2240 1792 -2240 2 polygon
+1 1.000 1856 -2304 1792 -2304 2 polygon
+1.000 0.000 0.000 scb
+(q[4]) {/Times-Roman cf} 2 16 0.000 1.000 1792 -2240 pinlabel
+(term5) {/Times-Roman cf} 2 16 0.000 1.000 1792 -2304 pinlabel
+sce
+1.000 0.000 2832 -2944 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 -2848 2752 -2848 2 polygon
+1 1.000 2816 -2880 2752 -2880 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -2848 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -2880 pinlabel
+sce
+1.000 0.000 2240 -2752 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 -2752 2464 -2752 2 polygon
+1.000 0.000 0.000 scb
+(x[6]) {/Times-Roman cf} 2 16 0.000 1.000 2368 -2752 pinlabel
+(q[6]) {/Times-Roman cf} 2 16 0.000 1.000 3008 -2784 pinlabel
+sce
+1 1.000 2160 -2784 2016 -2784 2 polygon
+1.000 0.000 0.000 scb
+(nsel[6]) {/Times-Roman cf} 2 16 0.000 1.000 2048 -2784 pinlabel
+sce
+-1.000 0.000 2016 -2560 <</@class (X) /@link (%n) >> project::inv_b
+1 1.000 2016 -2560 2080 -2560 2 polygon
+1.000 0.000 2080 -2560 generic::dot
+1 1.000 1904 -2560 1824 -2560 2 polygon
+1.000 0.000 0.000 scb
+(nq[6]) {/Times-Roman cf} 2 16 0.000 1.000 1824 -2560 pinlabel
+sce
+1.000 0.000 2592 -2784 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 -2720 2080 -2720 2080 -2560 3 polygon
+1 1.000 2464 -2752 2528 -2752 2 polygon
+1 1.000 2688 -2784 2816 -2784 2 polygon
+1 1.000 3008 -2784 3104 -2784 3104 -2560 3 polygon
+1 1.000 3104 -2560 2080 -2560 2 polygon
+1.000 0.000 0.000 scb
+(d[6]) {/Times-Roman cf} 2 16 0.000 1.000 2720 -2784 pinlabel
+sce
+1 1.000 2528 -2816 2400 -2816 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 -2816 pinlabel
+sce
+1.000 0.000 1920 -2784 <</@class (X) /@link (%n) >> project::nand2_b
+1 1.000 1856 -2752 1792 -2752 2 polygon
+1 1.000 1856 -2816 1792 -2816 2 polygon
+1.000 0.000 0.000 scb
+(q[5]) {/Times-Roman cf} 2 16 0.000 1.000 1792 -2752 pinlabel
+(term6) {/Times-Roman cf} 2 16 0.000 1.000 1792 -2816 pinlabel
+sce
+1.000 0.000 2832 -3456 <</@class (X) /@link (%n) >> project::dff_d_v3
+1 1.000 2816 -3360 2752 -3360 2 polygon
+1 1.000 2816 -3392 2752 -3392 2 polygon
+1.000 0.000 0.000 scb
+(sck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -3360 pinlabel
+(mck) {/Times-Roman cf} 2 16 0.000 1.000 2752 -3392 pinlabel
+sce
+1.000 0.000 2240 -3264 <</@class (X) /@link (%n) >> project::xnor2_b
+1 1.000 2336 -3264 2464 -3264 2 polygon
+1.000 0.000 0.000 scb
+(x[7]) {/Times-Roman cf} 2 16 0.000 1.000 2368 -3264 pinlabel
+(q[7]) {/Times-Roman cf} 2 16 0.000 1.000 3008 -3296 pinlabel
+sce
+1 1.000 2160 -3296 2016 -3296 2 polygon
+1.000 0.000 0.000 scb
+(nsel[7]) {/Times-Roman cf} 2 16 0.000 1.000 2048 -3296 pinlabel
+sce
+-1.000 0.000 2016 -3072 project::inv_b
+1 1.000 2016 -3072 2080 -3072 2 polygon
+1.000 0.000 2080 -3072 generic::dot
+1 1.000 1904 -3072 1824 -3072 2 polygon
+1.000 0.000 0.000 scb
+(nq[7]) {/Times-Roman cf} 2 16 0.000 1.000 1824 -3072 pinlabel
+sce
+1.000 0.000 2592 -3296 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 2160 -3232 2080 -3232 2080 -3072 3 polygon
+1 1.000 2464 -3264 2528 -3264 2 polygon
+1 1.000 2688 -3296 2816 -3296 2 polygon
+1 1.000 3008 -3296 3104 -3296 3104 -3072 3 polygon
+1 1.000 3104 -3072 2080 -3072 2 polygon
+1.000 0.000 0.000 scb
+(d[7]) {/Times-Roman cf} 2 16 0.000 1.000 2720 -3296 pinlabel
+sce
+1 1.000 2528 -3328 2400 -3328 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 2400 -3328 pinlabel
+sce
+1.000 0.000 1920 -3296 <</@class (X) /@link (%n) >> project::nand2_b
+1 1.000 1856 -3264 1792 -3264 2 polygon
+1 1.000 1856 -3328 1792 -3328 2 polygon
+1.000 0.000 0.000 scb
+(q[6]) {/Times-Roman cf} 2 16 0.000 1.000 1792 -3264 pinlabel
+(term7) {/Times-Roman cf} 2 16 0.000 1.000 1792 -3328 pinlabel
+sce
+1.000 90.000 1184 -2944 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 1184 -3040 1184 -3328 1408 -3328 3 polygon
+1 1.000 1216 -2880 1216 -2816 1408 -2816 3 polygon
+1.000 90.000 1216 -2432 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 1248 -2368 1248 -2304 1408 -2304 3 polygon
+1 1.000 1216 -2816 1216 -2528 2 polygon
+1 1.000 1408 -3328 1792 -3328 2 polygon
+1 1.000 1408 -2816 1792 -2816 2 polygon
+1 1.000 1408 -2304 1792 -2304 2 polygon
+1.000 90.000 1248 -1920 <</@class (X) /@link (%n) >> project::and2_b
+1.000 90.000 1280 -1408 <</@class (X) /@link (%n) >> project::and2_b
+1.000 90.000 1312 -928 <</@class (X) /@link (%n) >> project::and2_b
+1.000 90.000 1344 -416 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 1344 -512 1344 -864 2 polygon
+1 1.000 1312 -1024 1312 -1344 2 polygon
+1 1.000 1280 -1504 1280 -1856 2 polygon
+1 1.000 1248 -2016 1248 -2304 2 polygon
+1 1.000 1792 -1792 1280 -1792 2 polygon
+1 1.000 1792 -1280 1312 -1280 2 polygon
+1 1.000 1792 -768 1344 -768 2 polygon
+1.000 0.000 1344 -768 generic::dot
+1.000 0.000 1312 -1280 generic::dot
+1.000 0.000 1280 -1792 generic::dot
+1.000 0.000 1216 -2816 generic::dot
+1.000 0.000 1248 -2304 generic::dot
+1 1.000 1312 -352 1312 -320 1216 -320 3 polygon
+1 1.000 1280 -864 1280 -832 1184 -832 3 polygon
+1 1.000 1248 -1344 1248 -1312 1152 -1312 3 polygon
+1 1.000 1216 -1856 1216 -1824 1120 -1824 3 polygon
+1 1.000 1184 -2368 1184 -2336 1088 -2336 3 polygon
+1 1.000 1152 -2880 1152 -2848 1056 -2848 3 polygon
+1.000 0.000 0.000 scb
+(nq[5]) {/Times-Roman cf} 2 16 0.000 1.000 1056 -2848 pinlabel
+(nq[4]) {/Times-Roman cf} 2 16 0.000 1.000 1088 -2336 pinlabel
+(nq[3]) {/Times-Roman cf} 2 16 0.000 1.000 1120 -1824 pinlabel
+(nq[2]) {/Times-Roman cf} 2 16 0.000 1.000 1152 -1312 pinlabel
+(nq[1]) {/Times-Roman cf} 2 16 0.000 1.000 1184 -832 pinlabel
+(nq[0]) {/Times-Roman cf} 2 16 0.000 1.000 1216 -320 pinlabel
+sce
+1 1.000 1376 -352 1376 -256 1792 -256 3 polygon
+1 1.000 2224 864 2080 864 2080 1056 3104 1056 4 polygon
+1 1.000 4880 -2704 5040 -2704 2 polygon
+1.000 0.000 0.000 scb
+(nro) {/Times-Roman cf} 2 16 0.000 1.000 5040 -2704 pinlabel
+sce
+1.000 0.000 3872 -3104 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 4576 -2672 4640 -2672 2 polygon
+1 1.000 4352 -2640 4416 -2640 2 polygon
+1 1.000 4352 -2704 4416 -2704 2 polygon
+1.000 0.000 0.000 scb
+(nq[6]) {/Times-Roman cf} 2 16 0.000 1.000 4352 -2640 pinlabel
+(q[7]) {/Times-Roman cf} 2 16 0.000 1.000 4352 -2704 pinlabel
+(ro1) {/Times-Roman cf} 2 16 0.000 1.000 4640 -2672 pinlabel
+sce
+1.000 0.000 4784 -2704 project::nand2_b
+1 1.000 4640 -2672 4720 -2672 2 polygon
+1.000 0.000 0.000 scb
+(ro8) {/Times-Roman cf} 2 16 0.000 1.000 4640 -2736 pinlabel
+0.180 0.545 0.341 scb
+(spice1:.subckt %n ck vdd vss) {/Times-Roman cf} 2 16 0.000 1.000 -384 -448 
+infolabel
+(spice-1:.ends) {/Times-Roman cf} 2 16 0.000 1.000 -368 -528 infolabel
+sce
+1.000 0.000 272 176 <</@class (X) /@link (%n) >> project::inv_c
+1.000 0.000 272 336 <</@class (X) /@link (%n) >> project::buf_c
+1 1.000 64 256 192 256 192 176 272 176 4 polygon
+1 1.000 192 256 192 336 272 336 3 polygon
+1 1.000 384 336 496 336 2 polygon
+1 1.000 384 176 496 176 2 polygon
+1.000 0.000 4368 -2944 project::or2_b
+1 1.000 4528 -2944 4608 -2944 4608 -2736 4720 -2736 4 polygon
+1 1.000 4368 -2912 4304 -2912 2 polygon
+1 1.000 4368 -2976 4304 -2976 2 polygon
+1.000 0.000 0.000 scb
+(nq[5]) {/Times-Roman cf} 2 16 0.000 1.000 4304 -2912 pinlabel
+(ro7) {/Times-Roman cf} 2 16 0.000 1.000 4304 -2976 pinlabel
+sce
+1.000 0.000 4096 -2976 project::or2_b
+1 1.000 4256 -2976 4304 -2976 2 polygon
+1 1.000 4032 -2944 4096 -2944 2 polygon
+1 1.000 4032 -3008 4096 -3008 2 polygon
+1.000 0.000 0.000 scb
+(ro5) {/Times-Roman cf} 2 16 0.000 1.000 4048 -2944 pinlabel
+(ro6) {/Times-Roman cf} 2 16 0.000 1.000 4048 -3008 pinlabel
+sce
+1.000 0.000 4480 -2672 <</@link (%n) /@class (X) >> project::and2_b
+1.000 0.000 3872 -2848 <</@class (X) /@link (%n) >> project::and2_b
+1 1.000 3968 -2848 4000 -2848 4000 -2944 4032 -2944 4 polygon
+1 1.000 3968 -3104 4000 -3104 4000 -3008 4032 -3008 4 polygon
+1 1.000 3712 -2816 3808 -2816 2 polygon
+1 1.000 3712 -2880 3808 -2880 2 polygon
+1 1.000 3712 -3072 3808 -3072 2 polygon
+1 1.000 3712 -3136 3808 -3136 2 polygon
+1.000 0.000 0.000 scb
+(ro3) {/Times-Roman cf} 2 16 0.000 1.000 3744 -3072 pinlabel
+(ro4) {/Times-Roman cf} 2 16 0.000 1.000 3744 -3136 pinlabel
+(q[4]) {/Times-Roman cf} 2 16 0.000 1.000 3744 -2816 pinlabel
+(q[5]) {/Times-Roman cf} 2 16 0.000 1.000 3744 -2880 pinlabel
+sce
+1.000 0.000 3584 -3232 <</@link (%n) /@class (X) >> project::and2_b
+1.000 0.000 3584 -3008 project::and2_b
+1 1.000 3680 -3008 3712 -3008 3712 -3072 3 polygon
+1 1.000 3680 -3232 3712 -3232 3712 -3136 3 polygon
+1 1.000 3520 -3200 3456 -3200 2 polygon
+1 1.000 3520 -3264 3456 -3264 2 polygon
+1 1.000 3520 -3040 3456 -3040 2 polygon
+1 1.000 3520 -2976 3456 -2976 2 polygon
+1.000 0.000 0.000 scb
+(nq[4]) {/Times-Roman cf} 2 16 0.000 1.000 3472 -3200 pinlabel
+(q[5]) {/Times-Roman cf} 2 16 0.000 1.000 3472 -3264 pinlabel
+(q[3]) {/Times-Roman cf} 2 16 0.000 1.000 3472 -2976 pinlabel
+(ro2) {/Times-Roman cf} 2 16 0.000 1.000 3472 -3040 pinlabel
+sce
+1.000 0.000 3328 -3040 <</@link (%n) /@class (X) >> project::and2_b
+1 1.000 3264 -3072 3184 -3072 2 polygon
+1 1.000 3264 -3008 3184 -3008 2 polygon
+1 1.000 3424 -3040 3456 -3040 2 polygon
+1.000 0.000 0.000 scb
+(nq[1]) {/Times-Roman cf} 2 16 0.000 1.000 3200 -3008 pinlabel
+(nq[2]) {/Times-Roman cf} 2 16 0.000 1.000 3200 -3072 pinlabel
+pgsave restore showpage
+
+%%Trailer
+XCIRCsave restore
+%%EOF

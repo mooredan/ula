@@ -1,0 +1,188 @@
+magic
+tech amic5n
+timestamp 1608317706
+<< nwell >>
+rect -120 870 1290 2430
+<< nselect >>
+rect 0 60 1170 750
+<< pselect >>
+rect 0 990 1170 2310
+<< ntransistor >>
+rect 210 120 270 690
+rect 660 120 720 690
+rect 900 120 960 690
+<< ptransistor >>
+rect 210 1050 270 2250
+rect 660 1050 720 2250
+rect 900 1050 960 2250
+<< ndiffusion >>
+rect 60 120 210 690
+rect 270 120 420 690
+rect 510 120 660 690
+rect 720 120 900 690
+rect 960 120 1110 690
+<< pdiffusion >>
+rect 60 1050 210 2250
+rect 270 1050 420 2250
+rect 510 1050 660 2250
+rect 720 1050 900 2250
+rect 960 1050 1110 2250
+<< polysilicon >>
+rect 210 2250 270 2310
+rect 660 2250 720 2310
+rect 900 2250 960 2310
+rect 210 960 270 1050
+rect 60 780 270 960
+rect 210 690 270 780
+rect 660 960 720 1050
+rect 900 960 960 1050
+rect 660 780 960 960
+rect 660 690 720 780
+rect 900 690 960 780
+rect 210 60 270 120
+rect 660 60 720 120
+rect 900 60 960 120
+<< pdcontact >>
+rect 95 2165 145 2215
+<< pdcontact >>
+rect 785 2165 835 2215
+<< pdcontact >>
+rect 335 2105 385 2155
+<< pdcontact >>
+rect 545 2105 595 2155
+<< pdcontact >>
+rect 1025 2105 1075 2155
+<< pdcontact >>
+rect 95 1985 145 2035
+<< pdcontact >>
+rect 785 2015 835 2065
+<< pdcontact >>
+rect 335 1955 385 2005
+<< pdcontact >>
+rect 545 1955 595 2005
+<< pdcontact >>
+rect 1025 1955 1075 2005
+<< pdcontact >>
+rect 95 1835 145 1885
+<< pdcontact >>
+rect 785 1865 835 1915
+<< pdcontact >>
+rect 335 1775 385 1825
+<< pdcontact >>
+rect 545 1775 595 1825
+<< pdcontact >>
+rect 1025 1775 1075 1825
+<< pdcontact >>
+rect 95 1685 145 1735
+<< pdcontact >>
+rect 785 1715 835 1765
+<< pdcontact >>
+rect 335 1595 385 1645
+<< pdcontact >>
+rect 545 1595 595 1645
+<< pdcontact >>
+rect 95 1535 145 1585
+<< pdcontact >>
+rect 785 1565 835 1615
+<< pdcontact >>
+rect 1025 1595 1075 1645
+<< pdcontact >>
+rect 95 1385 145 1435
+<< pdcontact >>
+rect 335 1415 385 1465
+<< pdcontact >>
+rect 545 1415 595 1465
+<< pdcontact >>
+rect 785 1415 835 1465
+<< pdcontact >>
+rect 1025 1415 1075 1465
+<< pdcontact >>
+rect 95 1235 145 1285
+<< pdcontact >>
+rect 335 1235 385 1285
+<< pdcontact >>
+rect 545 1235 595 1285
+<< pdcontact >>
+rect 785 1265 835 1315
+<< pdcontact >>
+rect 1025 1235 1075 1285
+<< pdcontact >>
+rect 95 1085 145 1135
+<< pdcontact >>
+rect 335 1085 385 1135
+<< pdcontact >>
+rect 545 1085 595 1135
+<< pdcontact >>
+rect 1025 1085 1075 1135
+<< polycontact >>
+rect 125 845 175 895
+<< polycontact >>
+rect 785 845 835 895
+<< ndcontact >>
+rect 95 605 145 655
+<< ndcontact >>
+rect 335 605 385 655
+<< ndcontact >>
+rect 545 605 595 655
+<< ndcontact >>
+rect 785 605 835 655
+<< ndcontact >>
+rect 1025 605 1075 655
+<< ndcontact >>
+rect 95 455 145 505
+<< ndcontact >>
+rect 785 455 835 505
+<< ndcontact >>
+rect 335 395 385 445
+<< ndcontact >>
+rect 545 395 595 445
+<< ndcontact >>
+rect 1025 395 1075 445
+<< ndcontact >>
+rect 95 305 145 355
+<< ndcontact >>
+rect 785 305 835 355
+<< ndcontact >>
+rect 335 215 385 265
+<< ndcontact >>
+rect 545 215 595 265
+<< ndcontact >>
+rect 1025 215 1075 265
+<< ndcontact >>
+rect 95 155 145 205
+<< ndcontact >>
+rect 785 155 835 205
+<< metal1 >>
+rect 0 2280 1170 2370
+rect 60 1050 180 2280
+rect 90 810 210 930
+rect 60 90 180 690
+rect 300 180 420 2190
+rect 510 1140 630 2190
+rect 750 1230 870 2280
+rect 990 1140 1110 2190
+rect 510 1020 1110 1140
+rect 510 180 630 1020
+rect 750 810 870 930
+rect 750 90 870 690
+rect 990 180 1110 1020
+rect 0 0 1170 90
+<< metal2 >>
+rect 300 810 870 930
+<< via1 >>
+rect 335 845 385 895
+rect 785 845 835 895
+<< labels >>
+flabel nwell  0 930 0 930 2 FreeSans 400 0 0 0 vdd
+flabel metal1 s 30 30 30 30 2 FreeSans 400 0 0 0 vss
+port 4 ne
+flabel metal1 s 30 2310 30 2310 2 FreeSans 400 0 0 0 vdd
+port 3 ne
+flabel metal1 s 150 870 150 870 2 FreeSans 400 0 0 0 a
+port 2 ne
+flabel metal1 s 1050 810 1050 810 2 FreeSans 400 0 0 0 z
+port 1 ne
+flabel metal1 s 330 780 330 780 2 FreeSans 400 0 0 0 n1
+<< checkpaint >>
+rect -130 -10 1300 2440
+<< end >>

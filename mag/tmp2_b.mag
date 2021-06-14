@@ -1,0 +1,38 @@
+magic
+tech scmos
+timestamp 1544968562
+<< nsubstratendiff >>
+rect 288 83 292 87
+<< genericcontact >>
+rect 289 84 291 86
+<< metal1 >>
+rect -27 166 5 171
+rect -27 3 -23 166
+rect 291 140 325 144
+rect -13 125 19 129
+rect -13 31 -9 125
+rect 61 94 103 96
+rect 7 76 293 94
+rect 61 73 103 76
+rect 282 40 318 44
+rect -13 27 10 31
+rect -27 0 6 3
+use dlybuf_b  1
+timestamp 1544968112
+transform -1 0 301 0 -1 171
+box 0 0 296 79
+use dlybuf_b  0
+timestamp 1544968112
+transform 1 0 0 0 1 0
+box 0 0 296 79
+<< labels >>
+rlabel metal1 s 308 41 308 41 2 z
+port 1 ne
+rlabel metal1 s 314 141 314 141 2 a
+port 2 ne
+rlabel metal1 209 84 209 84 1 vdd
+port 3 ne
+rlabel metal1 s -26 170 -26 170 2 vss
+port 4 ne
+rlabel metal1 s -12 102 -12 102 2 n1
+<< end >>

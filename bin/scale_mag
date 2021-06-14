@@ -1,0 +1,649 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Getopt::Std;
+use File::Basename;
+my $scriptname = basename($0);
+
+my $usage = sprintf("Usage: %s -f <input file> [-o <output file>]", $scriptname);
+# declare the perl command line flags/options we want to allow
+my %options=();
+getopts("f:o:h", \%options);
+
+if(defined($options{h})) {
+   print "$usage\n";
+   exit(1);
+}
+
+
+unless(defined($options{f})) {
+   printf STDERR "ERROR: option -f is required\n";
+   exit(1);
+}
+
+my $mag_file = $options{f};
+
+unless( -r $mag_file ) {
+   printf STDERR "ERROR: File \"%s\" is not readable\n", $mag_file;
+   exit(1);
+}
+
+
+
+# First a cursory scan for layers
+# Error out for anything not recognized
+open(FH, "<$mag_file") or die 
+    "ERROR: Could not open file: %s", $mag_file;
+
+
+my $error_flag = 0;
+
+my $timestamp_count = 0;
+
+while(<FH>) {
+ if (/^tech\s/) {
+    my ($tag, $tech) = split();
+    if ($tech ne "scmos") {
+       $error_flag = 1;
+       printf STDERR ("ERROR: Input tech of $tech is not supported\n", $tech);
+       last; 
+    }
+ }
+
+ if (/^rect\s/ ||
+    /^tech\s/  || 
+    /^timestamp\s/  || 
+    /^<< electrode >>\s/  || 
+    /^<< electrodecap >>\s/  || 
+    /^<< nwell >>\s/  || 
+    /^<< nwell >>/ ||
+    /^<< nselect >>/ ||
+    /^<< pselect >>/ ||
+    /^<< ntransistor >>/ ||
+    /^<< ptransistor >>/ ||
+    /^<< ndiffusion >>/ ||
+    /^<< pdiffusion >>/ ||
+    /^<< psubstratepdiff >>/ ||
+    /^<< nsubstratendiff >>/ ||
+    /^<< polysilicon >>/ ||
+    /^<< high_resist >>/ ||
+    /^<< poly2_high_resist >>/ ||
+    /^<< genericcontact >>/ ||
+    /^<< genericpoly2contact >>/ ||
+    /^<< electrodecontact >>/ ||
+    /^<< metal1 >>/ ||
+    /^<< gv1 >>/ ||
+    /^<< metal2 >>/ ||
+    /^<< labels >>/ ||
+    /^<< end >>/ ||
+    /^use\s/ ||
+    /^box\s/ ||
+    /^rlabel\s/ ||
+    /^flabel\s/ ||
+    /^port\s/ ||
+    /^magic/) 
+ {
+    next;
+ }
+
+ printf STDERR "ERROR: File: %s -- Line not recognized:\n%s", $mag_file, $_;
+ exit(1);
+
+}
+close(FH);
+
+if ($error_flag) {
+   exit(1);
+}
+
+
+
+
+open(FH, "<$mag_file") or die 
+    "ERROR: Could not open file: %s", $mag_file;
+
+
+# lists to hold the rectangles
+my @poly_list = ();
+my @poly2_list = ();
+my @poly2cap_list = ();
+my @pdiff_list = ();
+my @ndiff_list = ();
+my @psub_list = ();
+my @nsub_list = ();
+
+my $position = 0;
+my $lastposition;
+
+while(<FH>) {
+   if (/^<< ndiffusion >>/) {
+      while(<FH>) {
+         unless(/^rect /) {
+            last;
+         }
+         my ($tag, $llx, $lly, $urx, $ury) = split();
+         if($tag ne "rect") {
+            printf STDERR "ERROR: unexpected line:\n%s", $_;
+            exit(1);
+         }
+         push(@ndiff_list, {llx => $llx, lly => $lly, 
+                            urx => $urx, ury => $ury});
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+   if (/^<< pdiffusion >>/) {
+      while(<FH>) {
+         unless(/^rect /) {
+            last;
+         }
+         my ($tag, $llx, $lly, $urx, $ury) = split();
+         if($tag ne "rect") {
+            printf STDERR "ERROR: unexpected line:\n%s", $_;
+            exit(1);
+         }
+         push(@pdiff_list, {llx => $llx, lly => $lly, 
+                            urx => $urx, ury => $ury});
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+   if (/^<< polysilicon >>/) {
+      while(<FH>) {
+         unless(/^rect /) {
+            last;
+         }
+         my ($tag, $llx, $lly, $urx, $ury) = split();
+         if($tag ne "rect") {
+            printf STDERR "ERROR: unexpected line:\n%s", $_;
+            exit(1);
+         }
+         push(@poly_list, {llx => $llx, lly => $lly, 
+                           urx => $urx, ury => $ury});
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+   if (/^<< psubstratepdiff >>/) {
+      while(<FH>) {
+         unless(/^rect /) {
+            last;
+         }
+         my ($tag, $llx, $lly, $urx, $ury) = split();
+         if($tag ne "rect") {
+            printf STDERR "ERROR: unexpected line:\n%s", $_;
+            exit(1);
+         }
+         push(@psub_list, {llx => $llx, lly => $lly, 
+                           urx => $urx, ury => $ury});
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+   if (/^<< nsubstratendiff >>/) {
+      while(<FH>) {
+         unless(/^rect /) {
+            last;
+         }
+         my ($tag, $llx, $lly, $urx, $ury) = split();
+         if($tag ne "rect") {
+            printf STDERR "ERROR: unexpected line:\n%s", $_;
+            exit(1);
+         }
+         push(@nsub_list, {llx => $llx, lly => $lly, 
+                           urx => $urx, ury => $ury});
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+   if (/^<< electrode >>/) {
+      while(<FH>) {
+         unless(/^rect /) {
+            last;
+         }
+         my ($tag, $llx, $lly, $urx, $ury) = split();
+         if($tag ne "rect") {
+            printf STDERR "ERROR: unexpected line:\n%s", $_;
+            exit(1);
+         }
+         push(@poly2_list, {llx => $llx, lly => $lly, 
+                           urx => $urx, ury => $ury});
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+   if (/^<< electrodecap >>/) {
+      while(<FH>) {
+         unless(/^rect /) {
+            last;
+         }
+         my ($tag, $llx, $lly, $urx, $ury) = split();
+         if($tag ne "rect") {
+            printf STDERR "ERROR: unexpected line:\n%s", $_;
+            exit(1);
+         }
+         push(@poly2cap_list, {llx => $llx, lly => $lly, 
+                           urx => $urx, ury => $ury});
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+   
+
+}
+close(FH);
+
+my $scale_factor = 30;
+my $transform_rlabel = 1;
+
+my $llx = 0;
+my $lly = 0;
+my $urx = 0;
+my $ury = 0;
+
+# read file twice, first time to 
+# gather up the rectangles and store them
+# We'll use these rectangles later to
+# to determine what type of contact we'll
+# put in place of the generic contacts
+
+open(FH, "<$mag_file") or die 
+    "ERROR: Could not open file: %s", $mag_file;
+
+my $out_file = "";
+if(defined($options{o})) {
+   $out_file = $options{o};
+   open(OFH, ">", $out_file) or die
+      "ERROR: Could not open file: %s for writing", $out_file;
+} else {
+   *OFH = *STDOUT;
+}
+
+while(<FH>) {
+
+   if(/^tech /) {
+      s/scmos/amic5n/;
+      print OFH;
+      next;
+   }
+
+   if(/^timestamp /) {
+      if ($timestamp_count eq 0) {
+         my $date = `date +%s`;
+         chomp($date);
+         printf OFH "timestamp %s\n", $date;
+         $timestamp_count++;
+      }
+      next;
+   }
+
+   if(/^<< electrode >>/) {
+      s/electrode/poly2/;
+      print OFH;
+      next;
+   }
+
+   if(/^<< electrodecap >>/) {
+      s/electrodecap/poly2cap/;
+      print OFH;
+      next;
+   }
+
+   if(/^<< pad >>/) {
+      while(<FH>) {
+         unless(/^rect/) {
+            last;
+         } else {
+            my @array = split();
+            $array[1] =   $array[1] * $scale_factor;
+            $array[2] =   $array[2] * $scale_factor;
+            $array[3] =   $array[3] * $scale_factor;
+            $array[4] =   $array[4] * $scale_factor;
+
+            print OFH "<< pad >>\n";
+            printf OFH "%s %d %d %d %d\n", $array[0],
+               $array[1] + 5,
+               $array[2] + 5,
+               $array[3] - 5,
+               $array[4] - 5;
+
+            print OFH "<< metal3 >>\n";
+            printf OFH "%s %d %d %d %d\n", $array[0],
+               $array[1] + 5,
+               $array[2] + 5,
+               $array[3] - 5,
+               $array[4] - 5;
+         }
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+
+
+   if(/^<< genericpoly2contact >>/ || /^<< electrodecontact >>/) {
+      while(<FH>) {
+         unless(/^rect/) {
+            last;
+         } else {
+            my @array = split();
+
+            my $x = ($array[1] + $array[3]) / 2; 
+            my $y = ($array[2] + $array[4]) / 2; 
+
+
+            # decide where this contact goes  
+            my $new_contname = ""; 
+              
+            if ($new_contname eq "") {
+               foreach my $elem (@poly2_list) {
+
+                  if (insideRect($elem->{llx}, $elem->{lly},
+                                 $elem->{urx}, $elem->{ury},
+                                 $x, $y)) {
+                     $new_contname = "<< poly2contact >>";
+                     last;
+                  }
+               }
+            }
+            if ($new_contname eq "") {
+               foreach my $elem (@poly2cap_list) {
+
+                  if (insideRect($elem->{llx}, $elem->{lly},
+                                 $elem->{urx}, $elem->{ury},
+                                 $x, $y)) {
+                     $new_contname = "<< poly2capcontact >>";
+                     last;
+                  }
+               }
+            }
+
+            if ($new_contname eq "") {
+               printf STDERR "ERROR: Could not locate gc2 contact:\n%s", $_;
+               print "x=$x y=$y\n";
+               exit(1);
+            }
+
+            printf OFH "%s\n", $new_contname;
+
+            $array[1] =   $array[1] * $scale_factor;
+            $array[2] =   $array[2] * $scale_factor;
+            $array[3] =   $array[3] * $scale_factor;
+            $array[4] =   $array[4] * $scale_factor;
+
+            printf OFH "%s %d %d %d %d\n", $array[0],
+               $array[1] + 5,
+               $array[2] + 5,
+               $array[3] - 5,
+               $array[4] - 5;
+         }
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+
+
+   if(/^<< genericcontact >>/) {
+      while(<FH>) {
+         unless(/^rect/) {
+            last;
+         } else {
+            my @array = split();
+
+            my $x = ($array[1] + $array[3]) / 2; 
+            my $y = ($array[2] + $array[4]) / 2; 
+
+
+            # decide where this contact goes  
+            my $new_contname = ""; 
+              
+            if ($new_contname eq "") {
+               foreach my $elem (@pdiff_list) {
+                  if (insideRect($elem->{llx}, $elem->{lly},
+                                 $elem->{urx}, $elem->{ury},
+                                 $x, $y)) {
+                     $new_contname = "<< pdcontact >>";
+                     last;
+                  }
+               }
+            }
+            if ($new_contname eq "") {
+               foreach my $elem (@ndiff_list) {
+                  if (insideRect($elem->{llx}, $elem->{lly},
+                                 $elem->{urx}, $elem->{ury},
+                                 $x, $y)) {
+                     $new_contname = "<< ndcontact >>";
+                     last;
+                  }
+               }
+            }
+            if ($new_contname eq "") {
+               foreach my $elem (@poly_list) {
+
+                  if (insideRect($elem->{llx}, $elem->{lly},
+                                 $elem->{urx}, $elem->{ury},
+                                 $x, $y)) {
+                     $new_contname = "<< polycontact >>";
+                     last;
+                  }
+               }
+            }
+            if ($new_contname eq "") {
+               foreach my $elem (@psub_list) {
+                  if (insideRect($elem->{llx}, $elem->{lly},
+                                 $elem->{urx}, $elem->{ury},
+                                 $x, $y)) {
+                     $new_contname = "<< psubstratepcontact >>";
+                     last;
+                  }
+               }
+            }
+            if ($new_contname eq "") {
+               foreach my $elem (@nsub_list) {
+                  if (insideRect($elem->{llx}, $elem->{lly},
+                                 $elem->{urx}, $elem->{ury},
+                                 $x, $y)) {
+                     $new_contname = "<< nsubstratencontact >>";
+                     last;
+                  }
+               }
+            }
+
+
+            if ($new_contname eq "") {
+               printf STDERR "ERROR: Could not locate contact:\n%s", $_;
+               print "x=$x y=$y\n";
+               exit(1);
+            }
+
+            printf OFH "%s\n", $new_contname;
+
+            $array[1] =   $array[1] * $scale_factor;
+            $array[2] =   $array[2] * $scale_factor;
+            $array[3] =   $array[3] * $scale_factor;
+            $array[4] =   $array[4] * $scale_factor;
+
+            printf OFH "%s %d %d %d %d\n", $array[0],
+               $array[1] + 5,
+               $array[2] + 5,
+               $array[3] - 5,
+               $array[4] - 5;
+         }
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+
+
+   if(/^<< gv1 >>/ || /^<< gv2 >>/) {
+      s/gv/via/;  
+      print OFH;
+      while(<FH>) {
+         unless(/^rect/) {
+            last;
+         } else {
+            my @array = split();
+
+            $array[1] =   $array[1] * $scale_factor;
+            $array[2] =   $array[2] * $scale_factor;
+            $array[3] =   $array[3] * $scale_factor;
+            $array[4] =   $array[4] * $scale_factor;
+
+            printf OFH "%s %d %d %d %d\n", $array[0],
+               $array[1] + 5,
+               $array[2] + 5,
+               $array[3] - 5,
+               $array[4] - 5;
+            $lastposition = tell(FH);
+         }
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+
+
+   if (/^rect /) {
+      my @array = split();
+
+      if ($array[1] < $llx) { $llx = $array[1]; }
+      if ($array[2] < $lly) { $lly = $array[2]; }
+      if ($array[3] > $urx) { $urx = $array[3]; }
+      if ($array[4] > $ury) { $ury = $array[4]; }
+      
+      printf OFH "%s %d %d %d %d\n", $array[0],
+               $array[1] * $scale_factor,
+               $array[2] * $scale_factor,
+               $array[3] * $scale_factor,
+               $array[4] * $scale_factor;
+      next;
+   }
+
+   if (/^transform /) {
+      printf OFH $_; 
+      # my @array = split();
+
+      # printf OFH "%s %d %d %d %d %d %d\n", $array[0],
+      #          $array[1] * $scale_factor,
+      #          $array[2] * $scale_factor,
+      #          $array[3] * $scale_factor,
+      #          $array[4] * $scale_factor,
+      #          $array[5] * $scale_factor,
+      #          $array[6] * $scale_factor;
+      next;
+   }
+
+   if (/^box /) {
+      my @array = split();
+
+      printf OFH "%s %d %d %d %d\n", $array[0],
+               $array[1] * $scale_factor,
+               $array[2] * $scale_factor,
+               $array[3] * $scale_factor,
+               $array[4] * $scale_factor;
+      next;
+   }
+
+
+
+   if (/^rlabel /) {
+      my @array = split();
+
+      unless ($#array == 7 || $#array == 8) {
+         printf STDERR "ERROR: rlabel line poorly formed\n"; 
+         printf STDERR "%s\n", $_; 
+         exit 1;
+      }
+
+      # rlabel layer [s] xbot ybot xtop ytop position text
+      my $tag; 
+      my $layer;  
+      my $sticky;  
+      my $xbot;
+      my $ybot;
+      my $xtop;
+      my $ytop;
+      my $position;
+      my $text;
+
+      if ($#array == 7) { 
+         ($tag, $layer, $xbot, $ybot, $xtop, 
+          $ytop, $position, $text) = split();
+         $sticky = "";  
+      }
+    
+      if ($#array == 8) { 
+         ($tag, $layer, $sticky, $xbot, $ybot, $xtop, 
+          $ytop, $position, $text) = split();
+      }
+
+      if ($transform_rlabel == 1) {
+         $tag = "flabel";
+         my $fontname = "FreeSans";
+         my $size = 400;
+         my $rotation = 0;
+         my $offsetX = 0;
+         my $offsetY = 0;
+
+         printf OFH "%s %s %s %d %d %d %d %d %s %d %d %d %d %s\n", 
+            $tag, $layer, $sticky, 
+            $xbot * $scale_factor, $ybot * $scale_factor, 
+            $xtop * $scale_factor, $ytop * $scale_factor, 
+            $position, 
+            $fontname, $size, $rotation,
+            $offsetX, $offsetY,
+            $text;
+
+      } else {
+
+         printf OFH "%s %s %s %d %d %d %d %d %s\n", 
+            $tag, $layer, $sticky, 
+            $xbot * $scale_factor, 
+            $ybot * $scale_factor, 
+            $xtop * $scale_factor, 
+            $ytop * $scale_factor, 
+            $position, $text;
+      }
+      next;
+   }
+
+
+   # Add checkpaint at the end since we transformed this cell
+   if (/^<< end >>/) {
+      printf OFH "<< checkpaint >>\n";
+      printf OFH "rect %d %d %d %d\n", 
+           ($llx * $scale_factor) - 10,
+           ($lly * $scale_factor) - 10,
+           ($urx * $scale_factor) + 10,
+           ($ury * $scale_factor) + 10;
+      printf OFH "<< end >>\n";
+      next;
+   }
+
+   print OFH;
+
+}
+
+if(defined($options{o})) {
+   close OFH;
+}
+
+close(FH);
+
+exit(0);
+
+
+sub insideRect {
+    my ($llx,$lly,$urx,$ury, $px,$py) = @_;
+    return $llx <= $px && $px <= $urx &&
+           $lly <= $py && $py <= $ury;
+}
+

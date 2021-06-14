@@ -1,0 +1,54 @@
+* Sizing of nfet for ESD power clamp
+
+.lib device_models/AMI_C5N.lib TT
+* .lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.temp 25
+
+* Power rails - connected to BIG NFET only
+Vvddrail vddrail 0 DC 5
+Vvssrail vssrail 0 DC 0
+
+* Power supply for trigger inverter
+Vvdd vdd 0 DC 5
+Vvss vss 0 DC 0
+
+
+* NFET crowbar - BIG
+*     D   G  S   B
+M1002 vddrail g1 vssrail vssrail nfet w=36.3u l=0.9u
++  ad=98.73p pd=54.6u as=210.83p ps=51.964u
++  m=12
+
+
+* Inverter to drive BIG NFET
+MP1 g1 g2 vdd vdd pfet w=12.0u l=0.6u 
+MN1 g1 g2 vss vss nfet w= 6.0u l=0.6u 
+
+
+* pulse on input to trigger inverter
+* looking for fast edges
+Vg2 g2 0 DC 0 PULSE(0 5 20n 100n 10n 200n 600n)
+
+
+.save all
+
+.tran 0.1n 1000n
+
+.control
+destroy all
+run
+
+setplot tran1
+plot v(g2) v(g1)
+
+let vdd_max = maximum(v(vdd))
+let vol = vdd_max * 0.1
+let voh = vdd_max * 0.9
+meas tran ttlh TRIG v(g1) VAL=vol RISE=1 TARG v(g1) VAL=voh RISE=1
+meas tran tthl TRIG v(g1) VAL=voh FALL=2 TARG v(g1) VAL=vol FALL=2
+
+
+.endc
+
+.end

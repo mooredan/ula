@@ -1,0 +1,41 @@
+magic
+tech scmos
+timestamp 1593235952
+<< metal1 >>
+rect 7 10 26 14
+rect 33 10 48 14
+rect 157 2 164 6
+<< metal2 >>
+rect 130 18 156 22
+rect 29 10 142 14
+rect 152 10 156 18
+<< gv1 >>
+rect 131 19 133 21
+rect 30 11 32 13
+rect 139 11 141 13
+rect 153 11 155 13
+use nand2_b  nand2_b_0
+timestamp 1592278238
+transform 1 0 135 0 1 -17
+box -4 0 28 81
+use dly_c  dly_c_0
+timestamp 1593235220
+transform 1 0 34 0 1 -17
+box -4 0 106 81
+use subc_2  subc_2_0
+timestamp 1592016765
+transform 1 0 8 0 1 -17
+box -1 0 15 81
+use inv_c  inv_c_0
+timestamp 1591570911
+transform 1 0 19 0 1 -17
+box -4 0 20 81
+<< labels >>
+rlabel metal1 s 52 60 52 60 2 vdd
+rlabel metal1 s 53 -16 53 -16 2 vss
+rlabel metal1 s 24 12 24 12 2 a
+rlabel metal1 s 8 11 8 11 2 ain
+rlabel metal2 s 33 12 33 12 2 node1
+rlabel metal1 s 161 3 161 3 2 zout
+rlabel metal2 s 135 20 135 20 2 node2
+<< end >>

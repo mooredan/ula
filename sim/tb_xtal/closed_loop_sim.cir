@@ -1,0 +1,63 @@
+* Transient simulation of pad_x0_top and pad_in_top
+*
+* CMOS inverter for the crystal pad
+
+.include mag/pad_in_top.cir
+.include mag/pad_x0_top.cir
+.include mag/schmitt_1V.cir
+.include pad_xtal.cir
+.include device_models/9C_6p500MAAJ_T.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.100
+
+.csparam tgt_freq={FREQ}
+
+
+* power supply
+Vvdd vdd 0 DC PWL( 0 0 1n 0 2u {VDD_VAL})
+Vvss vss 0 DC 0
+
+xdut xout xin ckout vdd vss pad_xtal
+
+* feedback resistor around inverter
+Rf xout xin 2.2Meg
+
+* net "a" to schmitt trigger
+Czl ckout 0 0.1e-12
+
+Rd xout n1 10k
+
+* xtal load capacitance - target: 18pF
+C2 n1 0 33p
+
+V1 n1 n2 DC 0
+
+* 6.5 MHz crystal
+xxtal n2 xin 9C_6p500MAAJ_T
+
+C1 xin 0 33p
+
+.save v(xin) v(xout) v(ckout) v(xdut.ckin)
+
+* .dc Va 0 {VDD_VAL} 0.001
+
+.tran 1n 15.000m 14.999m
+* .ac lin 101 6.498Meg 6.502Meg
+
+.control
+destroy all
+run
+setplot tran1
+* write
+.endc
+
+.end

@@ -1,0 +1,18 @@
+magic
+tech scmos
+timestamp 1511634040
+<< metal1 >>
+rect 22 60 32 63
+rect 22 0 32 3
+use INV_B  INV_B_0
+timestamp 1511593024
+transform 1 0 1 0 1 0
+box -1 0 27 65
+use SUBC_1  SUBC_1_0
+timestamp 1511591118
+transform 1 0 27 0 1 0
+box -1 0 15 65
+<< labels >>
+rlabel space 7 61 7 61 2 Vdd
+rlabel space 7 1 7 1 2 Gnd
+<< end >>

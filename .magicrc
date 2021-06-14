@@ -1,0 +1,65 @@
+####################################################
+# Ensure that the tech file is set up
+# if set to default of "minimum", that is an error
+####################################################
+if {[tech name] eq "minimum"} {
+   if {! [info exists ::env(TECH)]} {
+      puts "ERROR: Technology must be specified on command line with the -T option"
+      puts "       ...or with the environment variable: TECH"
+      quit 
+   } else {
+      set TECH $::env(TECH)      
+      if {! [file exists ${TECH}] || ! [file readable ${TECH}] } {
+          puts [format "ERROR: Tech file: %s does not exist or is not readable" ${TECH}]
+          quit
+      } else {
+          puts [format "INFO: Loading techfile: %s" ${TECH}]
+          tech load ${TECH} -noprompt
+      }
+   }
+} else {
+   puts [format "INFO: Using specified technology: %s" [tech name]]
+   set TECH [tech filename]
+}
+
+####################################################
+# Check for env var PROJECT_DIR and sub-directory
+# mag/
+####################################################
+if {[info exists ::env(PROJECT_DIR)]} {
+   set PROJECT_DIR $::env(PROJECT_DIR)
+   if {! [file isdirectory ${PROJECT_DIR}]} {
+       puts [format "ERROR: PROJECT_DIR %s is not a directory" ${PROJECT_DIR}]
+       quit
+   }
+   set MAG_DIR [format "%s/mag" ${PROJECT_DIR}]
+   # puts "MAG_DIR ${MAG_DIR}"
+   if {[file isdirectory ${MAG_DIR}]} {
+      cd ${MAG_DIR}
+   } else {
+      cd ${PROJECT_DIR}
+   }
+   unset MAG_DIR
+}
+
+###################################################
+# Font for menu
+###################################################
+font create newfont -family Tahoma -size 12
+option add *Font newfont
+
+macro Meta_XK_Down  "stretch d 1"
+macro Meta_XK_Left  "stretch l 1"
+macro Meta_XK_Right "stretch r 1"
+macro Meta_XK_Up    "stretch u 1"
+
+macro Meta_Shift_XK_Down  "stretch d 10"
+macro Meta_Shift_XK_Left  "stretch l 10"
+macro Meta_Shift_XK_Right "stretch r 10"
+macro Meta_Shift_XK_Up    "stretch u 10"
+####################################################
+
+set SUB vss
+# path search +${PROJECT_DIR}/mag
+grid 0.1um
+snap grid

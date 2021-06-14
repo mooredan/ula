@@ -1,0 +1,108 @@
+* Functional simulation of pad_io
+
+.include mag/pad_io.cir
+.include mag/pad_io_top.cir
+.include mag/pad_io_bot.cir
+.include mag/dly_c.cir
+.include mag/subc_2.cir
+.include mag/nand2_b.cir
+.include mag/nor2_b.cir
+.include mag/nand2_c.cir
+.include mag/nor2_c.cir
+.include mag/inv_b.cir
+.include mag/inv_c.cir
+.include mag/inv_d.cir
+.include mag/inv_e.cir
+.include mag/schmitt.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=13Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+* input signal
+* with 50 ohm output impedance
+* SIN(VO VA FREQ) VO=offset VA=amplitude
+Voffset indc 0 DC {VDD_VAL/2.0}
+Vdout dout indc  DC 0
++ PULSE({VDD_VAL/-2.0} {VDD_VAL/2.0} {PER/2.0} {TRF} {TRF} {PH-TRF} {PER}) 
+
+Voe oe 0 DC {VDD_VAL}
+* Voe oe 0 DC {VDD_VAL} PWL(0 {VDD_VAL} 400n {VDD_VAL} 401n 0 3u 0 3.005u {VDD_VAL})
+
+* .subckt pad_io pad dout din oe vdd vss
+Xdut pad dout din oe vdd vss pad_io
+
+* output load
+Cpad pad 0 50p
+Rpad pad 0 10k
+
+Cdin din 0 5p
+
+* .save all @r.xdut.rin1[i] @Cout[i]
+.save all @m.xdut.xpad_io_top_0.m1002[id]
++         @m.xdut.xpad_io_top_0.m1010[id]
+
+.op
+.tran 0.1n {PER*5}
+
+.control
+destroy all
+run
+
+* setplot dc1 
+* plot v(a) v(pad)
+* plot i(vvdd)
+
+setplot tran1
+plot v(dout) v(pad)
+plot @m.xdut.xpad_io_top_0.m1002[id] @m.xdut.xpad_io_top_0.m1010[id]
+
+* setplot ac1
+* plot vdb(pad)
+
+* let idx = 50 
+* 
+* while idx < 51 
+*   let zin = v(in) / l.xdut.xpk14.l1#branch
+*   print idx
+*   print zin[idx]
+*   print abs(zin[idx])
+*   print abs(frequency[idx])
+*   print real(zin[idx])
+*   print imag(zin[idx])
+*   let Xin = imag(zin[idx])
+*   print mag(zin[idx])
+*   print ph(zin[idx]) * 180 / pi
+*   let omega = 2 * pi * abs(frequency[idx])
+*   let Xcin = -Xin
+*   let Cin = 1 / (omega * Xcin)
+*   print Cin
+* 
+* *  let zout = v(pad) / l.xdut.lout2#branch
+* *  print zout[idx]
+* *  print abs(zout[idx])
+* *  print real(zout[idx])
+* *  print imag(zout[idx])
+* *  let Xout = imag(zout[idx])
+* *  print mag(zout[idx])
+* *  print ph(zout[idx]) * 180 / pi
+* *  let Xcout = -Xout
+* *  let Cout = 1 / (omega * Xcout)
+* *  print Cout
+*   
+*  
+*   let idx = idx + 1
+* end
+.endc
+
+.end

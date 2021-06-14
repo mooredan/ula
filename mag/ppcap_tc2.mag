@@ -1,0 +1,28 @@
+magic
+tech amic5n
+timestamp 1608317708
+<< poly2cap >>
+rect 180 210 840 450
+<< poly2capcontact >>
+rect 695 305 745 355
+<< polysilicon >>
+rect 0 450 990 660
+rect 0 210 180 450
+rect 840 210 990 450
+rect 0 0 990 210
+<< polycontact >>
+rect 65 545 115 595
+<< polycontact >>
+rect 65 65 115 115
+<< metal1 >>
+rect 30 30 150 630
+rect 660 390 780 630
+rect 540 270 780 390
+<< labels >>
+flabel metal1 s 60 60 60 60 2 FreeSans 400 0 0 0 a
+port 1 ne
+flabel metal1 s 690 600 690 600 2 FreeSans 400 0 0 0 b
+port 2 ne
+<< checkpaint >>
+rect -10 -10 1000 670
+<< end >>

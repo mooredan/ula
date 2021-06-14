@@ -1,0 +1,24 @@
+
+Subcircuit summary:
+Circuit 1: dffposx1                        |Circuit 2: dffposx1                        
+-------------------------------------------|-------------------------------------------
+pfet (11)                                  |pfet (11)                                  
+nfet (11)                                  |nfet (11)                                  
+Number of devices: 22                      |Number of devices: 22                      
+Number of nets: 17                         |Number of nets: 17                         
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: dffposx1                        |Circuit 2: dffposx1                        
+-------------------------------------------|-------------------------------------------
+q                                          |q                                          
+d                                          |d                                          
+ck                                         |ck                                         
+vss                                        |vss                                        
+vdd                                        |vdd                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes dffposx1 and dffposx1 are equivalent.
+Circuits match uniquely.

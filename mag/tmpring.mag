@@ -1,0 +1,180 @@
+magic
+tech scmos
+timestamp 1589750791
+use pad_nwellres  pad_nwellres_0 ~/projects/ula/mag
+timestamp 1589746875
+transform 1 0 0 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_1
+timestamp 1589746875
+transform 1 0 360 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_2
+timestamp 1589746875
+transform 1 0 723 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_3
+timestamp 1589746875
+transform 1 0 1086 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_4
+timestamp 1589746875
+transform 1 0 1449 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_5
+timestamp 1589746875
+transform 1 0 1812 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_6
+timestamp 1589746875
+transform 1 0 2175 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_7
+timestamp 1589746875
+transform 1 0 2538 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_8
+timestamp 1589746875
+transform 1 0 2901 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_9
+timestamp 1589746875
+transform 1 0 3264 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_10
+timestamp 1589746875
+transform 1 0 3627 0 1 -31
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_43
+timestamp 1589746875
+transform 0 -1 -263 -1 0 4
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_42
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -356
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_41
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -719
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_40
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -1082
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_39
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -1445
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_38
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -1808
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_37
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -2171
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_36
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -2534
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_35
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -2897
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_34
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -3260
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_33
+timestamp 1589746875
+transform 0 -1 -263 -1 0 -3623
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_11
+timestamp 1589746875
+transform 0 1 4067 -1 0 -175
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_12
+timestamp 1589746875
+transform 0 1 4067 -1 0 -535
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_13
+timestamp 1589746875
+transform 0 1 4067 -1 0 -898
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_14
+timestamp 1589746875
+transform 0 1 4067 -1 0 -1261
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_15
+timestamp 1589746875
+transform 0 1 4067 -1 0 -1624
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_16
+timestamp 1589746875
+transform 0 1 4067 -1 0 -1987
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_17
+timestamp 1589746875
+transform 0 1 4067 -1 0 -2350
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_18
+timestamp 1589746875
+transform 0 1 4067 -1 0 -2713
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_19
+timestamp 1589746875
+transform 0 1 4067 -1 0 -3076
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_20
+timestamp 1589746875
+transform 0 1 4067 -1 0 -3439
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_21
+timestamp 1589746875
+transform 0 1 4067 -1 0 -3802
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_32
+timestamp 1589746875
+transform -1 0 99 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_31
+timestamp 1589746875
+transform -1 0 462 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_30
+timestamp 1589746875
+transform -1 0 825 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_29
+timestamp 1589746875
+transform -1 0 1188 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_28
+timestamp 1589746875
+transform -1 0 1551 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_27
+timestamp 1589746875
+transform -1 0 1914 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_26
+timestamp 1589746875
+transform -1 0 2277 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_25
+timestamp 1589746875
+transform -1 0 2640 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_24
+timestamp 1589746875
+transform -1 0 3003 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_23
+timestamp 1589746875
+transform -1 0 3366 0 -1 -4310
+box -3 31 363 1010
+use pad_nwellres  pad_nwellres_22
+timestamp 1589746875
+transform -1 0 3726 0 -1 -4310
+box -3 31 363 1010
+<< end >>

@@ -1,0 +1,37 @@
+* clamp2 testing
+*
+.lib device_models/AMI_C5N.lib TT
+.include "hbm.cir"
+.include "clamp2.cir"
+
+* Human Body Model
+XHBM vdd hbm
+
+* Ground
+Vvss vss 0 DC 0
+
+* Clamp(s)
+XCLAMP  vdd vss clamp2
+XCLAMP1 vdd vss clamp2
+* XCLAMP2 vdd vss clamp2
+* XCLAMP3 vdd vss clamp2
+
+
+* DUT load
+CDUT vdd vss 10p
+RDUT vdd vss 10Meg
+
+
+.save all
+.tran 1n 5.0u 
+
+.control
+destroy all
+run
+plot v(vdd)
+plot i(vvss)
+plot v(xclamp.trig) v(xclamp.ntrig)
+
+
+.endc
+.end

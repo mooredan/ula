@@ -1,0 +1,21 @@
+* clamp2
+.subckt clamp2 vdd vss
+
+* How big can we make these?
+*
+* What's the RC time constant?
+Rtrig vdd trig 50.0k
+Ctrig trig vss 8.0p
+
+* add the inverter
+* need to check rise time
+* and size accordingly
+MP1 ntrig trig vdd vdd pfet w=12.0u l=0.6u 
+MN1 ntrig trig vss vss nfet w= 6.0u l=0.6u 
+
+* NFET
+M1002 vdd ntrig vss vss nfet w=36.3u l=0.9u
++  ad=98.73p pd=54.6u as=210.83p ps=51.964u
++  m=24
+
+.ends clamp2

@@ -1,0 +1,33 @@
+* HBM analysis
+* what are the characteristics of the output
+* of the HBM?
+*
+.include "hbm.cir"
+
+* Human Body Model
+XHBM vdd hbm
+
+* Ground
+Vvss vss 0 DC 0
+
+
+* DUT load
+CDUT vdd vss 10p
+RDUT vdd vss 10Meg
+
+
+.save all
+.tran 1p 200n 
+
+.control
+destroy all
+run
+
+let vddmax = maximum(v(vdd))
+print vddmax
+
+plot v(vdd)
+* plot i(vvss)
+
+.endc
+.end

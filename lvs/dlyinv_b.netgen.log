@@ -1,0 +1,40 @@
+Netgen 1.5.115 compiled on Tue Feb 12 19:57:21 PST 2019
+Warning: netgen command 'global' use fully-qualified name '::netgen::global'
+Reading netlist file ../mag/dlyinv_b.sp
+Reading netlist file ../ps/dlyinv_b.sp
+Reading setup file setup.lvs.tcl
+No property as found for device nfet
+No property ad found for device nfet
+No property ps found for device nfet
+No property pd found for device nfet
+No property as found for device pfet
+No property ad found for device pfet
+No property ps found for device pfet
+No property pd found for device pfet
+No property as found for device phrResistor
+No property ad found for device phrResistor
+No property ps found for device phrResistor
+No property pd found for device phrResistor
+Comparison output logged to file dlyinv_b.comp.log
+Logging to file "dlyinv_b.comp.log" enabled
+Contents of circuit 1:  Circuit: 'dlyinv_b'
+Circuit dlyinv_b contains 3 device instances.
+  Class: phrResistor           instances:   1
+  Class: pfet                  instances:   1
+  Class: nfet                  instances:   1
+Circuit contains 6 nets.
+Contents of circuit 2:  Circuit: 'dlyinv_b'
+Circuit dlyinv_b contains 3 device instances.
+  Class: phrResistor           instances:   1
+  Class: pfet                  instances:   1
+  Class: nfet                  instances:   1
+Circuit contains 5 nets.
+
+Circuit 1 contains 3 devices, Circuit 2 contains 3 devices.
+Circuit 1 contains 5 nets,    Circuit 2 contains 5 nets.
+
+Netlists match uniquely.
+Result: Circuits match uniquely.
+Logging to file "dlyinv_b.comp.log" disabled
+LVS Done.
+Circuits match uniquely.

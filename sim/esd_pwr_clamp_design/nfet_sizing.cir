@@ -1,0 +1,81 @@
+* nfet_sizing
+*
+* Simulation to determine the size of the
+* NFET in the clamp
+* Ideally, as big as possible
+*
+* want to discharge as quick as possible
+*
+*
+.lib device_models/AMI_C5N.lib TT
+
+* Simple HBM/MM circuit
+*
+.param level=1
++ nom_voltage={level * 2000} 
++ td=2n
+
+Cc n1 0 100p
+S1 n1 n2 n5 0 SW OFF
+Ls n2 n3 5u
+Rs n3 n4 1500
+Cs n3 n4 1p
+Ct n4 0 10p
+
+.model SW SW(Ron=1 Roff=1G Vt=0.5)
+.ic v(n1)={nom_voltage} v(n2)=0 v(n4)=0 v(vss)=0
+* very fast switching on 1fs
+V1 n5 0 DC 0 PULSE(0 1 {td} 1n 1 1 2)
+
+
+* V
+Vvss vss 0 DC 0
+
+* First load - just a resistor
+* R    Vmax @ v(n4)
+*===================
+* 10   13.5  V
+*  5    6.77 V
+*  4    5.43 V
+*  3    4.07 V   1.35 A
+* Rdut n4 vss 3 
+
+* Second test with ON NFET
+M1002 n4 ntrig vss vss nfet w=36.3u l=0.9u
++  ad=98.73p pd=54.6u as=210.83p ps=51.964u
++  m=24
+
+* Vg1 g1 0 DC 5
+
+CDUT n4 vss 10p
+
+
+* add in RC trigger, but do not hook up to 
+* anything, just monitor the trig node
+
+Rtrig n4 trig 62.5k
+* Ctrig trig vss2 8p
+Ctrig trig vss 32p
+* Vvss2 vss2 0 DC 0
+
+
+* add the inverter, but this isn't big
+* enough to drive that big nfet
+MP1 ntrig trig n4 n4 pfet w=12.0u l=0.6u 
+MN1 ntrig trig vss vss nfet w= 6.0u l=0.6u 
+
+
+.save all
+.tran 1n 0.5u 
+
+.control
+destroy all
+run
+plot v(n1)
+plot v(n4)
+plot i(vvss)
+plot v(trig) v(ntrig)
+
+
+.endc
+.end

@@ -1,0 +1,35 @@
+* Ngspice node syntax demo
+.temp 25
+
+.subckt div2 a b
+R1 a n1 200
+R2 n1 b 100
+.ends
+
+vvdd vdd 0 DC 1
+vvss vss 0 DC 0
+
+R1 vdd dut2/n1 50
+R2 dut2/n1 vss 50
+
+xdut2 vdd vss div2
+
+R3 vdd xdut2 10
+R4 xdut2 vss 90
+
+.save all
+
+.op
+
+.control
+destroy all
+run
+print v(vdd)
+print v("dut2/n1")
+print v(xdut2.n1)
+print v(vss)
+
+print v(xdut2)
+.endc
+
+.end

@@ -1,0 +1,39 @@
+* Output transition times
+.include mag/pad_m2.sp
+
+.lib device_models/AMI_C5N.lib TT
+
+.temp 25
+
+.param VDD_VAL=4.5
+
+* power supply
+vvdd vdd 0 DC VDD_VAL
+vvss vss 0 DC 0
+
+va a 0 PULSE(0 3 10n 4.8n 4.8n 80n 220n)
+
+* output load
+cpad pad 0 50p
+
+.save all
+
+.tran 0.1n 300n
+
+.control
+destroy all
+run
+
+setplot tran1
+plot v(a) v(pad)
+
+let vdd_max = maximum(v(vdd))
+let vol = vdd_max * 0.1
+let voh = vdd_max * 0.9
+
+meas tran ttlh TRIG v(pad) VAL=vol RISE=1 TARG v(pad) VAL=voh RISE=1
+meas tran tthl TRIG v(pad) VAL=voh FALL=2 TARG v(pad) VAL=vol FALL=2
+
+.endc
+
+.end

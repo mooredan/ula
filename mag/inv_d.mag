@@ -1,0 +1,121 @@
+magic
+tech amic5n
+timestamp 1608317706
+<< nwell >>
+rect -120 870 840 2430
+<< nselect >>
+rect 0 60 720 750
+<< pselect >>
+rect 0 990 720 2310
+<< ntransistor >>
+rect 210 120 270 690
+rect 450 120 510 690
+<< ptransistor >>
+rect 210 1050 270 2250
+rect 450 1050 510 2250
+<< ndiffusion >>
+rect 60 120 210 690
+rect 270 120 450 690
+rect 510 120 660 690
+<< pdiffusion >>
+rect 60 1050 210 2250
+rect 270 1050 450 2250
+rect 510 1050 660 2250
+<< polysilicon >>
+rect 210 2250 270 2310
+rect 450 2250 510 2310
+rect 210 960 270 1050
+rect 450 960 510 1050
+rect 210 780 510 960
+rect 210 690 270 780
+rect 450 690 510 780
+rect 210 60 270 120
+rect 450 60 510 120
+<< pdcontact >>
+rect 335 2165 385 2215
+<< pdcontact >>
+rect 95 2105 145 2155
+<< pdcontact >>
+rect 575 2105 625 2155
+<< pdcontact >>
+rect 335 2015 385 2065
+<< pdcontact >>
+rect 95 1955 145 2005
+<< pdcontact >>
+rect 575 1955 625 2005
+<< pdcontact >>
+rect 335 1865 385 1915
+<< pdcontact >>
+rect 95 1775 145 1825
+<< pdcontact >>
+rect 575 1775 625 1825
+<< pdcontact >>
+rect 335 1715 385 1765
+<< pdcontact >>
+rect 95 1595 145 1645
+<< pdcontact >>
+rect 335 1565 385 1615
+<< pdcontact >>
+rect 575 1595 625 1645
+<< pdcontact >>
+rect 95 1415 145 1465
+<< pdcontact >>
+rect 335 1415 385 1465
+<< pdcontact >>
+rect 575 1415 625 1465
+<< pdcontact >>
+rect 95 1235 145 1285
+<< pdcontact >>
+rect 335 1265 385 1315
+<< pdcontact >>
+rect 575 1235 625 1285
+<< pdcontact >>
+rect 95 1085 145 1135
+<< pdcontact >>
+rect 575 1085 625 1135
+<< polycontact >>
+rect 335 845 385 895
+<< ndcontact >>
+rect 95 605 145 655
+<< ndcontact >>
+rect 335 605 385 655
+<< ndcontact >>
+rect 575 605 625 655
+<< ndcontact >>
+rect 335 455 385 505
+<< ndcontact >>
+rect 95 395 145 445
+<< ndcontact >>
+rect 575 395 625 445
+<< ndcontact >>
+rect 335 305 385 355
+<< ndcontact >>
+rect 95 215 145 265
+<< ndcontact >>
+rect 575 215 625 265
+<< ndcontact >>
+rect 335 155 385 205
+<< metal1 >>
+rect 0 2280 720 2370
+rect 60 1140 180 2190
+rect 300 1230 420 2280
+rect 540 1140 660 2190
+rect 60 1020 660 1140
+rect 60 180 180 1020
+rect 300 810 420 930
+rect 300 90 420 690
+rect 540 180 660 1020
+rect 0 0 720 90
+<< labels >>
+flabel metal1 s 240 30 240 30 2 FreeSans 400 0 0 0 vss
+port 4 ne
+flabel metal1 s 240 2310 240 2310 2 FreeSans 400 0 0 0 vdd
+port 3 ne
+flabel metal1 s 600 810 600 810 2 FreeSans 400 0 0 0 z
+port 1 ne
+flabel metal1 s 360 870 360 870 2 FreeSans 400 0 0 0 a
+port 2 ne
+flabel nwell  0 930 0 930 2 FreeSans 400 0 0 0 vdd
+<< checkpaint >>
+rect -130 -10 850 2440
+<< end >>

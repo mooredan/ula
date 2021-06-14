@@ -1,0 +1,24 @@
+* IEC 61000-4-2 based ESD Generator
+.subckt esd_gen outp
+
+.param level=1
++ nom_voltage={level * 2000} 
++ td=1n
+
+L1 outp n3 2.4u
+R1 n3 n5 330
+L2 outp n4 140n
+R2 n4 n6 200
+
+S2 n5 n1 n7 0 SW OFF
+S3 n6 n2 n7 0 SW OFF
+
+C1 n1 0 150pF ic={nom_voltage}
+C2 n2 0 8pF   ic={nom_voltage}
+
+V1 n7 0 DC 0 PULSE(0 1 {td} 1f 1 1 2)
+
+.model SW SW(Ron=1 Roff=1G Vt=0.5)
+.ic v(n1)={nom_voltage} v(n2)={nom_voltage}
+
+.ends esd_gen

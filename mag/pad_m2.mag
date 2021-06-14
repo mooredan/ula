@@ -1,0 +1,7675 @@
+magic
+tech amic5n
+timestamp 1608317707
+<< nwell >>
+rect 420 12750 8580 19620
+rect -90 11730 9090 12240
+rect -90 10380 9090 10890
+rect -90 3510 420 10380
+rect 8580 3510 9090 10380
+rect -90 3000 9090 3510
+<< ntransistor >>
+rect 1140 9510 4140 9600
+rect 1140 8190 4140 8280
+rect 1140 7560 4140 7650
+rect 1140 6240 4140 6330
+rect 1140 5610 4140 5700
+rect 1140 4290 4140 4380
+rect 4860 9510 7860 9600
+rect 4860 8190 7860 8280
+rect 4860 7560 7860 7650
+rect 4860 6240 7860 6330
+rect 4860 5610 7860 5700
+rect 4860 4290 7860 4380
+<< ptransistor >>
+rect 1140 18750 4140 18840
+rect 1140 17430 4140 17520
+rect 1140 16800 4140 16890
+rect 1140 15480 4140 15570
+rect 1140 14850 4140 14940
+rect 1140 13530 4140 13620
+rect 4860 18750 7860 18840
+rect 4860 17430 7860 17520
+rect 4860 16800 7860 16890
+rect 4860 15480 7860 15570
+rect 4860 14850 7860 14940
+rect 4860 13530 7860 13620
+<< ndiffusion >>
+rect 1080 9690 4200 9870
+rect 4800 9690 7920 9870
+rect 1140 9600 4140 9690
+rect 1140 8280 4140 9510
+rect 1140 7650 4140 8190
+rect 1140 6330 4140 7560
+rect 1140 5700 4140 6240
+rect 1140 4380 4140 5610
+rect 1140 4200 4140 4290
+rect 4860 9600 7860 9690
+rect 4860 8280 7860 9510
+rect 4860 7650 7860 8190
+rect 4860 6330 7860 7560
+rect 4860 5700 7860 6240
+rect 4860 4380 7860 5610
+rect 4860 4200 7860 4290
+rect 1080 4020 4200 4200
+rect 4800 4020 7920 4200
+<< pdiffusion >>
+rect 1080 18930 4200 19110
+rect 1140 18900 4200 18930
+rect 4800 18930 7920 19110
+rect 4800 18900 7860 18930
+rect 1140 18840 4140 18900
+rect 1140 17520 4140 18750
+rect 1140 16890 4140 17430
+rect 1140 15570 4140 16800
+rect 1140 14940 4140 15480
+rect 1140 13620 4140 14850
+rect 1140 13440 4140 13530
+rect 4860 18840 7860 18900
+rect 4860 17520 7860 18750
+rect 4860 16890 7860 17430
+rect 4860 15570 7860 16800
+rect 4860 14940 7860 15480
+rect 4860 13620 7860 14850
+rect 4860 13440 7860 13530
+rect 1080 13260 4200 13440
+rect 4800 13260 7920 13440
+<< psubstratepdiff >>
+rect 0 19710 9000 20040
+rect 0 12660 330 19710
+rect 8670 12660 9000 19710
+rect 0 12330 9000 12660
+rect 0 10980 9000 11310
+rect 570 9870 8430 10230
+rect 570 9690 1080 9870
+rect 4200 9690 4800 9870
+rect 7920 9690 8430 9870
+rect 570 4200 900 9690
+rect 4290 4200 4710 9690
+rect 8100 4200 8430 9690
+rect 570 4020 1080 4200
+rect 4200 4020 4800 4200
+rect 7920 4020 8430 4200
+rect 570 3660 8430 4020
+<< nsubstratendiff >>
+rect 570 19110 8430 19470
+rect 570 18930 1080 19110
+rect 570 13440 900 18930
+rect 4200 18900 4800 19110
+rect 7920 18930 8430 19110
+rect 4290 13440 4710 18900
+rect 8100 13440 8430 18930
+rect 570 13260 1080 13440
+rect 4200 13260 4800 13440
+rect 7920 13260 8430 13440
+rect 570 12900 8430 13260
+rect 0 11820 9000 12150
+rect 0 10470 9000 10800
+rect 0 3420 330 10470
+rect 8670 3420 9000 10470
+rect 0 3090 9000 3420
+<< polysilicon >>
+rect 930 18750 1140 18840
+rect 4140 18750 4260 18840
+rect 930 17520 1110 18750
+rect 4170 17520 4260 18750
+rect 930 17430 1140 17520
+rect 4140 17430 4260 17520
+rect 930 16890 1110 17430
+rect 4170 16890 4260 17430
+rect 930 16800 1140 16890
+rect 4140 16800 4260 16890
+rect 930 15570 1110 16800
+rect 4170 15570 4260 16800
+rect 930 15480 1140 15570
+rect 4140 15480 4260 15570
+rect 930 14940 1110 15480
+rect 4170 14940 4260 15480
+rect 930 14850 1140 14940
+rect 4140 14850 4260 14940
+rect 930 13620 1110 14850
+rect 4170 13620 4260 14850
+rect 930 13530 1140 13620
+rect 4140 13530 4260 13620
+rect 4740 18750 4860 18840
+rect 7860 18750 8070 18840
+rect 4740 17520 4830 18750
+rect 7890 17520 8070 18750
+rect 4740 17430 4860 17520
+rect 7860 17430 8070 17520
+rect 4740 16890 4830 17430
+rect 7890 16890 8070 17430
+rect 4740 16800 4860 16890
+rect 7860 16800 8070 16890
+rect 4740 15570 4830 16800
+rect 7890 15570 8070 16800
+rect 4740 15480 4860 15570
+rect 7860 15480 8070 15570
+rect 4740 14940 4830 15480
+rect 7890 14940 8070 15480
+rect 4740 14850 4860 14940
+rect 7860 14850 8070 14940
+rect 4740 13620 4830 14850
+rect 7890 13620 8070 14850
+rect 4740 13530 4860 13620
+rect 7860 13530 8070 13620
+rect 930 9510 1140 9600
+rect 4140 9510 4260 9600
+rect 930 8280 1110 9510
+rect 4170 8280 4260 9510
+rect 930 8190 1140 8280
+rect 4140 8190 4260 8280
+rect 930 7650 1110 8190
+rect 4170 7650 4260 8190
+rect 930 7560 1140 7650
+rect 4140 7560 4260 7650
+rect 930 6330 1110 7560
+rect 4170 6330 4260 7560
+rect 930 6240 1140 6330
+rect 4140 6240 4260 6330
+rect 930 5700 1110 6240
+rect 4170 5700 4260 6240
+rect 930 5610 1140 5700
+rect 4140 5610 4260 5700
+rect 930 4380 1110 5610
+rect 4170 4380 4260 5610
+rect 930 4290 1140 4380
+rect 4140 4290 4260 4380
+rect 4740 9510 4860 9600
+rect 7860 9510 8070 9600
+rect 4740 8280 4830 9510
+rect 7890 8280 8070 9510
+rect 4740 8190 4860 8280
+rect 7860 8190 8070 8280
+rect 4740 7650 4830 8190
+rect 7890 7650 8070 8190
+rect 4740 7560 4860 7650
+rect 7860 7560 8070 7650
+rect 4740 6330 4830 7560
+rect 7890 6330 8070 7560
+rect 4740 6240 4860 6330
+rect 7860 6240 8070 6330
+rect 4740 5700 4830 6240
+rect 7890 5700 8070 6240
+rect 4740 5610 4860 5700
+rect 7860 5610 8070 5700
+rect 4740 4380 4830 5610
+rect 7890 4380 8070 5610
+rect 4740 4290 4860 4380
+rect 7860 4290 8070 4380
+<< psubstratepcontact >>
+rect 35 19925 85 19975
+<< psubstratepcontact >>
+rect 275 19925 325 19975
+<< psubstratepcontact >>
+rect 515 19925 565 19975
+<< psubstratepcontact >>
+rect 755 19925 805 19975
+<< psubstratepcontact >>
+rect 995 19925 1045 19975
+<< psubstratepcontact >>
+rect 1235 19925 1285 19975
+<< psubstratepcontact >>
+rect 1475 19925 1525 19975
+<< psubstratepcontact >>
+rect 1715 19925 1765 19975
+<< psubstratepcontact >>
+rect 1955 19925 2005 19975
+<< psubstratepcontact >>
+rect 2195 19925 2245 19975
+<< psubstratepcontact >>
+rect 2435 19925 2485 19975
+<< psubstratepcontact >>
+rect 2675 19925 2725 19975
+<< psubstratepcontact >>
+rect 2915 19925 2965 19975
+<< psubstratepcontact >>
+rect 3155 19925 3205 19975
+<< psubstratepcontact >>
+rect 3395 19925 3445 19975
+<< psubstratepcontact >>
+rect 4475 19925 4525 19975
+<< psubstratepcontact >>
+rect 5555 19925 5605 19975
+<< psubstratepcontact >>
+rect 5795 19925 5845 19975
+<< psubstratepcontact >>
+rect 6035 19925 6085 19975
+<< psubstratepcontact >>
+rect 6275 19925 6325 19975
+<< psubstratepcontact >>
+rect 6515 19925 6565 19975
+<< psubstratepcontact >>
+rect 6755 19925 6805 19975
+<< psubstratepcontact >>
+rect 6995 19925 7045 19975
+<< psubstratepcontact >>
+rect 7235 19925 7285 19975
+<< psubstratepcontact >>
+rect 7475 19925 7525 19975
+<< psubstratepcontact >>
+rect 7715 19925 7765 19975
+<< psubstratepcontact >>
+rect 7955 19925 8005 19975
+<< psubstratepcontact >>
+rect 8195 19925 8245 19975
+<< psubstratepcontact >>
+rect 8435 19925 8485 19975
+<< psubstratepcontact >>
+rect 8675 19925 8725 19975
+<< psubstratepcontact >>
+rect 8915 19925 8965 19975
+<< psubstratepcontact >>
+rect 35 19775 85 19825
+<< psubstratepcontact >>
+rect 275 19775 325 19825
+<< psubstratepcontact >>
+rect 515 19775 565 19825
+<< psubstratepcontact >>
+rect 755 19775 805 19825
+<< psubstratepcontact >>
+rect 995 19775 1045 19825
+<< psubstratepcontact >>
+rect 1235 19775 1285 19825
+<< psubstratepcontact >>
+rect 1475 19775 1525 19825
+<< psubstratepcontact >>
+rect 1715 19775 1765 19825
+<< psubstratepcontact >>
+rect 1955 19775 2005 19825
+<< psubstratepcontact >>
+rect 2195 19775 2245 19825
+<< psubstratepcontact >>
+rect 2435 19775 2485 19825
+<< psubstratepcontact >>
+rect 2675 19775 2725 19825
+<< psubstratepcontact >>
+rect 2915 19775 2965 19825
+<< psubstratepcontact >>
+rect 3155 19775 3205 19825
+<< psubstratepcontact >>
+rect 3395 19775 3445 19825
+<< psubstratepcontact >>
+rect 4475 19775 4525 19825
+<< psubstratepcontact >>
+rect 5555 19775 5605 19825
+<< psubstratepcontact >>
+rect 5795 19775 5845 19825
+<< psubstratepcontact >>
+rect 6035 19775 6085 19825
+<< psubstratepcontact >>
+rect 6275 19775 6325 19825
+<< psubstratepcontact >>
+rect 6515 19775 6565 19825
+<< psubstratepcontact >>
+rect 6755 19775 6805 19825
+<< psubstratepcontact >>
+rect 6995 19775 7045 19825
+<< psubstratepcontact >>
+rect 7235 19775 7285 19825
+<< psubstratepcontact >>
+rect 7475 19775 7525 19825
+<< psubstratepcontact >>
+rect 7715 19775 7765 19825
+<< psubstratepcontact >>
+rect 7955 19775 8005 19825
+<< psubstratepcontact >>
+rect 8195 19775 8245 19825
+<< psubstratepcontact >>
+rect 8435 19775 8485 19825
+<< psubstratepcontact >>
+rect 8675 19775 8725 19825
+<< psubstratepcontact >>
+rect 8915 19775 8965 19825
+<< psubstratepcontact >>
+rect 65 19535 115 19585
+<< psubstratepcontact >>
+rect 215 19535 265 19585
+<< psubstratepcontact >>
+rect 8735 19535 8785 19585
+<< psubstratepcontact >>
+rect 8885 19535 8935 19585
+<< psubstratepcontact >>
+rect 65 19295 115 19345
+<< psubstratepcontact >>
+rect 215 19295 265 19345
+<< psubstratepcontact >>
+rect 8735 19295 8785 19345
+<< psubstratepcontact >>
+rect 8885 19295 8935 19345
+<< nsubstratencontact >>
+rect 1235 19235 1285 19285
+<< nsubstratencontact >>
+rect 1535 19235 1585 19285
+<< nsubstratencontact >>
+rect 1835 19235 1885 19285
+<< nsubstratencontact >>
+rect 2135 19235 2185 19285
+<< nsubstratencontact >>
+rect 2435 19235 2485 19285
+<< nsubstratencontact >>
+rect 2735 19235 2785 19285
+<< nsubstratencontact >>
+rect 3035 19235 3085 19285
+<< nsubstratencontact >>
+rect 3335 19235 3385 19285
+<< nsubstratencontact >>
+rect 5615 19235 5665 19285
+<< nsubstratencontact >>
+rect 5915 19235 5965 19285
+<< nsubstratencontact >>
+rect 6215 19235 6265 19285
+<< nsubstratencontact >>
+rect 6515 19235 6565 19285
+<< nsubstratencontact >>
+rect 6815 19235 6865 19285
+<< nsubstratencontact >>
+rect 7115 19235 7165 19285
+<< nsubstratencontact >>
+rect 7415 19235 7465 19285
+<< nsubstratencontact >>
+rect 7715 19235 7765 19285
+<< psubstratepcontact >>
+rect 65 19055 115 19105
+<< psubstratepcontact >>
+rect 215 19055 265 19105
+<< pdcontact >>
+rect 1235 19085 1285 19135
+<< pdcontact >>
+rect 1535 19085 1585 19135
+<< pdcontact >>
+rect 1835 19085 1885 19135
+<< pdcontact >>
+rect 2135 19085 2185 19135
+<< pdcontact >>
+rect 2435 19085 2485 19135
+<< pdcontact >>
+rect 2735 19085 2785 19135
+<< pdcontact >>
+rect 3035 19085 3085 19135
+<< pdcontact >>
+rect 3335 19085 3385 19135
+<< pdcontact >>
+rect 5615 19085 5665 19135
+<< pdcontact >>
+rect 5915 19085 5965 19135
+<< pdcontact >>
+rect 6215 19085 6265 19135
+<< pdcontact >>
+rect 6515 19085 6565 19135
+<< pdcontact >>
+rect 6815 19085 6865 19135
+<< pdcontact >>
+rect 7115 19085 7165 19135
+<< pdcontact >>
+rect 7415 19085 7465 19135
+<< pdcontact >>
+rect 7715 19085 7765 19135
+<< psubstratepcontact >>
+rect 8735 19055 8785 19105
+<< psubstratepcontact >>
+rect 8885 19055 8935 19105
+<< pdcontact >>
+rect 1235 18935 1285 18985
+<< pdcontact >>
+rect 1535 18935 1585 18985
+<< pdcontact >>
+rect 1835 18935 1885 18985
+<< pdcontact >>
+rect 2135 18935 2185 18985
+<< pdcontact >>
+rect 2435 18935 2485 18985
+<< pdcontact >>
+rect 2735 18935 2785 18985
+<< pdcontact >>
+rect 3035 18935 3085 18985
+<< pdcontact >>
+rect 3335 18935 3385 18985
+<< pdcontact >>
+rect 5615 18935 5665 18985
+<< pdcontact >>
+rect 5915 18935 5965 18985
+<< pdcontact >>
+rect 6215 18935 6265 18985
+<< pdcontact >>
+rect 6515 18935 6565 18985
+<< pdcontact >>
+rect 6815 18935 6865 18985
+<< pdcontact >>
+rect 7115 18935 7165 18985
+<< pdcontact >>
+rect 7415 18935 7465 18985
+<< pdcontact >>
+rect 7715 18935 7765 18985
+<< psubstratepcontact >>
+rect 65 18815 115 18865
+<< psubstratepcontact >>
+rect 215 18815 265 18865
+<< nsubstratencontact >>
+rect 605 18785 655 18835
+<< nsubstratencontact >>
+rect 755 18785 805 18835
+<< nsubstratencontact >>
+rect 4475 18785 4525 18835
+<< nsubstratencontact >>
+rect 8195 18785 8245 18835
+<< nsubstratencontact >>
+rect 8345 18785 8395 18835
+<< psubstratepcontact >>
+rect 8735 18815 8785 18865
+<< psubstratepcontact >>
+rect 8885 18815 8935 18865
+<< polycontact >>
+rect 995 18695 1045 18745
+<< polycontact >>
+rect 7955 18695 8005 18745
+<< nsubstratencontact >>
+rect 605 18635 655 18685
+<< nsubstratencontact >>
+rect 755 18635 805 18685
+<< pdcontact >>
+rect 1265 18635 1315 18685
+<< pdcontact >>
+rect 1415 18635 1465 18685
+<< pdcontact >>
+rect 1565 18635 1615 18685
+<< pdcontact >>
+rect 1715 18635 1765 18685
+<< pdcontact >>
+rect 1865 18635 1915 18685
+<< pdcontact >>
+rect 2015 18635 2065 18685
+<< pdcontact >>
+rect 2165 18635 2215 18685
+<< pdcontact >>
+rect 2315 18635 2365 18685
+<< pdcontact >>
+rect 2465 18635 2515 18685
+<< pdcontact >>
+rect 2615 18635 2665 18685
+<< pdcontact >>
+rect 2765 18635 2815 18685
+<< pdcontact >>
+rect 2915 18635 2965 18685
+<< pdcontact >>
+rect 3065 18635 3115 18685
+<< pdcontact >>
+rect 3215 18635 3265 18685
+<< pdcontact >>
+rect 3365 18635 3415 18685
+<< pdcontact >>
+rect 3515 18635 3565 18685
+<< pdcontact >>
+rect 3665 18635 3715 18685
+<< pdcontact >>
+rect 3815 18635 3865 18685
+<< pdcontact >>
+rect 3965 18635 4015 18685
+<< nsubstratencontact >>
+rect 4475 18635 4525 18685
+<< pdcontact >>
+rect 4985 18635 5035 18685
+<< pdcontact >>
+rect 5135 18635 5185 18685
+<< pdcontact >>
+rect 5285 18635 5335 18685
+<< pdcontact >>
+rect 5435 18635 5485 18685
+<< pdcontact >>
+rect 5585 18635 5635 18685
+<< pdcontact >>
+rect 5735 18635 5785 18685
+<< pdcontact >>
+rect 5885 18635 5935 18685
+<< pdcontact >>
+rect 6035 18635 6085 18685
+<< pdcontact >>
+rect 6185 18635 6235 18685
+<< pdcontact >>
+rect 6335 18635 6385 18685
+<< pdcontact >>
+rect 6485 18635 6535 18685
+<< pdcontact >>
+rect 6635 18635 6685 18685
+<< pdcontact >>
+rect 6785 18635 6835 18685
+<< pdcontact >>
+rect 6935 18635 6985 18685
+<< pdcontact >>
+rect 7085 18635 7135 18685
+<< pdcontact >>
+rect 7235 18635 7285 18685
+<< pdcontact >>
+rect 7385 18635 7435 18685
+<< pdcontact >>
+rect 7535 18635 7585 18685
+<< pdcontact >>
+rect 7685 18635 7735 18685
+<< nsubstratencontact >>
+rect 8195 18635 8245 18685
+<< nsubstratencontact >>
+rect 8345 18635 8395 18685
+<< psubstratepcontact >>
+rect 65 18575 115 18625
+<< psubstratepcontact >>
+rect 215 18575 265 18625
+<< polycontact >>
+rect 995 18545 1045 18595
+<< polycontact >>
+rect 7955 18545 8005 18595
+<< psubstratepcontact >>
+rect 8735 18575 8785 18625
+<< psubstratepcontact >>
+rect 8885 18575 8935 18625
+<< nsubstratencontact >>
+rect 605 18485 655 18535
+<< nsubstratencontact >>
+rect 755 18485 805 18535
+<< pdcontact >>
+rect 1265 18485 1315 18535
+<< pdcontact >>
+rect 1415 18485 1465 18535
+<< pdcontact >>
+rect 1565 18485 1615 18535
+<< pdcontact >>
+rect 1715 18485 1765 18535
+<< pdcontact >>
+rect 1865 18485 1915 18535
+<< pdcontact >>
+rect 2015 18485 2065 18535
+<< pdcontact >>
+rect 2165 18485 2215 18535
+<< pdcontact >>
+rect 2315 18485 2365 18535
+<< pdcontact >>
+rect 2465 18485 2515 18535
+<< pdcontact >>
+rect 2615 18485 2665 18535
+<< pdcontact >>
+rect 2765 18485 2815 18535
+<< pdcontact >>
+rect 2915 18485 2965 18535
+<< pdcontact >>
+rect 3065 18485 3115 18535
+<< pdcontact >>
+rect 3215 18485 3265 18535
+<< pdcontact >>
+rect 3365 18485 3415 18535
+<< pdcontact >>
+rect 3515 18485 3565 18535
+<< pdcontact >>
+rect 3665 18485 3715 18535
+<< pdcontact >>
+rect 3815 18485 3865 18535
+<< pdcontact >>
+rect 3965 18485 4015 18535
+<< nsubstratencontact >>
+rect 4475 18485 4525 18535
+<< pdcontact >>
+rect 4985 18485 5035 18535
+<< pdcontact >>
+rect 5135 18485 5185 18535
+<< pdcontact >>
+rect 5285 18485 5335 18535
+<< pdcontact >>
+rect 5435 18485 5485 18535
+<< pdcontact >>
+rect 5585 18485 5635 18535
+<< pdcontact >>
+rect 5735 18485 5785 18535
+<< pdcontact >>
+rect 5885 18485 5935 18535
+<< pdcontact >>
+rect 6035 18485 6085 18535
+<< pdcontact >>
+rect 6185 18485 6235 18535
+<< pdcontact >>
+rect 6335 18485 6385 18535
+<< pdcontact >>
+rect 6485 18485 6535 18535
+<< pdcontact >>
+rect 6635 18485 6685 18535
+<< pdcontact >>
+rect 6785 18485 6835 18535
+<< pdcontact >>
+rect 6935 18485 6985 18535
+<< pdcontact >>
+rect 7085 18485 7135 18535
+<< pdcontact >>
+rect 7235 18485 7285 18535
+<< pdcontact >>
+rect 7385 18485 7435 18535
+<< pdcontact >>
+rect 7535 18485 7585 18535
+<< pdcontact >>
+rect 7685 18485 7735 18535
+<< nsubstratencontact >>
+rect 8195 18485 8245 18535
+<< nsubstratencontact >>
+rect 8345 18485 8395 18535
+<< polycontact >>
+rect 995 18395 1045 18445
+<< polycontact >>
+rect 7955 18395 8005 18445
+<< psubstratepcontact >>
+rect 65 18335 115 18385
+<< psubstratepcontact >>
+rect 215 18335 265 18385
+<< nsubstratencontact >>
+rect 605 18335 655 18385
+<< nsubstratencontact >>
+rect 755 18335 805 18385
+<< pdcontact >>
+rect 1265 18335 1315 18385
+<< pdcontact >>
+rect 1415 18335 1465 18385
+<< pdcontact >>
+rect 1565 18335 1615 18385
+<< pdcontact >>
+rect 1715 18335 1765 18385
+<< pdcontact >>
+rect 1865 18335 1915 18385
+<< pdcontact >>
+rect 2015 18335 2065 18385
+<< pdcontact >>
+rect 2165 18335 2215 18385
+<< pdcontact >>
+rect 2315 18335 2365 18385
+<< pdcontact >>
+rect 2465 18335 2515 18385
+<< pdcontact >>
+rect 2615 18335 2665 18385
+<< pdcontact >>
+rect 2765 18335 2815 18385
+<< pdcontact >>
+rect 2915 18335 2965 18385
+<< pdcontact >>
+rect 3065 18335 3115 18385
+<< pdcontact >>
+rect 3215 18335 3265 18385
+<< pdcontact >>
+rect 3365 18335 3415 18385
+<< pdcontact >>
+rect 3515 18335 3565 18385
+<< pdcontact >>
+rect 3665 18335 3715 18385
+<< pdcontact >>
+rect 3815 18335 3865 18385
+<< pdcontact >>
+rect 3965 18335 4015 18385
+<< nsubstratencontact >>
+rect 4475 18335 4525 18385
+<< pdcontact >>
+rect 4985 18335 5035 18385
+<< pdcontact >>
+rect 5135 18335 5185 18385
+<< pdcontact >>
+rect 5285 18335 5335 18385
+<< pdcontact >>
+rect 5435 18335 5485 18385
+<< pdcontact >>
+rect 5585 18335 5635 18385
+<< pdcontact >>
+rect 5735 18335 5785 18385
+<< pdcontact >>
+rect 5885 18335 5935 18385
+<< pdcontact >>
+rect 6035 18335 6085 18385
+<< pdcontact >>
+rect 6185 18335 6235 18385
+<< pdcontact >>
+rect 6335 18335 6385 18385
+<< pdcontact >>
+rect 6485 18335 6535 18385
+<< pdcontact >>
+rect 6635 18335 6685 18385
+<< pdcontact >>
+rect 6785 18335 6835 18385
+<< pdcontact >>
+rect 6935 18335 6985 18385
+<< pdcontact >>
+rect 7085 18335 7135 18385
+<< pdcontact >>
+rect 7235 18335 7285 18385
+<< pdcontact >>
+rect 7385 18335 7435 18385
+<< pdcontact >>
+rect 7535 18335 7585 18385
+<< pdcontact >>
+rect 7685 18335 7735 18385
+<< nsubstratencontact >>
+rect 8195 18335 8245 18385
+<< nsubstratencontact >>
+rect 8345 18335 8395 18385
+<< psubstratepcontact >>
+rect 8735 18335 8785 18385
+<< psubstratepcontact >>
+rect 8885 18335 8935 18385
+<< polycontact >>
+rect 995 18245 1045 18295
+<< polycontact >>
+rect 7955 18245 8005 18295
+<< nsubstratencontact >>
+rect 605 18185 655 18235
+<< nsubstratencontact >>
+rect 755 18185 805 18235
+<< pdcontact >>
+rect 1265 18185 1315 18235
+<< pdcontact >>
+rect 1415 18185 1465 18235
+<< pdcontact >>
+rect 1565 18185 1615 18235
+<< pdcontact >>
+rect 1715 18185 1765 18235
+<< pdcontact >>
+rect 1865 18185 1915 18235
+<< pdcontact >>
+rect 2015 18185 2065 18235
+<< pdcontact >>
+rect 2165 18185 2215 18235
+<< pdcontact >>
+rect 2315 18185 2365 18235
+<< pdcontact >>
+rect 2465 18185 2515 18235
+<< pdcontact >>
+rect 2615 18185 2665 18235
+<< pdcontact >>
+rect 2765 18185 2815 18235
+<< pdcontact >>
+rect 2915 18185 2965 18235
+<< pdcontact >>
+rect 3065 18185 3115 18235
+<< pdcontact >>
+rect 3215 18185 3265 18235
+<< pdcontact >>
+rect 3365 18185 3415 18235
+<< pdcontact >>
+rect 3515 18185 3565 18235
+<< pdcontact >>
+rect 3665 18185 3715 18235
+<< pdcontact >>
+rect 3815 18185 3865 18235
+<< pdcontact >>
+rect 3965 18185 4015 18235
+<< nsubstratencontact >>
+rect 4475 18185 4525 18235
+<< pdcontact >>
+rect 4985 18185 5035 18235
+<< pdcontact >>
+rect 5135 18185 5185 18235
+<< pdcontact >>
+rect 5285 18185 5335 18235
+<< pdcontact >>
+rect 5435 18185 5485 18235
+<< pdcontact >>
+rect 5585 18185 5635 18235
+<< pdcontact >>
+rect 5735 18185 5785 18235
+<< pdcontact >>
+rect 5885 18185 5935 18235
+<< pdcontact >>
+rect 6035 18185 6085 18235
+<< pdcontact >>
+rect 6185 18185 6235 18235
+<< pdcontact >>
+rect 6335 18185 6385 18235
+<< pdcontact >>
+rect 6485 18185 6535 18235
+<< pdcontact >>
+rect 6635 18185 6685 18235
+<< pdcontact >>
+rect 6785 18185 6835 18235
+<< pdcontact >>
+rect 6935 18185 6985 18235
+<< pdcontact >>
+rect 7085 18185 7135 18235
+<< pdcontact >>
+rect 7235 18185 7285 18235
+<< pdcontact >>
+rect 7385 18185 7435 18235
+<< pdcontact >>
+rect 7535 18185 7585 18235
+<< pdcontact >>
+rect 7685 18185 7735 18235
+<< nsubstratencontact >>
+rect 8195 18185 8245 18235
+<< nsubstratencontact >>
+rect 8345 18185 8395 18235
+<< psubstratepcontact >>
+rect 65 18095 115 18145
+<< psubstratepcontact >>
+rect 215 18095 265 18145
+<< polycontact >>
+rect 995 18095 1045 18145
+<< polycontact >>
+rect 7955 18095 8005 18145
+<< psubstratepcontact >>
+rect 8735 18095 8785 18145
+<< psubstratepcontact >>
+rect 8885 18095 8935 18145
+<< nsubstratencontact >>
+rect 605 18035 655 18085
+<< nsubstratencontact >>
+rect 755 18035 805 18085
+<< pdcontact >>
+rect 1265 18035 1315 18085
+<< pdcontact >>
+rect 1415 18035 1465 18085
+<< pdcontact >>
+rect 1565 18035 1615 18085
+<< pdcontact >>
+rect 1715 18035 1765 18085
+<< pdcontact >>
+rect 1865 18035 1915 18085
+<< pdcontact >>
+rect 2015 18035 2065 18085
+<< pdcontact >>
+rect 2165 18035 2215 18085
+<< pdcontact >>
+rect 2315 18035 2365 18085
+<< pdcontact >>
+rect 2465 18035 2515 18085
+<< pdcontact >>
+rect 2615 18035 2665 18085
+<< pdcontact >>
+rect 2765 18035 2815 18085
+<< pdcontact >>
+rect 2915 18035 2965 18085
+<< pdcontact >>
+rect 3065 18035 3115 18085
+<< pdcontact >>
+rect 3215 18035 3265 18085
+<< pdcontact >>
+rect 3365 18035 3415 18085
+<< pdcontact >>
+rect 3515 18035 3565 18085
+<< pdcontact >>
+rect 3665 18035 3715 18085
+<< pdcontact >>
+rect 3815 18035 3865 18085
+<< pdcontact >>
+rect 3965 18035 4015 18085
+<< nsubstratencontact >>
+rect 4475 18035 4525 18085
+<< pdcontact >>
+rect 4985 18035 5035 18085
+<< pdcontact >>
+rect 5135 18035 5185 18085
+<< pdcontact >>
+rect 5285 18035 5335 18085
+<< pdcontact >>
+rect 5435 18035 5485 18085
+<< pdcontact >>
+rect 5585 18035 5635 18085
+<< pdcontact >>
+rect 5735 18035 5785 18085
+<< pdcontact >>
+rect 5885 18035 5935 18085
+<< pdcontact >>
+rect 6035 18035 6085 18085
+<< pdcontact >>
+rect 6185 18035 6235 18085
+<< pdcontact >>
+rect 6335 18035 6385 18085
+<< pdcontact >>
+rect 6485 18035 6535 18085
+<< pdcontact >>
+rect 6635 18035 6685 18085
+<< pdcontact >>
+rect 6785 18035 6835 18085
+<< pdcontact >>
+rect 6935 18035 6985 18085
+<< pdcontact >>
+rect 7085 18035 7135 18085
+<< pdcontact >>
+rect 7235 18035 7285 18085
+<< pdcontact >>
+rect 7385 18035 7435 18085
+<< pdcontact >>
+rect 7535 18035 7585 18085
+<< pdcontact >>
+rect 7685 18035 7735 18085
+<< nsubstratencontact >>
+rect 8195 18035 8245 18085
+<< nsubstratencontact >>
+rect 8345 18035 8395 18085
+<< polycontact >>
+rect 995 17945 1045 17995
+<< polycontact >>
+rect 7955 17945 8005 17995
+<< psubstratepcontact >>
+rect 65 17855 115 17905
+<< psubstratepcontact >>
+rect 215 17855 265 17905
+<< nsubstratencontact >>
+rect 605 17885 655 17935
+<< nsubstratencontact >>
+rect 755 17885 805 17935
+<< pdcontact >>
+rect 1265 17885 1315 17935
+<< pdcontact >>
+rect 1415 17885 1465 17935
+<< pdcontact >>
+rect 1565 17885 1615 17935
+<< pdcontact >>
+rect 1715 17885 1765 17935
+<< pdcontact >>
+rect 1865 17885 1915 17935
+<< pdcontact >>
+rect 2015 17885 2065 17935
+<< pdcontact >>
+rect 2165 17885 2215 17935
+<< pdcontact >>
+rect 2315 17885 2365 17935
+<< pdcontact >>
+rect 2465 17885 2515 17935
+<< pdcontact >>
+rect 2615 17885 2665 17935
+<< pdcontact >>
+rect 2765 17885 2815 17935
+<< pdcontact >>
+rect 2915 17885 2965 17935
+<< pdcontact >>
+rect 3065 17885 3115 17935
+<< pdcontact >>
+rect 3215 17885 3265 17935
+<< pdcontact >>
+rect 3365 17885 3415 17935
+<< pdcontact >>
+rect 3515 17885 3565 17935
+<< pdcontact >>
+rect 3665 17885 3715 17935
+<< pdcontact >>
+rect 3815 17885 3865 17935
+<< pdcontact >>
+rect 3965 17885 4015 17935
+<< nsubstratencontact >>
+rect 4475 17885 4525 17935
+<< pdcontact >>
+rect 4985 17885 5035 17935
+<< pdcontact >>
+rect 5135 17885 5185 17935
+<< pdcontact >>
+rect 5285 17885 5335 17935
+<< pdcontact >>
+rect 5435 17885 5485 17935
+<< pdcontact >>
+rect 5585 17885 5635 17935
+<< pdcontact >>
+rect 5735 17885 5785 17935
+<< pdcontact >>
+rect 5885 17885 5935 17935
+<< pdcontact >>
+rect 6035 17885 6085 17935
+<< pdcontact >>
+rect 6185 17885 6235 17935
+<< pdcontact >>
+rect 6335 17885 6385 17935
+<< pdcontact >>
+rect 6485 17885 6535 17935
+<< pdcontact >>
+rect 6635 17885 6685 17935
+<< pdcontact >>
+rect 6785 17885 6835 17935
+<< pdcontact >>
+rect 6935 17885 6985 17935
+<< pdcontact >>
+rect 7085 17885 7135 17935
+<< pdcontact >>
+rect 7235 17885 7285 17935
+<< pdcontact >>
+rect 7385 17885 7435 17935
+<< pdcontact >>
+rect 7535 17885 7585 17935
+<< pdcontact >>
+rect 7685 17885 7735 17935
+<< nsubstratencontact >>
+rect 8195 17885 8245 17935
+<< nsubstratencontact >>
+rect 8345 17885 8395 17935
+<< psubstratepcontact >>
+rect 8735 17855 8785 17905
+<< psubstratepcontact >>
+rect 8885 17855 8935 17905
+<< polycontact >>
+rect 995 17795 1045 17845
+<< polycontact >>
+rect 7955 17795 8005 17845
+<< nsubstratencontact >>
+rect 605 17735 655 17785
+<< nsubstratencontact >>
+rect 755 17735 805 17785
+<< pdcontact >>
+rect 1265 17735 1315 17785
+<< pdcontact >>
+rect 1415 17735 1465 17785
+<< pdcontact >>
+rect 1565 17735 1615 17785
+<< pdcontact >>
+rect 1715 17735 1765 17785
+<< pdcontact >>
+rect 1865 17735 1915 17785
+<< pdcontact >>
+rect 2015 17735 2065 17785
+<< pdcontact >>
+rect 2165 17735 2215 17785
+<< pdcontact >>
+rect 2315 17735 2365 17785
+<< pdcontact >>
+rect 2465 17735 2515 17785
+<< pdcontact >>
+rect 2615 17735 2665 17785
+<< pdcontact >>
+rect 2765 17735 2815 17785
+<< pdcontact >>
+rect 2915 17735 2965 17785
+<< pdcontact >>
+rect 3065 17735 3115 17785
+<< pdcontact >>
+rect 3215 17735 3265 17785
+<< pdcontact >>
+rect 3365 17735 3415 17785
+<< pdcontact >>
+rect 3515 17735 3565 17785
+<< pdcontact >>
+rect 3665 17735 3715 17785
+<< pdcontact >>
+rect 3815 17735 3865 17785
+<< pdcontact >>
+rect 3965 17735 4015 17785
+<< nsubstratencontact >>
+rect 4475 17735 4525 17785
+<< pdcontact >>
+rect 4985 17735 5035 17785
+<< pdcontact >>
+rect 5135 17735 5185 17785
+<< pdcontact >>
+rect 5285 17735 5335 17785
+<< pdcontact >>
+rect 5435 17735 5485 17785
+<< pdcontact >>
+rect 5585 17735 5635 17785
+<< pdcontact >>
+rect 5735 17735 5785 17785
+<< pdcontact >>
+rect 5885 17735 5935 17785
+<< pdcontact >>
+rect 6035 17735 6085 17785
+<< pdcontact >>
+rect 6185 17735 6235 17785
+<< pdcontact >>
+rect 6335 17735 6385 17785
+<< pdcontact >>
+rect 6485 17735 6535 17785
+<< pdcontact >>
+rect 6635 17735 6685 17785
+<< pdcontact >>
+rect 6785 17735 6835 17785
+<< pdcontact >>
+rect 6935 17735 6985 17785
+<< pdcontact >>
+rect 7085 17735 7135 17785
+<< pdcontact >>
+rect 7235 17735 7285 17785
+<< pdcontact >>
+rect 7385 17735 7435 17785
+<< pdcontact >>
+rect 7535 17735 7585 17785
+<< pdcontact >>
+rect 7685 17735 7735 17785
+<< nsubstratencontact >>
+rect 8195 17735 8245 17785
+<< nsubstratencontact >>
+rect 8345 17735 8395 17785
+<< psubstratepcontact >>
+rect 65 17615 115 17665
+<< psubstratepcontact >>
+rect 215 17615 265 17665
+<< polycontact >>
+rect 995 17645 1045 17695
+<< polycontact >>
+rect 7955 17645 8005 17695
+<< nsubstratencontact >>
+rect 605 17585 655 17635
+<< nsubstratencontact >>
+rect 755 17585 805 17635
+<< pdcontact >>
+rect 1265 17585 1315 17635
+<< pdcontact >>
+rect 1415 17585 1465 17635
+<< pdcontact >>
+rect 1565 17585 1615 17635
+<< pdcontact >>
+rect 1715 17585 1765 17635
+<< pdcontact >>
+rect 1865 17585 1915 17635
+<< pdcontact >>
+rect 2015 17585 2065 17635
+<< pdcontact >>
+rect 2165 17585 2215 17635
+<< pdcontact >>
+rect 2315 17585 2365 17635
+<< pdcontact >>
+rect 2465 17585 2515 17635
+<< pdcontact >>
+rect 2615 17585 2665 17635
+<< pdcontact >>
+rect 2765 17585 2815 17635
+<< pdcontact >>
+rect 2915 17585 2965 17635
+<< pdcontact >>
+rect 3065 17585 3115 17635
+<< pdcontact >>
+rect 3215 17585 3265 17635
+<< pdcontact >>
+rect 3365 17585 3415 17635
+<< pdcontact >>
+rect 3515 17585 3565 17635
+<< pdcontact >>
+rect 3665 17585 3715 17635
+<< pdcontact >>
+rect 3815 17585 3865 17635
+<< pdcontact >>
+rect 3965 17585 4015 17635
+<< nsubstratencontact >>
+rect 4475 17585 4525 17635
+<< pdcontact >>
+rect 4985 17585 5035 17635
+<< pdcontact >>
+rect 5135 17585 5185 17635
+<< pdcontact >>
+rect 5285 17585 5335 17635
+<< pdcontact >>
+rect 5435 17585 5485 17635
+<< pdcontact >>
+rect 5585 17585 5635 17635
+<< pdcontact >>
+rect 5735 17585 5785 17635
+<< pdcontact >>
+rect 5885 17585 5935 17635
+<< pdcontact >>
+rect 6035 17585 6085 17635
+<< pdcontact >>
+rect 6185 17585 6235 17635
+<< pdcontact >>
+rect 6335 17585 6385 17635
+<< pdcontact >>
+rect 6485 17585 6535 17635
+<< pdcontact >>
+rect 6635 17585 6685 17635
+<< pdcontact >>
+rect 6785 17585 6835 17635
+<< pdcontact >>
+rect 6935 17585 6985 17635
+<< pdcontact >>
+rect 7085 17585 7135 17635
+<< pdcontact >>
+rect 7235 17585 7285 17635
+<< pdcontact >>
+rect 7385 17585 7435 17635
+<< pdcontact >>
+rect 7535 17585 7585 17635
+<< pdcontact >>
+rect 7685 17585 7735 17635
+<< nsubstratencontact >>
+rect 8195 17585 8245 17635
+<< nsubstratencontact >>
+rect 8345 17585 8395 17635
+<< psubstratepcontact >>
+rect 8735 17615 8785 17665
+<< psubstratepcontact >>
+rect 8885 17615 8935 17665
+<< polycontact >>
+rect 995 17495 1045 17545
+<< polycontact >>
+rect 7955 17495 8005 17545
+<< nsubstratencontact >>
+rect 605 17435 655 17485
+<< nsubstratencontact >>
+rect 755 17435 805 17485
+<< nsubstratencontact >>
+rect 4475 17435 4525 17485
+<< nsubstratencontact >>
+rect 8195 17435 8245 17485
+<< nsubstratencontact >>
+rect 8345 17435 8395 17485
+<< psubstratepcontact >>
+rect 65 17375 115 17425
+<< psubstratepcontact >>
+rect 215 17375 265 17425
+<< polycontact >>
+rect 995 17345 1045 17395
+<< polycontact >>
+rect 7955 17345 8005 17395
+<< psubstratepcontact >>
+rect 8735 17375 8785 17425
+<< psubstratepcontact >>
+rect 8885 17375 8935 17425
+<< pdcontact >>
+rect 1235 17285 1285 17335
+<< pdcontact >>
+rect 1535 17285 1585 17335
+<< pdcontact >>
+rect 1835 17285 1885 17335
+<< pdcontact >>
+rect 2135 17285 2185 17335
+<< pdcontact >>
+rect 2435 17285 2485 17335
+<< pdcontact >>
+rect 2735 17285 2785 17335
+<< pdcontact >>
+rect 3035 17285 3085 17335
+<< pdcontact >>
+rect 3335 17285 3385 17335
+<< pdcontact >>
+rect 5615 17285 5665 17335
+<< pdcontact >>
+rect 5915 17285 5965 17335
+<< pdcontact >>
+rect 6215 17285 6265 17335
+<< pdcontact >>
+rect 6515 17285 6565 17335
+<< pdcontact >>
+rect 6815 17285 6865 17335
+<< pdcontact >>
+rect 7115 17285 7165 17335
+<< pdcontact >>
+rect 7415 17285 7465 17335
+<< pdcontact >>
+rect 7715 17285 7765 17335
+<< polycontact >>
+rect 995 17195 1045 17245
+<< polycontact >>
+rect 7955 17195 8005 17245
+<< psubstratepcontact >>
+rect 65 17135 115 17185
+<< psubstratepcontact >>
+rect 215 17135 265 17185
+<< pdcontact >>
+rect 1235 17135 1285 17185
+<< pdcontact >>
+rect 1535 17135 1585 17185
+<< pdcontact >>
+rect 1835 17135 1885 17185
+<< pdcontact >>
+rect 2135 17135 2185 17185
+<< pdcontact >>
+rect 2435 17135 2485 17185
+<< pdcontact >>
+rect 2735 17135 2785 17185
+<< pdcontact >>
+rect 3035 17135 3085 17185
+<< pdcontact >>
+rect 3335 17135 3385 17185
+<< pdcontact >>
+rect 5615 17135 5665 17185
+<< pdcontact >>
+rect 5915 17135 5965 17185
+<< pdcontact >>
+rect 6215 17135 6265 17185
+<< pdcontact >>
+rect 6515 17135 6565 17185
+<< pdcontact >>
+rect 6815 17135 6865 17185
+<< pdcontact >>
+rect 7115 17135 7165 17185
+<< pdcontact >>
+rect 7415 17135 7465 17185
+<< pdcontact >>
+rect 7715 17135 7765 17185
+<< psubstratepcontact >>
+rect 8735 17135 8785 17185
+<< psubstratepcontact >>
+rect 8885 17135 8935 17185
+<< polycontact >>
+rect 995 17045 1045 17095
+<< polycontact >>
+rect 7955 17045 8005 17095
+<< pdcontact >>
+rect 1235 16985 1285 17035
+<< pdcontact >>
+rect 1535 16985 1585 17035
+<< pdcontact >>
+rect 1835 16985 1885 17035
+<< pdcontact >>
+rect 2135 16985 2185 17035
+<< pdcontact >>
+rect 2435 16985 2485 17035
+<< pdcontact >>
+rect 2735 16985 2785 17035
+<< pdcontact >>
+rect 3035 16985 3085 17035
+<< pdcontact >>
+rect 3335 16985 3385 17035
+<< pdcontact >>
+rect 5615 16985 5665 17035
+<< pdcontact >>
+rect 5915 16985 5965 17035
+<< pdcontact >>
+rect 6215 16985 6265 17035
+<< pdcontact >>
+rect 6515 16985 6565 17035
+<< pdcontact >>
+rect 6815 16985 6865 17035
+<< pdcontact >>
+rect 7115 16985 7165 17035
+<< pdcontact >>
+rect 7415 16985 7465 17035
+<< pdcontact >>
+rect 7715 16985 7765 17035
+<< psubstratepcontact >>
+rect 65 16895 115 16945
+<< psubstratepcontact >>
+rect 215 16895 265 16945
+<< polycontact >>
+rect 995 16895 1045 16945
+<< polycontact >>
+rect 7955 16895 8005 16945
+<< psubstratepcontact >>
+rect 8735 16895 8785 16945
+<< psubstratepcontact >>
+rect 8885 16895 8935 16945
+<< nsubstratencontact >>
+rect 605 16835 655 16885
+<< nsubstratencontact >>
+rect 755 16835 805 16885
+<< nsubstratencontact >>
+rect 4475 16835 4525 16885
+<< nsubstratencontact >>
+rect 8195 16835 8245 16885
+<< nsubstratencontact >>
+rect 8345 16835 8395 16885
+<< polycontact >>
+rect 995 16745 1045 16795
+<< polycontact >>
+rect 7955 16745 8005 16795
+<< psubstratepcontact >>
+rect 65 16655 115 16705
+<< psubstratepcontact >>
+rect 215 16655 265 16705
+<< nsubstratencontact >>
+rect 605 16685 655 16735
+<< nsubstratencontact >>
+rect 755 16685 805 16735
+<< pdcontact >>
+rect 1265 16685 1315 16735
+<< pdcontact >>
+rect 1415 16685 1465 16735
+<< pdcontact >>
+rect 1565 16685 1615 16735
+<< pdcontact >>
+rect 1715 16685 1765 16735
+<< pdcontact >>
+rect 1865 16685 1915 16735
+<< pdcontact >>
+rect 2015 16685 2065 16735
+<< pdcontact >>
+rect 2165 16685 2215 16735
+<< pdcontact >>
+rect 2315 16685 2365 16735
+<< pdcontact >>
+rect 2465 16685 2515 16735
+<< pdcontact >>
+rect 2615 16685 2665 16735
+<< pdcontact >>
+rect 2765 16685 2815 16735
+<< pdcontact >>
+rect 2915 16685 2965 16735
+<< pdcontact >>
+rect 3065 16685 3115 16735
+<< pdcontact >>
+rect 3215 16685 3265 16735
+<< pdcontact >>
+rect 3365 16685 3415 16735
+<< pdcontact >>
+rect 3515 16685 3565 16735
+<< pdcontact >>
+rect 3665 16685 3715 16735
+<< pdcontact >>
+rect 3815 16685 3865 16735
+<< pdcontact >>
+rect 3965 16685 4015 16735
+<< nsubstratencontact >>
+rect 4475 16685 4525 16735
+<< pdcontact >>
+rect 4985 16685 5035 16735
+<< pdcontact >>
+rect 5135 16685 5185 16735
+<< pdcontact >>
+rect 5285 16685 5335 16735
+<< pdcontact >>
+rect 5435 16685 5485 16735
+<< pdcontact >>
+rect 5585 16685 5635 16735
+<< pdcontact >>
+rect 5735 16685 5785 16735
+<< pdcontact >>
+rect 5885 16685 5935 16735
+<< pdcontact >>
+rect 6035 16685 6085 16735
+<< pdcontact >>
+rect 6185 16685 6235 16735
+<< pdcontact >>
+rect 6335 16685 6385 16735
+<< pdcontact >>
+rect 6485 16685 6535 16735
+<< pdcontact >>
+rect 6635 16685 6685 16735
+<< pdcontact >>
+rect 6785 16685 6835 16735
+<< pdcontact >>
+rect 6935 16685 6985 16735
+<< pdcontact >>
+rect 7085 16685 7135 16735
+<< pdcontact >>
+rect 7235 16685 7285 16735
+<< pdcontact >>
+rect 7385 16685 7435 16735
+<< pdcontact >>
+rect 7535 16685 7585 16735
+<< pdcontact >>
+rect 7685 16685 7735 16735
+<< nsubstratencontact >>
+rect 8195 16685 8245 16735
+<< nsubstratencontact >>
+rect 8345 16685 8395 16735
+<< psubstratepcontact >>
+rect 8735 16655 8785 16705
+<< psubstratepcontact >>
+rect 8885 16655 8935 16705
+<< polycontact >>
+rect 995 16595 1045 16645
+<< polycontact >>
+rect 7955 16595 8005 16645
+<< nsubstratencontact >>
+rect 605 16535 655 16585
+<< nsubstratencontact >>
+rect 755 16535 805 16585
+<< pdcontact >>
+rect 1265 16535 1315 16585
+<< pdcontact >>
+rect 1415 16535 1465 16585
+<< pdcontact >>
+rect 1565 16535 1615 16585
+<< pdcontact >>
+rect 1715 16535 1765 16585
+<< pdcontact >>
+rect 1865 16535 1915 16585
+<< pdcontact >>
+rect 2015 16535 2065 16585
+<< pdcontact >>
+rect 2165 16535 2215 16585
+<< pdcontact >>
+rect 2315 16535 2365 16585
+<< pdcontact >>
+rect 2465 16535 2515 16585
+<< pdcontact >>
+rect 2615 16535 2665 16585
+<< pdcontact >>
+rect 2765 16535 2815 16585
+<< pdcontact >>
+rect 2915 16535 2965 16585
+<< pdcontact >>
+rect 3065 16535 3115 16585
+<< pdcontact >>
+rect 3215 16535 3265 16585
+<< pdcontact >>
+rect 3365 16535 3415 16585
+<< pdcontact >>
+rect 3515 16535 3565 16585
+<< pdcontact >>
+rect 3665 16535 3715 16585
+<< pdcontact >>
+rect 3815 16535 3865 16585
+<< pdcontact >>
+rect 3965 16535 4015 16585
+<< nsubstratencontact >>
+rect 4475 16535 4525 16585
+<< pdcontact >>
+rect 4985 16535 5035 16585
+<< pdcontact >>
+rect 5135 16535 5185 16585
+<< pdcontact >>
+rect 5285 16535 5335 16585
+<< pdcontact >>
+rect 5435 16535 5485 16585
+<< pdcontact >>
+rect 5585 16535 5635 16585
+<< pdcontact >>
+rect 5735 16535 5785 16585
+<< pdcontact >>
+rect 5885 16535 5935 16585
+<< pdcontact >>
+rect 6035 16535 6085 16585
+<< pdcontact >>
+rect 6185 16535 6235 16585
+<< pdcontact >>
+rect 6335 16535 6385 16585
+<< pdcontact >>
+rect 6485 16535 6535 16585
+<< pdcontact >>
+rect 6635 16535 6685 16585
+<< pdcontact >>
+rect 6785 16535 6835 16585
+<< pdcontact >>
+rect 6935 16535 6985 16585
+<< pdcontact >>
+rect 7085 16535 7135 16585
+<< pdcontact >>
+rect 7235 16535 7285 16585
+<< pdcontact >>
+rect 7385 16535 7435 16585
+<< pdcontact >>
+rect 7535 16535 7585 16585
+<< pdcontact >>
+rect 7685 16535 7735 16585
+<< nsubstratencontact >>
+rect 8195 16535 8245 16585
+<< nsubstratencontact >>
+rect 8345 16535 8395 16585
+<< psubstratepcontact >>
+rect 65 16415 115 16465
+<< psubstratepcontact >>
+rect 215 16415 265 16465
+<< polycontact >>
+rect 995 16445 1045 16495
+<< polycontact >>
+rect 7955 16445 8005 16495
+<< nsubstratencontact >>
+rect 605 16385 655 16435
+<< nsubstratencontact >>
+rect 755 16385 805 16435
+<< pdcontact >>
+rect 1265 16385 1315 16435
+<< pdcontact >>
+rect 1415 16385 1465 16435
+<< pdcontact >>
+rect 1565 16385 1615 16435
+<< pdcontact >>
+rect 1715 16385 1765 16435
+<< pdcontact >>
+rect 1865 16385 1915 16435
+<< pdcontact >>
+rect 2015 16385 2065 16435
+<< pdcontact >>
+rect 2165 16385 2215 16435
+<< pdcontact >>
+rect 2315 16385 2365 16435
+<< pdcontact >>
+rect 2465 16385 2515 16435
+<< pdcontact >>
+rect 2615 16385 2665 16435
+<< pdcontact >>
+rect 2765 16385 2815 16435
+<< pdcontact >>
+rect 2915 16385 2965 16435
+<< pdcontact >>
+rect 3065 16385 3115 16435
+<< pdcontact >>
+rect 3215 16385 3265 16435
+<< pdcontact >>
+rect 3365 16385 3415 16435
+<< pdcontact >>
+rect 3515 16385 3565 16435
+<< pdcontact >>
+rect 3665 16385 3715 16435
+<< pdcontact >>
+rect 3815 16385 3865 16435
+<< pdcontact >>
+rect 3965 16385 4015 16435
+<< nsubstratencontact >>
+rect 4475 16385 4525 16435
+<< pdcontact >>
+rect 4985 16385 5035 16435
+<< pdcontact >>
+rect 5135 16385 5185 16435
+<< pdcontact >>
+rect 5285 16385 5335 16435
+<< pdcontact >>
+rect 5435 16385 5485 16435
+<< pdcontact >>
+rect 5585 16385 5635 16435
+<< pdcontact >>
+rect 5735 16385 5785 16435
+<< pdcontact >>
+rect 5885 16385 5935 16435
+<< pdcontact >>
+rect 6035 16385 6085 16435
+<< pdcontact >>
+rect 6185 16385 6235 16435
+<< pdcontact >>
+rect 6335 16385 6385 16435
+<< pdcontact >>
+rect 6485 16385 6535 16435
+<< pdcontact >>
+rect 6635 16385 6685 16435
+<< pdcontact >>
+rect 6785 16385 6835 16435
+<< pdcontact >>
+rect 6935 16385 6985 16435
+<< pdcontact >>
+rect 7085 16385 7135 16435
+<< pdcontact >>
+rect 7235 16385 7285 16435
+<< pdcontact >>
+rect 7385 16385 7435 16435
+<< pdcontact >>
+rect 7535 16385 7585 16435
+<< pdcontact >>
+rect 7685 16385 7735 16435
+<< nsubstratencontact >>
+rect 8195 16385 8245 16435
+<< nsubstratencontact >>
+rect 8345 16385 8395 16435
+<< psubstratepcontact >>
+rect 8735 16415 8785 16465
+<< psubstratepcontact >>
+rect 8885 16415 8935 16465
+<< polycontact >>
+rect 995 16295 1045 16345
+<< polycontact >>
+rect 7955 16295 8005 16345
+<< nsubstratencontact >>
+rect 605 16235 655 16285
+<< nsubstratencontact >>
+rect 755 16235 805 16285
+<< pdcontact >>
+rect 1265 16235 1315 16285
+<< pdcontact >>
+rect 1415 16235 1465 16285
+<< pdcontact >>
+rect 1565 16235 1615 16285
+<< pdcontact >>
+rect 1715 16235 1765 16285
+<< pdcontact >>
+rect 1865 16235 1915 16285
+<< pdcontact >>
+rect 2015 16235 2065 16285
+<< pdcontact >>
+rect 2165 16235 2215 16285
+<< pdcontact >>
+rect 2315 16235 2365 16285
+<< pdcontact >>
+rect 2465 16235 2515 16285
+<< pdcontact >>
+rect 2615 16235 2665 16285
+<< pdcontact >>
+rect 2765 16235 2815 16285
+<< pdcontact >>
+rect 2915 16235 2965 16285
+<< pdcontact >>
+rect 3065 16235 3115 16285
+<< pdcontact >>
+rect 3215 16235 3265 16285
+<< pdcontact >>
+rect 3365 16235 3415 16285
+<< pdcontact >>
+rect 3515 16235 3565 16285
+<< pdcontact >>
+rect 3665 16235 3715 16285
+<< pdcontact >>
+rect 3815 16235 3865 16285
+<< pdcontact >>
+rect 3965 16235 4015 16285
+<< nsubstratencontact >>
+rect 4475 16235 4525 16285
+<< pdcontact >>
+rect 4985 16235 5035 16285
+<< pdcontact >>
+rect 5135 16235 5185 16285
+<< pdcontact >>
+rect 5285 16235 5335 16285
+<< pdcontact >>
+rect 5435 16235 5485 16285
+<< pdcontact >>
+rect 5585 16235 5635 16285
+<< pdcontact >>
+rect 5735 16235 5785 16285
+<< pdcontact >>
+rect 5885 16235 5935 16285
+<< pdcontact >>
+rect 6035 16235 6085 16285
+<< pdcontact >>
+rect 6185 16235 6235 16285
+<< pdcontact >>
+rect 6335 16235 6385 16285
+<< pdcontact >>
+rect 6485 16235 6535 16285
+<< pdcontact >>
+rect 6635 16235 6685 16285
+<< pdcontact >>
+rect 6785 16235 6835 16285
+<< pdcontact >>
+rect 6935 16235 6985 16285
+<< pdcontact >>
+rect 7085 16235 7135 16285
+<< pdcontact >>
+rect 7235 16235 7285 16285
+<< pdcontact >>
+rect 7385 16235 7435 16285
+<< pdcontact >>
+rect 7535 16235 7585 16285
+<< pdcontact >>
+rect 7685 16235 7735 16285
+<< nsubstratencontact >>
+rect 8195 16235 8245 16285
+<< nsubstratencontact >>
+rect 8345 16235 8395 16285
+<< psubstratepcontact >>
+rect 65 16175 115 16225
+<< psubstratepcontact >>
+rect 215 16175 265 16225
+<< psubstratepcontact >>
+rect 8735 16175 8785 16225
+<< psubstratepcontact >>
+rect 8885 16175 8935 16225
+<< nsubstratencontact >>
+rect 605 16085 655 16135
+<< nsubstratencontact >>
+rect 755 16085 805 16135
+<< polycontact >>
+rect 995 16115 1045 16165
+<< pdcontact >>
+rect 1265 16085 1315 16135
+<< pdcontact >>
+rect 1415 16085 1465 16135
+<< pdcontact >>
+rect 1565 16085 1615 16135
+<< pdcontact >>
+rect 1715 16085 1765 16135
+<< pdcontact >>
+rect 1865 16085 1915 16135
+<< pdcontact >>
+rect 2015 16085 2065 16135
+<< pdcontact >>
+rect 2165 16085 2215 16135
+<< pdcontact >>
+rect 2315 16085 2365 16135
+<< pdcontact >>
+rect 2465 16085 2515 16135
+<< pdcontact >>
+rect 2615 16085 2665 16135
+<< pdcontact >>
+rect 2765 16085 2815 16135
+<< pdcontact >>
+rect 2915 16085 2965 16135
+<< pdcontact >>
+rect 3065 16085 3115 16135
+<< pdcontact >>
+rect 3215 16085 3265 16135
+<< pdcontact >>
+rect 3365 16085 3415 16135
+<< pdcontact >>
+rect 3515 16085 3565 16135
+<< pdcontact >>
+rect 3665 16085 3715 16135
+<< pdcontact >>
+rect 3815 16085 3865 16135
+<< pdcontact >>
+rect 3965 16085 4015 16135
+<< nsubstratencontact >>
+rect 4475 16085 4525 16135
+<< pdcontact >>
+rect 4985 16085 5035 16135
+<< pdcontact >>
+rect 5135 16085 5185 16135
+<< pdcontact >>
+rect 5285 16085 5335 16135
+<< pdcontact >>
+rect 5435 16085 5485 16135
+<< pdcontact >>
+rect 5585 16085 5635 16135
+<< pdcontact >>
+rect 5735 16085 5785 16135
+<< pdcontact >>
+rect 5885 16085 5935 16135
+<< pdcontact >>
+rect 6035 16085 6085 16135
+<< pdcontact >>
+rect 6185 16085 6235 16135
+<< pdcontact >>
+rect 6335 16085 6385 16135
+<< pdcontact >>
+rect 6485 16085 6535 16135
+<< pdcontact >>
+rect 6635 16085 6685 16135
+<< pdcontact >>
+rect 6785 16085 6835 16135
+<< pdcontact >>
+rect 6935 16085 6985 16135
+<< pdcontact >>
+rect 7085 16085 7135 16135
+<< pdcontact >>
+rect 7235 16085 7285 16135
+<< pdcontact >>
+rect 7385 16085 7435 16135
+<< pdcontact >>
+rect 7535 16085 7585 16135
+<< pdcontact >>
+rect 7685 16085 7735 16135
+<< polycontact >>
+rect 7955 16115 8005 16165
+<< nsubstratencontact >>
+rect 8195 16085 8245 16135
+<< nsubstratencontact >>
+rect 8345 16085 8395 16135
+<< psubstratepcontact >>
+rect 65 15935 115 15985
+<< psubstratepcontact >>
+rect 215 15935 265 15985
+<< nsubstratencontact >>
+rect 605 15935 655 15985
+<< nsubstratencontact >>
+rect 755 15935 805 15985
+<< polycontact >>
+rect 995 15965 1045 16015
+<< pdcontact >>
+rect 1265 15935 1315 15985
+<< pdcontact >>
+rect 1415 15935 1465 15985
+<< pdcontact >>
+rect 1565 15935 1615 15985
+<< pdcontact >>
+rect 1715 15935 1765 15985
+<< pdcontact >>
+rect 1865 15935 1915 15985
+<< pdcontact >>
+rect 2015 15935 2065 15985
+<< pdcontact >>
+rect 2165 15935 2215 15985
+<< pdcontact >>
+rect 2315 15935 2365 15985
+<< pdcontact >>
+rect 2465 15935 2515 15985
+<< pdcontact >>
+rect 2615 15935 2665 15985
+<< pdcontact >>
+rect 2765 15935 2815 15985
+<< pdcontact >>
+rect 2915 15935 2965 15985
+<< pdcontact >>
+rect 3065 15935 3115 15985
+<< pdcontact >>
+rect 3215 15935 3265 15985
+<< pdcontact >>
+rect 3365 15935 3415 15985
+<< pdcontact >>
+rect 3515 15935 3565 15985
+<< pdcontact >>
+rect 3665 15935 3715 15985
+<< pdcontact >>
+rect 3815 15935 3865 15985
+<< pdcontact >>
+rect 3965 15935 4015 15985
+<< nsubstratencontact >>
+rect 4475 15935 4525 15985
+<< pdcontact >>
+rect 4985 15935 5035 15985
+<< pdcontact >>
+rect 5135 15935 5185 15985
+<< pdcontact >>
+rect 5285 15935 5335 15985
+<< pdcontact >>
+rect 5435 15935 5485 15985
+<< pdcontact >>
+rect 5585 15935 5635 15985
+<< pdcontact >>
+rect 5735 15935 5785 15985
+<< pdcontact >>
+rect 5885 15935 5935 15985
+<< pdcontact >>
+rect 6035 15935 6085 15985
+<< pdcontact >>
+rect 6185 15935 6235 15985
+<< pdcontact >>
+rect 6335 15935 6385 15985
+<< pdcontact >>
+rect 6485 15935 6535 15985
+<< pdcontact >>
+rect 6635 15935 6685 15985
+<< pdcontact >>
+rect 6785 15935 6835 15985
+<< pdcontact >>
+rect 6935 15935 6985 15985
+<< pdcontact >>
+rect 7085 15935 7135 15985
+<< pdcontact >>
+rect 7235 15935 7285 15985
+<< pdcontact >>
+rect 7385 15935 7435 15985
+<< pdcontact >>
+rect 7535 15935 7585 15985
+<< pdcontact >>
+rect 7685 15935 7735 15985
+<< polycontact >>
+rect 7955 15965 8005 16015
+<< nsubstratencontact >>
+rect 8195 15935 8245 15985
+<< nsubstratencontact >>
+rect 8345 15935 8395 15985
+<< psubstratepcontact >>
+rect 8735 15935 8785 15985
+<< psubstratepcontact >>
+rect 8885 15935 8935 15985
+<< nsubstratencontact >>
+rect 605 15785 655 15835
+<< nsubstratencontact >>
+rect 755 15785 805 15835
+<< polycontact >>
+rect 995 15815 1045 15865
+<< pdcontact >>
+rect 1265 15785 1315 15835
+<< pdcontact >>
+rect 1415 15785 1465 15835
+<< pdcontact >>
+rect 1565 15785 1615 15835
+<< pdcontact >>
+rect 1715 15785 1765 15835
+<< pdcontact >>
+rect 1865 15785 1915 15835
+<< pdcontact >>
+rect 2015 15785 2065 15835
+<< pdcontact >>
+rect 2165 15785 2215 15835
+<< pdcontact >>
+rect 2315 15785 2365 15835
+<< pdcontact >>
+rect 2465 15785 2515 15835
+<< pdcontact >>
+rect 2615 15785 2665 15835
+<< pdcontact >>
+rect 2765 15785 2815 15835
+<< pdcontact >>
+rect 2915 15785 2965 15835
+<< pdcontact >>
+rect 3065 15785 3115 15835
+<< pdcontact >>
+rect 3215 15785 3265 15835
+<< pdcontact >>
+rect 3365 15785 3415 15835
+<< pdcontact >>
+rect 3515 15785 3565 15835
+<< pdcontact >>
+rect 3665 15785 3715 15835
+<< pdcontact >>
+rect 3815 15785 3865 15835
+<< pdcontact >>
+rect 3965 15785 4015 15835
+<< nsubstratencontact >>
+rect 4475 15785 4525 15835
+<< pdcontact >>
+rect 4985 15785 5035 15835
+<< pdcontact >>
+rect 5135 15785 5185 15835
+<< pdcontact >>
+rect 5285 15785 5335 15835
+<< pdcontact >>
+rect 5435 15785 5485 15835
+<< pdcontact >>
+rect 5585 15785 5635 15835
+<< pdcontact >>
+rect 5735 15785 5785 15835
+<< pdcontact >>
+rect 5885 15785 5935 15835
+<< pdcontact >>
+rect 6035 15785 6085 15835
+<< pdcontact >>
+rect 6185 15785 6235 15835
+<< pdcontact >>
+rect 6335 15785 6385 15835
+<< pdcontact >>
+rect 6485 15785 6535 15835
+<< pdcontact >>
+rect 6635 15785 6685 15835
+<< pdcontact >>
+rect 6785 15785 6835 15835
+<< pdcontact >>
+rect 6935 15785 6985 15835
+<< pdcontact >>
+rect 7085 15785 7135 15835
+<< pdcontact >>
+rect 7235 15785 7285 15835
+<< pdcontact >>
+rect 7385 15785 7435 15835
+<< pdcontact >>
+rect 7535 15785 7585 15835
+<< pdcontact >>
+rect 7685 15785 7735 15835
+<< polycontact >>
+rect 7955 15815 8005 15865
+<< nsubstratencontact >>
+rect 8195 15785 8245 15835
+<< nsubstratencontact >>
+rect 8345 15785 8395 15835
+<< psubstratepcontact >>
+rect 65 15665 115 15715
+<< psubstratepcontact >>
+rect 215 15665 265 15715
+<< nsubstratencontact >>
+rect 605 15635 655 15685
+<< nsubstratencontact >>
+rect 755 15635 805 15685
+<< polycontact >>
+rect 995 15665 1045 15715
+<< pdcontact >>
+rect 1265 15635 1315 15685
+<< pdcontact >>
+rect 1415 15635 1465 15685
+<< pdcontact >>
+rect 1565 15635 1615 15685
+<< pdcontact >>
+rect 1715 15635 1765 15685
+<< pdcontact >>
+rect 1865 15635 1915 15685
+<< pdcontact >>
+rect 2015 15635 2065 15685
+<< pdcontact >>
+rect 2165 15635 2215 15685
+<< pdcontact >>
+rect 2315 15635 2365 15685
+<< pdcontact >>
+rect 2465 15635 2515 15685
+<< pdcontact >>
+rect 2615 15635 2665 15685
+<< pdcontact >>
+rect 2765 15635 2815 15685
+<< pdcontact >>
+rect 2915 15635 2965 15685
+<< pdcontact >>
+rect 3065 15635 3115 15685
+<< pdcontact >>
+rect 3215 15635 3265 15685
+<< pdcontact >>
+rect 3365 15635 3415 15685
+<< pdcontact >>
+rect 3515 15635 3565 15685
+<< pdcontact >>
+rect 3665 15635 3715 15685
+<< pdcontact >>
+rect 3815 15635 3865 15685
+<< pdcontact >>
+rect 3965 15635 4015 15685
+<< nsubstratencontact >>
+rect 4475 15635 4525 15685
+<< pdcontact >>
+rect 4985 15635 5035 15685
+<< pdcontact >>
+rect 5135 15635 5185 15685
+<< pdcontact >>
+rect 5285 15635 5335 15685
+<< pdcontact >>
+rect 5435 15635 5485 15685
+<< pdcontact >>
+rect 5585 15635 5635 15685
+<< pdcontact >>
+rect 5735 15635 5785 15685
+<< pdcontact >>
+rect 5885 15635 5935 15685
+<< pdcontact >>
+rect 6035 15635 6085 15685
+<< pdcontact >>
+rect 6185 15635 6235 15685
+<< pdcontact >>
+rect 6335 15635 6385 15685
+<< pdcontact >>
+rect 6485 15635 6535 15685
+<< pdcontact >>
+rect 6635 15635 6685 15685
+<< pdcontact >>
+rect 6785 15635 6835 15685
+<< pdcontact >>
+rect 6935 15635 6985 15685
+<< pdcontact >>
+rect 7085 15635 7135 15685
+<< pdcontact >>
+rect 7235 15635 7285 15685
+<< pdcontact >>
+rect 7385 15635 7435 15685
+<< pdcontact >>
+rect 7535 15635 7585 15685
+<< pdcontact >>
+rect 7685 15635 7735 15685
+<< polycontact >>
+rect 7955 15665 8005 15715
+<< nsubstratencontact >>
+rect 8195 15635 8245 15685
+<< nsubstratencontact >>
+rect 8345 15635 8395 15685
+<< psubstratepcontact >>
+rect 8735 15665 8785 15715
+<< psubstratepcontact >>
+rect 8885 15665 8935 15715
+<< nsubstratencontact >>
+rect 605 15485 655 15535
+<< nsubstratencontact >>
+rect 755 15485 805 15535
+<< polycontact >>
+rect 995 15515 1045 15565
+<< nsubstratencontact >>
+rect 4475 15485 4525 15535
+<< polycontact >>
+rect 7955 15515 8005 15565
+<< nsubstratencontact >>
+rect 8195 15485 8245 15535
+<< nsubstratencontact >>
+rect 8345 15485 8395 15535
+<< psubstratepcontact >>
+rect 65 15425 115 15475
+<< psubstratepcontact >>
+rect 215 15425 265 15475
+<< psubstratepcontact >>
+rect 8735 15425 8785 15475
+<< psubstratepcontact >>
+rect 8885 15425 8935 15475
+<< polycontact >>
+rect 995 15365 1045 15415
+<< pdcontact >>
+rect 1235 15335 1285 15385
+<< pdcontact >>
+rect 1535 15335 1585 15385
+<< pdcontact >>
+rect 1835 15335 1885 15385
+<< pdcontact >>
+rect 2135 15335 2185 15385
+<< pdcontact >>
+rect 2435 15335 2485 15385
+<< pdcontact >>
+rect 2735 15335 2785 15385
+<< pdcontact >>
+rect 3035 15335 3085 15385
+<< pdcontact >>
+rect 3335 15335 3385 15385
+<< pdcontact >>
+rect 5615 15335 5665 15385
+<< pdcontact >>
+rect 5915 15335 5965 15385
+<< pdcontact >>
+rect 6215 15335 6265 15385
+<< pdcontact >>
+rect 6515 15335 6565 15385
+<< pdcontact >>
+rect 6815 15335 6865 15385
+<< pdcontact >>
+rect 7115 15335 7165 15385
+<< pdcontact >>
+rect 7415 15335 7465 15385
+<< pdcontact >>
+rect 7715 15335 7765 15385
+<< polycontact >>
+rect 7955 15365 8005 15415
+<< psubstratepcontact >>
+rect 65 15185 115 15235
+<< psubstratepcontact >>
+rect 215 15185 265 15235
+<< polycontact >>
+rect 995 15215 1045 15265
+<< pdcontact >>
+rect 1235 15185 1285 15235
+<< pdcontact >>
+rect 1535 15185 1585 15235
+<< pdcontact >>
+rect 1835 15185 1885 15235
+<< pdcontact >>
+rect 2135 15185 2185 15235
+<< pdcontact >>
+rect 2435 15185 2485 15235
+<< pdcontact >>
+rect 2735 15185 2785 15235
+<< pdcontact >>
+rect 3035 15185 3085 15235
+<< pdcontact >>
+rect 3335 15185 3385 15235
+<< pdcontact >>
+rect 5615 15185 5665 15235
+<< pdcontact >>
+rect 5915 15185 5965 15235
+<< pdcontact >>
+rect 6215 15185 6265 15235
+<< pdcontact >>
+rect 6515 15185 6565 15235
+<< pdcontact >>
+rect 6815 15185 6865 15235
+<< pdcontact >>
+rect 7115 15185 7165 15235
+<< pdcontact >>
+rect 7415 15185 7465 15235
+<< pdcontact >>
+rect 7715 15185 7765 15235
+<< polycontact >>
+rect 7955 15215 8005 15265
+<< psubstratepcontact >>
+rect 8735 15185 8785 15235
+<< psubstratepcontact >>
+rect 8885 15185 8935 15235
+<< polycontact >>
+rect 995 15065 1045 15115
+<< pdcontact >>
+rect 1235 15035 1285 15085
+<< pdcontact >>
+rect 1535 15035 1585 15085
+<< pdcontact >>
+rect 1835 15035 1885 15085
+<< pdcontact >>
+rect 2135 15035 2185 15085
+<< pdcontact >>
+rect 2435 15035 2485 15085
+<< pdcontact >>
+rect 2735 15035 2785 15085
+<< pdcontact >>
+rect 3035 15035 3085 15085
+<< pdcontact >>
+rect 3335 15035 3385 15085
+<< pdcontact >>
+rect 5615 15035 5665 15085
+<< pdcontact >>
+rect 5915 15035 5965 15085
+<< pdcontact >>
+rect 6215 15035 6265 15085
+<< pdcontact >>
+rect 6515 15035 6565 15085
+<< pdcontact >>
+rect 6815 15035 6865 15085
+<< pdcontact >>
+rect 7115 15035 7165 15085
+<< pdcontact >>
+rect 7415 15035 7465 15085
+<< pdcontact >>
+rect 7715 15035 7765 15085
+<< polycontact >>
+rect 7955 15065 8005 15115
+<< psubstratepcontact >>
+rect 65 14945 115 14995
+<< psubstratepcontact >>
+rect 215 14945 265 14995
+<< nsubstratencontact >>
+rect 605 14885 655 14935
+<< nsubstratencontact >>
+rect 755 14885 805 14935
+<< polycontact >>
+rect 995 14915 1045 14965
+<< nsubstratencontact >>
+rect 4475 14885 4525 14935
+<< polycontact >>
+rect 7955 14915 8005 14965
+<< psubstratepcontact >>
+rect 8735 14945 8785 14995
+<< psubstratepcontact >>
+rect 8885 14945 8935 14995
+<< nsubstratencontact >>
+rect 8195 14885 8245 14935
+<< nsubstratencontact >>
+rect 8345 14885 8395 14935
+<< psubstratepcontact >>
+rect 65 14705 115 14755
+<< psubstratepcontact >>
+rect 215 14705 265 14755
+<< nsubstratencontact >>
+rect 605 14735 655 14785
+<< nsubstratencontact >>
+rect 755 14735 805 14785
+<< polycontact >>
+rect 995 14765 1045 14815
+<< pdcontact >>
+rect 1265 14735 1315 14785
+<< pdcontact >>
+rect 1415 14735 1465 14785
+<< pdcontact >>
+rect 1565 14735 1615 14785
+<< pdcontact >>
+rect 1715 14735 1765 14785
+<< pdcontact >>
+rect 1865 14735 1915 14785
+<< pdcontact >>
+rect 2015 14735 2065 14785
+<< pdcontact >>
+rect 2165 14735 2215 14785
+<< pdcontact >>
+rect 2315 14735 2365 14785
+<< pdcontact >>
+rect 2465 14735 2515 14785
+<< pdcontact >>
+rect 2615 14735 2665 14785
+<< pdcontact >>
+rect 2765 14735 2815 14785
+<< pdcontact >>
+rect 2915 14735 2965 14785
+<< pdcontact >>
+rect 3065 14735 3115 14785
+<< pdcontact >>
+rect 3215 14735 3265 14785
+<< pdcontact >>
+rect 3365 14735 3415 14785
+<< pdcontact >>
+rect 3515 14735 3565 14785
+<< pdcontact >>
+rect 3665 14735 3715 14785
+<< pdcontact >>
+rect 3815 14735 3865 14785
+<< pdcontact >>
+rect 3965 14735 4015 14785
+<< nsubstratencontact >>
+rect 4475 14735 4525 14785
+<< pdcontact >>
+rect 4985 14735 5035 14785
+<< pdcontact >>
+rect 5135 14735 5185 14785
+<< pdcontact >>
+rect 5285 14735 5335 14785
+<< pdcontact >>
+rect 5435 14735 5485 14785
+<< pdcontact >>
+rect 5585 14735 5635 14785
+<< pdcontact >>
+rect 5735 14735 5785 14785
+<< pdcontact >>
+rect 5885 14735 5935 14785
+<< pdcontact >>
+rect 6035 14735 6085 14785
+<< pdcontact >>
+rect 6185 14735 6235 14785
+<< pdcontact >>
+rect 6335 14735 6385 14785
+<< pdcontact >>
+rect 6485 14735 6535 14785
+<< pdcontact >>
+rect 6635 14735 6685 14785
+<< pdcontact >>
+rect 6785 14735 6835 14785
+<< pdcontact >>
+rect 6935 14735 6985 14785
+<< pdcontact >>
+rect 7085 14735 7135 14785
+<< pdcontact >>
+rect 7235 14735 7285 14785
+<< pdcontact >>
+rect 7385 14735 7435 14785
+<< pdcontact >>
+rect 7535 14735 7585 14785
+<< pdcontact >>
+rect 7685 14735 7735 14785
+<< polycontact >>
+rect 7955 14765 8005 14815
+<< nsubstratencontact >>
+rect 8195 14735 8245 14785
+<< nsubstratencontact >>
+rect 8345 14735 8395 14785
+<< psubstratepcontact >>
+rect 8735 14705 8785 14755
+<< psubstratepcontact >>
+rect 8885 14705 8935 14755
+<< nsubstratencontact >>
+rect 605 14585 655 14635
+<< nsubstratencontact >>
+rect 755 14585 805 14635
+<< polycontact >>
+rect 995 14615 1045 14665
+<< pdcontact >>
+rect 1265 14585 1315 14635
+<< pdcontact >>
+rect 1415 14585 1465 14635
+<< pdcontact >>
+rect 1565 14585 1615 14635
+<< pdcontact >>
+rect 1715 14585 1765 14635
+<< pdcontact >>
+rect 1865 14585 1915 14635
+<< pdcontact >>
+rect 2015 14585 2065 14635
+<< pdcontact >>
+rect 2165 14585 2215 14635
+<< pdcontact >>
+rect 2315 14585 2365 14635
+<< pdcontact >>
+rect 2465 14585 2515 14635
+<< pdcontact >>
+rect 2615 14585 2665 14635
+<< pdcontact >>
+rect 2765 14585 2815 14635
+<< pdcontact >>
+rect 2915 14585 2965 14635
+<< pdcontact >>
+rect 3065 14585 3115 14635
+<< pdcontact >>
+rect 3215 14585 3265 14635
+<< pdcontact >>
+rect 3365 14585 3415 14635
+<< pdcontact >>
+rect 3515 14585 3565 14635
+<< pdcontact >>
+rect 3665 14585 3715 14635
+<< pdcontact >>
+rect 3815 14585 3865 14635
+<< pdcontact >>
+rect 3965 14585 4015 14635
+<< nsubstratencontact >>
+rect 4475 14585 4525 14635
+<< pdcontact >>
+rect 4985 14585 5035 14635
+<< pdcontact >>
+rect 5135 14585 5185 14635
+<< pdcontact >>
+rect 5285 14585 5335 14635
+<< pdcontact >>
+rect 5435 14585 5485 14635
+<< pdcontact >>
+rect 5585 14585 5635 14635
+<< pdcontact >>
+rect 5735 14585 5785 14635
+<< pdcontact >>
+rect 5885 14585 5935 14635
+<< pdcontact >>
+rect 6035 14585 6085 14635
+<< pdcontact >>
+rect 6185 14585 6235 14635
+<< pdcontact >>
+rect 6335 14585 6385 14635
+<< pdcontact >>
+rect 6485 14585 6535 14635
+<< pdcontact >>
+rect 6635 14585 6685 14635
+<< pdcontact >>
+rect 6785 14585 6835 14635
+<< pdcontact >>
+rect 6935 14585 6985 14635
+<< pdcontact >>
+rect 7085 14585 7135 14635
+<< pdcontact >>
+rect 7235 14585 7285 14635
+<< pdcontact >>
+rect 7385 14585 7435 14635
+<< pdcontact >>
+rect 7535 14585 7585 14635
+<< pdcontact >>
+rect 7685 14585 7735 14635
+<< polycontact >>
+rect 7955 14615 8005 14665
+<< nsubstratencontact >>
+rect 8195 14585 8245 14635
+<< nsubstratencontact >>
+rect 8345 14585 8395 14635
+<< psubstratepcontact >>
+rect 65 14465 115 14515
+<< psubstratepcontact >>
+rect 215 14465 265 14515
+<< nsubstratencontact >>
+rect 605 14435 655 14485
+<< nsubstratencontact >>
+rect 755 14435 805 14485
+<< polycontact >>
+rect 995 14465 1045 14515
+<< pdcontact >>
+rect 1265 14435 1315 14485
+<< pdcontact >>
+rect 1415 14435 1465 14485
+<< pdcontact >>
+rect 1565 14435 1615 14485
+<< pdcontact >>
+rect 1715 14435 1765 14485
+<< pdcontact >>
+rect 1865 14435 1915 14485
+<< pdcontact >>
+rect 2015 14435 2065 14485
+<< pdcontact >>
+rect 2165 14435 2215 14485
+<< pdcontact >>
+rect 2315 14435 2365 14485
+<< pdcontact >>
+rect 2465 14435 2515 14485
+<< pdcontact >>
+rect 2615 14435 2665 14485
+<< pdcontact >>
+rect 2765 14435 2815 14485
+<< pdcontact >>
+rect 2915 14435 2965 14485
+<< pdcontact >>
+rect 3065 14435 3115 14485
+<< pdcontact >>
+rect 3215 14435 3265 14485
+<< pdcontact >>
+rect 3365 14435 3415 14485
+<< pdcontact >>
+rect 3515 14435 3565 14485
+<< pdcontact >>
+rect 3665 14435 3715 14485
+<< pdcontact >>
+rect 3815 14435 3865 14485
+<< pdcontact >>
+rect 3965 14435 4015 14485
+<< nsubstratencontact >>
+rect 4475 14435 4525 14485
+<< pdcontact >>
+rect 4985 14435 5035 14485
+<< pdcontact >>
+rect 5135 14435 5185 14485
+<< pdcontact >>
+rect 5285 14435 5335 14485
+<< pdcontact >>
+rect 5435 14435 5485 14485
+<< pdcontact >>
+rect 5585 14435 5635 14485
+<< pdcontact >>
+rect 5735 14435 5785 14485
+<< pdcontact >>
+rect 5885 14435 5935 14485
+<< pdcontact >>
+rect 6035 14435 6085 14485
+<< pdcontact >>
+rect 6185 14435 6235 14485
+<< pdcontact >>
+rect 6335 14435 6385 14485
+<< pdcontact >>
+rect 6485 14435 6535 14485
+<< pdcontact >>
+rect 6635 14435 6685 14485
+<< pdcontact >>
+rect 6785 14435 6835 14485
+<< pdcontact >>
+rect 6935 14435 6985 14485
+<< pdcontact >>
+rect 7085 14435 7135 14485
+<< pdcontact >>
+rect 7235 14435 7285 14485
+<< pdcontact >>
+rect 7385 14435 7435 14485
+<< pdcontact >>
+rect 7535 14435 7585 14485
+<< pdcontact >>
+rect 7685 14435 7735 14485
+<< polycontact >>
+rect 7955 14465 8005 14515
+<< nsubstratencontact >>
+rect 8195 14435 8245 14485
+<< nsubstratencontact >>
+rect 8345 14435 8395 14485
+<< psubstratepcontact >>
+rect 8735 14465 8785 14515
+<< psubstratepcontact >>
+rect 8885 14465 8935 14515
+<< nsubstratencontact >>
+rect 605 14285 655 14335
+<< nsubstratencontact >>
+rect 755 14285 805 14335
+<< polycontact >>
+rect 995 14315 1045 14365
+<< pdcontact >>
+rect 1265 14285 1315 14335
+<< pdcontact >>
+rect 1415 14285 1465 14335
+<< pdcontact >>
+rect 1565 14285 1615 14335
+<< pdcontact >>
+rect 1715 14285 1765 14335
+<< pdcontact >>
+rect 1865 14285 1915 14335
+<< pdcontact >>
+rect 2015 14285 2065 14335
+<< pdcontact >>
+rect 2165 14285 2215 14335
+<< pdcontact >>
+rect 2315 14285 2365 14335
+<< pdcontact >>
+rect 2465 14285 2515 14335
+<< pdcontact >>
+rect 2615 14285 2665 14335
+<< pdcontact >>
+rect 2765 14285 2815 14335
+<< pdcontact >>
+rect 2915 14285 2965 14335
+<< pdcontact >>
+rect 3065 14285 3115 14335
+<< pdcontact >>
+rect 3215 14285 3265 14335
+<< pdcontact >>
+rect 3365 14285 3415 14335
+<< pdcontact >>
+rect 3515 14285 3565 14335
+<< pdcontact >>
+rect 3665 14285 3715 14335
+<< pdcontact >>
+rect 3815 14285 3865 14335
+<< pdcontact >>
+rect 3965 14285 4015 14335
+<< nsubstratencontact >>
+rect 4475 14285 4525 14335
+<< pdcontact >>
+rect 4985 14285 5035 14335
+<< pdcontact >>
+rect 5135 14285 5185 14335
+<< pdcontact >>
+rect 5285 14285 5335 14335
+<< pdcontact >>
+rect 5435 14285 5485 14335
+<< pdcontact >>
+rect 5585 14285 5635 14335
+<< pdcontact >>
+rect 5735 14285 5785 14335
+<< pdcontact >>
+rect 5885 14285 5935 14335
+<< pdcontact >>
+rect 6035 14285 6085 14335
+<< pdcontact >>
+rect 6185 14285 6235 14335
+<< pdcontact >>
+rect 6335 14285 6385 14335
+<< pdcontact >>
+rect 6485 14285 6535 14335
+<< pdcontact >>
+rect 6635 14285 6685 14335
+<< pdcontact >>
+rect 6785 14285 6835 14335
+<< pdcontact >>
+rect 6935 14285 6985 14335
+<< pdcontact >>
+rect 7085 14285 7135 14335
+<< pdcontact >>
+rect 7235 14285 7285 14335
+<< pdcontact >>
+rect 7385 14285 7435 14335
+<< pdcontact >>
+rect 7535 14285 7585 14335
+<< pdcontact >>
+rect 7685 14285 7735 14335
+<< polycontact >>
+rect 7955 14315 8005 14365
+<< nsubstratencontact >>
+rect 8195 14285 8245 14335
+<< nsubstratencontact >>
+rect 8345 14285 8395 14335
+<< psubstratepcontact >>
+rect 65 14225 115 14275
+<< psubstratepcontact >>
+rect 215 14225 265 14275
+<< psubstratepcontact >>
+rect 8735 14225 8785 14275
+<< psubstratepcontact >>
+rect 8885 14225 8935 14275
+<< nsubstratencontact >>
+rect 605 14135 655 14185
+<< nsubstratencontact >>
+rect 755 14135 805 14185
+<< polycontact >>
+rect 995 14165 1045 14215
+<< pdcontact >>
+rect 1265 14135 1315 14185
+<< pdcontact >>
+rect 1415 14135 1465 14185
+<< pdcontact >>
+rect 1565 14135 1615 14185
+<< pdcontact >>
+rect 1715 14135 1765 14185
+<< pdcontact >>
+rect 1865 14135 1915 14185
+<< pdcontact >>
+rect 2015 14135 2065 14185
+<< pdcontact >>
+rect 2165 14135 2215 14185
+<< pdcontact >>
+rect 2315 14135 2365 14185
+<< pdcontact >>
+rect 2465 14135 2515 14185
+<< pdcontact >>
+rect 2615 14135 2665 14185
+<< pdcontact >>
+rect 2765 14135 2815 14185
+<< pdcontact >>
+rect 2915 14135 2965 14185
+<< pdcontact >>
+rect 3065 14135 3115 14185
+<< pdcontact >>
+rect 3215 14135 3265 14185
+<< pdcontact >>
+rect 3365 14135 3415 14185
+<< pdcontact >>
+rect 3515 14135 3565 14185
+<< pdcontact >>
+rect 3665 14135 3715 14185
+<< pdcontact >>
+rect 3815 14135 3865 14185
+<< pdcontact >>
+rect 3965 14135 4015 14185
+<< nsubstratencontact >>
+rect 4475 14135 4525 14185
+<< pdcontact >>
+rect 4985 14135 5035 14185
+<< pdcontact >>
+rect 5135 14135 5185 14185
+<< pdcontact >>
+rect 5285 14135 5335 14185
+<< pdcontact >>
+rect 5435 14135 5485 14185
+<< pdcontact >>
+rect 5585 14135 5635 14185
+<< pdcontact >>
+rect 5735 14135 5785 14185
+<< pdcontact >>
+rect 5885 14135 5935 14185
+<< pdcontact >>
+rect 6035 14135 6085 14185
+<< pdcontact >>
+rect 6185 14135 6235 14185
+<< pdcontact >>
+rect 6335 14135 6385 14185
+<< pdcontact >>
+rect 6485 14135 6535 14185
+<< pdcontact >>
+rect 6635 14135 6685 14185
+<< pdcontact >>
+rect 6785 14135 6835 14185
+<< pdcontact >>
+rect 6935 14135 6985 14185
+<< pdcontact >>
+rect 7085 14135 7135 14185
+<< pdcontact >>
+rect 7235 14135 7285 14185
+<< pdcontact >>
+rect 7385 14135 7435 14185
+<< pdcontact >>
+rect 7535 14135 7585 14185
+<< pdcontact >>
+rect 7685 14135 7735 14185
+<< polycontact >>
+rect 7955 14165 8005 14215
+<< nsubstratencontact >>
+rect 8195 14135 8245 14185
+<< nsubstratencontact >>
+rect 8345 14135 8395 14185
+<< psubstratepcontact >>
+rect 65 13985 115 14035
+<< psubstratepcontact >>
+rect 215 13985 265 14035
+<< nsubstratencontact >>
+rect 605 13985 655 14035
+<< nsubstratencontact >>
+rect 755 13985 805 14035
+<< polycontact >>
+rect 995 14015 1045 14065
+<< pdcontact >>
+rect 1265 13985 1315 14035
+<< pdcontact >>
+rect 1415 13985 1465 14035
+<< pdcontact >>
+rect 1565 13985 1615 14035
+<< pdcontact >>
+rect 1715 13985 1765 14035
+<< pdcontact >>
+rect 1865 13985 1915 14035
+<< pdcontact >>
+rect 2015 13985 2065 14035
+<< pdcontact >>
+rect 2165 13985 2215 14035
+<< pdcontact >>
+rect 2315 13985 2365 14035
+<< pdcontact >>
+rect 2465 13985 2515 14035
+<< pdcontact >>
+rect 2615 13985 2665 14035
+<< pdcontact >>
+rect 2765 13985 2815 14035
+<< pdcontact >>
+rect 2915 13985 2965 14035
+<< pdcontact >>
+rect 3065 13985 3115 14035
+<< pdcontact >>
+rect 3215 13985 3265 14035
+<< pdcontact >>
+rect 3365 13985 3415 14035
+<< pdcontact >>
+rect 3515 13985 3565 14035
+<< pdcontact >>
+rect 3665 13985 3715 14035
+<< pdcontact >>
+rect 3815 13985 3865 14035
+<< pdcontact >>
+rect 3965 13985 4015 14035
+<< nsubstratencontact >>
+rect 4475 13985 4525 14035
+<< pdcontact >>
+rect 4985 13985 5035 14035
+<< pdcontact >>
+rect 5135 13985 5185 14035
+<< pdcontact >>
+rect 5285 13985 5335 14035
+<< pdcontact >>
+rect 5435 13985 5485 14035
+<< pdcontact >>
+rect 5585 13985 5635 14035
+<< pdcontact >>
+rect 5735 13985 5785 14035
+<< pdcontact >>
+rect 5885 13985 5935 14035
+<< pdcontact >>
+rect 6035 13985 6085 14035
+<< pdcontact >>
+rect 6185 13985 6235 14035
+<< pdcontact >>
+rect 6335 13985 6385 14035
+<< pdcontact >>
+rect 6485 13985 6535 14035
+<< pdcontact >>
+rect 6635 13985 6685 14035
+<< pdcontact >>
+rect 6785 13985 6835 14035
+<< pdcontact >>
+rect 6935 13985 6985 14035
+<< pdcontact >>
+rect 7085 13985 7135 14035
+<< pdcontact >>
+rect 7235 13985 7285 14035
+<< pdcontact >>
+rect 7385 13985 7435 14035
+<< pdcontact >>
+rect 7535 13985 7585 14035
+<< pdcontact >>
+rect 7685 13985 7735 14035
+<< polycontact >>
+rect 7955 14015 8005 14065
+<< nsubstratencontact >>
+rect 8195 13985 8245 14035
+<< nsubstratencontact >>
+rect 8345 13985 8395 14035
+<< psubstratepcontact >>
+rect 8735 13985 8785 14035
+<< psubstratepcontact >>
+rect 8885 13985 8935 14035
+<< nsubstratencontact >>
+rect 605 13835 655 13885
+<< nsubstratencontact >>
+rect 755 13835 805 13885
+<< polycontact >>
+rect 995 13865 1045 13915
+<< pdcontact >>
+rect 1265 13835 1315 13885
+<< pdcontact >>
+rect 1415 13835 1465 13885
+<< pdcontact >>
+rect 1565 13835 1615 13885
+<< pdcontact >>
+rect 1715 13835 1765 13885
+<< pdcontact >>
+rect 1865 13835 1915 13885
+<< pdcontact >>
+rect 2015 13835 2065 13885
+<< pdcontact >>
+rect 2165 13835 2215 13885
+<< pdcontact >>
+rect 2315 13835 2365 13885
+<< pdcontact >>
+rect 2465 13835 2515 13885
+<< pdcontact >>
+rect 2615 13835 2665 13885
+<< pdcontact >>
+rect 2765 13835 2815 13885
+<< pdcontact >>
+rect 2915 13835 2965 13885
+<< pdcontact >>
+rect 3065 13835 3115 13885
+<< pdcontact >>
+rect 3215 13835 3265 13885
+<< pdcontact >>
+rect 3365 13835 3415 13885
+<< pdcontact >>
+rect 3515 13835 3565 13885
+<< pdcontact >>
+rect 3665 13835 3715 13885
+<< pdcontact >>
+rect 3815 13835 3865 13885
+<< pdcontact >>
+rect 3965 13835 4015 13885
+<< nsubstratencontact >>
+rect 4475 13835 4525 13885
+<< pdcontact >>
+rect 4985 13835 5035 13885
+<< pdcontact >>
+rect 5135 13835 5185 13885
+<< pdcontact >>
+rect 5285 13835 5335 13885
+<< pdcontact >>
+rect 5435 13835 5485 13885
+<< pdcontact >>
+rect 5585 13835 5635 13885
+<< pdcontact >>
+rect 5735 13835 5785 13885
+<< pdcontact >>
+rect 5885 13835 5935 13885
+<< pdcontact >>
+rect 6035 13835 6085 13885
+<< pdcontact >>
+rect 6185 13835 6235 13885
+<< pdcontact >>
+rect 6335 13835 6385 13885
+<< pdcontact >>
+rect 6485 13835 6535 13885
+<< pdcontact >>
+rect 6635 13835 6685 13885
+<< pdcontact >>
+rect 6785 13835 6835 13885
+<< pdcontact >>
+rect 6935 13835 6985 13885
+<< pdcontact >>
+rect 7085 13835 7135 13885
+<< pdcontact >>
+rect 7235 13835 7285 13885
+<< pdcontact >>
+rect 7385 13835 7435 13885
+<< pdcontact >>
+rect 7535 13835 7585 13885
+<< pdcontact >>
+rect 7685 13835 7735 13885
+<< polycontact >>
+rect 7955 13865 8005 13915
+<< nsubstratencontact >>
+rect 8195 13835 8245 13885
+<< nsubstratencontact >>
+rect 8345 13835 8395 13885
+<< psubstratepcontact >>
+rect 65 13745 115 13795
+<< psubstratepcontact >>
+rect 215 13745 265 13795
+<< nsubstratencontact >>
+rect 605 13685 655 13735
+<< nsubstratencontact >>
+rect 755 13685 805 13735
+<< polycontact >>
+rect 995 13715 1045 13765
+<< pdcontact >>
+rect 1265 13685 1315 13735
+<< pdcontact >>
+rect 1415 13685 1465 13735
+<< pdcontact >>
+rect 1565 13685 1615 13735
+<< pdcontact >>
+rect 1715 13685 1765 13735
+<< pdcontact >>
+rect 1865 13685 1915 13735
+<< pdcontact >>
+rect 2015 13685 2065 13735
+<< pdcontact >>
+rect 2165 13685 2215 13735
+<< pdcontact >>
+rect 2315 13685 2365 13735
+<< pdcontact >>
+rect 2465 13685 2515 13735
+<< pdcontact >>
+rect 2615 13685 2665 13735
+<< pdcontact >>
+rect 2765 13685 2815 13735
+<< pdcontact >>
+rect 2915 13685 2965 13735
+<< pdcontact >>
+rect 3065 13685 3115 13735
+<< pdcontact >>
+rect 3215 13685 3265 13735
+<< pdcontact >>
+rect 3365 13685 3415 13735
+<< pdcontact >>
+rect 3515 13685 3565 13735
+<< pdcontact >>
+rect 3665 13685 3715 13735
+<< pdcontact >>
+rect 3815 13685 3865 13735
+<< pdcontact >>
+rect 3965 13685 4015 13735
+<< nsubstratencontact >>
+rect 4475 13685 4525 13735
+<< pdcontact >>
+rect 4985 13685 5035 13735
+<< pdcontact >>
+rect 5135 13685 5185 13735
+<< pdcontact >>
+rect 5285 13685 5335 13735
+<< pdcontact >>
+rect 5435 13685 5485 13735
+<< pdcontact >>
+rect 5585 13685 5635 13735
+<< pdcontact >>
+rect 5735 13685 5785 13735
+<< pdcontact >>
+rect 5885 13685 5935 13735
+<< pdcontact >>
+rect 6035 13685 6085 13735
+<< pdcontact >>
+rect 6185 13685 6235 13735
+<< pdcontact >>
+rect 6335 13685 6385 13735
+<< pdcontact >>
+rect 6485 13685 6535 13735
+<< pdcontact >>
+rect 6635 13685 6685 13735
+<< pdcontact >>
+rect 6785 13685 6835 13735
+<< pdcontact >>
+rect 6935 13685 6985 13735
+<< pdcontact >>
+rect 7085 13685 7135 13735
+<< pdcontact >>
+rect 7235 13685 7285 13735
+<< pdcontact >>
+rect 7385 13685 7435 13735
+<< pdcontact >>
+rect 7535 13685 7585 13735
+<< pdcontact >>
+rect 7685 13685 7735 13735
+<< polycontact >>
+rect 7955 13715 8005 13765
+<< psubstratepcontact >>
+rect 8735 13745 8785 13795
+<< psubstratepcontact >>
+rect 8885 13745 8935 13795
+<< nsubstratencontact >>
+rect 8195 13685 8245 13735
+<< nsubstratencontact >>
+rect 8345 13685 8395 13735
+<< psubstratepcontact >>
+rect 65 13505 115 13555
+<< psubstratepcontact >>
+rect 215 13505 265 13555
+<< nsubstratencontact >>
+rect 605 13535 655 13585
+<< nsubstratencontact >>
+rect 755 13535 805 13585
+<< polycontact >>
+rect 995 13565 1045 13615
+<< nsubstratencontact >>
+rect 4475 13535 4525 13585
+<< polycontact >>
+rect 7955 13565 8005 13615
+<< nsubstratencontact >>
+rect 8195 13535 8245 13585
+<< nsubstratencontact >>
+rect 8345 13535 8395 13585
+<< psubstratepcontact >>
+rect 8735 13505 8785 13555
+<< psubstratepcontact >>
+rect 8885 13505 8935 13555
+<< pdcontact >>
+rect 1235 13385 1285 13435
+<< pdcontact >>
+rect 1535 13385 1585 13435
+<< pdcontact >>
+rect 1835 13385 1885 13435
+<< pdcontact >>
+rect 2135 13385 2185 13435
+<< pdcontact >>
+rect 2435 13385 2485 13435
+<< pdcontact >>
+rect 2735 13385 2785 13435
+<< pdcontact >>
+rect 3035 13385 3085 13435
+<< pdcontact >>
+rect 3335 13385 3385 13435
+<< pdcontact >>
+rect 5615 13385 5665 13435
+<< pdcontact >>
+rect 5915 13385 5965 13435
+<< pdcontact >>
+rect 6215 13385 6265 13435
+<< pdcontact >>
+rect 6515 13385 6565 13435
+<< pdcontact >>
+rect 6815 13385 6865 13435
+<< pdcontact >>
+rect 7115 13385 7165 13435
+<< pdcontact >>
+rect 7415 13385 7465 13435
+<< pdcontact >>
+rect 7715 13385 7765 13435
+<< psubstratepcontact >>
+rect 65 13265 115 13315
+<< psubstratepcontact >>
+rect 215 13265 265 13315
+<< pdcontact >>
+rect 1235 13235 1285 13285
+<< pdcontact >>
+rect 1535 13235 1585 13285
+<< pdcontact >>
+rect 1835 13235 1885 13285
+<< pdcontact >>
+rect 2135 13235 2185 13285
+<< pdcontact >>
+rect 2435 13235 2485 13285
+<< pdcontact >>
+rect 2735 13235 2785 13285
+<< pdcontact >>
+rect 3035 13235 3085 13285
+<< pdcontact >>
+rect 3335 13235 3385 13285
+<< pdcontact >>
+rect 5615 13235 5665 13285
+<< pdcontact >>
+rect 5915 13235 5965 13285
+<< pdcontact >>
+rect 6215 13235 6265 13285
+<< pdcontact >>
+rect 6515 13235 6565 13285
+<< pdcontact >>
+rect 6815 13235 6865 13285
+<< pdcontact >>
+rect 7115 13235 7165 13285
+<< pdcontact >>
+rect 7415 13235 7465 13285
+<< pdcontact >>
+rect 7715 13235 7765 13285
+<< psubstratepcontact >>
+rect 8735 13265 8785 13315
+<< psubstratepcontact >>
+rect 8885 13265 8935 13315
+<< nsubstratencontact >>
+rect 1235 13085 1285 13135
+<< nsubstratencontact >>
+rect 1535 13085 1585 13135
+<< nsubstratencontact >>
+rect 1835 13085 1885 13135
+<< nsubstratencontact >>
+rect 2135 13085 2185 13135
+<< nsubstratencontact >>
+rect 2435 13085 2485 13135
+<< nsubstratencontact >>
+rect 2735 13085 2785 13135
+<< nsubstratencontact >>
+rect 3035 13085 3085 13135
+<< nsubstratencontact >>
+rect 3335 13085 3385 13135
+<< nsubstratencontact >>
+rect 5615 13085 5665 13135
+<< nsubstratencontact >>
+rect 5915 13085 5965 13135
+<< nsubstratencontact >>
+rect 6215 13085 6265 13135
+<< nsubstratencontact >>
+rect 6515 13085 6565 13135
+<< nsubstratencontact >>
+rect 6815 13085 6865 13135
+<< nsubstratencontact >>
+rect 7115 13085 7165 13135
+<< nsubstratencontact >>
+rect 7415 13085 7465 13135
+<< nsubstratencontact >>
+rect 7715 13085 7765 13135
+<< psubstratepcontact >>
+rect 65 13025 115 13075
+<< psubstratepcontact >>
+rect 215 13025 265 13075
+<< psubstratepcontact >>
+rect 8735 13025 8785 13075
+<< psubstratepcontact >>
+rect 8885 13025 8935 13075
+<< psubstratepcontact >>
+rect 65 12785 115 12835
+<< psubstratepcontact >>
+rect 215 12785 265 12835
+<< psubstratepcontact >>
+rect 8735 12785 8785 12835
+<< psubstratepcontact >>
+rect 8885 12785 8935 12835
+<< psubstratepcontact >>
+rect 35 12545 85 12595
+<< psubstratepcontact >>
+rect 275 12545 325 12595
+<< psubstratepcontact >>
+rect 515 12545 565 12595
+<< psubstratepcontact >>
+rect 755 12545 805 12595
+<< psubstratepcontact >>
+rect 1235 12545 1285 12595
+<< psubstratepcontact >>
+rect 1475 12545 1525 12595
+<< psubstratepcontact >>
+rect 1715 12545 1765 12595
+<< psubstratepcontact >>
+rect 1955 12545 2005 12595
+<< psubstratepcontact >>
+rect 2195 12545 2245 12595
+<< psubstratepcontact >>
+rect 2435 12545 2485 12595
+<< psubstratepcontact >>
+rect 2675 12545 2725 12595
+<< psubstratepcontact >>
+rect 2915 12545 2965 12595
+<< psubstratepcontact >>
+rect 3155 12545 3205 12595
+<< psubstratepcontact >>
+rect 3395 12545 3445 12595
+<< psubstratepcontact >>
+rect 4475 12545 4525 12595
+<< psubstratepcontact >>
+rect 5555 12545 5605 12595
+<< psubstratepcontact >>
+rect 5795 12545 5845 12595
+<< psubstratepcontact >>
+rect 6035 12545 6085 12595
+<< psubstratepcontact >>
+rect 6275 12545 6325 12595
+<< psubstratepcontact >>
+rect 6515 12545 6565 12595
+<< psubstratepcontact >>
+rect 6755 12545 6805 12595
+<< psubstratepcontact >>
+rect 6995 12545 7045 12595
+<< psubstratepcontact >>
+rect 7235 12545 7285 12595
+<< psubstratepcontact >>
+rect 7475 12545 7525 12595
+<< psubstratepcontact >>
+rect 7715 12545 7765 12595
+<< psubstratepcontact >>
+rect 8195 12545 8245 12595
+<< psubstratepcontact >>
+rect 8435 12545 8485 12595
+<< psubstratepcontact >>
+rect 8675 12545 8725 12595
+<< psubstratepcontact >>
+rect 8915 12545 8965 12595
+<< psubstratepcontact >>
+rect 35 12395 85 12445
+<< psubstratepcontact >>
+rect 275 12395 325 12445
+<< psubstratepcontact >>
+rect 515 12395 565 12445
+<< psubstratepcontact >>
+rect 755 12395 805 12445
+<< psubstratepcontact >>
+rect 1235 12395 1285 12445
+<< psubstratepcontact >>
+rect 1475 12395 1525 12445
+<< psubstratepcontact >>
+rect 1715 12395 1765 12445
+<< psubstratepcontact >>
+rect 1955 12395 2005 12445
+<< psubstratepcontact >>
+rect 2195 12395 2245 12445
+<< psubstratepcontact >>
+rect 2435 12395 2485 12445
+<< psubstratepcontact >>
+rect 2675 12395 2725 12445
+<< psubstratepcontact >>
+rect 2915 12395 2965 12445
+<< psubstratepcontact >>
+rect 3155 12395 3205 12445
+<< psubstratepcontact >>
+rect 3395 12395 3445 12445
+<< psubstratepcontact >>
+rect 4475 12395 4525 12445
+<< psubstratepcontact >>
+rect 5555 12395 5605 12445
+<< psubstratepcontact >>
+rect 5795 12395 5845 12445
+<< psubstratepcontact >>
+rect 6035 12395 6085 12445
+<< psubstratepcontact >>
+rect 6275 12395 6325 12445
+<< psubstratepcontact >>
+rect 6515 12395 6565 12445
+<< psubstratepcontact >>
+rect 6755 12395 6805 12445
+<< psubstratepcontact >>
+rect 6995 12395 7045 12445
+<< psubstratepcontact >>
+rect 7235 12395 7285 12445
+<< psubstratepcontact >>
+rect 7475 12395 7525 12445
+<< psubstratepcontact >>
+rect 7715 12395 7765 12445
+<< psubstratepcontact >>
+rect 8195 12395 8245 12445
+<< psubstratepcontact >>
+rect 8435 12395 8485 12445
+<< psubstratepcontact >>
+rect 8675 12395 8725 12445
+<< psubstratepcontact >>
+rect 8915 12395 8965 12445
+<< nsubstratencontact >>
+rect 35 12035 85 12085
+<< nsubstratencontact >>
+rect 275 12035 325 12085
+<< nsubstratencontact >>
+rect 515 12035 565 12085
+<< nsubstratencontact >>
+rect 755 12035 805 12085
+<< nsubstratencontact >>
+rect 1235 12035 1285 12085
+<< nsubstratencontact >>
+rect 1475 12035 1525 12085
+<< nsubstratencontact >>
+rect 1715 12035 1765 12085
+<< nsubstratencontact >>
+rect 1955 12035 2005 12085
+<< nsubstratencontact >>
+rect 2195 12035 2245 12085
+<< nsubstratencontact >>
+rect 2435 12035 2485 12085
+<< nsubstratencontact >>
+rect 2675 12035 2725 12085
+<< nsubstratencontact >>
+rect 2915 12035 2965 12085
+<< nsubstratencontact >>
+rect 3155 12035 3205 12085
+<< nsubstratencontact >>
+rect 3395 12035 3445 12085
+<< nsubstratencontact >>
+rect 4475 12035 4525 12085
+<< nsubstratencontact >>
+rect 5555 12035 5605 12085
+<< nsubstratencontact >>
+rect 5795 12035 5845 12085
+<< nsubstratencontact >>
+rect 6035 12035 6085 12085
+<< nsubstratencontact >>
+rect 6275 12035 6325 12085
+<< nsubstratencontact >>
+rect 6515 12035 6565 12085
+<< nsubstratencontact >>
+rect 6755 12035 6805 12085
+<< nsubstratencontact >>
+rect 6995 12035 7045 12085
+<< nsubstratencontact >>
+rect 7235 12035 7285 12085
+<< nsubstratencontact >>
+rect 7475 12035 7525 12085
+<< nsubstratencontact >>
+rect 7715 12035 7765 12085
+<< nsubstratencontact >>
+rect 8195 12035 8245 12085
+<< nsubstratencontact >>
+rect 8435 12035 8485 12085
+<< nsubstratencontact >>
+rect 8675 12035 8725 12085
+<< nsubstratencontact >>
+rect 8915 12035 8965 12085
+<< nsubstratencontact >>
+rect 35 11885 85 11935
+<< nsubstratencontact >>
+rect 275 11885 325 11935
+<< nsubstratencontact >>
+rect 515 11885 565 11935
+<< nsubstratencontact >>
+rect 755 11885 805 11935
+<< nsubstratencontact >>
+rect 1235 11885 1285 11935
+<< nsubstratencontact >>
+rect 1475 11885 1525 11935
+<< nsubstratencontact >>
+rect 1715 11885 1765 11935
+<< nsubstratencontact >>
+rect 1955 11885 2005 11935
+<< nsubstratencontact >>
+rect 2195 11885 2245 11935
+<< nsubstratencontact >>
+rect 2435 11885 2485 11935
+<< nsubstratencontact >>
+rect 2675 11885 2725 11935
+<< nsubstratencontact >>
+rect 2915 11885 2965 11935
+<< nsubstratencontact >>
+rect 3155 11885 3205 11935
+<< nsubstratencontact >>
+rect 3395 11885 3445 11935
+<< nsubstratencontact >>
+rect 4475 11885 4525 11935
+<< nsubstratencontact >>
+rect 5555 11885 5605 11935
+<< nsubstratencontact >>
+rect 5795 11885 5845 11935
+<< nsubstratencontact >>
+rect 6035 11885 6085 11935
+<< nsubstratencontact >>
+rect 6275 11885 6325 11935
+<< nsubstratencontact >>
+rect 6515 11885 6565 11935
+<< nsubstratencontact >>
+rect 6755 11885 6805 11935
+<< nsubstratencontact >>
+rect 6995 11885 7045 11935
+<< nsubstratencontact >>
+rect 7235 11885 7285 11935
+<< nsubstratencontact >>
+rect 7475 11885 7525 11935
+<< nsubstratencontact >>
+rect 7715 11885 7765 11935
+<< nsubstratencontact >>
+rect 8195 11885 8245 11935
+<< nsubstratencontact >>
+rect 8435 11885 8485 11935
+<< nsubstratencontact >>
+rect 8675 11885 8725 11935
+<< nsubstratencontact >>
+rect 8915 11885 8965 11935
+<< psubstratepcontact >>
+rect 35 11195 85 11245
+<< psubstratepcontact >>
+rect 275 11195 325 11245
+<< psubstratepcontact >>
+rect 515 11195 565 11245
+<< psubstratepcontact >>
+rect 755 11195 805 11245
+<< psubstratepcontact >>
+rect 1235 11195 1285 11245
+<< psubstratepcontact >>
+rect 1475 11195 1525 11245
+<< psubstratepcontact >>
+rect 1715 11195 1765 11245
+<< psubstratepcontact >>
+rect 1955 11195 2005 11245
+<< psubstratepcontact >>
+rect 2195 11195 2245 11245
+<< psubstratepcontact >>
+rect 2435 11195 2485 11245
+<< psubstratepcontact >>
+rect 2675 11195 2725 11245
+<< psubstratepcontact >>
+rect 2915 11195 2965 11245
+<< psubstratepcontact >>
+rect 3155 11195 3205 11245
+<< psubstratepcontact >>
+rect 3395 11195 3445 11245
+<< psubstratepcontact >>
+rect 4475 11195 4525 11245
+<< psubstratepcontact >>
+rect 5555 11195 5605 11245
+<< psubstratepcontact >>
+rect 5795 11195 5845 11245
+<< psubstratepcontact >>
+rect 6035 11195 6085 11245
+<< psubstratepcontact >>
+rect 6275 11195 6325 11245
+<< psubstratepcontact >>
+rect 6515 11195 6565 11245
+<< psubstratepcontact >>
+rect 6755 11195 6805 11245
+<< psubstratepcontact >>
+rect 6995 11195 7045 11245
+<< psubstratepcontact >>
+rect 7235 11195 7285 11245
+<< psubstratepcontact >>
+rect 7475 11195 7525 11245
+<< psubstratepcontact >>
+rect 7715 11195 7765 11245
+<< psubstratepcontact >>
+rect 8195 11195 8245 11245
+<< psubstratepcontact >>
+rect 8435 11195 8485 11245
+<< psubstratepcontact >>
+rect 8675 11195 8725 11245
+<< psubstratepcontact >>
+rect 8915 11195 8965 11245
+<< psubstratepcontact >>
+rect 35 11045 85 11095
+<< psubstratepcontact >>
+rect 275 11045 325 11095
+<< psubstratepcontact >>
+rect 515 11045 565 11095
+<< psubstratepcontact >>
+rect 755 11045 805 11095
+<< psubstratepcontact >>
+rect 1235 11045 1285 11095
+<< psubstratepcontact >>
+rect 1475 11045 1525 11095
+<< psubstratepcontact >>
+rect 1715 11045 1765 11095
+<< psubstratepcontact >>
+rect 1955 11045 2005 11095
+<< psubstratepcontact >>
+rect 2195 11045 2245 11095
+<< psubstratepcontact >>
+rect 2435 11045 2485 11095
+<< psubstratepcontact >>
+rect 2675 11045 2725 11095
+<< psubstratepcontact >>
+rect 2915 11045 2965 11095
+<< psubstratepcontact >>
+rect 3155 11045 3205 11095
+<< psubstratepcontact >>
+rect 3395 11045 3445 11095
+<< psubstratepcontact >>
+rect 4475 11045 4525 11095
+<< psubstratepcontact >>
+rect 5555 11045 5605 11095
+<< psubstratepcontact >>
+rect 5795 11045 5845 11095
+<< psubstratepcontact >>
+rect 6035 11045 6085 11095
+<< psubstratepcontact >>
+rect 6275 11045 6325 11095
+<< psubstratepcontact >>
+rect 6515 11045 6565 11095
+<< psubstratepcontact >>
+rect 6755 11045 6805 11095
+<< psubstratepcontact >>
+rect 6995 11045 7045 11095
+<< psubstratepcontact >>
+rect 7235 11045 7285 11095
+<< psubstratepcontact >>
+rect 7475 11045 7525 11095
+<< psubstratepcontact >>
+rect 7715 11045 7765 11095
+<< psubstratepcontact >>
+rect 8195 11045 8245 11095
+<< psubstratepcontact >>
+rect 8435 11045 8485 11095
+<< psubstratepcontact >>
+rect 8675 11045 8725 11095
+<< psubstratepcontact >>
+rect 8915 11045 8965 11095
+<< nsubstratencontact >>
+rect 35 10685 85 10735
+<< nsubstratencontact >>
+rect 275 10685 325 10735
+<< nsubstratencontact >>
+rect 515 10685 565 10735
+<< nsubstratencontact >>
+rect 755 10685 805 10735
+<< nsubstratencontact >>
+rect 1235 10685 1285 10735
+<< nsubstratencontact >>
+rect 1475 10685 1525 10735
+<< nsubstratencontact >>
+rect 1715 10685 1765 10735
+<< nsubstratencontact >>
+rect 1955 10685 2005 10735
+<< nsubstratencontact >>
+rect 2195 10685 2245 10735
+<< nsubstratencontact >>
+rect 2435 10685 2485 10735
+<< nsubstratencontact >>
+rect 2675 10685 2725 10735
+<< nsubstratencontact >>
+rect 2915 10685 2965 10735
+<< nsubstratencontact >>
+rect 3155 10685 3205 10735
+<< nsubstratencontact >>
+rect 3395 10685 3445 10735
+<< nsubstratencontact >>
+rect 4475 10685 4525 10735
+<< nsubstratencontact >>
+rect 5555 10685 5605 10735
+<< nsubstratencontact >>
+rect 5795 10685 5845 10735
+<< nsubstratencontact >>
+rect 6035 10685 6085 10735
+<< nsubstratencontact >>
+rect 6275 10685 6325 10735
+<< nsubstratencontact >>
+rect 6515 10685 6565 10735
+<< nsubstratencontact >>
+rect 6755 10685 6805 10735
+<< nsubstratencontact >>
+rect 6995 10685 7045 10735
+<< nsubstratencontact >>
+rect 7235 10685 7285 10735
+<< nsubstratencontact >>
+rect 7475 10685 7525 10735
+<< nsubstratencontact >>
+rect 7715 10685 7765 10735
+<< nsubstratencontact >>
+rect 8195 10685 8245 10735
+<< nsubstratencontact >>
+rect 8435 10685 8485 10735
+<< nsubstratencontact >>
+rect 8675 10685 8725 10735
+<< nsubstratencontact >>
+rect 8915 10685 8965 10735
+<< nsubstratencontact >>
+rect 35 10535 85 10585
+<< nsubstratencontact >>
+rect 275 10535 325 10585
+<< nsubstratencontact >>
+rect 515 10535 565 10585
+<< nsubstratencontact >>
+rect 755 10535 805 10585
+<< nsubstratencontact >>
+rect 1235 10535 1285 10585
+<< nsubstratencontact >>
+rect 1475 10535 1525 10585
+<< nsubstratencontact >>
+rect 1715 10535 1765 10585
+<< nsubstratencontact >>
+rect 1955 10535 2005 10585
+<< nsubstratencontact >>
+rect 2195 10535 2245 10585
+<< nsubstratencontact >>
+rect 2435 10535 2485 10585
+<< nsubstratencontact >>
+rect 2675 10535 2725 10585
+<< nsubstratencontact >>
+rect 2915 10535 2965 10585
+<< nsubstratencontact >>
+rect 3155 10535 3205 10585
+<< nsubstratencontact >>
+rect 3395 10535 3445 10585
+<< nsubstratencontact >>
+rect 4475 10535 4525 10585
+<< nsubstratencontact >>
+rect 5555 10535 5605 10585
+<< nsubstratencontact >>
+rect 5795 10535 5845 10585
+<< nsubstratencontact >>
+rect 6035 10535 6085 10585
+<< nsubstratencontact >>
+rect 6275 10535 6325 10585
+<< nsubstratencontact >>
+rect 6515 10535 6565 10585
+<< nsubstratencontact >>
+rect 6755 10535 6805 10585
+<< nsubstratencontact >>
+rect 6995 10535 7045 10585
+<< nsubstratencontact >>
+rect 7235 10535 7285 10585
+<< nsubstratencontact >>
+rect 7475 10535 7525 10585
+<< nsubstratencontact >>
+rect 7715 10535 7765 10585
+<< nsubstratencontact >>
+rect 8195 10535 8245 10585
+<< nsubstratencontact >>
+rect 8435 10535 8485 10585
+<< nsubstratencontact >>
+rect 8675 10535 8725 10585
+<< nsubstratencontact >>
+rect 8915 10535 8965 10585
+<< nsubstratencontact >>
+rect 65 10295 115 10345
+<< nsubstratencontact >>
+rect 215 10295 265 10345
+<< nsubstratencontact >>
+rect 8735 10295 8785 10345
+<< nsubstratencontact >>
+rect 8885 10295 8935 10345
+<< nsubstratencontact >>
+rect 65 10055 115 10105
+<< nsubstratencontact >>
+rect 215 10055 265 10105
+<< nsubstratencontact >>
+rect 8735 10055 8785 10105
+<< nsubstratencontact >>
+rect 8885 10055 8935 10105
+<< psubstratepcontact >>
+rect 1235 9995 1285 10045
+<< psubstratepcontact >>
+rect 1535 9995 1585 10045
+<< psubstratepcontact >>
+rect 1835 9995 1885 10045
+<< psubstratepcontact >>
+rect 2135 9995 2185 10045
+<< psubstratepcontact >>
+rect 2435 9995 2485 10045
+<< psubstratepcontact >>
+rect 2735 9995 2785 10045
+<< psubstratepcontact >>
+rect 3035 9995 3085 10045
+<< psubstratepcontact >>
+rect 3335 9995 3385 10045
+<< psubstratepcontact >>
+rect 5615 9995 5665 10045
+<< psubstratepcontact >>
+rect 5915 9995 5965 10045
+<< psubstratepcontact >>
+rect 6215 9995 6265 10045
+<< psubstratepcontact >>
+rect 6515 9995 6565 10045
+<< psubstratepcontact >>
+rect 6815 9995 6865 10045
+<< psubstratepcontact >>
+rect 7115 9995 7165 10045
+<< psubstratepcontact >>
+rect 7415 9995 7465 10045
+<< psubstratepcontact >>
+rect 7715 9995 7765 10045
+<< nsubstratencontact >>
+rect 65 9815 115 9865
+<< nsubstratencontact >>
+rect 215 9815 265 9865
+<< ndcontact >>
+rect 1235 9845 1285 9895
+<< ndcontact >>
+rect 1535 9845 1585 9895
+<< ndcontact >>
+rect 1835 9845 1885 9895
+<< ndcontact >>
+rect 2135 9845 2185 9895
+<< ndcontact >>
+rect 2435 9845 2485 9895
+<< ndcontact >>
+rect 2735 9845 2785 9895
+<< ndcontact >>
+rect 3035 9845 3085 9895
+<< ndcontact >>
+rect 3335 9845 3385 9895
+<< ndcontact >>
+rect 5615 9845 5665 9895
+<< ndcontact >>
+rect 5915 9845 5965 9895
+<< ndcontact >>
+rect 6215 9845 6265 9895
+<< ndcontact >>
+rect 6515 9845 6565 9895
+<< ndcontact >>
+rect 6815 9845 6865 9895
+<< ndcontact >>
+rect 7115 9845 7165 9895
+<< ndcontact >>
+rect 7415 9845 7465 9895
+<< ndcontact >>
+rect 7715 9845 7765 9895
+<< nsubstratencontact >>
+rect 8735 9815 8785 9865
+<< nsubstratencontact >>
+rect 8885 9815 8935 9865
+<< ndcontact >>
+rect 1235 9695 1285 9745
+<< ndcontact >>
+rect 1535 9695 1585 9745
+<< ndcontact >>
+rect 1835 9695 1885 9745
+<< ndcontact >>
+rect 2135 9695 2185 9745
+<< ndcontact >>
+rect 2435 9695 2485 9745
+<< ndcontact >>
+rect 2735 9695 2785 9745
+<< ndcontact >>
+rect 3035 9695 3085 9745
+<< ndcontact >>
+rect 3335 9695 3385 9745
+<< ndcontact >>
+rect 5615 9695 5665 9745
+<< ndcontact >>
+rect 5915 9695 5965 9745
+<< ndcontact >>
+rect 6215 9695 6265 9745
+<< ndcontact >>
+rect 6515 9695 6565 9745
+<< ndcontact >>
+rect 6815 9695 6865 9745
+<< ndcontact >>
+rect 7115 9695 7165 9745
+<< ndcontact >>
+rect 7415 9695 7465 9745
+<< ndcontact >>
+rect 7715 9695 7765 9745
+<< nsubstratencontact >>
+rect 65 9575 115 9625
+<< nsubstratencontact >>
+rect 215 9575 265 9625
+<< psubstratepcontact >>
+rect 605 9545 655 9595
+<< psubstratepcontact >>
+rect 755 9545 805 9595
+<< psubstratepcontact >>
+rect 4475 9545 4525 9595
+<< psubstratepcontact >>
+rect 8195 9545 8245 9595
+<< psubstratepcontact >>
+rect 8345 9545 8395 9595
+<< nsubstratencontact >>
+rect 8735 9575 8785 9625
+<< nsubstratencontact >>
+rect 8885 9575 8935 9625
+<< polycontact >>
+rect 995 9455 1045 9505
+<< polycontact >>
+rect 7955 9455 8005 9505
+<< psubstratepcontact >>
+rect 605 9395 655 9445
+<< psubstratepcontact >>
+rect 755 9395 805 9445
+<< ndcontact >>
+rect 1265 9395 1315 9445
+<< ndcontact >>
+rect 1415 9395 1465 9445
+<< ndcontact >>
+rect 1565 9395 1615 9445
+<< ndcontact >>
+rect 1715 9395 1765 9445
+<< ndcontact >>
+rect 1865 9395 1915 9445
+<< ndcontact >>
+rect 2015 9395 2065 9445
+<< ndcontact >>
+rect 2165 9395 2215 9445
+<< ndcontact >>
+rect 2315 9395 2365 9445
+<< ndcontact >>
+rect 2465 9395 2515 9445
+<< ndcontact >>
+rect 2615 9395 2665 9445
+<< ndcontact >>
+rect 2765 9395 2815 9445
+<< ndcontact >>
+rect 2915 9395 2965 9445
+<< ndcontact >>
+rect 3065 9395 3115 9445
+<< ndcontact >>
+rect 3215 9395 3265 9445
+<< ndcontact >>
+rect 3365 9395 3415 9445
+<< ndcontact >>
+rect 3515 9395 3565 9445
+<< ndcontact >>
+rect 3665 9395 3715 9445
+<< ndcontact >>
+rect 3815 9395 3865 9445
+<< ndcontact >>
+rect 3965 9395 4015 9445
+<< psubstratepcontact >>
+rect 4475 9395 4525 9445
+<< ndcontact >>
+rect 4985 9395 5035 9445
+<< ndcontact >>
+rect 5135 9395 5185 9445
+<< ndcontact >>
+rect 5285 9395 5335 9445
+<< ndcontact >>
+rect 5435 9395 5485 9445
+<< ndcontact >>
+rect 5585 9395 5635 9445
+<< ndcontact >>
+rect 5735 9395 5785 9445
+<< ndcontact >>
+rect 5885 9395 5935 9445
+<< ndcontact >>
+rect 6035 9395 6085 9445
+<< ndcontact >>
+rect 6185 9395 6235 9445
+<< ndcontact >>
+rect 6335 9395 6385 9445
+<< ndcontact >>
+rect 6485 9395 6535 9445
+<< ndcontact >>
+rect 6635 9395 6685 9445
+<< ndcontact >>
+rect 6785 9395 6835 9445
+<< ndcontact >>
+rect 6935 9395 6985 9445
+<< ndcontact >>
+rect 7085 9395 7135 9445
+<< ndcontact >>
+rect 7235 9395 7285 9445
+<< ndcontact >>
+rect 7385 9395 7435 9445
+<< ndcontact >>
+rect 7535 9395 7585 9445
+<< ndcontact >>
+rect 7685 9395 7735 9445
+<< psubstratepcontact >>
+rect 8195 9395 8245 9445
+<< psubstratepcontact >>
+rect 8345 9395 8395 9445
+<< nsubstratencontact >>
+rect 65 9335 115 9385
+<< nsubstratencontact >>
+rect 215 9335 265 9385
+<< polycontact >>
+rect 995 9305 1045 9355
+<< polycontact >>
+rect 7955 9305 8005 9355
+<< nsubstratencontact >>
+rect 8735 9335 8785 9385
+<< nsubstratencontact >>
+rect 8885 9335 8935 9385
+<< psubstratepcontact >>
+rect 605 9245 655 9295
+<< psubstratepcontact >>
+rect 755 9245 805 9295
+<< ndcontact >>
+rect 1265 9245 1315 9295
+<< ndcontact >>
+rect 1415 9245 1465 9295
+<< ndcontact >>
+rect 1565 9245 1615 9295
+<< ndcontact >>
+rect 1715 9245 1765 9295
+<< ndcontact >>
+rect 1865 9245 1915 9295
+<< ndcontact >>
+rect 2015 9245 2065 9295
+<< ndcontact >>
+rect 2165 9245 2215 9295
+<< ndcontact >>
+rect 2315 9245 2365 9295
+<< ndcontact >>
+rect 2465 9245 2515 9295
+<< ndcontact >>
+rect 2615 9245 2665 9295
+<< ndcontact >>
+rect 2765 9245 2815 9295
+<< ndcontact >>
+rect 2915 9245 2965 9295
+<< ndcontact >>
+rect 3065 9245 3115 9295
+<< ndcontact >>
+rect 3215 9245 3265 9295
+<< ndcontact >>
+rect 3365 9245 3415 9295
+<< ndcontact >>
+rect 3515 9245 3565 9295
+<< ndcontact >>
+rect 3665 9245 3715 9295
+<< ndcontact >>
+rect 3815 9245 3865 9295
+<< ndcontact >>
+rect 3965 9245 4015 9295
+<< psubstratepcontact >>
+rect 4475 9245 4525 9295
+<< ndcontact >>
+rect 4985 9245 5035 9295
+<< ndcontact >>
+rect 5135 9245 5185 9295
+<< ndcontact >>
+rect 5285 9245 5335 9295
+<< ndcontact >>
+rect 5435 9245 5485 9295
+<< ndcontact >>
+rect 5585 9245 5635 9295
+<< ndcontact >>
+rect 5735 9245 5785 9295
+<< ndcontact >>
+rect 5885 9245 5935 9295
+<< ndcontact >>
+rect 6035 9245 6085 9295
+<< ndcontact >>
+rect 6185 9245 6235 9295
+<< ndcontact >>
+rect 6335 9245 6385 9295
+<< ndcontact >>
+rect 6485 9245 6535 9295
+<< ndcontact >>
+rect 6635 9245 6685 9295
+<< ndcontact >>
+rect 6785 9245 6835 9295
+<< ndcontact >>
+rect 6935 9245 6985 9295
+<< ndcontact >>
+rect 7085 9245 7135 9295
+<< ndcontact >>
+rect 7235 9245 7285 9295
+<< ndcontact >>
+rect 7385 9245 7435 9295
+<< ndcontact >>
+rect 7535 9245 7585 9295
+<< ndcontact >>
+rect 7685 9245 7735 9295
+<< psubstratepcontact >>
+rect 8195 9245 8245 9295
+<< psubstratepcontact >>
+rect 8345 9245 8395 9295
+<< polycontact >>
+rect 995 9155 1045 9205
+<< polycontact >>
+rect 7955 9155 8005 9205
+<< nsubstratencontact >>
+rect 65 9095 115 9145
+<< nsubstratencontact >>
+rect 215 9095 265 9145
+<< psubstratepcontact >>
+rect 605 9095 655 9145
+<< psubstratepcontact >>
+rect 755 9095 805 9145
+<< ndcontact >>
+rect 1265 9095 1315 9145
+<< ndcontact >>
+rect 1415 9095 1465 9145
+<< ndcontact >>
+rect 1565 9095 1615 9145
+<< ndcontact >>
+rect 1715 9095 1765 9145
+<< ndcontact >>
+rect 1865 9095 1915 9145
+<< ndcontact >>
+rect 2015 9095 2065 9145
+<< ndcontact >>
+rect 2165 9095 2215 9145
+<< ndcontact >>
+rect 2315 9095 2365 9145
+<< ndcontact >>
+rect 2465 9095 2515 9145
+<< ndcontact >>
+rect 2615 9095 2665 9145
+<< ndcontact >>
+rect 2765 9095 2815 9145
+<< ndcontact >>
+rect 2915 9095 2965 9145
+<< ndcontact >>
+rect 3065 9095 3115 9145
+<< ndcontact >>
+rect 3215 9095 3265 9145
+<< ndcontact >>
+rect 3365 9095 3415 9145
+<< ndcontact >>
+rect 3515 9095 3565 9145
+<< ndcontact >>
+rect 3665 9095 3715 9145
+<< ndcontact >>
+rect 3815 9095 3865 9145
+<< ndcontact >>
+rect 3965 9095 4015 9145
+<< psubstratepcontact >>
+rect 4475 9095 4525 9145
+<< ndcontact >>
+rect 4985 9095 5035 9145
+<< ndcontact >>
+rect 5135 9095 5185 9145
+<< ndcontact >>
+rect 5285 9095 5335 9145
+<< ndcontact >>
+rect 5435 9095 5485 9145
+<< ndcontact >>
+rect 5585 9095 5635 9145
+<< ndcontact >>
+rect 5735 9095 5785 9145
+<< ndcontact >>
+rect 5885 9095 5935 9145
+<< ndcontact >>
+rect 6035 9095 6085 9145
+<< ndcontact >>
+rect 6185 9095 6235 9145
+<< ndcontact >>
+rect 6335 9095 6385 9145
+<< ndcontact >>
+rect 6485 9095 6535 9145
+<< ndcontact >>
+rect 6635 9095 6685 9145
+<< ndcontact >>
+rect 6785 9095 6835 9145
+<< ndcontact >>
+rect 6935 9095 6985 9145
+<< ndcontact >>
+rect 7085 9095 7135 9145
+<< ndcontact >>
+rect 7235 9095 7285 9145
+<< ndcontact >>
+rect 7385 9095 7435 9145
+<< ndcontact >>
+rect 7535 9095 7585 9145
+<< ndcontact >>
+rect 7685 9095 7735 9145
+<< psubstratepcontact >>
+rect 8195 9095 8245 9145
+<< psubstratepcontact >>
+rect 8345 9095 8395 9145
+<< nsubstratencontact >>
+rect 8735 9095 8785 9145
+<< nsubstratencontact >>
+rect 8885 9095 8935 9145
+<< polycontact >>
+rect 995 9005 1045 9055
+<< polycontact >>
+rect 7955 9005 8005 9055
+<< psubstratepcontact >>
+rect 605 8945 655 8995
+<< psubstratepcontact >>
+rect 755 8945 805 8995
+<< ndcontact >>
+rect 1265 8945 1315 8995
+<< ndcontact >>
+rect 1415 8945 1465 8995
+<< ndcontact >>
+rect 1565 8945 1615 8995
+<< ndcontact >>
+rect 1715 8945 1765 8995
+<< ndcontact >>
+rect 1865 8945 1915 8995
+<< ndcontact >>
+rect 2015 8945 2065 8995
+<< ndcontact >>
+rect 2165 8945 2215 8995
+<< ndcontact >>
+rect 2315 8945 2365 8995
+<< ndcontact >>
+rect 2465 8945 2515 8995
+<< ndcontact >>
+rect 2615 8945 2665 8995
+<< ndcontact >>
+rect 2765 8945 2815 8995
+<< ndcontact >>
+rect 2915 8945 2965 8995
+<< ndcontact >>
+rect 3065 8945 3115 8995
+<< ndcontact >>
+rect 3215 8945 3265 8995
+<< ndcontact >>
+rect 3365 8945 3415 8995
+<< ndcontact >>
+rect 3515 8945 3565 8995
+<< ndcontact >>
+rect 3665 8945 3715 8995
+<< ndcontact >>
+rect 3815 8945 3865 8995
+<< ndcontact >>
+rect 3965 8945 4015 8995
+<< psubstratepcontact >>
+rect 4475 8945 4525 8995
+<< ndcontact >>
+rect 4985 8945 5035 8995
+<< ndcontact >>
+rect 5135 8945 5185 8995
+<< ndcontact >>
+rect 5285 8945 5335 8995
+<< ndcontact >>
+rect 5435 8945 5485 8995
+<< ndcontact >>
+rect 5585 8945 5635 8995
+<< ndcontact >>
+rect 5735 8945 5785 8995
+<< ndcontact >>
+rect 5885 8945 5935 8995
+<< ndcontact >>
+rect 6035 8945 6085 8995
+<< ndcontact >>
+rect 6185 8945 6235 8995
+<< ndcontact >>
+rect 6335 8945 6385 8995
+<< ndcontact >>
+rect 6485 8945 6535 8995
+<< ndcontact >>
+rect 6635 8945 6685 8995
+<< ndcontact >>
+rect 6785 8945 6835 8995
+<< ndcontact >>
+rect 6935 8945 6985 8995
+<< ndcontact >>
+rect 7085 8945 7135 8995
+<< ndcontact >>
+rect 7235 8945 7285 8995
+<< ndcontact >>
+rect 7385 8945 7435 8995
+<< ndcontact >>
+rect 7535 8945 7585 8995
+<< ndcontact >>
+rect 7685 8945 7735 8995
+<< psubstratepcontact >>
+rect 8195 8945 8245 8995
+<< psubstratepcontact >>
+rect 8345 8945 8395 8995
+<< nsubstratencontact >>
+rect 65 8855 115 8905
+<< nsubstratencontact >>
+rect 215 8855 265 8905
+<< polycontact >>
+rect 995 8855 1045 8905
+<< polycontact >>
+rect 7955 8855 8005 8905
+<< nsubstratencontact >>
+rect 8735 8855 8785 8905
+<< nsubstratencontact >>
+rect 8885 8855 8935 8905
+<< psubstratepcontact >>
+rect 605 8795 655 8845
+<< psubstratepcontact >>
+rect 755 8795 805 8845
+<< ndcontact >>
+rect 1265 8795 1315 8845
+<< ndcontact >>
+rect 1415 8795 1465 8845
+<< ndcontact >>
+rect 1565 8795 1615 8845
+<< ndcontact >>
+rect 1715 8795 1765 8845
+<< ndcontact >>
+rect 1865 8795 1915 8845
+<< ndcontact >>
+rect 2015 8795 2065 8845
+<< ndcontact >>
+rect 2165 8795 2215 8845
+<< ndcontact >>
+rect 2315 8795 2365 8845
+<< ndcontact >>
+rect 2465 8795 2515 8845
+<< ndcontact >>
+rect 2615 8795 2665 8845
+<< ndcontact >>
+rect 2765 8795 2815 8845
+<< ndcontact >>
+rect 2915 8795 2965 8845
+<< ndcontact >>
+rect 3065 8795 3115 8845
+<< ndcontact >>
+rect 3215 8795 3265 8845
+<< ndcontact >>
+rect 3365 8795 3415 8845
+<< ndcontact >>
+rect 3515 8795 3565 8845
+<< ndcontact >>
+rect 3665 8795 3715 8845
+<< ndcontact >>
+rect 3815 8795 3865 8845
+<< ndcontact >>
+rect 3965 8795 4015 8845
+<< psubstratepcontact >>
+rect 4475 8795 4525 8845
+<< ndcontact >>
+rect 4985 8795 5035 8845
+<< ndcontact >>
+rect 5135 8795 5185 8845
+<< ndcontact >>
+rect 5285 8795 5335 8845
+<< ndcontact >>
+rect 5435 8795 5485 8845
+<< ndcontact >>
+rect 5585 8795 5635 8845
+<< ndcontact >>
+rect 5735 8795 5785 8845
+<< ndcontact >>
+rect 5885 8795 5935 8845
+<< ndcontact >>
+rect 6035 8795 6085 8845
+<< ndcontact >>
+rect 6185 8795 6235 8845
+<< ndcontact >>
+rect 6335 8795 6385 8845
+<< ndcontact >>
+rect 6485 8795 6535 8845
+<< ndcontact >>
+rect 6635 8795 6685 8845
+<< ndcontact >>
+rect 6785 8795 6835 8845
+<< ndcontact >>
+rect 6935 8795 6985 8845
+<< ndcontact >>
+rect 7085 8795 7135 8845
+<< ndcontact >>
+rect 7235 8795 7285 8845
+<< ndcontact >>
+rect 7385 8795 7435 8845
+<< ndcontact >>
+rect 7535 8795 7585 8845
+<< ndcontact >>
+rect 7685 8795 7735 8845
+<< psubstratepcontact >>
+rect 8195 8795 8245 8845
+<< psubstratepcontact >>
+rect 8345 8795 8395 8845
+<< polycontact >>
+rect 995 8705 1045 8755
+<< polycontact >>
+rect 7955 8705 8005 8755
+<< nsubstratencontact >>
+rect 65 8615 115 8665
+<< nsubstratencontact >>
+rect 215 8615 265 8665
+<< psubstratepcontact >>
+rect 605 8645 655 8695
+<< psubstratepcontact >>
+rect 755 8645 805 8695
+<< ndcontact >>
+rect 1265 8645 1315 8695
+<< ndcontact >>
+rect 1415 8645 1465 8695
+<< ndcontact >>
+rect 1565 8645 1615 8695
+<< ndcontact >>
+rect 1715 8645 1765 8695
+<< ndcontact >>
+rect 1865 8645 1915 8695
+<< ndcontact >>
+rect 2015 8645 2065 8695
+<< ndcontact >>
+rect 2165 8645 2215 8695
+<< ndcontact >>
+rect 2315 8645 2365 8695
+<< ndcontact >>
+rect 2465 8645 2515 8695
+<< ndcontact >>
+rect 2615 8645 2665 8695
+<< ndcontact >>
+rect 2765 8645 2815 8695
+<< ndcontact >>
+rect 2915 8645 2965 8695
+<< ndcontact >>
+rect 3065 8645 3115 8695
+<< ndcontact >>
+rect 3215 8645 3265 8695
+<< ndcontact >>
+rect 3365 8645 3415 8695
+<< ndcontact >>
+rect 3515 8645 3565 8695
+<< ndcontact >>
+rect 3665 8645 3715 8695
+<< ndcontact >>
+rect 3815 8645 3865 8695
+<< ndcontact >>
+rect 3965 8645 4015 8695
+<< psubstratepcontact >>
+rect 4475 8645 4525 8695
+<< ndcontact >>
+rect 4985 8645 5035 8695
+<< ndcontact >>
+rect 5135 8645 5185 8695
+<< ndcontact >>
+rect 5285 8645 5335 8695
+<< ndcontact >>
+rect 5435 8645 5485 8695
+<< ndcontact >>
+rect 5585 8645 5635 8695
+<< ndcontact >>
+rect 5735 8645 5785 8695
+<< ndcontact >>
+rect 5885 8645 5935 8695
+<< ndcontact >>
+rect 6035 8645 6085 8695
+<< ndcontact >>
+rect 6185 8645 6235 8695
+<< ndcontact >>
+rect 6335 8645 6385 8695
+<< ndcontact >>
+rect 6485 8645 6535 8695
+<< ndcontact >>
+rect 6635 8645 6685 8695
+<< ndcontact >>
+rect 6785 8645 6835 8695
+<< ndcontact >>
+rect 6935 8645 6985 8695
+<< ndcontact >>
+rect 7085 8645 7135 8695
+<< ndcontact >>
+rect 7235 8645 7285 8695
+<< ndcontact >>
+rect 7385 8645 7435 8695
+<< ndcontact >>
+rect 7535 8645 7585 8695
+<< ndcontact >>
+rect 7685 8645 7735 8695
+<< psubstratepcontact >>
+rect 8195 8645 8245 8695
+<< psubstratepcontact >>
+rect 8345 8645 8395 8695
+<< nsubstratencontact >>
+rect 8735 8615 8785 8665
+<< nsubstratencontact >>
+rect 8885 8615 8935 8665
+<< polycontact >>
+rect 995 8555 1045 8605
+<< polycontact >>
+rect 7955 8555 8005 8605
+<< psubstratepcontact >>
+rect 605 8495 655 8545
+<< psubstratepcontact >>
+rect 755 8495 805 8545
+<< ndcontact >>
+rect 1265 8495 1315 8545
+<< ndcontact >>
+rect 1415 8495 1465 8545
+<< ndcontact >>
+rect 1565 8495 1615 8545
+<< ndcontact >>
+rect 1715 8495 1765 8545
+<< ndcontact >>
+rect 1865 8495 1915 8545
+<< ndcontact >>
+rect 2015 8495 2065 8545
+<< ndcontact >>
+rect 2165 8495 2215 8545
+<< ndcontact >>
+rect 2315 8495 2365 8545
+<< ndcontact >>
+rect 2465 8495 2515 8545
+<< ndcontact >>
+rect 2615 8495 2665 8545
+<< ndcontact >>
+rect 2765 8495 2815 8545
+<< ndcontact >>
+rect 2915 8495 2965 8545
+<< ndcontact >>
+rect 3065 8495 3115 8545
+<< ndcontact >>
+rect 3215 8495 3265 8545
+<< ndcontact >>
+rect 3365 8495 3415 8545
+<< ndcontact >>
+rect 3515 8495 3565 8545
+<< ndcontact >>
+rect 3665 8495 3715 8545
+<< ndcontact >>
+rect 3815 8495 3865 8545
+<< ndcontact >>
+rect 3965 8495 4015 8545
+<< psubstratepcontact >>
+rect 4475 8495 4525 8545
+<< ndcontact >>
+rect 4985 8495 5035 8545
+<< ndcontact >>
+rect 5135 8495 5185 8545
+<< ndcontact >>
+rect 5285 8495 5335 8545
+<< ndcontact >>
+rect 5435 8495 5485 8545
+<< ndcontact >>
+rect 5585 8495 5635 8545
+<< ndcontact >>
+rect 5735 8495 5785 8545
+<< ndcontact >>
+rect 5885 8495 5935 8545
+<< ndcontact >>
+rect 6035 8495 6085 8545
+<< ndcontact >>
+rect 6185 8495 6235 8545
+<< ndcontact >>
+rect 6335 8495 6385 8545
+<< ndcontact >>
+rect 6485 8495 6535 8545
+<< ndcontact >>
+rect 6635 8495 6685 8545
+<< ndcontact >>
+rect 6785 8495 6835 8545
+<< ndcontact >>
+rect 6935 8495 6985 8545
+<< ndcontact >>
+rect 7085 8495 7135 8545
+<< ndcontact >>
+rect 7235 8495 7285 8545
+<< ndcontact >>
+rect 7385 8495 7435 8545
+<< ndcontact >>
+rect 7535 8495 7585 8545
+<< ndcontact >>
+rect 7685 8495 7735 8545
+<< psubstratepcontact >>
+rect 8195 8495 8245 8545
+<< psubstratepcontact >>
+rect 8345 8495 8395 8545
+<< nsubstratencontact >>
+rect 65 8375 115 8425
+<< nsubstratencontact >>
+rect 215 8375 265 8425
+<< polycontact >>
+rect 995 8405 1045 8455
+<< polycontact >>
+rect 7955 8405 8005 8455
+<< psubstratepcontact >>
+rect 605 8345 655 8395
+<< psubstratepcontact >>
+rect 755 8345 805 8395
+<< ndcontact >>
+rect 1265 8345 1315 8395
+<< ndcontact >>
+rect 1415 8345 1465 8395
+<< ndcontact >>
+rect 1565 8345 1615 8395
+<< ndcontact >>
+rect 1715 8345 1765 8395
+<< ndcontact >>
+rect 1865 8345 1915 8395
+<< ndcontact >>
+rect 2015 8345 2065 8395
+<< ndcontact >>
+rect 2165 8345 2215 8395
+<< ndcontact >>
+rect 2315 8345 2365 8395
+<< ndcontact >>
+rect 2465 8345 2515 8395
+<< ndcontact >>
+rect 2615 8345 2665 8395
+<< ndcontact >>
+rect 2765 8345 2815 8395
+<< ndcontact >>
+rect 2915 8345 2965 8395
+<< ndcontact >>
+rect 3065 8345 3115 8395
+<< ndcontact >>
+rect 3215 8345 3265 8395
+<< ndcontact >>
+rect 3365 8345 3415 8395
+<< ndcontact >>
+rect 3515 8345 3565 8395
+<< ndcontact >>
+rect 3665 8345 3715 8395
+<< ndcontact >>
+rect 3815 8345 3865 8395
+<< ndcontact >>
+rect 3965 8345 4015 8395
+<< psubstratepcontact >>
+rect 4475 8345 4525 8395
+<< ndcontact >>
+rect 4985 8345 5035 8395
+<< ndcontact >>
+rect 5135 8345 5185 8395
+<< ndcontact >>
+rect 5285 8345 5335 8395
+<< ndcontact >>
+rect 5435 8345 5485 8395
+<< ndcontact >>
+rect 5585 8345 5635 8395
+<< ndcontact >>
+rect 5735 8345 5785 8395
+<< ndcontact >>
+rect 5885 8345 5935 8395
+<< ndcontact >>
+rect 6035 8345 6085 8395
+<< ndcontact >>
+rect 6185 8345 6235 8395
+<< ndcontact >>
+rect 6335 8345 6385 8395
+<< ndcontact >>
+rect 6485 8345 6535 8395
+<< ndcontact >>
+rect 6635 8345 6685 8395
+<< ndcontact >>
+rect 6785 8345 6835 8395
+<< ndcontact >>
+rect 6935 8345 6985 8395
+<< ndcontact >>
+rect 7085 8345 7135 8395
+<< ndcontact >>
+rect 7235 8345 7285 8395
+<< ndcontact >>
+rect 7385 8345 7435 8395
+<< ndcontact >>
+rect 7535 8345 7585 8395
+<< ndcontact >>
+rect 7685 8345 7735 8395
+<< psubstratepcontact >>
+rect 8195 8345 8245 8395
+<< psubstratepcontact >>
+rect 8345 8345 8395 8395
+<< nsubstratencontact >>
+rect 8735 8375 8785 8425
+<< nsubstratencontact >>
+rect 8885 8375 8935 8425
+<< polycontact >>
+rect 995 8255 1045 8305
+<< polycontact >>
+rect 7955 8255 8005 8305
+<< psubstratepcontact >>
+rect 605 8195 655 8245
+<< psubstratepcontact >>
+rect 755 8195 805 8245
+<< psubstratepcontact >>
+rect 4475 8195 4525 8245
+<< psubstratepcontact >>
+rect 8195 8195 8245 8245
+<< psubstratepcontact >>
+rect 8345 8195 8395 8245
+<< nsubstratencontact >>
+rect 65 8135 115 8185
+<< nsubstratencontact >>
+rect 215 8135 265 8185
+<< polycontact >>
+rect 995 8105 1045 8155
+<< polycontact >>
+rect 7955 8105 8005 8155
+<< nsubstratencontact >>
+rect 8735 8135 8785 8185
+<< nsubstratencontact >>
+rect 8885 8135 8935 8185
+<< ndcontact >>
+rect 1235 8045 1285 8095
+<< ndcontact >>
+rect 1535 8045 1585 8095
+<< ndcontact >>
+rect 1835 8045 1885 8095
+<< ndcontact >>
+rect 2135 8045 2185 8095
+<< ndcontact >>
+rect 2435 8045 2485 8095
+<< ndcontact >>
+rect 2735 8045 2785 8095
+<< ndcontact >>
+rect 3035 8045 3085 8095
+<< ndcontact >>
+rect 3335 8045 3385 8095
+<< ndcontact >>
+rect 5615 8045 5665 8095
+<< ndcontact >>
+rect 5915 8045 5965 8095
+<< ndcontact >>
+rect 6215 8045 6265 8095
+<< ndcontact >>
+rect 6515 8045 6565 8095
+<< ndcontact >>
+rect 6815 8045 6865 8095
+<< ndcontact >>
+rect 7115 8045 7165 8095
+<< ndcontact >>
+rect 7415 8045 7465 8095
+<< ndcontact >>
+rect 7715 8045 7765 8095
+<< polycontact >>
+rect 995 7955 1045 8005
+<< polycontact >>
+rect 7955 7955 8005 8005
+<< nsubstratencontact >>
+rect 65 7895 115 7945
+<< nsubstratencontact >>
+rect 215 7895 265 7945
+<< ndcontact >>
+rect 1235 7895 1285 7945
+<< ndcontact >>
+rect 1535 7895 1585 7945
+<< ndcontact >>
+rect 1835 7895 1885 7945
+<< ndcontact >>
+rect 2135 7895 2185 7945
+<< ndcontact >>
+rect 2435 7895 2485 7945
+<< ndcontact >>
+rect 2735 7895 2785 7945
+<< ndcontact >>
+rect 3035 7895 3085 7945
+<< ndcontact >>
+rect 3335 7895 3385 7945
+<< ndcontact >>
+rect 5615 7895 5665 7945
+<< ndcontact >>
+rect 5915 7895 5965 7945
+<< ndcontact >>
+rect 6215 7895 6265 7945
+<< ndcontact >>
+rect 6515 7895 6565 7945
+<< ndcontact >>
+rect 6815 7895 6865 7945
+<< ndcontact >>
+rect 7115 7895 7165 7945
+<< ndcontact >>
+rect 7415 7895 7465 7945
+<< ndcontact >>
+rect 7715 7895 7765 7945
+<< nsubstratencontact >>
+rect 8735 7895 8785 7945
+<< nsubstratencontact >>
+rect 8885 7895 8935 7945
+<< polycontact >>
+rect 995 7805 1045 7855
+<< polycontact >>
+rect 7955 7805 8005 7855
+<< ndcontact >>
+rect 1235 7745 1285 7795
+<< ndcontact >>
+rect 1535 7745 1585 7795
+<< ndcontact >>
+rect 1835 7745 1885 7795
+<< ndcontact >>
+rect 2135 7745 2185 7795
+<< ndcontact >>
+rect 2435 7745 2485 7795
+<< ndcontact >>
+rect 2735 7745 2785 7795
+<< ndcontact >>
+rect 3035 7745 3085 7795
+<< ndcontact >>
+rect 3335 7745 3385 7795
+<< ndcontact >>
+rect 5615 7745 5665 7795
+<< ndcontact >>
+rect 5915 7745 5965 7795
+<< ndcontact >>
+rect 6215 7745 6265 7795
+<< ndcontact >>
+rect 6515 7745 6565 7795
+<< ndcontact >>
+rect 6815 7745 6865 7795
+<< ndcontact >>
+rect 7115 7745 7165 7795
+<< ndcontact >>
+rect 7415 7745 7465 7795
+<< ndcontact >>
+rect 7715 7745 7765 7795
+<< nsubstratencontact >>
+rect 65 7655 115 7705
+<< nsubstratencontact >>
+rect 215 7655 265 7705
+<< polycontact >>
+rect 995 7655 1045 7705
+<< polycontact >>
+rect 7955 7655 8005 7705
+<< nsubstratencontact >>
+rect 8735 7655 8785 7705
+<< nsubstratencontact >>
+rect 8885 7655 8935 7705
+<< psubstratepcontact >>
+rect 605 7595 655 7645
+<< psubstratepcontact >>
+rect 755 7595 805 7645
+<< psubstratepcontact >>
+rect 4475 7595 4525 7645
+<< psubstratepcontact >>
+rect 8195 7595 8245 7645
+<< psubstratepcontact >>
+rect 8345 7595 8395 7645
+<< polycontact >>
+rect 995 7505 1045 7555
+<< polycontact >>
+rect 7955 7505 8005 7555
+<< nsubstratencontact >>
+rect 65 7415 115 7465
+<< nsubstratencontact >>
+rect 215 7415 265 7465
+<< psubstratepcontact >>
+rect 605 7445 655 7495
+<< psubstratepcontact >>
+rect 755 7445 805 7495
+<< ndcontact >>
+rect 1265 7445 1315 7495
+<< ndcontact >>
+rect 1415 7445 1465 7495
+<< ndcontact >>
+rect 1565 7445 1615 7495
+<< ndcontact >>
+rect 1715 7445 1765 7495
+<< ndcontact >>
+rect 1865 7445 1915 7495
+<< ndcontact >>
+rect 2015 7445 2065 7495
+<< ndcontact >>
+rect 2165 7445 2215 7495
+<< ndcontact >>
+rect 2315 7445 2365 7495
+<< ndcontact >>
+rect 2465 7445 2515 7495
+<< ndcontact >>
+rect 2615 7445 2665 7495
+<< ndcontact >>
+rect 2765 7445 2815 7495
+<< ndcontact >>
+rect 2915 7445 2965 7495
+<< ndcontact >>
+rect 3065 7445 3115 7495
+<< ndcontact >>
+rect 3215 7445 3265 7495
+<< ndcontact >>
+rect 3365 7445 3415 7495
+<< ndcontact >>
+rect 3515 7445 3565 7495
+<< ndcontact >>
+rect 3665 7445 3715 7495
+<< ndcontact >>
+rect 3815 7445 3865 7495
+<< ndcontact >>
+rect 3965 7445 4015 7495
+<< psubstratepcontact >>
+rect 4475 7445 4525 7495
+<< ndcontact >>
+rect 4985 7445 5035 7495
+<< ndcontact >>
+rect 5135 7445 5185 7495
+<< ndcontact >>
+rect 5285 7445 5335 7495
+<< ndcontact >>
+rect 5435 7445 5485 7495
+<< ndcontact >>
+rect 5585 7445 5635 7495
+<< ndcontact >>
+rect 5735 7445 5785 7495
+<< ndcontact >>
+rect 5885 7445 5935 7495
+<< ndcontact >>
+rect 6035 7445 6085 7495
+<< ndcontact >>
+rect 6185 7445 6235 7495
+<< ndcontact >>
+rect 6335 7445 6385 7495
+<< ndcontact >>
+rect 6485 7445 6535 7495
+<< ndcontact >>
+rect 6635 7445 6685 7495
+<< ndcontact >>
+rect 6785 7445 6835 7495
+<< ndcontact >>
+rect 6935 7445 6985 7495
+<< ndcontact >>
+rect 7085 7445 7135 7495
+<< ndcontact >>
+rect 7235 7445 7285 7495
+<< ndcontact >>
+rect 7385 7445 7435 7495
+<< ndcontact >>
+rect 7535 7445 7585 7495
+<< ndcontact >>
+rect 7685 7445 7735 7495
+<< psubstratepcontact >>
+rect 8195 7445 8245 7495
+<< psubstratepcontact >>
+rect 8345 7445 8395 7495
+<< nsubstratencontact >>
+rect 8735 7415 8785 7465
+<< nsubstratencontact >>
+rect 8885 7415 8935 7465
+<< polycontact >>
+rect 995 7355 1045 7405
+<< polycontact >>
+rect 7955 7355 8005 7405
+<< psubstratepcontact >>
+rect 605 7295 655 7345
+<< psubstratepcontact >>
+rect 755 7295 805 7345
+<< ndcontact >>
+rect 1265 7295 1315 7345
+<< ndcontact >>
+rect 1415 7295 1465 7345
+<< ndcontact >>
+rect 1565 7295 1615 7345
+<< ndcontact >>
+rect 1715 7295 1765 7345
+<< ndcontact >>
+rect 1865 7295 1915 7345
+<< ndcontact >>
+rect 2015 7295 2065 7345
+<< ndcontact >>
+rect 2165 7295 2215 7345
+<< ndcontact >>
+rect 2315 7295 2365 7345
+<< ndcontact >>
+rect 2465 7295 2515 7345
+<< ndcontact >>
+rect 2615 7295 2665 7345
+<< ndcontact >>
+rect 2765 7295 2815 7345
+<< ndcontact >>
+rect 2915 7295 2965 7345
+<< ndcontact >>
+rect 3065 7295 3115 7345
+<< ndcontact >>
+rect 3215 7295 3265 7345
+<< ndcontact >>
+rect 3365 7295 3415 7345
+<< ndcontact >>
+rect 3515 7295 3565 7345
+<< ndcontact >>
+rect 3665 7295 3715 7345
+<< ndcontact >>
+rect 3815 7295 3865 7345
+<< ndcontact >>
+rect 3965 7295 4015 7345
+<< psubstratepcontact >>
+rect 4475 7295 4525 7345
+<< ndcontact >>
+rect 4985 7295 5035 7345
+<< ndcontact >>
+rect 5135 7295 5185 7345
+<< ndcontact >>
+rect 5285 7295 5335 7345
+<< ndcontact >>
+rect 5435 7295 5485 7345
+<< ndcontact >>
+rect 5585 7295 5635 7345
+<< ndcontact >>
+rect 5735 7295 5785 7345
+<< ndcontact >>
+rect 5885 7295 5935 7345
+<< ndcontact >>
+rect 6035 7295 6085 7345
+<< ndcontact >>
+rect 6185 7295 6235 7345
+<< ndcontact >>
+rect 6335 7295 6385 7345
+<< ndcontact >>
+rect 6485 7295 6535 7345
+<< ndcontact >>
+rect 6635 7295 6685 7345
+<< ndcontact >>
+rect 6785 7295 6835 7345
+<< ndcontact >>
+rect 6935 7295 6985 7345
+<< ndcontact >>
+rect 7085 7295 7135 7345
+<< ndcontact >>
+rect 7235 7295 7285 7345
+<< ndcontact >>
+rect 7385 7295 7435 7345
+<< ndcontact >>
+rect 7535 7295 7585 7345
+<< ndcontact >>
+rect 7685 7295 7735 7345
+<< psubstratepcontact >>
+rect 8195 7295 8245 7345
+<< psubstratepcontact >>
+rect 8345 7295 8395 7345
+<< nsubstratencontact >>
+rect 65 7175 115 7225
+<< nsubstratencontact >>
+rect 215 7175 265 7225
+<< polycontact >>
+rect 995 7205 1045 7255
+<< polycontact >>
+rect 7955 7205 8005 7255
+<< psubstratepcontact >>
+rect 605 7145 655 7195
+<< psubstratepcontact >>
+rect 755 7145 805 7195
+<< ndcontact >>
+rect 1265 7145 1315 7195
+<< ndcontact >>
+rect 1415 7145 1465 7195
+<< ndcontact >>
+rect 1565 7145 1615 7195
+<< ndcontact >>
+rect 1715 7145 1765 7195
+<< ndcontact >>
+rect 1865 7145 1915 7195
+<< ndcontact >>
+rect 2015 7145 2065 7195
+<< ndcontact >>
+rect 2165 7145 2215 7195
+<< ndcontact >>
+rect 2315 7145 2365 7195
+<< ndcontact >>
+rect 2465 7145 2515 7195
+<< ndcontact >>
+rect 2615 7145 2665 7195
+<< ndcontact >>
+rect 2765 7145 2815 7195
+<< ndcontact >>
+rect 2915 7145 2965 7195
+<< ndcontact >>
+rect 3065 7145 3115 7195
+<< ndcontact >>
+rect 3215 7145 3265 7195
+<< ndcontact >>
+rect 3365 7145 3415 7195
+<< ndcontact >>
+rect 3515 7145 3565 7195
+<< ndcontact >>
+rect 3665 7145 3715 7195
+<< ndcontact >>
+rect 3815 7145 3865 7195
+<< ndcontact >>
+rect 3965 7145 4015 7195
+<< psubstratepcontact >>
+rect 4475 7145 4525 7195
+<< ndcontact >>
+rect 4985 7145 5035 7195
+<< ndcontact >>
+rect 5135 7145 5185 7195
+<< ndcontact >>
+rect 5285 7145 5335 7195
+<< ndcontact >>
+rect 5435 7145 5485 7195
+<< ndcontact >>
+rect 5585 7145 5635 7195
+<< ndcontact >>
+rect 5735 7145 5785 7195
+<< ndcontact >>
+rect 5885 7145 5935 7195
+<< ndcontact >>
+rect 6035 7145 6085 7195
+<< ndcontact >>
+rect 6185 7145 6235 7195
+<< ndcontact >>
+rect 6335 7145 6385 7195
+<< ndcontact >>
+rect 6485 7145 6535 7195
+<< ndcontact >>
+rect 6635 7145 6685 7195
+<< ndcontact >>
+rect 6785 7145 6835 7195
+<< ndcontact >>
+rect 6935 7145 6985 7195
+<< ndcontact >>
+rect 7085 7145 7135 7195
+<< ndcontact >>
+rect 7235 7145 7285 7195
+<< ndcontact >>
+rect 7385 7145 7435 7195
+<< ndcontact >>
+rect 7535 7145 7585 7195
+<< ndcontact >>
+rect 7685 7145 7735 7195
+<< psubstratepcontact >>
+rect 8195 7145 8245 7195
+<< psubstratepcontact >>
+rect 8345 7145 8395 7195
+<< nsubstratencontact >>
+rect 8735 7175 8785 7225
+<< nsubstratencontact >>
+rect 8885 7175 8935 7225
+<< polycontact >>
+rect 995 7055 1045 7105
+<< polycontact >>
+rect 7955 7055 8005 7105
+<< psubstratepcontact >>
+rect 605 6995 655 7045
+<< psubstratepcontact >>
+rect 755 6995 805 7045
+<< ndcontact >>
+rect 1265 6995 1315 7045
+<< ndcontact >>
+rect 1415 6995 1465 7045
+<< ndcontact >>
+rect 1565 6995 1615 7045
+<< ndcontact >>
+rect 1715 6995 1765 7045
+<< ndcontact >>
+rect 1865 6995 1915 7045
+<< ndcontact >>
+rect 2015 6995 2065 7045
+<< ndcontact >>
+rect 2165 6995 2215 7045
+<< ndcontact >>
+rect 2315 6995 2365 7045
+<< ndcontact >>
+rect 2465 6995 2515 7045
+<< ndcontact >>
+rect 2615 6995 2665 7045
+<< ndcontact >>
+rect 2765 6995 2815 7045
+<< ndcontact >>
+rect 2915 6995 2965 7045
+<< ndcontact >>
+rect 3065 6995 3115 7045
+<< ndcontact >>
+rect 3215 6995 3265 7045
+<< ndcontact >>
+rect 3365 6995 3415 7045
+<< ndcontact >>
+rect 3515 6995 3565 7045
+<< ndcontact >>
+rect 3665 6995 3715 7045
+<< ndcontact >>
+rect 3815 6995 3865 7045
+<< ndcontact >>
+rect 3965 6995 4015 7045
+<< psubstratepcontact >>
+rect 4475 6995 4525 7045
+<< ndcontact >>
+rect 4985 6995 5035 7045
+<< ndcontact >>
+rect 5135 6995 5185 7045
+<< ndcontact >>
+rect 5285 6995 5335 7045
+<< ndcontact >>
+rect 5435 6995 5485 7045
+<< ndcontact >>
+rect 5585 6995 5635 7045
+<< ndcontact >>
+rect 5735 6995 5785 7045
+<< ndcontact >>
+rect 5885 6995 5935 7045
+<< ndcontact >>
+rect 6035 6995 6085 7045
+<< ndcontact >>
+rect 6185 6995 6235 7045
+<< ndcontact >>
+rect 6335 6995 6385 7045
+<< ndcontact >>
+rect 6485 6995 6535 7045
+<< ndcontact >>
+rect 6635 6995 6685 7045
+<< ndcontact >>
+rect 6785 6995 6835 7045
+<< ndcontact >>
+rect 6935 6995 6985 7045
+<< ndcontact >>
+rect 7085 6995 7135 7045
+<< ndcontact >>
+rect 7235 6995 7285 7045
+<< ndcontact >>
+rect 7385 6995 7435 7045
+<< ndcontact >>
+rect 7535 6995 7585 7045
+<< ndcontact >>
+rect 7685 6995 7735 7045
+<< psubstratepcontact >>
+rect 8195 6995 8245 7045
+<< psubstratepcontact >>
+rect 8345 6995 8395 7045
+<< nsubstratencontact >>
+rect 65 6935 115 6985
+<< nsubstratencontact >>
+rect 215 6935 265 6985
+<< nsubstratencontact >>
+rect 8735 6935 8785 6985
+<< nsubstratencontact >>
+rect 8885 6935 8935 6985
+<< psubstratepcontact >>
+rect 605 6845 655 6895
+<< psubstratepcontact >>
+rect 755 6845 805 6895
+<< polycontact >>
+rect 995 6875 1045 6925
+<< ndcontact >>
+rect 1265 6845 1315 6895
+<< ndcontact >>
+rect 1415 6845 1465 6895
+<< ndcontact >>
+rect 1565 6845 1615 6895
+<< ndcontact >>
+rect 1715 6845 1765 6895
+<< ndcontact >>
+rect 1865 6845 1915 6895
+<< ndcontact >>
+rect 2015 6845 2065 6895
+<< ndcontact >>
+rect 2165 6845 2215 6895
+<< ndcontact >>
+rect 2315 6845 2365 6895
+<< ndcontact >>
+rect 2465 6845 2515 6895
+<< ndcontact >>
+rect 2615 6845 2665 6895
+<< ndcontact >>
+rect 2765 6845 2815 6895
+<< ndcontact >>
+rect 2915 6845 2965 6895
+<< ndcontact >>
+rect 3065 6845 3115 6895
+<< ndcontact >>
+rect 3215 6845 3265 6895
+<< ndcontact >>
+rect 3365 6845 3415 6895
+<< ndcontact >>
+rect 3515 6845 3565 6895
+<< ndcontact >>
+rect 3665 6845 3715 6895
+<< ndcontact >>
+rect 3815 6845 3865 6895
+<< ndcontact >>
+rect 3965 6845 4015 6895
+<< psubstratepcontact >>
+rect 4475 6845 4525 6895
+<< ndcontact >>
+rect 4985 6845 5035 6895
+<< ndcontact >>
+rect 5135 6845 5185 6895
+<< ndcontact >>
+rect 5285 6845 5335 6895
+<< ndcontact >>
+rect 5435 6845 5485 6895
+<< ndcontact >>
+rect 5585 6845 5635 6895
+<< ndcontact >>
+rect 5735 6845 5785 6895
+<< ndcontact >>
+rect 5885 6845 5935 6895
+<< ndcontact >>
+rect 6035 6845 6085 6895
+<< ndcontact >>
+rect 6185 6845 6235 6895
+<< ndcontact >>
+rect 6335 6845 6385 6895
+<< ndcontact >>
+rect 6485 6845 6535 6895
+<< ndcontact >>
+rect 6635 6845 6685 6895
+<< ndcontact >>
+rect 6785 6845 6835 6895
+<< ndcontact >>
+rect 6935 6845 6985 6895
+<< ndcontact >>
+rect 7085 6845 7135 6895
+<< ndcontact >>
+rect 7235 6845 7285 6895
+<< ndcontact >>
+rect 7385 6845 7435 6895
+<< ndcontact >>
+rect 7535 6845 7585 6895
+<< ndcontact >>
+rect 7685 6845 7735 6895
+<< polycontact >>
+rect 7955 6875 8005 6925
+<< psubstratepcontact >>
+rect 8195 6845 8245 6895
+<< psubstratepcontact >>
+rect 8345 6845 8395 6895
+<< nsubstratencontact >>
+rect 65 6695 115 6745
+<< nsubstratencontact >>
+rect 215 6695 265 6745
+<< psubstratepcontact >>
+rect 605 6695 655 6745
+<< psubstratepcontact >>
+rect 755 6695 805 6745
+<< polycontact >>
+rect 995 6725 1045 6775
+<< ndcontact >>
+rect 1265 6695 1315 6745
+<< ndcontact >>
+rect 1415 6695 1465 6745
+<< ndcontact >>
+rect 1565 6695 1615 6745
+<< ndcontact >>
+rect 1715 6695 1765 6745
+<< ndcontact >>
+rect 1865 6695 1915 6745
+<< ndcontact >>
+rect 2015 6695 2065 6745
+<< ndcontact >>
+rect 2165 6695 2215 6745
+<< ndcontact >>
+rect 2315 6695 2365 6745
+<< ndcontact >>
+rect 2465 6695 2515 6745
+<< ndcontact >>
+rect 2615 6695 2665 6745
+<< ndcontact >>
+rect 2765 6695 2815 6745
+<< ndcontact >>
+rect 2915 6695 2965 6745
+<< ndcontact >>
+rect 3065 6695 3115 6745
+<< ndcontact >>
+rect 3215 6695 3265 6745
+<< ndcontact >>
+rect 3365 6695 3415 6745
+<< ndcontact >>
+rect 3515 6695 3565 6745
+<< ndcontact >>
+rect 3665 6695 3715 6745
+<< ndcontact >>
+rect 3815 6695 3865 6745
+<< ndcontact >>
+rect 3965 6695 4015 6745
+<< psubstratepcontact >>
+rect 4475 6695 4525 6745
+<< ndcontact >>
+rect 4985 6695 5035 6745
+<< ndcontact >>
+rect 5135 6695 5185 6745
+<< ndcontact >>
+rect 5285 6695 5335 6745
+<< ndcontact >>
+rect 5435 6695 5485 6745
+<< ndcontact >>
+rect 5585 6695 5635 6745
+<< ndcontact >>
+rect 5735 6695 5785 6745
+<< ndcontact >>
+rect 5885 6695 5935 6745
+<< ndcontact >>
+rect 6035 6695 6085 6745
+<< ndcontact >>
+rect 6185 6695 6235 6745
+<< ndcontact >>
+rect 6335 6695 6385 6745
+<< ndcontact >>
+rect 6485 6695 6535 6745
+<< ndcontact >>
+rect 6635 6695 6685 6745
+<< ndcontact >>
+rect 6785 6695 6835 6745
+<< ndcontact >>
+rect 6935 6695 6985 6745
+<< ndcontact >>
+rect 7085 6695 7135 6745
+<< ndcontact >>
+rect 7235 6695 7285 6745
+<< ndcontact >>
+rect 7385 6695 7435 6745
+<< ndcontact >>
+rect 7535 6695 7585 6745
+<< ndcontact >>
+rect 7685 6695 7735 6745
+<< polycontact >>
+rect 7955 6725 8005 6775
+<< psubstratepcontact >>
+rect 8195 6695 8245 6745
+<< psubstratepcontact >>
+rect 8345 6695 8395 6745
+<< nsubstratencontact >>
+rect 8735 6695 8785 6745
+<< nsubstratencontact >>
+rect 8885 6695 8935 6745
+<< psubstratepcontact >>
+rect 605 6545 655 6595
+<< psubstratepcontact >>
+rect 755 6545 805 6595
+<< polycontact >>
+rect 995 6575 1045 6625
+<< ndcontact >>
+rect 1265 6545 1315 6595
+<< ndcontact >>
+rect 1415 6545 1465 6595
+<< ndcontact >>
+rect 1565 6545 1615 6595
+<< ndcontact >>
+rect 1715 6545 1765 6595
+<< ndcontact >>
+rect 1865 6545 1915 6595
+<< ndcontact >>
+rect 2015 6545 2065 6595
+<< ndcontact >>
+rect 2165 6545 2215 6595
+<< ndcontact >>
+rect 2315 6545 2365 6595
+<< ndcontact >>
+rect 2465 6545 2515 6595
+<< ndcontact >>
+rect 2615 6545 2665 6595
+<< ndcontact >>
+rect 2765 6545 2815 6595
+<< ndcontact >>
+rect 2915 6545 2965 6595
+<< ndcontact >>
+rect 3065 6545 3115 6595
+<< ndcontact >>
+rect 3215 6545 3265 6595
+<< ndcontact >>
+rect 3365 6545 3415 6595
+<< ndcontact >>
+rect 3515 6545 3565 6595
+<< ndcontact >>
+rect 3665 6545 3715 6595
+<< ndcontact >>
+rect 3815 6545 3865 6595
+<< ndcontact >>
+rect 3965 6545 4015 6595
+<< psubstratepcontact >>
+rect 4475 6545 4525 6595
+<< ndcontact >>
+rect 4985 6545 5035 6595
+<< ndcontact >>
+rect 5135 6545 5185 6595
+<< ndcontact >>
+rect 5285 6545 5335 6595
+<< ndcontact >>
+rect 5435 6545 5485 6595
+<< ndcontact >>
+rect 5585 6545 5635 6595
+<< ndcontact >>
+rect 5735 6545 5785 6595
+<< ndcontact >>
+rect 5885 6545 5935 6595
+<< ndcontact >>
+rect 6035 6545 6085 6595
+<< ndcontact >>
+rect 6185 6545 6235 6595
+<< ndcontact >>
+rect 6335 6545 6385 6595
+<< ndcontact >>
+rect 6485 6545 6535 6595
+<< ndcontact >>
+rect 6635 6545 6685 6595
+<< ndcontact >>
+rect 6785 6545 6835 6595
+<< ndcontact >>
+rect 6935 6545 6985 6595
+<< ndcontact >>
+rect 7085 6545 7135 6595
+<< ndcontact >>
+rect 7235 6545 7285 6595
+<< ndcontact >>
+rect 7385 6545 7435 6595
+<< ndcontact >>
+rect 7535 6545 7585 6595
+<< ndcontact >>
+rect 7685 6545 7735 6595
+<< polycontact >>
+rect 7955 6575 8005 6625
+<< psubstratepcontact >>
+rect 8195 6545 8245 6595
+<< psubstratepcontact >>
+rect 8345 6545 8395 6595
+<< nsubstratencontact >>
+rect 65 6425 115 6475
+<< nsubstratencontact >>
+rect 215 6425 265 6475
+<< psubstratepcontact >>
+rect 605 6395 655 6445
+<< psubstratepcontact >>
+rect 755 6395 805 6445
+<< polycontact >>
+rect 995 6425 1045 6475
+<< ndcontact >>
+rect 1265 6395 1315 6445
+<< ndcontact >>
+rect 1415 6395 1465 6445
+<< ndcontact >>
+rect 1565 6395 1615 6445
+<< ndcontact >>
+rect 1715 6395 1765 6445
+<< ndcontact >>
+rect 1865 6395 1915 6445
+<< ndcontact >>
+rect 2015 6395 2065 6445
+<< ndcontact >>
+rect 2165 6395 2215 6445
+<< ndcontact >>
+rect 2315 6395 2365 6445
+<< ndcontact >>
+rect 2465 6395 2515 6445
+<< ndcontact >>
+rect 2615 6395 2665 6445
+<< ndcontact >>
+rect 2765 6395 2815 6445
+<< ndcontact >>
+rect 2915 6395 2965 6445
+<< ndcontact >>
+rect 3065 6395 3115 6445
+<< ndcontact >>
+rect 3215 6395 3265 6445
+<< ndcontact >>
+rect 3365 6395 3415 6445
+<< ndcontact >>
+rect 3515 6395 3565 6445
+<< ndcontact >>
+rect 3665 6395 3715 6445
+<< ndcontact >>
+rect 3815 6395 3865 6445
+<< ndcontact >>
+rect 3965 6395 4015 6445
+<< psubstratepcontact >>
+rect 4475 6395 4525 6445
+<< ndcontact >>
+rect 4985 6395 5035 6445
+<< ndcontact >>
+rect 5135 6395 5185 6445
+<< ndcontact >>
+rect 5285 6395 5335 6445
+<< ndcontact >>
+rect 5435 6395 5485 6445
+<< ndcontact >>
+rect 5585 6395 5635 6445
+<< ndcontact >>
+rect 5735 6395 5785 6445
+<< ndcontact >>
+rect 5885 6395 5935 6445
+<< ndcontact >>
+rect 6035 6395 6085 6445
+<< ndcontact >>
+rect 6185 6395 6235 6445
+<< ndcontact >>
+rect 6335 6395 6385 6445
+<< ndcontact >>
+rect 6485 6395 6535 6445
+<< ndcontact >>
+rect 6635 6395 6685 6445
+<< ndcontact >>
+rect 6785 6395 6835 6445
+<< ndcontact >>
+rect 6935 6395 6985 6445
+<< ndcontact >>
+rect 7085 6395 7135 6445
+<< ndcontact >>
+rect 7235 6395 7285 6445
+<< ndcontact >>
+rect 7385 6395 7435 6445
+<< ndcontact >>
+rect 7535 6395 7585 6445
+<< ndcontact >>
+rect 7685 6395 7735 6445
+<< polycontact >>
+rect 7955 6425 8005 6475
+<< psubstratepcontact >>
+rect 8195 6395 8245 6445
+<< psubstratepcontact >>
+rect 8345 6395 8395 6445
+<< nsubstratencontact >>
+rect 8735 6425 8785 6475
+<< nsubstratencontact >>
+rect 8885 6425 8935 6475
+<< psubstratepcontact >>
+rect 605 6245 655 6295
+<< psubstratepcontact >>
+rect 755 6245 805 6295
+<< polycontact >>
+rect 995 6275 1045 6325
+<< psubstratepcontact >>
+rect 4475 6245 4525 6295
+<< polycontact >>
+rect 7955 6275 8005 6325
+<< psubstratepcontact >>
+rect 8195 6245 8245 6295
+<< psubstratepcontact >>
+rect 8345 6245 8395 6295
+<< nsubstratencontact >>
+rect 65 6185 115 6235
+<< nsubstratencontact >>
+rect 215 6185 265 6235
+<< nsubstratencontact >>
+rect 8735 6185 8785 6235
+<< nsubstratencontact >>
+rect 8885 6185 8935 6235
+<< polycontact >>
+rect 995 6125 1045 6175
+<< ndcontact >>
+rect 1235 6095 1285 6145
+<< ndcontact >>
+rect 1535 6095 1585 6145
+<< ndcontact >>
+rect 1835 6095 1885 6145
+<< ndcontact >>
+rect 2135 6095 2185 6145
+<< ndcontact >>
+rect 2435 6095 2485 6145
+<< ndcontact >>
+rect 2735 6095 2785 6145
+<< ndcontact >>
+rect 3035 6095 3085 6145
+<< ndcontact >>
+rect 3335 6095 3385 6145
+<< ndcontact >>
+rect 5615 6095 5665 6145
+<< ndcontact >>
+rect 5915 6095 5965 6145
+<< ndcontact >>
+rect 6215 6095 6265 6145
+<< ndcontact >>
+rect 6515 6095 6565 6145
+<< ndcontact >>
+rect 6815 6095 6865 6145
+<< ndcontact >>
+rect 7115 6095 7165 6145
+<< ndcontact >>
+rect 7415 6095 7465 6145
+<< ndcontact >>
+rect 7715 6095 7765 6145
+<< polycontact >>
+rect 7955 6125 8005 6175
+<< nsubstratencontact >>
+rect 65 5945 115 5995
+<< nsubstratencontact >>
+rect 215 5945 265 5995
+<< polycontact >>
+rect 995 5975 1045 6025
+<< ndcontact >>
+rect 1235 5945 1285 5995
+<< ndcontact >>
+rect 1535 5945 1585 5995
+<< ndcontact >>
+rect 1835 5945 1885 5995
+<< ndcontact >>
+rect 2135 5945 2185 5995
+<< ndcontact >>
+rect 2435 5945 2485 5995
+<< ndcontact >>
+rect 2735 5945 2785 5995
+<< ndcontact >>
+rect 3035 5945 3085 5995
+<< ndcontact >>
+rect 3335 5945 3385 5995
+<< ndcontact >>
+rect 5615 5945 5665 5995
+<< ndcontact >>
+rect 5915 5945 5965 5995
+<< ndcontact >>
+rect 6215 5945 6265 5995
+<< ndcontact >>
+rect 6515 5945 6565 5995
+<< ndcontact >>
+rect 6815 5945 6865 5995
+<< ndcontact >>
+rect 7115 5945 7165 5995
+<< ndcontact >>
+rect 7415 5945 7465 5995
+<< ndcontact >>
+rect 7715 5945 7765 5995
+<< polycontact >>
+rect 7955 5975 8005 6025
+<< nsubstratencontact >>
+rect 8735 5945 8785 5995
+<< nsubstratencontact >>
+rect 8885 5945 8935 5995
+<< polycontact >>
+rect 995 5825 1045 5875
+<< ndcontact >>
+rect 1235 5795 1285 5845
+<< ndcontact >>
+rect 1535 5795 1585 5845
+<< ndcontact >>
+rect 1835 5795 1885 5845
+<< ndcontact >>
+rect 2135 5795 2185 5845
+<< ndcontact >>
+rect 2435 5795 2485 5845
+<< ndcontact >>
+rect 2735 5795 2785 5845
+<< ndcontact >>
+rect 3035 5795 3085 5845
+<< ndcontact >>
+rect 3335 5795 3385 5845
+<< ndcontact >>
+rect 5615 5795 5665 5845
+<< ndcontact >>
+rect 5915 5795 5965 5845
+<< ndcontact >>
+rect 6215 5795 6265 5845
+<< ndcontact >>
+rect 6515 5795 6565 5845
+<< ndcontact >>
+rect 6815 5795 6865 5845
+<< ndcontact >>
+rect 7115 5795 7165 5845
+<< ndcontact >>
+rect 7415 5795 7465 5845
+<< ndcontact >>
+rect 7715 5795 7765 5845
+<< polycontact >>
+rect 7955 5825 8005 5875
+<< nsubstratencontact >>
+rect 65 5705 115 5755
+<< nsubstratencontact >>
+rect 215 5705 265 5755
+<< psubstratepcontact >>
+rect 605 5645 655 5695
+<< psubstratepcontact >>
+rect 755 5645 805 5695
+<< polycontact >>
+rect 995 5675 1045 5725
+<< psubstratepcontact >>
+rect 4475 5645 4525 5695
+<< polycontact >>
+rect 7955 5675 8005 5725
+<< nsubstratencontact >>
+rect 8735 5705 8785 5755
+<< nsubstratencontact >>
+rect 8885 5705 8935 5755
+<< psubstratepcontact >>
+rect 8195 5645 8245 5695
+<< psubstratepcontact >>
+rect 8345 5645 8395 5695
+<< nsubstratencontact >>
+rect 65 5465 115 5515
+<< nsubstratencontact >>
+rect 215 5465 265 5515
+<< psubstratepcontact >>
+rect 605 5495 655 5545
+<< psubstratepcontact >>
+rect 755 5495 805 5545
+<< polycontact >>
+rect 995 5525 1045 5575
+<< ndcontact >>
+rect 1265 5495 1315 5545
+<< ndcontact >>
+rect 1415 5495 1465 5545
+<< ndcontact >>
+rect 1565 5495 1615 5545
+<< ndcontact >>
+rect 1715 5495 1765 5545
+<< ndcontact >>
+rect 1865 5495 1915 5545
+<< ndcontact >>
+rect 2015 5495 2065 5545
+<< ndcontact >>
+rect 2165 5495 2215 5545
+<< ndcontact >>
+rect 2315 5495 2365 5545
+<< ndcontact >>
+rect 2465 5495 2515 5545
+<< ndcontact >>
+rect 2615 5495 2665 5545
+<< ndcontact >>
+rect 2765 5495 2815 5545
+<< ndcontact >>
+rect 2915 5495 2965 5545
+<< ndcontact >>
+rect 3065 5495 3115 5545
+<< ndcontact >>
+rect 3215 5495 3265 5545
+<< ndcontact >>
+rect 3365 5495 3415 5545
+<< ndcontact >>
+rect 3515 5495 3565 5545
+<< ndcontact >>
+rect 3665 5495 3715 5545
+<< ndcontact >>
+rect 3815 5495 3865 5545
+<< ndcontact >>
+rect 3965 5495 4015 5545
+<< psubstratepcontact >>
+rect 4475 5495 4525 5545
+<< ndcontact >>
+rect 4985 5495 5035 5545
+<< ndcontact >>
+rect 5135 5495 5185 5545
+<< ndcontact >>
+rect 5285 5495 5335 5545
+<< ndcontact >>
+rect 5435 5495 5485 5545
+<< ndcontact >>
+rect 5585 5495 5635 5545
+<< ndcontact >>
+rect 5735 5495 5785 5545
+<< ndcontact >>
+rect 5885 5495 5935 5545
+<< ndcontact >>
+rect 6035 5495 6085 5545
+<< ndcontact >>
+rect 6185 5495 6235 5545
+<< ndcontact >>
+rect 6335 5495 6385 5545
+<< ndcontact >>
+rect 6485 5495 6535 5545
+<< ndcontact >>
+rect 6635 5495 6685 5545
+<< ndcontact >>
+rect 6785 5495 6835 5545
+<< ndcontact >>
+rect 6935 5495 6985 5545
+<< ndcontact >>
+rect 7085 5495 7135 5545
+<< ndcontact >>
+rect 7235 5495 7285 5545
+<< ndcontact >>
+rect 7385 5495 7435 5545
+<< ndcontact >>
+rect 7535 5495 7585 5545
+<< ndcontact >>
+rect 7685 5495 7735 5545
+<< polycontact >>
+rect 7955 5525 8005 5575
+<< psubstratepcontact >>
+rect 8195 5495 8245 5545
+<< psubstratepcontact >>
+rect 8345 5495 8395 5545
+<< nsubstratencontact >>
+rect 8735 5465 8785 5515
+<< nsubstratencontact >>
+rect 8885 5465 8935 5515
+<< psubstratepcontact >>
+rect 605 5345 655 5395
+<< psubstratepcontact >>
+rect 755 5345 805 5395
+<< polycontact >>
+rect 995 5375 1045 5425
+<< ndcontact >>
+rect 1265 5345 1315 5395
+<< ndcontact >>
+rect 1415 5345 1465 5395
+<< ndcontact >>
+rect 1565 5345 1615 5395
+<< ndcontact >>
+rect 1715 5345 1765 5395
+<< ndcontact >>
+rect 1865 5345 1915 5395
+<< ndcontact >>
+rect 2015 5345 2065 5395
+<< ndcontact >>
+rect 2165 5345 2215 5395
+<< ndcontact >>
+rect 2315 5345 2365 5395
+<< ndcontact >>
+rect 2465 5345 2515 5395
+<< ndcontact >>
+rect 2615 5345 2665 5395
+<< ndcontact >>
+rect 2765 5345 2815 5395
+<< ndcontact >>
+rect 2915 5345 2965 5395
+<< ndcontact >>
+rect 3065 5345 3115 5395
+<< ndcontact >>
+rect 3215 5345 3265 5395
+<< ndcontact >>
+rect 3365 5345 3415 5395
+<< ndcontact >>
+rect 3515 5345 3565 5395
+<< ndcontact >>
+rect 3665 5345 3715 5395
+<< ndcontact >>
+rect 3815 5345 3865 5395
+<< ndcontact >>
+rect 3965 5345 4015 5395
+<< psubstratepcontact >>
+rect 4475 5345 4525 5395
+<< ndcontact >>
+rect 4985 5345 5035 5395
+<< ndcontact >>
+rect 5135 5345 5185 5395
+<< ndcontact >>
+rect 5285 5345 5335 5395
+<< ndcontact >>
+rect 5435 5345 5485 5395
+<< ndcontact >>
+rect 5585 5345 5635 5395
+<< ndcontact >>
+rect 5735 5345 5785 5395
+<< ndcontact >>
+rect 5885 5345 5935 5395
+<< ndcontact >>
+rect 6035 5345 6085 5395
+<< ndcontact >>
+rect 6185 5345 6235 5395
+<< ndcontact >>
+rect 6335 5345 6385 5395
+<< ndcontact >>
+rect 6485 5345 6535 5395
+<< ndcontact >>
+rect 6635 5345 6685 5395
+<< ndcontact >>
+rect 6785 5345 6835 5395
+<< ndcontact >>
+rect 6935 5345 6985 5395
+<< ndcontact >>
+rect 7085 5345 7135 5395
+<< ndcontact >>
+rect 7235 5345 7285 5395
+<< ndcontact >>
+rect 7385 5345 7435 5395
+<< ndcontact >>
+rect 7535 5345 7585 5395
+<< ndcontact >>
+rect 7685 5345 7735 5395
+<< polycontact >>
+rect 7955 5375 8005 5425
+<< psubstratepcontact >>
+rect 8195 5345 8245 5395
+<< psubstratepcontact >>
+rect 8345 5345 8395 5395
+<< nsubstratencontact >>
+rect 65 5225 115 5275
+<< nsubstratencontact >>
+rect 215 5225 265 5275
+<< psubstratepcontact >>
+rect 605 5195 655 5245
+<< psubstratepcontact >>
+rect 755 5195 805 5245
+<< polycontact >>
+rect 995 5225 1045 5275
+<< ndcontact >>
+rect 1265 5195 1315 5245
+<< ndcontact >>
+rect 1415 5195 1465 5245
+<< ndcontact >>
+rect 1565 5195 1615 5245
+<< ndcontact >>
+rect 1715 5195 1765 5245
+<< ndcontact >>
+rect 1865 5195 1915 5245
+<< ndcontact >>
+rect 2015 5195 2065 5245
+<< ndcontact >>
+rect 2165 5195 2215 5245
+<< ndcontact >>
+rect 2315 5195 2365 5245
+<< ndcontact >>
+rect 2465 5195 2515 5245
+<< ndcontact >>
+rect 2615 5195 2665 5245
+<< ndcontact >>
+rect 2765 5195 2815 5245
+<< ndcontact >>
+rect 2915 5195 2965 5245
+<< ndcontact >>
+rect 3065 5195 3115 5245
+<< ndcontact >>
+rect 3215 5195 3265 5245
+<< ndcontact >>
+rect 3365 5195 3415 5245
+<< ndcontact >>
+rect 3515 5195 3565 5245
+<< ndcontact >>
+rect 3665 5195 3715 5245
+<< ndcontact >>
+rect 3815 5195 3865 5245
+<< ndcontact >>
+rect 3965 5195 4015 5245
+<< psubstratepcontact >>
+rect 4475 5195 4525 5245
+<< ndcontact >>
+rect 4985 5195 5035 5245
+<< ndcontact >>
+rect 5135 5195 5185 5245
+<< ndcontact >>
+rect 5285 5195 5335 5245
+<< ndcontact >>
+rect 5435 5195 5485 5245
+<< ndcontact >>
+rect 5585 5195 5635 5245
+<< ndcontact >>
+rect 5735 5195 5785 5245
+<< ndcontact >>
+rect 5885 5195 5935 5245
+<< ndcontact >>
+rect 6035 5195 6085 5245
+<< ndcontact >>
+rect 6185 5195 6235 5245
+<< ndcontact >>
+rect 6335 5195 6385 5245
+<< ndcontact >>
+rect 6485 5195 6535 5245
+<< ndcontact >>
+rect 6635 5195 6685 5245
+<< ndcontact >>
+rect 6785 5195 6835 5245
+<< ndcontact >>
+rect 6935 5195 6985 5245
+<< ndcontact >>
+rect 7085 5195 7135 5245
+<< ndcontact >>
+rect 7235 5195 7285 5245
+<< ndcontact >>
+rect 7385 5195 7435 5245
+<< ndcontact >>
+rect 7535 5195 7585 5245
+<< ndcontact >>
+rect 7685 5195 7735 5245
+<< polycontact >>
+rect 7955 5225 8005 5275
+<< psubstratepcontact >>
+rect 8195 5195 8245 5245
+<< psubstratepcontact >>
+rect 8345 5195 8395 5245
+<< nsubstratencontact >>
+rect 8735 5225 8785 5275
+<< nsubstratencontact >>
+rect 8885 5225 8935 5275
+<< psubstratepcontact >>
+rect 605 5045 655 5095
+<< psubstratepcontact >>
+rect 755 5045 805 5095
+<< polycontact >>
+rect 995 5075 1045 5125
+<< ndcontact >>
+rect 1265 5045 1315 5095
+<< ndcontact >>
+rect 1415 5045 1465 5095
+<< ndcontact >>
+rect 1565 5045 1615 5095
+<< ndcontact >>
+rect 1715 5045 1765 5095
+<< ndcontact >>
+rect 1865 5045 1915 5095
+<< ndcontact >>
+rect 2015 5045 2065 5095
+<< ndcontact >>
+rect 2165 5045 2215 5095
+<< ndcontact >>
+rect 2315 5045 2365 5095
+<< ndcontact >>
+rect 2465 5045 2515 5095
+<< ndcontact >>
+rect 2615 5045 2665 5095
+<< ndcontact >>
+rect 2765 5045 2815 5095
+<< ndcontact >>
+rect 2915 5045 2965 5095
+<< ndcontact >>
+rect 3065 5045 3115 5095
+<< ndcontact >>
+rect 3215 5045 3265 5095
+<< ndcontact >>
+rect 3365 5045 3415 5095
+<< ndcontact >>
+rect 3515 5045 3565 5095
+<< ndcontact >>
+rect 3665 5045 3715 5095
+<< ndcontact >>
+rect 3815 5045 3865 5095
+<< ndcontact >>
+rect 3965 5045 4015 5095
+<< psubstratepcontact >>
+rect 4475 5045 4525 5095
+<< ndcontact >>
+rect 4985 5045 5035 5095
+<< ndcontact >>
+rect 5135 5045 5185 5095
+<< ndcontact >>
+rect 5285 5045 5335 5095
+<< ndcontact >>
+rect 5435 5045 5485 5095
+<< ndcontact >>
+rect 5585 5045 5635 5095
+<< ndcontact >>
+rect 5735 5045 5785 5095
+<< ndcontact >>
+rect 5885 5045 5935 5095
+<< ndcontact >>
+rect 6035 5045 6085 5095
+<< ndcontact >>
+rect 6185 5045 6235 5095
+<< ndcontact >>
+rect 6335 5045 6385 5095
+<< ndcontact >>
+rect 6485 5045 6535 5095
+<< ndcontact >>
+rect 6635 5045 6685 5095
+<< ndcontact >>
+rect 6785 5045 6835 5095
+<< ndcontact >>
+rect 6935 5045 6985 5095
+<< ndcontact >>
+rect 7085 5045 7135 5095
+<< ndcontact >>
+rect 7235 5045 7285 5095
+<< ndcontact >>
+rect 7385 5045 7435 5095
+<< ndcontact >>
+rect 7535 5045 7585 5095
+<< ndcontact >>
+rect 7685 5045 7735 5095
+<< polycontact >>
+rect 7955 5075 8005 5125
+<< psubstratepcontact >>
+rect 8195 5045 8245 5095
+<< psubstratepcontact >>
+rect 8345 5045 8395 5095
+<< nsubstratencontact >>
+rect 65 4985 115 5035
+<< nsubstratencontact >>
+rect 215 4985 265 5035
+<< nsubstratencontact >>
+rect 8735 4985 8785 5035
+<< nsubstratencontact >>
+rect 8885 4985 8935 5035
+<< psubstratepcontact >>
+rect 605 4895 655 4945
+<< psubstratepcontact >>
+rect 755 4895 805 4945
+<< polycontact >>
+rect 995 4925 1045 4975
+<< ndcontact >>
+rect 1265 4895 1315 4945
+<< ndcontact >>
+rect 1415 4895 1465 4945
+<< ndcontact >>
+rect 1565 4895 1615 4945
+<< ndcontact >>
+rect 1715 4895 1765 4945
+<< ndcontact >>
+rect 1865 4895 1915 4945
+<< ndcontact >>
+rect 2015 4895 2065 4945
+<< ndcontact >>
+rect 2165 4895 2215 4945
+<< ndcontact >>
+rect 2315 4895 2365 4945
+<< ndcontact >>
+rect 2465 4895 2515 4945
+<< ndcontact >>
+rect 2615 4895 2665 4945
+<< ndcontact >>
+rect 2765 4895 2815 4945
+<< ndcontact >>
+rect 2915 4895 2965 4945
+<< ndcontact >>
+rect 3065 4895 3115 4945
+<< ndcontact >>
+rect 3215 4895 3265 4945
+<< ndcontact >>
+rect 3365 4895 3415 4945
+<< ndcontact >>
+rect 3515 4895 3565 4945
+<< ndcontact >>
+rect 3665 4895 3715 4945
+<< ndcontact >>
+rect 3815 4895 3865 4945
+<< ndcontact >>
+rect 3965 4895 4015 4945
+<< psubstratepcontact >>
+rect 4475 4895 4525 4945
+<< ndcontact >>
+rect 4985 4895 5035 4945
+<< ndcontact >>
+rect 5135 4895 5185 4945
+<< ndcontact >>
+rect 5285 4895 5335 4945
+<< ndcontact >>
+rect 5435 4895 5485 4945
+<< ndcontact >>
+rect 5585 4895 5635 4945
+<< ndcontact >>
+rect 5735 4895 5785 4945
+<< ndcontact >>
+rect 5885 4895 5935 4945
+<< ndcontact >>
+rect 6035 4895 6085 4945
+<< ndcontact >>
+rect 6185 4895 6235 4945
+<< ndcontact >>
+rect 6335 4895 6385 4945
+<< ndcontact >>
+rect 6485 4895 6535 4945
+<< ndcontact >>
+rect 6635 4895 6685 4945
+<< ndcontact >>
+rect 6785 4895 6835 4945
+<< ndcontact >>
+rect 6935 4895 6985 4945
+<< ndcontact >>
+rect 7085 4895 7135 4945
+<< ndcontact >>
+rect 7235 4895 7285 4945
+<< ndcontact >>
+rect 7385 4895 7435 4945
+<< ndcontact >>
+rect 7535 4895 7585 4945
+<< ndcontact >>
+rect 7685 4895 7735 4945
+<< polycontact >>
+rect 7955 4925 8005 4975
+<< psubstratepcontact >>
+rect 8195 4895 8245 4945
+<< psubstratepcontact >>
+rect 8345 4895 8395 4945
+<< nsubstratencontact >>
+rect 65 4745 115 4795
+<< nsubstratencontact >>
+rect 215 4745 265 4795
+<< psubstratepcontact >>
+rect 605 4745 655 4795
+<< psubstratepcontact >>
+rect 755 4745 805 4795
+<< polycontact >>
+rect 995 4775 1045 4825
+<< ndcontact >>
+rect 1265 4745 1315 4795
+<< ndcontact >>
+rect 1415 4745 1465 4795
+<< ndcontact >>
+rect 1565 4745 1615 4795
+<< ndcontact >>
+rect 1715 4745 1765 4795
+<< ndcontact >>
+rect 1865 4745 1915 4795
+<< ndcontact >>
+rect 2015 4745 2065 4795
+<< ndcontact >>
+rect 2165 4745 2215 4795
+<< ndcontact >>
+rect 2315 4745 2365 4795
+<< ndcontact >>
+rect 2465 4745 2515 4795
+<< ndcontact >>
+rect 2615 4745 2665 4795
+<< ndcontact >>
+rect 2765 4745 2815 4795
+<< ndcontact >>
+rect 2915 4745 2965 4795
+<< ndcontact >>
+rect 3065 4745 3115 4795
+<< ndcontact >>
+rect 3215 4745 3265 4795
+<< ndcontact >>
+rect 3365 4745 3415 4795
+<< ndcontact >>
+rect 3515 4745 3565 4795
+<< ndcontact >>
+rect 3665 4745 3715 4795
+<< ndcontact >>
+rect 3815 4745 3865 4795
+<< ndcontact >>
+rect 3965 4745 4015 4795
+<< psubstratepcontact >>
+rect 4475 4745 4525 4795
+<< ndcontact >>
+rect 4985 4745 5035 4795
+<< ndcontact >>
+rect 5135 4745 5185 4795
+<< ndcontact >>
+rect 5285 4745 5335 4795
+<< ndcontact >>
+rect 5435 4745 5485 4795
+<< ndcontact >>
+rect 5585 4745 5635 4795
+<< ndcontact >>
+rect 5735 4745 5785 4795
+<< ndcontact >>
+rect 5885 4745 5935 4795
+<< ndcontact >>
+rect 6035 4745 6085 4795
+<< ndcontact >>
+rect 6185 4745 6235 4795
+<< ndcontact >>
+rect 6335 4745 6385 4795
+<< ndcontact >>
+rect 6485 4745 6535 4795
+<< ndcontact >>
+rect 6635 4745 6685 4795
+<< ndcontact >>
+rect 6785 4745 6835 4795
+<< ndcontact >>
+rect 6935 4745 6985 4795
+<< ndcontact >>
+rect 7085 4745 7135 4795
+<< ndcontact >>
+rect 7235 4745 7285 4795
+<< ndcontact >>
+rect 7385 4745 7435 4795
+<< ndcontact >>
+rect 7535 4745 7585 4795
+<< ndcontact >>
+rect 7685 4745 7735 4795
+<< polycontact >>
+rect 7955 4775 8005 4825
+<< psubstratepcontact >>
+rect 8195 4745 8245 4795
+<< psubstratepcontact >>
+rect 8345 4745 8395 4795
+<< nsubstratencontact >>
+rect 8735 4745 8785 4795
+<< nsubstratencontact >>
+rect 8885 4745 8935 4795
+<< psubstratepcontact >>
+rect 605 4595 655 4645
+<< psubstratepcontact >>
+rect 755 4595 805 4645
+<< polycontact >>
+rect 995 4625 1045 4675
+<< ndcontact >>
+rect 1265 4595 1315 4645
+<< ndcontact >>
+rect 1415 4595 1465 4645
+<< ndcontact >>
+rect 1565 4595 1615 4645
+<< ndcontact >>
+rect 1715 4595 1765 4645
+<< ndcontact >>
+rect 1865 4595 1915 4645
+<< ndcontact >>
+rect 2015 4595 2065 4645
+<< ndcontact >>
+rect 2165 4595 2215 4645
+<< ndcontact >>
+rect 2315 4595 2365 4645
+<< ndcontact >>
+rect 2465 4595 2515 4645
+<< ndcontact >>
+rect 2615 4595 2665 4645
+<< ndcontact >>
+rect 2765 4595 2815 4645
+<< ndcontact >>
+rect 2915 4595 2965 4645
+<< ndcontact >>
+rect 3065 4595 3115 4645
+<< ndcontact >>
+rect 3215 4595 3265 4645
+<< ndcontact >>
+rect 3365 4595 3415 4645
+<< ndcontact >>
+rect 3515 4595 3565 4645
+<< ndcontact >>
+rect 3665 4595 3715 4645
+<< ndcontact >>
+rect 3815 4595 3865 4645
+<< ndcontact >>
+rect 3965 4595 4015 4645
+<< psubstratepcontact >>
+rect 4475 4595 4525 4645
+<< ndcontact >>
+rect 4985 4595 5035 4645
+<< ndcontact >>
+rect 5135 4595 5185 4645
+<< ndcontact >>
+rect 5285 4595 5335 4645
+<< ndcontact >>
+rect 5435 4595 5485 4645
+<< ndcontact >>
+rect 5585 4595 5635 4645
+<< ndcontact >>
+rect 5735 4595 5785 4645
+<< ndcontact >>
+rect 5885 4595 5935 4645
+<< ndcontact >>
+rect 6035 4595 6085 4645
+<< ndcontact >>
+rect 6185 4595 6235 4645
+<< ndcontact >>
+rect 6335 4595 6385 4645
+<< ndcontact >>
+rect 6485 4595 6535 4645
+<< ndcontact >>
+rect 6635 4595 6685 4645
+<< ndcontact >>
+rect 6785 4595 6835 4645
+<< ndcontact >>
+rect 6935 4595 6985 4645
+<< ndcontact >>
+rect 7085 4595 7135 4645
+<< ndcontact >>
+rect 7235 4595 7285 4645
+<< ndcontact >>
+rect 7385 4595 7435 4645
+<< ndcontact >>
+rect 7535 4595 7585 4645
+<< ndcontact >>
+rect 7685 4595 7735 4645
+<< polycontact >>
+rect 7955 4625 8005 4675
+<< psubstratepcontact >>
+rect 8195 4595 8245 4645
+<< psubstratepcontact >>
+rect 8345 4595 8395 4645
+<< nsubstratencontact >>
+rect 65 4505 115 4555
+<< nsubstratencontact >>
+rect 215 4505 265 4555
+<< psubstratepcontact >>
+rect 605 4445 655 4495
+<< psubstratepcontact >>
+rect 755 4445 805 4495
+<< polycontact >>
+rect 995 4475 1045 4525
+<< ndcontact >>
+rect 1265 4445 1315 4495
+<< ndcontact >>
+rect 1415 4445 1465 4495
+<< ndcontact >>
+rect 1565 4445 1615 4495
+<< ndcontact >>
+rect 1715 4445 1765 4495
+<< ndcontact >>
+rect 1865 4445 1915 4495
+<< ndcontact >>
+rect 2015 4445 2065 4495
+<< ndcontact >>
+rect 2165 4445 2215 4495
+<< ndcontact >>
+rect 2315 4445 2365 4495
+<< ndcontact >>
+rect 2465 4445 2515 4495
+<< ndcontact >>
+rect 2615 4445 2665 4495
+<< ndcontact >>
+rect 2765 4445 2815 4495
+<< ndcontact >>
+rect 2915 4445 2965 4495
+<< ndcontact >>
+rect 3065 4445 3115 4495
+<< ndcontact >>
+rect 3215 4445 3265 4495
+<< ndcontact >>
+rect 3365 4445 3415 4495
+<< ndcontact >>
+rect 3515 4445 3565 4495
+<< ndcontact >>
+rect 3665 4445 3715 4495
+<< ndcontact >>
+rect 3815 4445 3865 4495
+<< ndcontact >>
+rect 3965 4445 4015 4495
+<< psubstratepcontact >>
+rect 4475 4445 4525 4495
+<< ndcontact >>
+rect 4985 4445 5035 4495
+<< ndcontact >>
+rect 5135 4445 5185 4495
+<< ndcontact >>
+rect 5285 4445 5335 4495
+<< ndcontact >>
+rect 5435 4445 5485 4495
+<< ndcontact >>
+rect 5585 4445 5635 4495
+<< ndcontact >>
+rect 5735 4445 5785 4495
+<< ndcontact >>
+rect 5885 4445 5935 4495
+<< ndcontact >>
+rect 6035 4445 6085 4495
+<< ndcontact >>
+rect 6185 4445 6235 4495
+<< ndcontact >>
+rect 6335 4445 6385 4495
+<< ndcontact >>
+rect 6485 4445 6535 4495
+<< ndcontact >>
+rect 6635 4445 6685 4495
+<< ndcontact >>
+rect 6785 4445 6835 4495
+<< ndcontact >>
+rect 6935 4445 6985 4495
+<< ndcontact >>
+rect 7085 4445 7135 4495
+<< ndcontact >>
+rect 7235 4445 7285 4495
+<< ndcontact >>
+rect 7385 4445 7435 4495
+<< ndcontact >>
+rect 7535 4445 7585 4495
+<< ndcontact >>
+rect 7685 4445 7735 4495
+<< polycontact >>
+rect 7955 4475 8005 4525
+<< nsubstratencontact >>
+rect 8735 4505 8785 4555
+<< nsubstratencontact >>
+rect 8885 4505 8935 4555
+<< psubstratepcontact >>
+rect 8195 4445 8245 4495
+<< psubstratepcontact >>
+rect 8345 4445 8395 4495
+<< nsubstratencontact >>
+rect 65 4265 115 4315
+<< nsubstratencontact >>
+rect 215 4265 265 4315
+<< psubstratepcontact >>
+rect 605 4295 655 4345
+<< psubstratepcontact >>
+rect 755 4295 805 4345
+<< polycontact >>
+rect 995 4325 1045 4375
+<< psubstratepcontact >>
+rect 4475 4295 4525 4345
+<< polycontact >>
+rect 7955 4325 8005 4375
+<< psubstratepcontact >>
+rect 8195 4295 8245 4345
+<< psubstratepcontact >>
+rect 8345 4295 8395 4345
+<< nsubstratencontact >>
+rect 8735 4265 8785 4315
+<< nsubstratencontact >>
+rect 8885 4265 8935 4315
+<< ndcontact >>
+rect 1235 4145 1285 4195
+<< ndcontact >>
+rect 1535 4145 1585 4195
+<< ndcontact >>
+rect 1835 4145 1885 4195
+<< ndcontact >>
+rect 2135 4145 2185 4195
+<< ndcontact >>
+rect 2435 4145 2485 4195
+<< ndcontact >>
+rect 2735 4145 2785 4195
+<< ndcontact >>
+rect 3035 4145 3085 4195
+<< ndcontact >>
+rect 3335 4145 3385 4195
+<< ndcontact >>
+rect 5615 4145 5665 4195
+<< ndcontact >>
+rect 5915 4145 5965 4195
+<< ndcontact >>
+rect 6215 4145 6265 4195
+<< ndcontact >>
+rect 6515 4145 6565 4195
+<< ndcontact >>
+rect 6815 4145 6865 4195
+<< ndcontact >>
+rect 7115 4145 7165 4195
+<< ndcontact >>
+rect 7415 4145 7465 4195
+<< ndcontact >>
+rect 7715 4145 7765 4195
+<< nsubstratencontact >>
+rect 65 4025 115 4075
+<< nsubstratencontact >>
+rect 215 4025 265 4075
+<< ndcontact >>
+rect 1235 3995 1285 4045
+<< ndcontact >>
+rect 1535 3995 1585 4045
+<< ndcontact >>
+rect 1835 3995 1885 4045
+<< ndcontact >>
+rect 2135 3995 2185 4045
+<< ndcontact >>
+rect 2435 3995 2485 4045
+<< ndcontact >>
+rect 2735 3995 2785 4045
+<< ndcontact >>
+rect 3035 3995 3085 4045
+<< ndcontact >>
+rect 3335 3995 3385 4045
+<< ndcontact >>
+rect 5615 3995 5665 4045
+<< ndcontact >>
+rect 5915 3995 5965 4045
+<< ndcontact >>
+rect 6215 3995 6265 4045
+<< ndcontact >>
+rect 6515 3995 6565 4045
+<< ndcontact >>
+rect 6815 3995 6865 4045
+<< ndcontact >>
+rect 7115 3995 7165 4045
+<< ndcontact >>
+rect 7415 3995 7465 4045
+<< ndcontact >>
+rect 7715 3995 7765 4045
+<< nsubstratencontact >>
+rect 8735 4025 8785 4075
+<< nsubstratencontact >>
+rect 8885 4025 8935 4075
+<< psubstratepcontact >>
+rect 1235 3845 1285 3895
+<< psubstratepcontact >>
+rect 1535 3845 1585 3895
+<< psubstratepcontact >>
+rect 1835 3845 1885 3895
+<< psubstratepcontact >>
+rect 2135 3845 2185 3895
+<< psubstratepcontact >>
+rect 2435 3845 2485 3895
+<< psubstratepcontact >>
+rect 2735 3845 2785 3895
+<< psubstratepcontact >>
+rect 3035 3845 3085 3895
+<< psubstratepcontact >>
+rect 3335 3845 3385 3895
+<< psubstratepcontact >>
+rect 5615 3845 5665 3895
+<< psubstratepcontact >>
+rect 5915 3845 5965 3895
+<< psubstratepcontact >>
+rect 6215 3845 6265 3895
+<< psubstratepcontact >>
+rect 6515 3845 6565 3895
+<< psubstratepcontact >>
+rect 6815 3845 6865 3895
+<< psubstratepcontact >>
+rect 7115 3845 7165 3895
+<< psubstratepcontact >>
+rect 7415 3845 7465 3895
+<< psubstratepcontact >>
+rect 7715 3845 7765 3895
+<< nsubstratencontact >>
+rect 65 3785 115 3835
+<< nsubstratencontact >>
+rect 215 3785 265 3835
+<< nsubstratencontact >>
+rect 8735 3785 8785 3835
+<< nsubstratencontact >>
+rect 8885 3785 8935 3835
+<< nsubstratencontact >>
+rect 65 3545 115 3595
+<< nsubstratencontact >>
+rect 215 3545 265 3595
+<< nsubstratencontact >>
+rect 8735 3545 8785 3595
+<< nsubstratencontact >>
+rect 8885 3545 8935 3595
+<< nsubstratencontact >>
+rect 35 3305 85 3355
+<< nsubstratencontact >>
+rect 275 3305 325 3355
+<< nsubstratencontact >>
+rect 515 3305 565 3355
+<< nsubstratencontact >>
+rect 755 3305 805 3355
+<< nsubstratencontact >>
+rect 995 3305 1045 3355
+<< nsubstratencontact >>
+rect 1235 3305 1285 3355
+<< nsubstratencontact >>
+rect 1475 3305 1525 3355
+<< nsubstratencontact >>
+rect 1715 3305 1765 3355
+<< nsubstratencontact >>
+rect 1955 3305 2005 3355
+<< nsubstratencontact >>
+rect 2195 3305 2245 3355
+<< nsubstratencontact >>
+rect 2435 3305 2485 3355
+<< nsubstratencontact >>
+rect 2675 3305 2725 3355
+<< nsubstratencontact >>
+rect 2915 3305 2965 3355
+<< nsubstratencontact >>
+rect 3155 3305 3205 3355
+<< nsubstratencontact >>
+rect 3395 3305 3445 3355
+<< nsubstratencontact >>
+rect 3635 3305 3685 3355
+<< nsubstratencontact >>
+rect 3875 3305 3925 3355
+<< nsubstratencontact >>
+rect 4115 3305 4165 3355
+<< nsubstratencontact >>
+rect 4355 3305 4405 3355
+<< nsubstratencontact >>
+rect 4595 3305 4645 3355
+<< nsubstratencontact >>
+rect 4835 3305 4885 3355
+<< nsubstratencontact >>
+rect 5075 3305 5125 3355
+<< nsubstratencontact >>
+rect 5315 3305 5365 3355
+<< nsubstratencontact >>
+rect 5555 3305 5605 3355
+<< nsubstratencontact >>
+rect 5795 3305 5845 3355
+<< nsubstratencontact >>
+rect 6035 3305 6085 3355
+<< nsubstratencontact >>
+rect 6275 3305 6325 3355
+<< nsubstratencontact >>
+rect 6515 3305 6565 3355
+<< nsubstratencontact >>
+rect 6755 3305 6805 3355
+<< nsubstratencontact >>
+rect 6995 3305 7045 3355
+<< nsubstratencontact >>
+rect 7235 3305 7285 3355
+<< nsubstratencontact >>
+rect 7475 3305 7525 3355
+<< nsubstratencontact >>
+rect 7715 3305 7765 3355
+<< nsubstratencontact >>
+rect 7955 3305 8005 3355
+<< nsubstratencontact >>
+rect 8195 3305 8245 3355
+<< nsubstratencontact >>
+rect 8435 3305 8485 3355
+<< nsubstratencontact >>
+rect 8675 3305 8725 3355
+<< nsubstratencontact >>
+rect 8915 3305 8965 3355
+<< nsubstratencontact >>
+rect 35 3155 85 3205
+<< nsubstratencontact >>
+rect 275 3155 325 3205
+<< nsubstratencontact >>
+rect 515 3155 565 3205
+<< nsubstratencontact >>
+rect 755 3155 805 3205
+<< nsubstratencontact >>
+rect 995 3155 1045 3205
+<< nsubstratencontact >>
+rect 1235 3155 1285 3205
+<< nsubstratencontact >>
+rect 1475 3155 1525 3205
+<< nsubstratencontact >>
+rect 1715 3155 1765 3205
+<< nsubstratencontact >>
+rect 1955 3155 2005 3205
+<< nsubstratencontact >>
+rect 2195 3155 2245 3205
+<< nsubstratencontact >>
+rect 2435 3155 2485 3205
+<< nsubstratencontact >>
+rect 2675 3155 2725 3205
+<< nsubstratencontact >>
+rect 2915 3155 2965 3205
+<< nsubstratencontact >>
+rect 3155 3155 3205 3205
+<< nsubstratencontact >>
+rect 3395 3155 3445 3205
+<< nsubstratencontact >>
+rect 3635 3155 3685 3205
+<< nsubstratencontact >>
+rect 3875 3155 3925 3205
+<< nsubstratencontact >>
+rect 4115 3155 4165 3205
+<< nsubstratencontact >>
+rect 4355 3155 4405 3205
+<< nsubstratencontact >>
+rect 4595 3155 4645 3205
+<< nsubstratencontact >>
+rect 4835 3155 4885 3205
+<< nsubstratencontact >>
+rect 5075 3155 5125 3205
+<< nsubstratencontact >>
+rect 5315 3155 5365 3205
+<< nsubstratencontact >>
+rect 5555 3155 5605 3205
+<< nsubstratencontact >>
+rect 5795 3155 5845 3205
+<< nsubstratencontact >>
+rect 6035 3155 6085 3205
+<< nsubstratencontact >>
+rect 6275 3155 6325 3205
+<< nsubstratencontact >>
+rect 6515 3155 6565 3205
+<< nsubstratencontact >>
+rect 6755 3155 6805 3205
+<< nsubstratencontact >>
+rect 6995 3155 7045 3205
+<< nsubstratencontact >>
+rect 7235 3155 7285 3205
+<< nsubstratencontact >>
+rect 7475 3155 7525 3205
+<< nsubstratencontact >>
+rect 7715 3155 7765 3205
+<< nsubstratencontact >>
+rect 7955 3155 8005 3205
+<< nsubstratencontact >>
+rect 8195 3155 8245 3205
+<< nsubstratencontact >>
+rect 8435 3155 8485 3205
+<< nsubstratencontact >>
+rect 8675 3155 8725 3205
+<< nsubstratencontact >>
+rect 8915 3155 8965 3205
+<< metal1 >>
+rect 1860 21000 7140 22200
+rect 3060 20700 5940 21000
+rect 3360 20400 5640 20700
+rect 3600 20310 5400 20400
+rect 0 19710 3510 20040
+rect 0 12660 330 19710
+rect 540 13020 870 19350
+rect 1170 18870 3450 19350
+rect 0 12330 870 12660
+rect 0 11820 870 12150
+rect 0 10980 870 11310
+rect 0 10470 870 10800
+rect 0 3420 330 10470
+rect 540 3780 870 10110
+rect 960 3540 1080 18840
+rect 3600 18720 4290 20310
+rect 4410 19710 4590 20040
+rect 1230 17550 4290 18720
+rect 1170 16920 3450 17400
+rect 3600 16770 4290 17550
+rect 1230 15600 4290 16770
+rect 1170 14970 3450 15450
+rect 3600 14820 4290 15600
+rect 1230 13650 4290 14820
+rect 1170 13020 3450 13500
+rect 1170 12330 3510 12660
+rect 1170 11820 3510 12150
+rect 3600 11730 4290 13650
+rect 4410 13020 4590 19350
+rect 4710 18720 5400 20310
+rect 5490 19710 9000 20040
+rect 5550 18870 7830 19350
+rect 4710 17550 7770 18720
+rect 4710 16770 5400 17550
+rect 5550 16920 7830 17400
+rect 4710 15600 7770 16770
+rect 4710 14820 5400 15600
+rect 5550 14970 7830 15450
+rect 4710 13650 7770 14820
+rect 4410 12330 4590 12660
+rect 4410 11820 4590 12150
+rect 4710 11730 5400 13650
+rect 5550 13020 7830 13500
+rect 5490 12330 7830 12660
+rect 5490 11820 7830 12150
+rect 3600 11400 5400 11730
+rect 1170 10980 3510 11310
+rect 1170 10470 3510 10800
+rect 1170 9630 3450 10110
+rect 3600 9480 4290 11400
+rect 4410 10980 4590 11310
+rect 4410 10470 4590 10800
+rect 1230 8310 4290 9480
+rect 1170 7680 3450 8160
+rect 3600 7530 4290 8310
+rect 1230 6360 4290 7530
+rect 1170 5730 3450 6210
+rect 3600 5580 4290 6360
+rect 1230 4410 4290 5580
+rect 1170 3780 3450 4260
+rect 3600 3570 4290 4410
+rect 4410 3780 4590 10110
+rect 4710 9480 5400 11400
+rect 5490 10980 7830 11310
+rect 5490 10470 7830 10800
+rect 5550 9630 7830 10110
+rect 4710 8310 7770 9480
+rect 4710 7530 5400 8310
+rect 5550 7680 7830 8160
+rect 4710 6360 7770 7530
+rect 4710 5580 5400 6360
+rect 5550 5730 7830 6210
+rect 4710 4410 7770 5580
+rect 4710 3540 5400 4410
+rect 5550 3780 7830 4260
+rect 7920 3540 8040 18840
+rect 8130 13020 8460 19350
+rect 8670 12660 9000 19710
+rect 8130 12330 9000 12660
+rect 8130 11820 9000 12150
+rect 8130 10980 9000 11310
+rect 8130 10470 9000 10800
+rect 8130 3780 8460 10110
+rect 8670 3420 9000 10470
+rect 0 3090 9000 3420
+<< metal2 >>
+rect 0 19710 9000 20040
+rect 0 18870 9000 19350
+rect 0 17730 9000 18540
+rect 0 16920 9000 17400
+rect 0 15930 9000 16740
+rect 0 14970 9000 15450
+rect 0 13980 9000 14790
+rect 0 13020 9000 13500
+rect 0 12330 9000 12660
+rect 0 11820 9000 12150
+rect 930 11430 8070 11700
+rect 0 10980 9000 11310
+rect 0 10470 9000 10800
+rect 0 9630 9000 10110
+rect 0 8490 9000 9300
+rect 0 7680 9000 8160
+rect 0 6690 9000 7500
+rect 0 5730 9000 6210
+rect 0 4740 9000 5550
+rect 0 3780 9000 4260
+rect 0 3090 9000 3420
+<< via1 >>
+rect 155 19925 205 19975
+rect 395 19925 445 19975
+rect 635 19925 685 19975
+rect 875 19925 925 19975
+rect 1115 19925 1165 19975
+rect 1355 19925 1405 19975
+rect 1595 19925 1645 19975
+rect 1835 19925 1885 19975
+rect 2075 19925 2125 19975
+rect 2315 19925 2365 19975
+rect 2555 19925 2605 19975
+rect 2795 19925 2845 19975
+rect 3035 19925 3085 19975
+rect 3275 19925 3325 19975
+rect 5675 19925 5725 19975
+rect 5915 19925 5965 19975
+rect 6155 19925 6205 19975
+rect 6395 19925 6445 19975
+rect 6635 19925 6685 19975
+rect 6875 19925 6925 19975
+rect 7115 19925 7165 19975
+rect 7355 19925 7405 19975
+rect 7595 19925 7645 19975
+rect 7835 19925 7885 19975
+rect 8075 19925 8125 19975
+rect 8315 19925 8365 19975
+rect 8555 19925 8605 19975
+rect 8795 19925 8845 19975
+rect 155 19775 205 19825
+rect 395 19775 445 19825
+rect 635 19775 685 19825
+rect 875 19775 925 19825
+rect 1115 19775 1165 19825
+rect 1355 19775 1405 19825
+rect 1595 19775 1645 19825
+rect 1835 19775 1885 19825
+rect 2075 19775 2125 19825
+rect 2315 19775 2365 19825
+rect 2555 19775 2605 19825
+rect 2795 19775 2845 19825
+rect 3035 19775 3085 19825
+rect 3275 19775 3325 19825
+rect 5675 19775 5725 19825
+rect 5915 19775 5965 19825
+rect 6155 19775 6205 19825
+rect 6395 19775 6445 19825
+rect 6635 19775 6685 19825
+rect 6875 19775 6925 19825
+rect 7115 19775 7165 19825
+rect 7355 19775 7405 19825
+rect 7595 19775 7645 19825
+rect 7835 19775 7885 19825
+rect 8075 19775 8125 19825
+rect 8315 19775 8365 19825
+rect 8555 19775 8605 19825
+rect 8795 19775 8845 19825
+rect 605 19235 655 19285
+rect 755 19235 805 19285
+rect 1385 19235 1435 19285
+rect 1685 19235 1735 19285
+rect 1985 19235 2035 19285
+rect 2285 19235 2335 19285
+rect 2585 19235 2635 19285
+rect 2885 19235 2935 19285
+rect 3185 19235 3235 19285
+rect 4475 19235 4525 19285
+rect 5765 19235 5815 19285
+rect 6065 19235 6115 19285
+rect 6365 19235 6415 19285
+rect 6665 19235 6715 19285
+rect 6965 19235 7015 19285
+rect 7265 19235 7315 19285
+rect 7565 19235 7615 19285
+rect 8195 19235 8245 19285
+rect 8345 19235 8395 19285
+rect 605 19085 655 19135
+rect 755 19085 805 19135
+rect 1385 19085 1435 19135
+rect 1685 19085 1735 19135
+rect 1985 19085 2035 19135
+rect 2285 19085 2335 19135
+rect 2585 19085 2635 19135
+rect 2885 19085 2935 19135
+rect 3185 19085 3235 19135
+rect 4475 19085 4525 19135
+rect 5765 19085 5815 19135
+rect 6065 19085 6115 19135
+rect 6365 19085 6415 19135
+rect 6665 19085 6715 19135
+rect 6965 19085 7015 19135
+rect 7265 19085 7315 19135
+rect 7565 19085 7615 19135
+rect 8195 19085 8245 19135
+rect 8345 19085 8395 19135
+rect 605 18935 655 18985
+rect 755 18935 805 18985
+rect 1385 18935 1435 18985
+rect 1685 18935 1735 18985
+rect 1985 18935 2035 18985
+rect 2285 18935 2335 18985
+rect 2585 18935 2635 18985
+rect 2885 18935 2935 18985
+rect 3185 18935 3235 18985
+rect 4475 18935 4525 18985
+rect 5765 18935 5815 18985
+rect 6065 18935 6115 18985
+rect 6365 18935 6415 18985
+rect 6665 18935 6715 18985
+rect 6965 18935 7015 18985
+rect 7265 18935 7315 18985
+rect 7565 18935 7615 18985
+rect 8195 18935 8245 18985
+rect 8345 18935 8395 18985
+rect 65 18455 115 18505
+rect 215 18455 265 18505
+rect 8735 18455 8785 18505
+rect 8885 18455 8935 18505
+rect 65 18215 115 18265
+rect 215 18215 265 18265
+rect 8735 18215 8785 18265
+rect 8885 18215 8935 18265
+rect 65 17975 115 18025
+rect 215 17975 265 18025
+rect 8735 17975 8785 18025
+rect 8885 17975 8935 18025
+rect 605 17285 655 17335
+rect 755 17285 805 17335
+rect 1385 17285 1435 17335
+rect 1685 17285 1735 17335
+rect 1985 17285 2035 17335
+rect 2285 17285 2335 17335
+rect 2585 17285 2635 17335
+rect 2885 17285 2935 17335
+rect 3185 17285 3235 17335
+rect 4475 17285 4525 17335
+rect 5765 17285 5815 17335
+rect 6065 17285 6115 17335
+rect 6365 17285 6415 17335
+rect 6665 17285 6715 17335
+rect 6965 17285 7015 17335
+rect 7265 17285 7315 17335
+rect 7565 17285 7615 17335
+rect 8195 17285 8245 17335
+rect 8345 17285 8395 17335
+rect 605 17135 655 17185
+rect 755 17135 805 17185
+rect 1385 17135 1435 17185
+rect 1685 17135 1735 17185
+rect 1985 17135 2035 17185
+rect 2285 17135 2335 17185
+rect 2585 17135 2635 17185
+rect 2885 17135 2935 17185
+rect 3185 17135 3235 17185
+rect 4475 17135 4525 17185
+rect 5765 17135 5815 17185
+rect 6065 17135 6115 17185
+rect 6365 17135 6415 17185
+rect 6665 17135 6715 17185
+rect 6965 17135 7015 17185
+rect 7265 17135 7315 17185
+rect 7565 17135 7615 17185
+rect 8195 17135 8245 17185
+rect 8345 17135 8395 17185
+rect 605 16985 655 17035
+rect 755 16985 805 17035
+rect 1385 16985 1435 17035
+rect 1685 16985 1735 17035
+rect 1985 16985 2035 17035
+rect 2285 16985 2335 17035
+rect 2585 16985 2635 17035
+rect 2885 16985 2935 17035
+rect 3185 16985 3235 17035
+rect 4475 16985 4525 17035
+rect 5765 16985 5815 17035
+rect 6065 16985 6115 17035
+rect 6365 16985 6415 17035
+rect 6665 16985 6715 17035
+rect 6965 16985 7015 17035
+rect 7265 16985 7315 17035
+rect 7565 16985 7615 17035
+rect 8195 16985 8245 17035
+rect 8345 16985 8395 17035
+rect 65 16535 115 16585
+rect 215 16535 265 16585
+rect 8735 16535 8785 16585
+rect 8885 16535 8935 16585
+rect 65 16295 115 16345
+rect 215 16295 265 16345
+rect 8735 16295 8785 16345
+rect 8885 16295 8935 16345
+rect 65 16055 115 16105
+rect 215 16055 265 16105
+rect 8735 16055 8785 16105
+rect 8885 16055 8935 16105
+rect 605 15335 655 15385
+rect 755 15335 805 15385
+rect 1385 15335 1435 15385
+rect 1685 15335 1735 15385
+rect 1985 15335 2035 15385
+rect 2285 15335 2335 15385
+rect 2585 15335 2635 15385
+rect 2885 15335 2935 15385
+rect 3185 15335 3235 15385
+rect 4475 15335 4525 15385
+rect 5765 15335 5815 15385
+rect 6065 15335 6115 15385
+rect 6365 15335 6415 15385
+rect 6665 15335 6715 15385
+rect 6965 15335 7015 15385
+rect 7265 15335 7315 15385
+rect 7565 15335 7615 15385
+rect 8195 15335 8245 15385
+rect 8345 15335 8395 15385
+rect 605 15185 655 15235
+rect 755 15185 805 15235
+rect 1385 15185 1435 15235
+rect 1685 15185 1735 15235
+rect 1985 15185 2035 15235
+rect 2285 15185 2335 15235
+rect 2585 15185 2635 15235
+rect 2885 15185 2935 15235
+rect 3185 15185 3235 15235
+rect 4475 15185 4525 15235
+rect 5765 15185 5815 15235
+rect 6065 15185 6115 15235
+rect 6365 15185 6415 15235
+rect 6665 15185 6715 15235
+rect 6965 15185 7015 15235
+rect 7265 15185 7315 15235
+rect 7565 15185 7615 15235
+rect 8195 15185 8245 15235
+rect 8345 15185 8395 15235
+rect 605 15035 655 15085
+rect 755 15035 805 15085
+rect 1385 15035 1435 15085
+rect 1685 15035 1735 15085
+rect 1985 15035 2035 15085
+rect 2285 15035 2335 15085
+rect 2585 15035 2635 15085
+rect 2885 15035 2935 15085
+rect 3185 15035 3235 15085
+rect 4475 15035 4525 15085
+rect 5765 15035 5815 15085
+rect 6065 15035 6115 15085
+rect 6365 15035 6415 15085
+rect 6665 15035 6715 15085
+rect 6965 15035 7015 15085
+rect 7265 15035 7315 15085
+rect 7565 15035 7615 15085
+rect 8195 15035 8245 15085
+rect 8345 15035 8395 15085
+rect 65 14585 115 14635
+rect 215 14585 265 14635
+rect 8735 14585 8785 14635
+rect 8885 14585 8935 14635
+rect 65 14345 115 14395
+rect 215 14345 265 14395
+rect 8735 14345 8785 14395
+rect 8885 14345 8935 14395
+rect 65 14105 115 14155
+rect 215 14105 265 14155
+rect 8735 14105 8785 14155
+rect 8885 14105 8935 14155
+rect 605 13385 655 13435
+rect 755 13385 805 13435
+rect 1385 13385 1435 13435
+rect 1685 13385 1735 13435
+rect 1985 13385 2035 13435
+rect 2285 13385 2335 13435
+rect 2585 13385 2635 13435
+rect 2885 13385 2935 13435
+rect 3185 13385 3235 13435
+rect 4475 13385 4525 13435
+rect 5765 13385 5815 13435
+rect 6065 13385 6115 13435
+rect 6365 13385 6415 13435
+rect 6665 13385 6715 13435
+rect 6965 13385 7015 13435
+rect 7265 13385 7315 13435
+rect 7565 13385 7615 13435
+rect 8195 13385 8245 13435
+rect 8345 13385 8395 13435
+rect 605 13235 655 13285
+rect 755 13235 805 13285
+rect 1385 13235 1435 13285
+rect 1685 13235 1735 13285
+rect 1985 13235 2035 13285
+rect 2285 13235 2335 13285
+rect 2585 13235 2635 13285
+rect 2885 13235 2935 13285
+rect 3185 13235 3235 13285
+rect 4475 13235 4525 13285
+rect 5765 13235 5815 13285
+rect 6065 13235 6115 13285
+rect 6365 13235 6415 13285
+rect 6665 13235 6715 13285
+rect 6965 13235 7015 13285
+rect 7265 13235 7315 13285
+rect 7565 13235 7615 13285
+rect 8195 13235 8245 13285
+rect 8345 13235 8395 13285
+rect 605 13085 655 13135
+rect 755 13085 805 13135
+rect 1385 13085 1435 13135
+rect 1685 13085 1735 13135
+rect 1985 13085 2035 13135
+rect 2285 13085 2335 13135
+rect 2585 13085 2635 13135
+rect 2885 13085 2935 13135
+rect 3185 13085 3235 13135
+rect 4475 13085 4525 13135
+rect 5765 13085 5815 13135
+rect 6065 13085 6115 13135
+rect 6365 13085 6415 13135
+rect 6665 13085 6715 13135
+rect 6965 13085 7015 13135
+rect 7265 13085 7315 13135
+rect 7565 13085 7615 13135
+rect 8195 13085 8245 13135
+rect 8345 13085 8395 13135
+rect 155 12545 205 12595
+rect 395 12545 445 12595
+rect 635 12545 685 12595
+rect 1355 12545 1405 12595
+rect 1595 12545 1645 12595
+rect 1835 12545 1885 12595
+rect 2075 12545 2125 12595
+rect 2315 12545 2365 12595
+rect 2555 12545 2605 12595
+rect 2795 12545 2845 12595
+rect 3035 12545 3085 12595
+rect 3275 12545 3325 12595
+rect 5675 12545 5725 12595
+rect 5915 12545 5965 12595
+rect 6155 12545 6205 12595
+rect 6395 12545 6445 12595
+rect 6635 12545 6685 12595
+rect 6875 12545 6925 12595
+rect 7115 12545 7165 12595
+rect 7355 12545 7405 12595
+rect 7595 12545 7645 12595
+rect 8315 12545 8365 12595
+rect 8555 12545 8605 12595
+rect 8795 12545 8845 12595
+rect 155 12395 205 12445
+rect 395 12395 445 12445
+rect 635 12395 685 12445
+rect 1355 12395 1405 12445
+rect 1595 12395 1645 12445
+rect 1835 12395 1885 12445
+rect 2075 12395 2125 12445
+rect 2315 12395 2365 12445
+rect 2555 12395 2605 12445
+rect 2795 12395 2845 12445
+rect 3035 12395 3085 12445
+rect 3275 12395 3325 12445
+rect 5675 12395 5725 12445
+rect 5915 12395 5965 12445
+rect 6155 12395 6205 12445
+rect 6395 12395 6445 12445
+rect 6635 12395 6685 12445
+rect 6875 12395 6925 12445
+rect 7115 12395 7165 12445
+rect 7355 12395 7405 12445
+rect 7595 12395 7645 12445
+rect 8315 12395 8365 12445
+rect 8555 12395 8605 12445
+rect 8795 12395 8845 12445
+rect 155 12035 205 12085
+rect 395 12035 445 12085
+rect 635 12035 685 12085
+rect 1355 12035 1405 12085
+rect 1595 12035 1645 12085
+rect 1835 12035 1885 12085
+rect 2075 12035 2125 12085
+rect 2315 12035 2365 12085
+rect 2555 12035 2605 12085
+rect 2795 12035 2845 12085
+rect 3035 12035 3085 12085
+rect 3275 12035 3325 12085
+rect 5675 12035 5725 12085
+rect 5915 12035 5965 12085
+rect 6155 12035 6205 12085
+rect 6395 12035 6445 12085
+rect 6635 12035 6685 12085
+rect 6875 12035 6925 12085
+rect 7115 12035 7165 12085
+rect 7355 12035 7405 12085
+rect 7595 12035 7645 12085
+rect 8315 12035 8365 12085
+rect 8555 12035 8605 12085
+rect 8795 12035 8845 12085
+rect 155 11885 205 11935
+rect 395 11885 445 11935
+rect 635 11885 685 11935
+rect 1355 11885 1405 11935
+rect 1595 11885 1645 11935
+rect 1835 11885 1885 11935
+rect 2075 11885 2125 11935
+rect 2315 11885 2365 11935
+rect 2555 11885 2605 11935
+rect 2795 11885 2845 11935
+rect 3035 11885 3085 11935
+rect 3275 11885 3325 11935
+rect 5675 11885 5725 11935
+rect 5915 11885 5965 11935
+rect 6155 11885 6205 11935
+rect 6395 11885 6445 11935
+rect 6635 11885 6685 11935
+rect 6875 11885 6925 11935
+rect 7115 11885 7165 11935
+rect 7355 11885 7405 11935
+rect 7595 11885 7645 11935
+rect 8315 11885 8365 11935
+rect 8555 11885 8605 11935
+rect 8795 11885 8845 11935
+rect 995 11615 1045 11665
+rect 7955 11615 8005 11665
+rect 995 11465 1045 11515
+rect 7955 11465 8005 11515
+rect 155 11195 205 11245
+rect 395 11195 445 11245
+rect 635 11195 685 11245
+rect 1355 11195 1405 11245
+rect 1595 11195 1645 11245
+rect 1835 11195 1885 11245
+rect 2075 11195 2125 11245
+rect 2315 11195 2365 11245
+rect 2555 11195 2605 11245
+rect 2795 11195 2845 11245
+rect 3035 11195 3085 11245
+rect 3275 11195 3325 11245
+rect 5675 11195 5725 11245
+rect 5915 11195 5965 11245
+rect 6155 11195 6205 11245
+rect 6395 11195 6445 11245
+rect 6635 11195 6685 11245
+rect 6875 11195 6925 11245
+rect 7115 11195 7165 11245
+rect 7355 11195 7405 11245
+rect 7595 11195 7645 11245
+rect 8315 11195 8365 11245
+rect 8555 11195 8605 11245
+rect 8795 11195 8845 11245
+rect 155 11045 205 11095
+rect 395 11045 445 11095
+rect 635 11045 685 11095
+rect 1355 11045 1405 11095
+rect 1595 11045 1645 11095
+rect 1835 11045 1885 11095
+rect 2075 11045 2125 11095
+rect 2315 11045 2365 11095
+rect 2555 11045 2605 11095
+rect 2795 11045 2845 11095
+rect 3035 11045 3085 11095
+rect 3275 11045 3325 11095
+rect 5675 11045 5725 11095
+rect 5915 11045 5965 11095
+rect 6155 11045 6205 11095
+rect 6395 11045 6445 11095
+rect 6635 11045 6685 11095
+rect 6875 11045 6925 11095
+rect 7115 11045 7165 11095
+rect 7355 11045 7405 11095
+rect 7595 11045 7645 11095
+rect 8315 11045 8365 11095
+rect 8555 11045 8605 11095
+rect 8795 11045 8845 11095
+rect 155 10685 205 10735
+rect 395 10685 445 10735
+rect 635 10685 685 10735
+rect 1355 10685 1405 10735
+rect 1595 10685 1645 10735
+rect 1835 10685 1885 10735
+rect 2075 10685 2125 10735
+rect 2315 10685 2365 10735
+rect 2555 10685 2605 10735
+rect 2795 10685 2845 10735
+rect 3035 10685 3085 10735
+rect 3275 10685 3325 10735
+rect 5675 10685 5725 10735
+rect 5915 10685 5965 10735
+rect 6155 10685 6205 10735
+rect 6395 10685 6445 10735
+rect 6635 10685 6685 10735
+rect 6875 10685 6925 10735
+rect 7115 10685 7165 10735
+rect 7355 10685 7405 10735
+rect 7595 10685 7645 10735
+rect 8315 10685 8365 10735
+rect 8555 10685 8605 10735
+rect 8795 10685 8845 10735
+rect 155 10535 205 10585
+rect 395 10535 445 10585
+rect 635 10535 685 10585
+rect 1355 10535 1405 10585
+rect 1595 10535 1645 10585
+rect 1835 10535 1885 10585
+rect 2075 10535 2125 10585
+rect 2315 10535 2365 10585
+rect 2555 10535 2605 10585
+rect 2795 10535 2845 10585
+rect 3035 10535 3085 10585
+rect 3275 10535 3325 10585
+rect 5675 10535 5725 10585
+rect 5915 10535 5965 10585
+rect 6155 10535 6205 10585
+rect 6395 10535 6445 10585
+rect 6635 10535 6685 10585
+rect 6875 10535 6925 10585
+rect 7115 10535 7165 10585
+rect 7355 10535 7405 10585
+rect 7595 10535 7645 10585
+rect 8315 10535 8365 10585
+rect 8555 10535 8605 10585
+rect 8795 10535 8845 10585
+rect 605 9995 655 10045
+rect 755 9995 805 10045
+rect 1385 9995 1435 10045
+rect 1685 9995 1735 10045
+rect 1985 9995 2035 10045
+rect 2285 9995 2335 10045
+rect 2585 9995 2635 10045
+rect 2885 9995 2935 10045
+rect 3185 9995 3235 10045
+rect 4475 9995 4525 10045
+rect 5765 9995 5815 10045
+rect 6065 9995 6115 10045
+rect 6365 9995 6415 10045
+rect 6665 9995 6715 10045
+rect 6965 9995 7015 10045
+rect 7265 9995 7315 10045
+rect 7565 9995 7615 10045
+rect 8195 9995 8245 10045
+rect 8345 9995 8395 10045
+rect 605 9845 655 9895
+rect 755 9845 805 9895
+rect 1385 9845 1435 9895
+rect 1685 9845 1735 9895
+rect 1985 9845 2035 9895
+rect 2285 9845 2335 9895
+rect 2585 9845 2635 9895
+rect 2885 9845 2935 9895
+rect 3185 9845 3235 9895
+rect 4475 9845 4525 9895
+rect 5765 9845 5815 9895
+rect 6065 9845 6115 9895
+rect 6365 9845 6415 9895
+rect 6665 9845 6715 9895
+rect 6965 9845 7015 9895
+rect 7265 9845 7315 9895
+rect 7565 9845 7615 9895
+rect 8195 9845 8245 9895
+rect 8345 9845 8395 9895
+rect 605 9695 655 9745
+rect 755 9695 805 9745
+rect 1385 9695 1435 9745
+rect 1685 9695 1735 9745
+rect 1985 9695 2035 9745
+rect 2285 9695 2335 9745
+rect 2585 9695 2635 9745
+rect 2885 9695 2935 9745
+rect 3185 9695 3235 9745
+rect 4475 9695 4525 9745
+rect 5765 9695 5815 9745
+rect 6065 9695 6115 9745
+rect 6365 9695 6415 9745
+rect 6665 9695 6715 9745
+rect 6965 9695 7015 9745
+rect 7265 9695 7315 9745
+rect 7565 9695 7615 9745
+rect 8195 9695 8245 9745
+rect 8345 9695 8395 9745
+rect 65 9215 115 9265
+rect 215 9215 265 9265
+rect 8735 9215 8785 9265
+rect 8885 9215 8935 9265
+rect 65 8975 115 9025
+rect 215 8975 265 9025
+rect 8735 8975 8785 9025
+rect 8885 8975 8935 9025
+rect 65 8735 115 8785
+rect 215 8735 265 8785
+rect 8735 8735 8785 8785
+rect 8885 8735 8935 8785
+rect 605 8045 655 8095
+rect 755 8045 805 8095
+rect 1385 8045 1435 8095
+rect 1685 8045 1735 8095
+rect 1985 8045 2035 8095
+rect 2285 8045 2335 8095
+rect 2585 8045 2635 8095
+rect 2885 8045 2935 8095
+rect 3185 8045 3235 8095
+rect 4475 8045 4525 8095
+rect 5765 8045 5815 8095
+rect 6065 8045 6115 8095
+rect 6365 8045 6415 8095
+rect 6665 8045 6715 8095
+rect 6965 8045 7015 8095
+rect 7265 8045 7315 8095
+rect 7565 8045 7615 8095
+rect 8195 8045 8245 8095
+rect 8345 8045 8395 8095
+rect 605 7895 655 7945
+rect 755 7895 805 7945
+rect 1385 7895 1435 7945
+rect 1685 7895 1735 7945
+rect 1985 7895 2035 7945
+rect 2285 7895 2335 7945
+rect 2585 7895 2635 7945
+rect 2885 7895 2935 7945
+rect 3185 7895 3235 7945
+rect 4475 7895 4525 7945
+rect 5765 7895 5815 7945
+rect 6065 7895 6115 7945
+rect 6365 7895 6415 7945
+rect 6665 7895 6715 7945
+rect 6965 7895 7015 7945
+rect 7265 7895 7315 7945
+rect 7565 7895 7615 7945
+rect 8195 7895 8245 7945
+rect 8345 7895 8395 7945
+rect 605 7745 655 7795
+rect 755 7745 805 7795
+rect 1385 7745 1435 7795
+rect 1685 7745 1735 7795
+rect 1985 7745 2035 7795
+rect 2285 7745 2335 7795
+rect 2585 7745 2635 7795
+rect 2885 7745 2935 7795
+rect 3185 7745 3235 7795
+rect 4475 7745 4525 7795
+rect 5765 7745 5815 7795
+rect 6065 7745 6115 7795
+rect 6365 7745 6415 7795
+rect 6665 7745 6715 7795
+rect 6965 7745 7015 7795
+rect 7265 7745 7315 7795
+rect 7565 7745 7615 7795
+rect 8195 7745 8245 7795
+rect 8345 7745 8395 7795
+rect 65 7295 115 7345
+rect 215 7295 265 7345
+rect 8735 7295 8785 7345
+rect 8885 7295 8935 7345
+rect 65 7055 115 7105
+rect 215 7055 265 7105
+rect 8735 7055 8785 7105
+rect 8885 7055 8935 7105
+rect 65 6815 115 6865
+rect 215 6815 265 6865
+rect 8735 6815 8785 6865
+rect 8885 6815 8935 6865
+rect 605 6095 655 6145
+rect 755 6095 805 6145
+rect 1385 6095 1435 6145
+rect 1685 6095 1735 6145
+rect 1985 6095 2035 6145
+rect 2285 6095 2335 6145
+rect 2585 6095 2635 6145
+rect 2885 6095 2935 6145
+rect 3185 6095 3235 6145
+rect 4475 6095 4525 6145
+rect 5765 6095 5815 6145
+rect 6065 6095 6115 6145
+rect 6365 6095 6415 6145
+rect 6665 6095 6715 6145
+rect 6965 6095 7015 6145
+rect 7265 6095 7315 6145
+rect 7565 6095 7615 6145
+rect 8195 6095 8245 6145
+rect 8345 6095 8395 6145
+rect 605 5945 655 5995
+rect 755 5945 805 5995
+rect 1385 5945 1435 5995
+rect 1685 5945 1735 5995
+rect 1985 5945 2035 5995
+rect 2285 5945 2335 5995
+rect 2585 5945 2635 5995
+rect 2885 5945 2935 5995
+rect 3185 5945 3235 5995
+rect 4475 5945 4525 5995
+rect 5765 5945 5815 5995
+rect 6065 5945 6115 5995
+rect 6365 5945 6415 5995
+rect 6665 5945 6715 5995
+rect 6965 5945 7015 5995
+rect 7265 5945 7315 5995
+rect 7565 5945 7615 5995
+rect 8195 5945 8245 5995
+rect 8345 5945 8395 5995
+rect 605 5795 655 5845
+rect 755 5795 805 5845
+rect 1385 5795 1435 5845
+rect 1685 5795 1735 5845
+rect 1985 5795 2035 5845
+rect 2285 5795 2335 5845
+rect 2585 5795 2635 5845
+rect 2885 5795 2935 5845
+rect 3185 5795 3235 5845
+rect 4475 5795 4525 5845
+rect 5765 5795 5815 5845
+rect 6065 5795 6115 5845
+rect 6365 5795 6415 5845
+rect 6665 5795 6715 5845
+rect 6965 5795 7015 5845
+rect 7265 5795 7315 5845
+rect 7565 5795 7615 5845
+rect 8195 5795 8245 5845
+rect 8345 5795 8395 5845
+rect 65 5345 115 5395
+rect 215 5345 265 5395
+rect 8735 5345 8785 5395
+rect 8885 5345 8935 5395
+rect 65 5105 115 5155
+rect 215 5105 265 5155
+rect 8735 5105 8785 5155
+rect 8885 5105 8935 5155
+rect 65 4865 115 4915
+rect 215 4865 265 4915
+rect 8735 4865 8785 4915
+rect 8885 4865 8935 4915
+rect 605 4145 655 4195
+rect 755 4145 805 4195
+rect 1385 4145 1435 4195
+rect 1685 4145 1735 4195
+rect 1985 4145 2035 4195
+rect 2285 4145 2335 4195
+rect 2585 4145 2635 4195
+rect 2885 4145 2935 4195
+rect 3185 4145 3235 4195
+rect 4475 4145 4525 4195
+rect 5765 4145 5815 4195
+rect 6065 4145 6115 4195
+rect 6365 4145 6415 4195
+rect 6665 4145 6715 4195
+rect 6965 4145 7015 4195
+rect 7265 4145 7315 4195
+rect 7565 4145 7615 4195
+rect 8195 4145 8245 4195
+rect 8345 4145 8395 4195
+rect 605 3995 655 4045
+rect 755 3995 805 4045
+rect 1385 3995 1435 4045
+rect 1685 3995 1735 4045
+rect 1985 3995 2035 4045
+rect 2285 3995 2335 4045
+rect 2585 3995 2635 4045
+rect 2885 3995 2935 4045
+rect 3185 3995 3235 4045
+rect 4475 3995 4525 4045
+rect 5765 3995 5815 4045
+rect 6065 3995 6115 4045
+rect 6365 3995 6415 4045
+rect 6665 3995 6715 4045
+rect 6965 3995 7015 4045
+rect 7265 3995 7315 4045
+rect 7565 3995 7615 4045
+rect 8195 3995 8245 4045
+rect 8345 3995 8395 4045
+rect 605 3845 655 3895
+rect 755 3845 805 3895
+rect 1385 3845 1435 3895
+rect 1685 3845 1735 3895
+rect 1985 3845 2035 3895
+rect 2285 3845 2335 3895
+rect 2585 3845 2635 3895
+rect 2885 3845 2935 3895
+rect 3185 3845 3235 3895
+rect 4475 3845 4525 3895
+rect 5765 3845 5815 3895
+rect 6065 3845 6115 3895
+rect 6365 3845 6415 3895
+rect 6665 3845 6715 3895
+rect 6965 3845 7015 3895
+rect 7265 3845 7315 3895
+rect 7565 3845 7615 3895
+rect 8195 3845 8245 3895
+rect 8345 3845 8395 3895
+rect 155 3305 205 3355
+rect 395 3305 445 3355
+rect 635 3305 685 3355
+rect 875 3305 925 3355
+rect 1115 3305 1165 3355
+rect 1355 3305 1405 3355
+rect 1595 3305 1645 3355
+rect 1835 3305 1885 3355
+rect 2075 3305 2125 3355
+rect 2315 3305 2365 3355
+rect 2555 3305 2605 3355
+rect 2795 3305 2845 3355
+rect 3035 3305 3085 3355
+rect 3275 3305 3325 3355
+rect 3515 3305 3565 3355
+rect 3755 3305 3805 3355
+rect 3995 3305 4045 3355
+rect 4235 3305 4285 3355
+rect 4475 3305 4525 3355
+rect 4715 3305 4765 3355
+rect 4955 3305 5005 3355
+rect 5195 3305 5245 3355
+rect 5435 3305 5485 3355
+rect 5675 3305 5725 3355
+rect 5915 3305 5965 3355
+rect 6155 3305 6205 3355
+rect 6395 3305 6445 3355
+rect 6635 3305 6685 3355
+rect 6875 3305 6925 3355
+rect 7115 3305 7165 3355
+rect 7355 3305 7405 3355
+rect 7595 3305 7645 3355
+rect 7835 3305 7885 3355
+rect 8075 3305 8125 3355
+rect 8315 3305 8365 3355
+rect 8555 3305 8605 3355
+rect 8795 3305 8845 3355
+rect 155 3155 205 3205
+rect 395 3155 445 3205
+rect 635 3155 685 3205
+rect 875 3155 925 3205
+rect 1115 3155 1165 3205
+rect 1355 3155 1405 3205
+rect 1595 3155 1645 3205
+rect 1835 3155 1885 3205
+rect 2075 3155 2125 3205
+rect 2315 3155 2365 3205
+rect 2555 3155 2605 3205
+rect 2795 3155 2845 3205
+rect 3035 3155 3085 3205
+rect 3275 3155 3325 3205
+rect 3515 3155 3565 3205
+rect 3755 3155 3805 3205
+rect 3995 3155 4045 3205
+rect 4235 3155 4285 3205
+rect 4475 3155 4525 3205
+rect 4715 3155 4765 3205
+rect 4955 3155 5005 3205
+rect 5195 3155 5245 3205
+rect 5435 3155 5485 3205
+rect 5675 3155 5725 3205
+rect 5915 3155 5965 3205
+rect 6155 3155 6205 3205
+rect 6395 3155 6445 3205
+rect 6635 3155 6685 3205
+rect 6875 3155 6925 3205
+rect 7115 3155 7165 3205
+rect 7355 3155 7405 3205
+rect 7595 3155 7645 3205
+rect 7835 3155 7885 3205
+rect 8075 3155 8125 3205
+rect 8315 3155 8365 3205
+rect 8555 3155 8605 3205
+rect 8795 3155 8845 3205
+<< labels >>
+flabel nwell s -60 3120 -60 3120 2 FreeSans 400 0 0 0 vdd
+flabel metal2 s 8280 13170 8280 13170 2 FreeSans 400 0 0 0 vdd
+flabel metal2 s 8400 11970 8400 11970 2 FreeSans 400 0 0 0 vdd
+flabel metal2 s 8400 10620 8400 10620 2 FreeSans 400 0 0 0 vdd
+flabel metal2 s 8280 9930 8280 9930 2 FreeSans 400 0 0 0 vss
+flabel metal2 s 8400 11160 8400 11160 2 FreeSans 400 0 0 0 vss
+flabel metal2 s 8400 12480 8400 12480 2 FreeSans 400 0 0 0 vss
+flabel metal1 s 4350 20520 4350 20520 2 FreeSans 400 0 0 0 pad
+flabel metal2 s 1410 11490 1410 11490 2 FreeSans 400 0 0 0 a
+<< checkpaint >>
+rect -100 -10 9100 22210
+<< end >>

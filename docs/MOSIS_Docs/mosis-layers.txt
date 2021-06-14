@@ -1,0 +1,34 @@
+SCN3M and SCN3M_SUBM
+MOSIS SCMOS Technology Codes and Layer Maps
+
+This is the layer map for the technology codes SCN3M and SCN3M_SUBM 
+using the MOSIS Scalable CMOS layout rules (SCMOS), and only for 
+SCN3M and SCN3M_SUBM. For designs that are laid out using other 
+design rules (or technology codes), use the standard layer mapping 
+conventions of that design rule set. For submissions in GDS format, 
+the datatype is "0" (zero) unless specified in the map below.
+
+SCN3M_SUBM: Uses revised layout rules for better fit to sub-micron 
+processes (see MOSIS Scalable CMOS (SCMOS) Design Rules, Section 2.4)
+
+Fabricated on AMI 0.50 micron process runs.
+
+Layer          GDS  CIF  CIF Syn.   Section   Notes
+==========================================================================
+CONTACT        25   CCC  CCG        5, 6, 13    
+PADS           26   XP                        Non-fab laye  highlight pads
+N_WELL         42   CWN             1    
+ACTIVE         43   CAA             2    
+P_PLUS_SELECT  44   CSP             4    
+N_PLUS_SELECT  45   CSN             4    
+POLY           46   CPG             3    
+POLY_CONTACT   47   CCP             5         Can be replaced by CONTACT
+ACTIVE_CONTACT 48   CCA             6         Can be replaced by CONTACT
+METAL1         49   CM1  CMF        7    
+VIA            50   CV1  CVA        8    
+METAL2         51   CM2  CMS        9    
+GLASS          52   COG             10    
+VIA2           61   CV2  CVS        14    
+METAL3         62   CM3  CMT        15    
+Comments       --   CX                        Comments
+

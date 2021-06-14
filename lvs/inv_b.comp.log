@@ -1,0 +1,23 @@
+
+Subcircuit summary:
+Circuit 1: inv_b                           |Circuit 2: inv_b                           
+-------------------------------------------|-------------------------------------------
+pfet (1)                                   |pfet (1)                                   
+nfet (1)                                   |nfet (1)                                   
+Number of devices: 2                       |Number of devices: 2                       
+Number of nets: 4                          |Number of nets: 4                          
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: inv_b                           |Circuit 2: inv_b                           
+-------------------------------------------|-------------------------------------------
+z                                          |z                                          
+a                                          |a                                          
+vdd                                        |vdd                                        
+vss                                        |vss                                        
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes inv_b and inv_b are equivalent.
+Circuits match uniquely.

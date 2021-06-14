@@ -1,0 +1,94 @@
+* Transient simulation of pad_x0_top and pad_in_top
+*
+* CMOS inverter for the crystal pad
+
+.include mag/pad_in_top.cir
+.include mag/pad_x0_top.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.025
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+* Vsrc src 0 DC 0 SIN({VO} {VA} {FREQ})
+vsrc src 0 DC 0 AC {VA}
+Rsrc src 0 50
+
+Cin src srcx 1.0e-6
+vin srcx in DC 0
+
+* .subckt pad_in_top pad xpad   vdd vss
+* .subckt pad_x0_top pad xpad a vdd vss
+
+xpad_xin  in  xpad      vdd vss pad_in_top 
+xpad_xout out a xpad    vdd vss pad_x0_top 
+
+* net "a" to schmitt trigger
+
+* Ca a 0 0.5e-12
+* Ra a 0 1Meg
+
+
+Rf out in 2.2Meg
+
+RL out 0 1.0k
+CL out 0 30.0e-12
+
+* .save all @r.xdut.rin1[i] @Cout[i]
+* .save all @m.xdut.xpad_io_top_0.m1002[id]
+* +         @m.xdut.xpad_io_top_0.m1010[id]
+.save all
+
+* .dc Va 0 {VDD_VAL} 0.001
+
+* .tran 0.1n {PER*5}
+.ac lin 20001 0.01Meg 20.01Meg
+
+.control
+destroy all
+run
+
+setplot ac1 
+* plot mag(v(a)) mag(v(pad))
+
+let gaindb = 20 * log10(mag(v(out))/mag(v(in)))
+let f = re(frequency)
+let vin = v(in)
+let iin = i(vin)
+let zin = vin / iin
+let xc = -im(zin)
+let cin = 1 / (2 * pi * f * xc)
+
+* locate index of frequency in question
+let idx = 0
+let len = length(frequency)
+
+dowhile idx < len
+   if frequency[idx] >= 6.5e6
+      break
+   end
+   let idx = idx + 1
+end
+   
+print idx
+print frequency[idx]
+print zin[idx]
+print mag(zin[idx])
+print ph(zin[idx])
+print ph(zin[idx]) * 180 / pi
+print cin[idx]
+
+.endc
+
+.end

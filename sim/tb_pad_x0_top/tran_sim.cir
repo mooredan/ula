@@ -1,0 +1,53 @@
+* Transient simulation of pad_x0_top
+*
+* CMOS inverter for the crystal pad
+
+.include mag/pad_x0_top.cir
+
+.lib device_models/AMI_C5N.lib TT
+.lib device_models/AMI_C5N_rmodels.lib NOM 
+
+.param VDD_VAL=5
++      FREQ=6.5Meg
++      PER={1 / FREQ}
++      PH={PER / 2.0}
++      TRF={PER * 0.1}
++      VO=0
++      VA=0.025
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL
+Vvss vss 0 DC 0
+
+Vsrc src 0 DC 0 SIN({VO} {VA} {FREQ})
+Rsrc src 0 50
+
+Cin src ax 1.0e-6
+vin ax a DC 0
+
+Xdut pad xpad a vdd vss pad_x0_top
+Rf pad a 2.2Meg
+
+RL pad 0 1.0k
+CL pad 0 30.0e-12
+
+* .save all @r.xdut.rin1[i] @Cout[i]
+* .save all @m.xdut.xpad_io_top_0.m1002[id]
+* +         @m.xdut.xpad_io_top_0.m1010[id]
+.save all
+
+* .dc Va 0 {VDD_VAL} 0.001
+
+.tran 0.1n {PER*5}
+
+.control
+destroy all
+run
+
+setplot tran1 
+plot v(a) v(pad)
+
+.endc
+
+.end

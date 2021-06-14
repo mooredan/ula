@@ -1,0 +1,210 @@
+%! PostScript set of library objects for XCircuit
+%  Version: 3.10
+%  Library name is: spicelib
+%  Author: Daniel Moore <mooredan@macbookpro.local>
+%
+
+% Depend spicelib::vsin analog::source analoglib2::sinusoid
+% Depend spicelib::vdc analog::source
+% Depend spicelib::idc analog::source generic::arrowhead
+
+% XCircuitLib library objects
+/analog::source {
+% hidden
+begingate
+1 1.000 0 0 32 0.000 360.000 xcarc
+1 1.000 0 32 0 64 2 polygon
+1 1.000 0 -32 0 -64 2 polygon
+endgate
+} def
+
+/analoglib2::sinusoid {
+% hidden
+begingate
+1 0.800 0 -48 0 48 -16 0 16 0 spline
+endgate
+} def
+
+/generic::arrowhead {
+% nonetwork
+begingate
+8 -28 beginpath
+3 -18 3 -15 0 0 curveto
+-3 -15 -3 -18 -8 -28 curveto
+-2 -26 2 -26 8 -28 curveto
+249  1.00 endpath
+endgate
+} def
+
+/generic::degree {
+% hidden
+begingate
+(\260) {qS} {/Symbol cf}
+endgate
+} def
+
+
+/spicelib::vsin {
+<</p_yps1 -24 /p_xps1 48 /p_yps 52 /p_xps 48 /p_rot 0 /@index (?) /@dc_flag 
+(DC) /@dc_type () /@dc_value (0) /@ac_flag () /@ac_mag () /@ac_phase () /@sin_vo 
+(0) /@sin_va (1) /@sin_freq (1) /@sin_td () /@sin_theta () /@sin_phase 
+() /p_jst 20 >> begingate
+1.000 0.000 0 0 analog::source
+1.000 0.000 0.000 scb
+(s.p) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
+(s.m) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+mark (\)) @sin_phase ( ) @sin_theta ( ) @sin_td ( ) @sin_freq ( ) @sin_va ( ) 
+@sin_vo ( SIN\() @ac_phase ( ) @ac_mag ( ) @ac_flag ( ) @dc_value ( ) @dc_type 
+( ) @dc_flag ( ) ( %ps.p %ps.m ) @index (spice:V) {/Times-Roman cf} ctmk 20 
+0.000 1.000 -336 -160 infolabel
+0.647 0.165 0.165 scb
+mark @ac_phase {hS} @ac_mag {hS} @ac_flag {CR} ( V) {hS} @dc_value {hS} 
+@dc_type {hS} @dc_flag {CR} ( Hz) {hS} @sin_freq (FREQ = ) {CR} ( V) {hS} 
+@sin_vo (VO = ) {CR} ( V) {hS} @sin_va (VA = ) {/Times-Roman cf} ctmk p_jst 
+p_rot 0.750 p_xps1 p_yps1 label
+sce
+1.000 p_rot 0 0 analoglib2::sinusoid
+0.000 0.000 1.000 scb
+mark @index (V) {/Times-RomanISO cf} ctmk 16 p_rot 0.700 p_xps p_yps label
+endgate
+} def
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% /p_expr1 () (if {@ac_flag != 0} {concat "AC" @ac_mag @ac_phase} else {return ""} ) pop
+% /p_expr1 () (if {@ac_flag != 0} {concat "AC =" @ac_mag "V PH = " @ac_phase} else {return ""})  pop
+% {/Times-Roman cf} (\260) {qS} {/Symbol cf} @ac_phase {hS} (=) {hS} (PH) (V ) {qS} @ac_mag {hS} (=) {hS} (AC)
+% /p_deg () (if {[expr @ac_mag] == 0} { return "" } else { return "" }) pop
+%
+/spicelib::vdc {
+<</p_yps1 -12 /p_xps1 48 /p_yps 34 /p_xps 48 /p_rot 0 /@index (?) 
+/@dc_value (0.0) /@dc_value_scale ()
+/@ac_mag (1.0) /@ac_mag_scale () /@ac_phase (90.0)
+/p_jst 20
+/p_acexpr ()
+(if {[expr @ac_mag] == 0} {
+   return ""
+} else {
+   if {[expr @ac_phase] == 0 && [expr @ac_mag] == 1 && [concat @ac_mag_scale] == ""} {
+      return "AC"
+   } elseif { [expr @ac_phase] == 0 } {
+      if {[concat @ac_mag_scale] == ""} {
+         return [format "AC = %s V"  @ac_mag]
+      } else {
+         return [format "AC = %s%s V" @ac_mag @ac_mag_scale]
+      }
+   } else {
+      if {[concat @ac_mag_scale] == ""} {
+         return [format "AC = %s V PH = %s" @ac_mag @ac_phase]
+      } else {
+         return [format "AC = %s%s V PH = %s" @ac_mag @ac_mag_scale @ac_phase]
+      }
+   }
+}) pop
+/p_deg () (if {[expr @ac_mag] == 0} { return "" } else { return format "%s" {°} }) pop
+>> begingate
+1.000 0.000 0 0 analog::source
+(+) {/Symbol cf} 2 5 p_rot 1.000 0 14 label
+(-) {/Symbol cf} 2 5 p_rot 1.000 0 -22 label
+1.000 0.000 0.000 scb
+(s.p) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
+(s.m) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
+
+0.180 0.545 0.341 scb
+mark
+@ac_phase ( ) @ac_mag ( ) (AC) ( ) @dc_value ( ) (DC) 
+( ) ( %ps.p %ps.m ) @index (spice:V) {/Times-Roman cf}
+ctmk 20 0.000 1.000 -336 -160
+infolabel
+
+0.647 0.165 0.165 scb
+mark
+{/Times-Roman cf} (°) ( ) {/Symbol cf}
+p_acexpr
+{CR}
+(V) {qS} @dc_value {hS} (=) {hS} (DC) {/Times-Roman cf}
+ctmk p_jst p_rot 0.750 p_xps1 p_yps1 
+label
+
+0.000 0.000 1.000 scb
+mark @index (V) {/Times-RomanISO cf} ctmk 16 p_rot 0.700 p_xps p_yps label
+endgate
+} def
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/spicelib::idc {
+<< /p_xps 48 
+   /p_yps 34 
+   /p_xps1 48 
+   /p_yps1 -12 
+   /p_rot 0 
+   /@index (?) /@dc_flag (DC) 
+   /@dc_type () /@dc_value (0) /@ac_flag () /@ac_mag () /@ac_phase () /p_jst 20
+>> begingate
+1.000 0 0 0 analog::source
+1 0.750 0 20 0 -8 2 polygon
+0.800 180 0 -20 generic::arrowhead
+1.000 0.000 0.000 scb
+(i.p) {/Times-Roman cf} 2 9 0 1.000 0 64 pinlabel
+(i.m) {/Times-Roman cf} 2 13 0 1.000 0 -64 pinlabel
+
+0.180 0.545 0.341 scb
+mark @ac_phase ( ) @ac_mag ( ) @ac_flag ( ) @dc_value ( ) @dc_type ( ) @dc_flag 
+( ) ( %ps.p %ps.m ) @index (spice:I) {/Times-Roman cf} ctmk 20 0.000 1.000 -336 
+-160
+infolabel
+
+0.647 0.165 0.165 scb
+mark @ac_phase {hS} @ac_mag {hS} @ac_flag {CR} ( A) {hS} @dc_value {hS} 
+@dc_type {hS} @dc_flag {/Times-Roman cf} ctmk p_jst p_rot 0.750 p_xps1 p_yps1 
+label
+
+0.000 0.000 1.000 scb
+mark @index (I) {/Times-RomanISO cf} ctmk 16 p_rot 0.700 p_xps p_yps label
+
+endgate
+} def
+
+
+/spicelib::resistor {
+<< /@index (?) 
+   /@value (1.0)
+   /@r_params () 
+   /p_xps1 48  /p_yps1 -12 
+   /p_xps  48  /p_yps   34 
+   /p_jst  20  /p_rot    0
+>> begingate
+1 1.00 0 64 0 36 2 polygon
+1 1.00 0 -64 0 -36 2 polygon
+1 1.00 0 -36 14 -30 -14 -18 14 -6 -14 6 14 18 -14 30 0 36 8 polygon
+1.000 0.000 0.000 scb
+(r.p) {/Times-Roman cf} 2 9 0 1.00 0 64 pinlabel
+(r.m) {/Times-Roman cf} 2 13 0 1.00 0 -64 pinlabel
+
+0.180 0.545 0.341 scb
+mark 
+  @r_params ( ) 
+  @value
+  ( %pr.p %pr.m ) @index (spice:R) {/Times-Roman cf} ctmk 4 
+  0 1.00 -208 -160 
+infolabel
+
+0.647 0.165 0.165 scb
+mark 
+  @r_params {CR}
+  (W) {/Symbol cf} {hS} @value {/Times-Roman cf} ctmk p_jst 
+  p_rot 0.750 p_xps1 p_yps1 
+label
+
+0.000 0.000 1.000 scb
+mark @index (R) {/Times-RomanISO cf} ctmk 16 
+  p_rot 0.700 p_xps p_yps
+label
+
+endgate
+} def
+
+
+
+% EndLib

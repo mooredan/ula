@@ -1,0 +1,25 @@
+Class dff_d_v2:  Merged 4 devices.
+
+Subcircuit summary:
+Circuit 1: dff_d_v2                        |Circuit 2: dff_d_v2                        
+-------------------------------------------|-------------------------------------------
+pfet (11)                                  |pfet (11)                                  
+nfet (11)                                  |nfet (11)                                  
+Number of devices: 22                      |Number of devices: 22                      
+Number of nets: 17                         |Number of nets: 17                         
+---------------------------------------------------------------------------------------
+Circuits match uniquely.
+Netlists match uniquely.
+
+Subcircuit pins:
+Circuit 1: dff_d_v2                        |Circuit 2: dff_d_v2                        
+-------------------------------------------|-------------------------------------------
+q                                          |q                                          
+d                                          |d                                          
+vss                                        |vss                                        
+vdd                                        |vdd                                        
+ck                                         |ck                                         
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes dff_d_v2 and dff_d_v2 are equivalent.
+Circuits match uniquely.
