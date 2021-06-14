@@ -73,7 +73,6 @@ Cz z 0 {CZ}
 * sweep output load     from : 10 fF   to: 2 pF  - seven loads
 
 .control
-  * destroy all
   let vol  = $&v_vdd * 0.20
   set vol  = "$&vol"
 
@@ -92,6 +91,8 @@ Cz z 0 {CZ}
      set idx2 = "$&idx2"
 
      foreach out_load 0.010e-12 0.050e-12 0.100e-12 0.250e-12 0.500e-12 1.0e-12 2.0e-12 
+
+      destroy all
 
       alter ca $in_load
       alter cb $in_load
@@ -243,8 +244,6 @@ Cz z 0 {CZ}
       echo delay: b_rise__z_fall $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $dtime
       echo trans: b_rise__z_fall $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $ttime
 
-      destroy all
-
       let idx2 = idx2 + 1
       set idx2 = "$&idx2"
 
@@ -257,6 +256,8 @@ Cz z 0 {CZ}
 * plot v(vdd) v(a) v(b) v(z)
 * plot v(a)
 * plot v(z)
+
+  quit 0
 .endc
 
 .end

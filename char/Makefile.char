@@ -1,0 +1,26 @@
+CELL=$(shell basename `/bin/pwd`)
+
+
+all : delay.log
+
+
+${PROJECT_DIR}/ext/$(CELL).ext : ${PROJECT_DIR}/mag/$(CELL).mag
+	mag2ext -c $(CELL)
+
+
+${PROJECT_DIR}/cir/$(CELL).cir : ${PROJECT_DIR}/ext/$(CELL).ext
+	ext2cir -c $(CELL)
+
+
+delay.log : delay.cir ${PROJECT_DIR}/cir/$(CELL).cir 
+	ngspice -b $< -o $@
+
+
+.PHONY: clean
+clean :
+	@ rm -f *.log
+	@ rm -f b3v3_1check.log
+
+.PHONY: info
+info :
+	@ echo CELL: $(CELL)
