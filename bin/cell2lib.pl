@@ -2,52 +2,75 @@
 
 use strict;
 use Data::Dumper;
+use File::Basename;
+use Getopt::Std;
 
-my $scriptname = "extract.pl";
+my $scriptname = basename($0);
 
-my $filename = "sim.log";
+my $usage = "Usage: $scriptname [-c <config_file>] [-h]";
 
-if ( ! -r $filename) {
-   printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $filename;
+our($opt_c);
+our($opt_h);
+
+getopts('c:h') or die $usage;
+
+if($opt_h) {
+   print STDERR "$usage\n";
+   exit(0);
+}
+
+my $config_file = "./cfg.pl";
+
+if($opt_c) {
+   $config_file = $opt_c;
+   unless($config_file =~ /^\.\// || $config_file =~ /^\// || $config_file =~ /^\.\.\//) {
+      $config_file = "./" . $config_file;
+   }
+}
+
+if (! -r $config_file) {
+   printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $config_file;
    exit 1;
 }
 
-my @comb_arcs = ();
+######################################
+# default values for config variables
+######################################
+our $cellname = "";
+our @sim_results = ();
+our @output_pins = ();
+our @input_pins = ();
+our %function;
+our $area = 21.6;
 
-my @output_pins = ();
-my @input_pins = ();
+
+require $config_file;
 
 
-# Go through once to figure out input pins and output pins
-open(FH, "<$filename") or die "ERROR: $scriptname: Could not open $filename";
+if ($cellname eq "") {
+   printf STDERR "ERROR: $scriptname: cellname is not defined, check configuration file\n";
+   exit 1;
+}
 
-while(<FH>) {
-   if (/^delay:/ || /^trans:/) {
-      # print;
-      my @tarray = split(); 
-      my $arc_name = $tarray[1];
+# determine cell type, special things need to happen if it is a mux or xor, ... gate
+#
+my ($celltype, $strength) = split(/_/, $cellname);
 
-      unless(grep(/^$arc_name$/, @comb_arcs)) {
-         push(@comb_arcs, $arc_name);
-      }
 
-      $arc_name =~ s/__/ /;
-      $arc_name =~ s/_rise//g;
-      $arc_name =~ s/_fall//g;
-      (my $ipin, my $opin) = split(/\s+/, $arc_name);
 
-      unless(grep(/^$ipin$/, @input_pins)) {
-         push(@input_pins, $ipin);
-      }
-      unless(grep(/^$opin$/, @output_pins)) {
-         push(@output_pins, $opin);
-      }
-
+############
+# check to see if there are simulation results
+############
+foreach my $sim_result (@sim_results) {
+   if (! -r $sim_result) {
+      printf STDERR "ERROR: $scriptname: Simulation results file \"%s\" is not readable\n", $sim_result;
+      exit(1);
    }
 }
-close(FH);
 
 
+# Hashes / arrays to store gathered data
+my @comb_arcs = ();
 my %delays;
 my %trans;
 my %trans_itts;
@@ -55,36 +78,24 @@ my %trans_loads;
 my %delay_itts;
 my %delay_loads;
 
-open(FH, "<$filename") or die "ERROR: $scriptname: Could not open $filename";
+my %when_pin;
 
-while(<FH>) {
-   if (/^delay:/ || /^trans:/) {
-      my @tarray = split();
-      # my $key = sprintf("%s__%s", "delay", $tarray[1]);
-      my $key = $tarray[1];
-      my $idx1 = $tarray[2]; 
-      my $idx2 = $tarray[3];
-      my $value = $tarray[9];
-      my $itt = $tarray[5];
-      my $load = $tarray[7];
-
-      if (/^delay:/) {
-         $delays{$key}[$idx1][$idx2] = $value;
-         $delay_itts{$key}[$idx1][$idx2] = $itt;
-         $delay_loads{$key}[$idx2][$idx1] = $load;
-      }
-      if (/^trans:/) {
-         $trans{$key}[$idx1][$idx2] = $value;
-         $trans_itts{$key}[$idx1][$idx2] = $itt;
-         $trans_loads{$key}[$idx2][$idx1] = $load;
-      }
-      # print;
+if($celltype eq "xor2") {
+   if($#input_pins != 1) {
+      printf STDERR "ERROR: $scriptname: This gate \"%s\" should have only 2 input pins\n", $cellname;
+      exit(1);
    }
 }
-close(FH);
 
 
 
+
+
+foreach my $sim_result (@sim_results) {
+   if($sim_result eq "delay.log") {
+      parse_delay_log($sim_result);
+   }
+}
 
 
 # my $key = "b_rise__z_fall";
@@ -102,18 +113,37 @@ close(FH);
 # 
 # exit(0);
 
+####################################################
+# Do some sanity checks
+####################################################
+if($celltype eq "xor2") {
+   if($#input_pins != 1) {
+      printf STDERR "ERROR: $scriptname: This gate \"%s\" should have only 2 input pins\n", $cellname;
+      exit(1);
+   }
+   $when_pin{$input_pins[0]} = $input_pins[1];
+   $when_pin{$input_pins[1]} = $input_pins[0];
+}
 
 
+##################################################################
+# Process data
+##################################################################
 
 # make a hash of arrays, for each
 # outlist list the arcs that are
 # associated with that output
 my %associated_arcs = ();
 my %related_pins = ();
+my %pos_unate_associated_arcs = ();
+my %neg_unate_associated_arcs = ();
+
 
 foreach my $opin (@output_pins) {
    my @arc_array = ();
    my @ipin_array = ();
+   my @positive_unate_arcs = ();
+   my @negative_unate_arcs = ();
    foreach my $arc (@comb_arcs) {
       my $this_arc = $arc;
       $this_arc =~ s/__/ /;
@@ -129,84 +159,195 @@ foreach my $opin (@output_pins) {
             push(@ipin_array, $this_ipin);
          }
       } 
+
+
+      $this_arc = $arc;
+      $this_arc =~ s/__/ /;
+      my ($in_tran, $out_tran) = split(/\s+/, $this_arc);
+      $in_tran =~ s/.*_//;
+      $out_tran =~ s/.*_//;
+
+      if ($out_tran eq $in_tran) {
+         push(@positive_unate_arcs, $arc);
+      } else {
+         push(@negative_unate_arcs, $arc);
+      }
+
    }
    $associated_arcs{$opin} = [@arc_array];
    $related_pins{$opin} = [@ipin_array];
+
+   # printf "@positive_unate_arcs\n";
+   # printf "@negative_unate_arcs\n";
+   $pos_unate_associated_arcs{$opin} = [@positive_unate_arcs];
+   $neg_unate_associated_arcs{$opin} = [@negative_unate_arcs];
 }
 
 
 
+
+##############################################################
+# output .lib file
+##############################################################
+printf "cell(%s) {\n", $cellname;
+printf "  area : %g;\n", $area;
+
+##### input pins
+foreach my $ipin (@input_pins) {
+  printf "  pin(%s) {\n", $ipin;
+  printf "    direction : input;\n";
+  printf "    capacitance : 0;\n";
+  printf "  }\n";
+}
+
+
+##### output pins
 foreach my $opin (@output_pins) {
   # printf "output_pin: %s\n", $opin;
   printf "  pin(%s) {\n", $opin;
-  printf "    direction : output;\n", $opin;
-  printf "    capacitance : 0;\n", $opin;
+  printf "    direction : output;\n";
+  printf "    capacitance : 0;\n";
+  if (defined $function{$opin}) {
+  printf "    function : \"%s\";\n", $function{$opin};
+  }
   # foreach my $itr2 (@{ $associated_arcs{$opin} }) {
      # printf "   associated_arc: %s\n", $itr2;
   # }
+
+
+
   foreach my $ipin (@{ $related_pins{$opin} }) {
-     printf "    timing() {\n";
-     printf "      related_pin: \"%s\";\n", $ipin; 
-     printf "      timing_sense : non_unate;\n";
-     foreach my $arc (@{ $associated_arcs{$opin} }) {
-        my $this_arc = $arc;
-        $this_arc =~ s/__/ /;
-        $this_arc =~ s/_rise//g;
-        $this_arc =~ s/_fall//g;
-        (my $this_ipin, my $this_opin) = split(/\s+/, $this_arc);
-        if ($this_ipin eq $ipin) {
-           printf "      associated_arc: %s\n", $arc;
 
+  
+     # Need to do a timing() block for each associated arc but grouped
+     # in terms of unateness
+        my $first_arc = 0;
 
-           $this_arc = $arc;  
+        foreach my $arc (@{ $pos_unate_associated_arcs{$opin} }) {
+           # is this arc associated with this pin
+           my $this_arc = $arc;
            $this_arc =~ s/__/ /;
-           (my $in_trans, my $out_trans) = split(/\s+/, $this_arc);
-           $in_trans =~ s/.*_//;
-           $out_trans =~ s/.*_//;
+           $this_arc =~ s/_rise//g;
+           $this_arc =~ s/_fall//g;
+           (my $this_ipin, my $this_opin) = split(/\s+/, $this_arc);
 
-           print_delay_template($arc);
-           print_delay_itts($arc);
-           print_delay_loads($arc);
-           print_delay_values($arc);
-           printf "      }\n";
+           # printf " --- this_ipin: %s   this_opin: %s ---\n", $this_ipin, $this_opin;
+
+           if ($this_ipin eq $ipin) {
+              # printf " ====   associated_arc: %s matches! ====\n", $arc;
 
 
-           print_transition_template($arc);
-           print_trans_itts($arc);
-           print_trans_loads($arc);
-           print_trans_values($arc);
-           printf "      }\n";
+              if ($first_arc == 0) {
+                 printf "    timing() {\n";
+                 printf "      related_pin: \"%s\";\n", $ipin; 
+                 if(defined($when_pin{$ipin})) {
+                 printf "      sdf_cond : \"!%s\";\n", $when_pin{$ipin};
+                 }
+                 printf "      timing_sense : positive_unate;\n";
+                 if(defined($when_pin{$ipin})) {
+                 printf "      when : \"%s\'\";\n", $when_pin{$ipin};
+                 }
+                 $first_arc = 1;
+              }
 
+
+              $this_arc = $arc;  
+              $this_arc =~ s/__/ /;
+              (my $in_trans, my $out_trans) = split(/\s+/, $this_arc);
+              $in_trans =~ s/.*_//;
+              $out_trans =~ s/.*_//;
+
+              print_delay_template($arc);
+              print_delay_itts($arc);
+              print_delay_loads($arc);
+              print_delay_values($arc);
+              printf "      }\n";
+
+
+              print_transition_template($arc);
+              print_trans_itts($arc);
+              print_trans_loads($arc);
+              print_trans_values($arc);
+              printf "      }\n";
+
+           }
         }
-     }
-     printf "    }\n";
+        printf "    }\n"; # end of timing block
+
+
+        $first_arc = 0;
+        foreach my $arc (@{ $neg_unate_associated_arcs{$opin} }) {
+           # is this arc associated with this pin
+           my $this_arc = $arc;
+           $this_arc =~ s/__/ /;
+           $this_arc =~ s/_rise//g;
+           $this_arc =~ s/_fall//g;
+           (my $this_ipin, my $this_opin) = split(/\s+/, $this_arc);
+
+           if ($this_ipin eq $ipin) {
+
+              if ($first_arc == 0) {
+                 printf "    timing() {\n";
+                 printf "      related_pin: \"%s\";\n", $ipin; 
+                 if(defined($when_pin{$ipin})) {
+                 printf "      sdf_cond : \"%s\";\n", $when_pin{$ipin};
+                 }
+                 printf "      timing_sense : negative_unate;\n";
+                 if(defined($when_pin{$ipin})) {
+                 printf "      when : \"%s\";\n", $when_pin{$ipin};
+                 }
+                 $first_arc = 1;
+              }
+
+
+              $this_arc = $arc;  
+              $this_arc =~ s/__/ /;
+              (my $in_trans, my $out_trans) = split(/\s+/, $this_arc);
+              $in_trans =~ s/.*_//;
+              $out_trans =~ s/.*_//;
+
+              print_delay_template($arc);
+              print_delay_itts($arc);
+              print_delay_loads($arc);
+              print_delay_values($arc);
+              printf "      }\n";
+
+
+              print_transition_template($arc);
+              print_trans_itts($arc);
+              print_trans_loads($arc);
+              print_trans_values($arc);
+              printf "      }\n";
+
+           }
+        }
+        printf "    }\n"; # end of timing block
   }
+  printf "  }\n"; # end of output pin block
 }
-
-
+printf "}\n"; # end of cell definition
 
 
 exit(0);
 
-foreach my $itr (@input_pins) {
-  printf "input_pin: %s\n", $itr;
-}
-foreach my $itr (@comb_arcs) {
-  printf "comb_arc: %s\n", $itr;
-}
+# foreach my $itr (@input_pins) {
+#   printf "input_pin: %s\n", $itr;
+# }
+# foreach my $itr (@comb_arcs) {
+#   printf "comb_arc: %s\n", $itr;
+# }
 
 
-
-foreach my $itr (@comb_arcs) {
-   open(FH, "<$filename") or die "ERROR: $scriptname: Could not open $filename";
-   while(<FH>) {
-      if(/^delay: $itr/) {
-         print;
-      }
-   }
-   close(FH);
-   print "\n";
-}
+# foreach my $itr (@comb_arcs) {
+#    open(FH, "<$filename") or die "ERROR: $scriptname: Could not open $filename";
+#    while(<FH>) {
+#       if(/^delay: $itr/) {
+#          print;
+#       }
+#    }
+#    close(FH);
+#    print "\n";
+# }
 
 
 exit 0;
@@ -416,4 +557,73 @@ sub calc_average {
     # calculate and return average
     my $average = $sum / $total_args;
     return ($average);
+}
+
+
+sub parse_delay_log {
+
+   my ($filename) = @_;
+
+   # my $filename = "delay.log";
+
+   if ( ! -r $filename) {
+      printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $filename;
+      exit 1;
+   }
+   
+   # Go through once to figure out input pins and output pins
+   open(FH, "<$filename") or die "ERROR: $scriptname: Could not open $filename";
+   while(<FH>) {
+      if (/^delay:/ || /^trans:/) {
+         # print;
+         my @tarray = split(); 
+         my $arc_name = $tarray[1];
+   
+         unless(grep(/^$arc_name$/, @comb_arcs)) {
+            push(@comb_arcs, $arc_name);
+         }
+   
+         $arc_name =~ s/__/ /;
+         $arc_name =~ s/_rise//g;
+         $arc_name =~ s/_fall//g;
+         (my $ipin, my $opin) = split(/\s+/, $arc_name);
+   
+         unless(grep(/^$ipin$/, @input_pins)) {
+            push(@input_pins, $ipin);
+         }
+         unless(grep(/^$opin$/, @output_pins)) {
+            push(@output_pins, $opin);
+         }
+   
+      }
+   }
+   close(FH);
+   
+   
+   open(FH, "<$filename") or die "ERROR: $scriptname: Could not open $filename";
+   while(<FH>) {
+      if (/^delay:/ || /^trans:/) {
+         my @tarray = split();
+         # my $key = sprintf("%s__%s", "delay", $tarray[1]);
+         my $key = $tarray[1];
+         my $idx1 = $tarray[2]; 
+         my $idx2 = $tarray[3];
+         my $value = $tarray[9];
+         my $itt = $tarray[5];
+         my $load = $tarray[7];
+   
+         if (/^delay:/) {
+            $delays{$key}[$idx1][$idx2] = $value;
+            $delay_itts{$key}[$idx1][$idx2] = $itt;
+            $delay_loads{$key}[$idx2][$idx1] = $load;
+         }
+         if (/^trans:/) {
+            $trans{$key}[$idx1][$idx2] = $value;
+            $trans_itts{$key}[$idx1][$idx2] = $itt;
+            $trans_loads{$key}[$idx2][$idx1] = $load;
+         }
+         # print;
+      }
+   }
+   close(FH);
 }
