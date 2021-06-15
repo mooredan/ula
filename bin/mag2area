@@ -1,0 +1,104 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Getopt::Std;
+use File::Basename;
+my $scriptname = basename($0);
+
+my $usage = sprintf("Usage: %s -c <cellname> [-o <output file>]", $scriptname);
+# declare the perl command line flags/options we want to allow
+my %options=();
+getopts("c:o:h", \%options);
+
+if(defined($options{h})) {
+   print "$usage\n";
+   exit(1);
+}
+
+
+unless(defined($options{c})) {
+   printf STDERR "ERROR: option -c is required\n";
+   exit(1);
+}
+
+my $cellname = $options{c};
+
+# Check for necessary environment variables
+unless (defined($ENV{PROJECT_DIR}) ) {
+   printf STDERR "ERROR: $scriptname: Environment variable \"PROJECT_DIR\" must be set";
+   exit(1);
+}
+
+my $mag_dir = $ENV{PROJECT_DIR} . "/mag";
+
+if (! -d $mag_dir) {
+   printf STDERR "ERROR: $scriptname: Directory \"$mag_dir\" not found";
+   exit(1);
+}
+
+my $mag_file = $mag_dir . "/" . $cellname . ".mag";
+
+
+unless( -r $mag_file ) {
+   printf STDERR "ERROR: File \"%s\" is not readable\n", $mag_file;
+   exit(1);
+}
+
+my $llx = 0;
+my $lly = 0;
+my $urx = 0;
+my $ury = 0;
+
+my $lastposition;
+
+open(FH, "<$mag_file") or die 
+    "ERROR: Could not open file: %s", $mag_file;
+
+while(<FH>) {
+   if(/^<< metal[0-9] >>/) {
+      while(<FH>) {
+         unless(/^rect/) {
+            last;
+         } else {
+            my ($tag, $x1, $y1, $x2, $y2)  = split();
+
+            if ($x1 < $llx) {$llx = $x1;}
+            if ($y1 < $lly) {$lly = $y1;}
+            if ($x2 > $urx) {$urx = $x2;}
+            if ($y2 > $ury) {$ury = $y2;}
+         }
+         $lastposition = tell(FH);
+      }
+      seek FH, $lastposition, 0;
+      next;
+   }
+}
+close(FH);
+
+my $width = $urx - $llx;
+my $height = $ury - $lly;
+
+# printf "bb: %d %d %d %d\n", $llx, $lly, $urx, $ury;
+
+if ($llx != 0 || $lly != -45) {
+   printf STDERR "ERROR: $scriptname: Lower left point of %d, %d is unexpected\n",
+        $llx, $lly;
+   exit(1);
+}
+
+if ($width % 150 != 0) {
+   printf STDERR "ERROR: $scriptname: Width of %d is unexpected\n", $width;
+   exit(1);
+}
+
+if (($height - 90) % 160 != 0) {
+   printf STDERR "ERROR: $scriptname: Height of %d is unexpected\n", $height;
+   exit(1);
+}
+
+my $area = $width * ($height - 90);
+
+printf "area: %.2f\n", $area / 10000.0;
+
+
+exit(0);
