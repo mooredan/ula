@@ -1,6 +1,6 @@
 magic
 tech amic5n
-timestamp 1623433989
+timestamp 1623800821
 << nwell >>
 rect -130 550 580 1495
 << ntransistor >>
@@ -103,11 +103,11 @@ rect 0 -45 450 45
 << labels >>
 flabel nwell -80 600 -80 600 2 FreeSans 400 0 0 0 vdd
 flabel metal1 s 206 1415 206 1415 2 FreeSans 400 0 0 0 vdd
-port 11 ne
+port 2 ne
 flabel metal1 s 196 -25 196 -25 2 FreeSans 400 0 0 0 vss
-port 12 ne
+port 3 ne
 flabel metal1 s 361 495 361 495 2 FreeSans 400 0 0 0 z
-port 20 ne
+port 0 ne
 flabel metal1 s 50 615 50 615 2 FreeSans 400 0 0 0 a
-port 7 ne
+port 1 ne
 << end >>
