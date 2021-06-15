@@ -4,15 +4,18 @@ use strict;
 use Data::Dumper;
 use File::Basename;
 use Getopt::Std;
+use Cwd;
+use Switch;
 
 my $scriptname = basename($0);
 
-my $usage = "Usage: $scriptname [-c <config_file>] [-h]";
+my $usage = "Usage: $scriptname [-c <config_file>] [-o <output_file>] [-h]";
 
 our($opt_c);
 our($opt_h);
+our($opt_o);
 
-getopts('c:h') or die $usage;
+getopts('c:ho:') or die $usage;
 
 if($opt_h) {
    print STDERR "$usage\n";
@@ -26,35 +29,72 @@ if($opt_c) {
    unless($config_file =~ /^\.\// || $config_file =~ /^\// || $config_file =~ /^\.\.\//) {
       $config_file = "./" . $config_file;
    }
+   if (! -r $config_file) {
+      printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $config_file;
+      exit 1;
+   }
 }
 
-if (! -r $config_file) {
-   printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $config_file;
-   exit 1;
-}
 
 ######################################
 # default values for config variables
 ######################################
-our $cellname = "";
 our @sim_results = ();
+my @possible_sim_results = ("delay.log", "cap.log", "setup.log", "hold.log");
+
+foreach my $logfile (@possible_sim_results) {
+   if (-r $logfile) {
+      push(@sim_results, $logfile);
+   }
+}
+
+
+our $cellname = basename(getcwd);
+
 our @output_pins = ();
 our @input_pins = ();
+
 our %function;
-our $area = 21.6;
 
 
-require $config_file;
+
+our $area = 21.6; # default value, 1 track wide by 1 cell height
+
+if ($opt_c) {
+   require $config_file;
+}
 
 
 if ($cellname eq "") {
    printf STDERR "ERROR: $scriptname: cellname is not defined, check configuration file\n";
    exit 1;
 }
-
-# determine cell type, special things need to happen if it is a mux or xor, ... gate
-#
 my ($celltype, $strength) = split(/_/, $cellname);
+
+
+
+###############################################
+# routine to figure out default functions
+# this should eliminate the need for putting the
+# function in the optional config file
+# 
+# Don't really like this as data ends up getting
+# hardcoded into the script, making it less
+# general.
+###############################################
+switch($celltype) {
+   case "xor2"  { unless(defined($function{"z"})) {$function{"z"} = "!a*b+a*!b"}}
+   case "and2"  { unless(defined($function{"z"})) {$function{"z"} = "a*b"}}
+   case "or2"   { unless(defined($function{"z"})) {$function{"z"} = "a+b"}}
+   case "nor2"  { unless(defined($function{"z"})) {$function{"z"} = "!(a+b)"}}
+   case "nand2" { unless(defined($function{"z"})) {$function{"z"} = "!(a*b)"}}
+   case "inv"   { unless(defined($function{"z"})) {$function{"z"} = "!a"}}
+   case "buf"   { unless(defined($function{"z"})) {$function{"z"} = "a"}}
+   else {
+      printf STDERR "ERROR: $scriptname: Cell type \"%s\" is not recognized\n", $celltype;
+      exit(1);
+   }
+}
 
 
 
@@ -66,6 +106,22 @@ foreach my $sim_result (@sim_results) {
       printf STDERR "ERROR: $scriptname: Simulation results file \"%s\" is not readable\n", $sim_result;
       exit(1);
    }
+}
+
+
+#####################################
+# if there is a area.txt file use it
+#####################################
+if (-r "area.txt") {
+   open(AT, "<area.txt") or die "ERROR: $scriptname: Error opening file \"area.txt\"";
+   while(<AT>) {
+      if (/#/) {next;}
+      chomp;
+      if (/^[0-9]+\.[0-9]+$/ || /^[0-9]+$/) {
+         $area = $_;
+      }
+   }
+   close(AT);
 }
 
 
@@ -83,19 +139,9 @@ my %pin_cap;
 
 my %when_pin;
 
-if($celltype eq "xor2") {
-   if($#input_pins != 1) {
-      printf STDERR "ERROR: $scriptname: This gate \"%s\" should have only 2 input pins\n", $cellname;
-      exit(1);
-   }
-}
-
-
-
-
 
 foreach my $sim_result (@sim_results) {
-   if($sim_result eq "delay.log") {
+   if($sim_result eq "delay.log" || $sim_result eq "cap.log") {
       parse_delay_log($sim_result);
    }
 }
@@ -109,21 +155,34 @@ foreach my $sim_result (@sim_results) {
 # print_trans_itts($key);
 # print_trans_loads($key);
 
-
-
 # print_delay_values($key);
 # print_trans_values($key);
 # 
-# exit(0);
 
 ####################################################
 # Do some sanity checks
 ####################################################
-if($celltype eq "xor2") {
-   if($#input_pins != 1) {
-      printf STDERR "ERROR: $scriptname: This gate \"%s\" should have only 2 input pins\n", $cellname;
+if($celltype eq "xor2" || $celltype eq "and2" || $celltype eq "nand2" ||
+   $celltype eq "or2" || $celltype eq "nor2" || $celltype eq "xnor2") {
+   if(($#input_pins + 1) != 2) {
+      printf STDERR 
+         "ERROR: $scriptname: This gate \"%s\" should have only 2 input pins, found: %d\n",
+         $cellname, $#input_pins + 1;
       exit(1);
    }
+   if(($#output_pins + 1) != 1) {
+      printf STDERR 
+         "ERROR: $scriptname: This gate \"%s\" should have only 1 output pin, found: %d\n",
+         $cellname, $#output_pins + 1;
+      exit(1);
+   }
+}
+
+
+######################################################
+# some help with unate-ness on "quirky" cells
+######################################################
+if($celltype eq "xor2") {
    $when_pin{$input_pins[0]} = $input_pins[1];
    $when_pin{$input_pins[1]} = $input_pins[0];
 }
@@ -192,35 +251,47 @@ foreach my $opin (@output_pins) {
 ##############################################################
 # output .lib file
 ##############################################################
-printf "cell(%s) {\n", $cellname;
-printf "  area : %g;\n", $area;
+my $target_file = "";
+if ($opt_o) {
+   $target_file = $opt_o;
+}
+
+my $OFH = *STDOUT;
+if($target_file) {
+   open(ROFH, ">$target_file") or die "ERROR: $scriptname: Could not open file \"$target_file\" for writing\n";
+   $OFH = *ROFH;
+}
+
+
+printf $OFH "cell(%s) {\n", $cellname;
+printf $OFH "  area : %.2f;\n", $area;
 
 ##### input pins
 foreach my $ipin (@input_pins) {
-  printf "  pin(%s) {\n", $ipin;
-  printf "    direction : input;\n";
+  printf $OFH "  pin(%s) {\n", $ipin;
+  printf $OFH "    direction : input;\n";
   if (defined $max_trans{$ipin}) {
-  printf "    max_transition : %.3f;\n", ($max_trans{$ipin} / 1.0e-9) * 0.95;
+  printf $OFH "    max_transition : %.3f;\n", ($max_trans{$ipin} / 1.0e-9) * 0.95;
   }
   if (defined $pin_cap{$ipin}) {
-  printf "    capacitance : %.3f;\n", $pin_cap{$ipin} / 1.0e-12;
+  printf $OFH "    capacitance : %.3f;\n", $pin_cap{$ipin} / 1.0e-12;
   } else {
-  printf "    capacitance : 0;\n";
+  printf $OFH "    capacitance : 0;\n";
   }
-  printf "  }\n";
+  printf $OFH "  }\n";
 }
 
 
 ##### output pins
 foreach my $opin (@output_pins) {
   # printf "output_pin: %s\n", $opin;
-  printf "  pin(%s) {\n", $opin;
-  printf "    direction : output;\n";
-  printf "    capacitance : 0;\n";
+  printf $OFH "  pin(%s) {\n", $opin;
+  printf $OFH "    direction : output;\n";
+  printf $OFH "    capacitance : 0;\n";
   if (defined $function{$opin}) {
-  printf "    function : \"%s\";\n", $function{$opin};
+  printf $OFH "    function : \"%s\";\n", $function{$opin};
   if (defined $max_cap{$opin}) {
-  printf "    max_capacitance : %.3f;\n", ($max_cap{$opin} / 1.0e-12) * 0.95;
+  printf $OFH "    max_capacitance : %.3f;\n", ($max_cap{$opin} / 1.0e-12) * 0.95;
   }
   }
   # foreach my $itr2 (@{ $associated_arcs{$opin} }) {
@@ -251,14 +322,14 @@ foreach my $opin (@output_pins) {
 
 
               if ($first_arc == 0) {
-                 printf "    timing() {\n";
-                 printf "      related_pin: \"%s\";\n", $ipin; 
+                 printf $OFH "    timing() {\n";
+                 printf $OFH "      related_pin: \"%s\";\n", $ipin; 
                  if(defined($when_pin{$ipin})) {
-                 printf "      sdf_cond : \"!%s\";\n", $when_pin{$ipin};
+                 printf $OFH "      sdf_cond : \"!%s\";\n", $when_pin{$ipin};
                  }
-                 printf "      timing_sense : positive_unate;\n";
+                 printf $OFH "      timing_sense : positive_unate;\n";
                  if(defined($when_pin{$ipin})) {
-                 printf "      when : \"%s\'\";\n", $when_pin{$ipin};
+                 printf $OFH "      when : \"%s\'\";\n", $when_pin{$ipin};
                  }
                  $first_arc = 1;
               }
@@ -274,18 +345,20 @@ foreach my $opin (@output_pins) {
               print_delay_itts($arc);
               print_delay_loads($arc);
               print_delay_values($arc);
-              printf "      }\n";
+              printf $OFH "      }\n";
 
 
               print_transition_template($arc);
               print_trans_itts($arc);
               print_trans_loads($arc);
               print_trans_values($arc);
-              printf "      }\n";
+              printf $OFH "      }\n";
 
            }
         }
-        printf "    }\n"; # end of timing block
+        if ($first_arc != 0) {
+        printf $OFH "    } /* end of pos unate timing */\n"; # end of timing block
+        }
 
 
         $first_arc = 0;
@@ -300,14 +373,14 @@ foreach my $opin (@output_pins) {
            if ($this_ipin eq $ipin) {
 
               if ($first_arc == 0) {
-                 printf "    timing() {\n";
-                 printf "      related_pin: \"%s\";\n", $ipin; 
+                 printf $OFH "    timing() {\n";
+                 printf $OFH "      related_pin: \"%s\";\n", $ipin; 
                  if(defined($when_pin{$ipin})) {
-                 printf "      sdf_cond : \"%s\";\n", $when_pin{$ipin};
+                 printf $OFH "      sdf_cond : \"%s\";\n", $when_pin{$ipin};
                  }
-                 printf "      timing_sense : negative_unate;\n";
+                 printf $OFH "      timing_sense : negative_unate;\n";
                  if(defined($when_pin{$ipin})) {
-                 printf "      when : \"%s\";\n", $when_pin{$ipin};
+                 printf $OFH "      when : \"%s\";\n", $when_pin{$ipin};
                  }
                  $first_arc = 1;
               }
@@ -323,23 +396,28 @@ foreach my $opin (@output_pins) {
               print_delay_itts($arc);
               print_delay_loads($arc);
               print_delay_values($arc);
-              printf "      }\n";
+              printf $OFH "      }\n";
 
 
               print_transition_template($arc);
               print_trans_itts($arc);
               print_trans_loads($arc);
               print_trans_values($arc);
-              printf "      }\n";
+              printf $OFH "      }\n";
 
            }
         }
-        printf "    }\n"; # end of timing block
+        if ($first_arc != 0) {
+        printf $OFH "    } /* end of neg unate timing */\n"; # end of timing block
+        }
   }
-  printf "  }\n"; # end of output pin block
+  printf $OFH "  } /* end of output pin */\n"; # end of output pin block
 }
-printf "}\n"; # end of cell definition
+printf $OFH "} /* end of cell */\n"; # end of cell definition
 
+if($target_file) {
+   close(ROFH);
+}
 
 exit(0);
 
@@ -382,7 +460,7 @@ sub print_delay_template {
    $last_j++;
    $last_i++;
 
-   printf "      cell_%s(delay_template_%dx%d) {\n", $out_tran, $last_j, $last_i;
+   printf $OFH "      cell_%s(delay_template_%dx%d) {\n", $out_tran, $last_j, $last_i;
 }
 
 sub print_transition_template {
@@ -401,7 +479,7 @@ sub print_transition_template {
    $last_j++;
    $last_i++;
 
-   printf "      %s_transition(delay_template_%dx%d) {\n", $out_tran, $last_j, $last_i;
+   printf $OFH "      %s_transition(delay_template_%dx%d) {\n", $out_tran, $last_j, $last_i;
 }
 
 
@@ -412,22 +490,22 @@ sub print_trans_values {
    my @subarray = @{ $tarray[0] };
    my $last_i = $#subarray;
    
-   for (my $i = 0; $i <= $last_i; $i++) {
-      for (my $j = 0; $j <= $last_j; $j++) {
+   for (my $j = 0; $j <= $last_j; $j++) {
+      for (my $i = 0; $i <= $last_i; $i++) {
          my $value = $trans{$key}[$j][$i];
    
          if ($i == 0 && $j == 0) {
-            printf "        values ( \\\n";
+            printf $OFH "        values ( \\\n";
          }
-         if ($j == 0) {printf "          \"";}
-         printf "%.3f", $value / 1.0e-9;
-         if ($j < $last_j) {
-            printf ", ";
+         if ($i == 0) {printf $OFH "          \"";}
+         printf $OFH "%.3f", $value / 1.0e-9;
+         if ($i < $last_i) {
+            printf $OFH ", ";
          } else {
-            if ($i < $last_i) {
-               printf "\", \\\n";
+            if ($j < $last_j) {
+               printf $OFH "\", \\\n";
             } else {
-               printf "\");\n";
+               printf $OFH "\");\n";
             }
          }
       }
@@ -445,22 +523,22 @@ sub print_delay_values {
    # printf "last_i: %d\n", $last_i;
    # printf "last_j: %d\n", $last_j;
    
-   for (my $i = 0; $i <= $last_i; $i++) {
-      for (my $j = 0; $j <= $last_j; $j++) {
+   for (my $j = 0; $j <= $last_j; $j++) {
+      for (my $i = 0; $i <= $last_i; $i++) {
          my $value = $delays{$key}[$j][$i];
    
-         if ($i == 0 && $j == 0) {
-            printf "        values ( \\\n";
+         if ($j == 0 && $i == 0) {
+            printf $OFH "        values ( \\\n";
          }
-         if ($j == 0) {printf "          \"";}
-         printf "%.3f", $value / 1.0e-9;
-         if ($j < $last_j) {
-            printf ", ";
+         if ($i == 0) {printf $OFH "          \"";}
+         printf $OFH "%.3f", $value / 1.0e-9;
+         if ($i < $last_i) {
+            printf $OFH ", ";
          } else {
-            if ($i < $last_i) {
-               printf "\", \\\n";
+            if ($j < $last_j) {
+               printf $OFH "\", \\\n";
             } else {
-               printf "\");\n";
+               printf $OFH "\");\n";
             }
          }
       }
@@ -477,12 +555,12 @@ sub print_trans_itts {
       my $average = calc_average(@subarray);
 
       if($j == 0) {
-         printf "        index_1 (\"%.3f, ", $average / 1.0e-9;
+         printf $OFH "        index_1 (\"%.3f, ", $average / 1.0e-9;
       } else {
          if ($j == $last_j) {
-            printf "%.3f\");\n", $average / 1.0e-9;
+            printf $OFH "%.3f\");\n", $average / 1.0e-9;
          } else {
-            printf "%.3f, ", $average / 1.0e-9;
+            printf $OFH "%.3f, ", $average / 1.0e-9;
          }
       }
    }
@@ -499,12 +577,12 @@ sub print_delay_itts {
       # printf "avg: %g\n", $average;
 
       if($j == 0) {
-         printf "        index_1 (\"%.3f, ", $average / 1.0e-9;
+         printf $OFH "        index_1 (\"%.3f, ", $average / 1.0e-9;
       } else {
          if ($j == $last_j) {
-            printf "%.3f\");\n", $average / 1.0e-9;
+            printf $OFH "%.3f\");\n", $average / 1.0e-9;
          } else {
-            printf "%.3f, ", $average / 1.0e-9;
+            printf $OFH "%.3f, ", $average / 1.0e-9;
          }
       }
    }
@@ -520,12 +598,12 @@ sub print_trans_loads {
       my $average = calc_average(@subarray);
 
       if($j == 0) {
-         printf "        index_2 (\"%.3f, ", $average / 1.0e-12;
+         printf $OFH "        index_2 (\"%.3f, ", $average / 1.0e-12;
       } else {
          if ($j == $last_j) {
-            printf "%.3f\");\n", $average / 1.0e-12;
+            printf $OFH "%.3f\");\n", $average / 1.0e-12;
          } else {
-            printf "%.3f, ", $average / 1.0e-12;
+            printf $OFH "%.3f, ", $average / 1.0e-12;
          }
       }
    }
@@ -547,12 +625,12 @@ sub print_delay_loads {
       # printf "avg: %g\n", $average;
 
       if($j == 0) {
-         printf "        index_2 (\"%.3f, ", $average / 1.0e-12;
+         printf $OFH "        index_2 (\"%.3f, ", $average / 1.0e-12;
       } else {
          if ($j == $last_j) {
-            printf "%.3f\");\n", $average / 1.0e-12;
+            printf $OFH "%.3f\");\n", $average / 1.0e-12;
          } else {
-            printf "%.3f, ", $average / 1.0e-12;
+            printf $OFH "%.3f, ", $average / 1.0e-12;
          }
       }
    }

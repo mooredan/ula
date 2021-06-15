@@ -1,7 +1,18 @@
+#
+SHELL := /bin/bash
+
 CELL=$(shell basename `/bin/pwd`)
 
+CIRS =
+CIRS += $(wildcard cap.cir)
+CIRS += $(wildcard delay.cir)
+CIRS += $(wildcard setup.cir)
+CIRS += $(wildcard hold.cir)
 
-all : delay.log
+LOGS = $(CIRS:.cir=.log)
+
+
+all : cell.lib
 
 
 ${PROJECT_DIR}/ext/$(CELL).ext : ${PROJECT_DIR}/mag/$(CELL).mag
@@ -12,15 +23,50 @@ ${PROJECT_DIR}/cir/$(CELL).cir : ${PROJECT_DIR}/ext/$(CELL).ext
 	ext2cir -c $(CELL)
 
 
+.PRECIOUS: delay.log
 delay.log : delay.cir ${PROJECT_DIR}/cir/$(CELL).cir 
-	ngspice -b $< -o $@
+	@ rm -f fail.log $@ cell.lib
+	- ngspice -b $< -o $@
+	@ if [ -r $@ ]; then\
+	   num_errors=$$(grep -c -e '^Error:' $@);\
+           done=$$(tail -1 $@ | grep -c -e 'done');\
+	   if [[ $$num_errors -ne 0 || $$done -ne 1 ]]; then\
+	      mv $@ fail.log;\
+	      false;\
+	   fi;\
+        fi
+
+
+.PRECIOUS: cap.log
+cap.log : cap.cir ${PROJECT_DIR}/cir/$(CELL).cir 
+	@ rm -f fail.log $@ cell.lib
+	- ngspice -b $< -o $@
+	@ if [[ -r $@ ]]; then\
+	   num_errors=$$(grep -c -e '^Error:' $@);\
+           done=$$(tail -1 $@ | grep -c -e 'done');\
+	   if [[ $$num_errors -ne 0 || $$done -ne 1 ]]; then\
+	      mv $@ fail.log;\
+	      false;\
+	   fi;\
+        fi
+
+
+area.txt : ${PROJECT_DIR}/mag/$(CELL).mag
+	get_stdcell_area -c $(CELL) > $@
+
+cell.lib : $(LOGS) area.txt
+	cell2lib -o $@
 
 
 .PHONY: clean
 clean :
 	@ rm -f *.log
+	@ rm -f cell.lib
+	@ rm -f area.txt
 	@ rm -f b3v3_1check.log
 
 .PHONY: info
 info :
 	@ echo CELL: $(CELL)
+	@ echo CIRS: $(CIRS)
+	@ echo LOGS: $(LOGS)

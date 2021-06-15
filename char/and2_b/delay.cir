@@ -1,6 +1,6 @@
 * Transient analysis of 
 
-.include ../../cir/xor2_a.cir
+.include ../../cir/and2_b.cir
 
 .lib ../../device_models/AMI_C5N.lib TT
 
@@ -25,40 +25,36 @@ Va   a_s 0 DC 0 PWL (                  0      0
 +                    {3u + PER *  2 + TT}  {VDD_VAL}
 +                    {3u + PER *  3}       {VDD_VAL} 
 +                    {3u + PER *  3 + TT}     0
-+                    {3u + PER *  5}          0
-+                    {3u + PER *  5 + TT}  {VDD_VAL}
-+                    {3u + PER *  6}       {VDD_VAL} 
-+                    {3u + PER *  6 + TT}     0
-+                    {3u + PER * 10}          0 
-+                    {3u + PER * 10 + TT}  {VDD_VAL})
++                    {3u + PER *  4}          0
++                    {3u + PER *  4 + TT}  {VDD_VAL}
++                   )
 Ra_s a_s a 100
 Ca   a   0 {CA} 
 
 
 * input b
 Vb   b_s 0 DC 0 PWL (                  0      0 
-+                    {3u + PER *  4}          0
-+                    {3u + PER *  4 + TT}  {VDD_VAL}
-+                    {3u + PER *  8}       {VDD_VAL} 
-+                    {3u + PER *  8 + TT}     0
-+                    {3u + PER *  9}          0
-+                    {3u + PER *  9 + TT}  {VDD_VAL}
-+                    {3u + PER * 11}       {VDD_VAL} 
-+                    {3u + PER * 11 + TT}     0
-+                    {3u + PER * 12}          0
-+                    {3u + PER * 12 + TT}  {VDD_VAL})
++                    {3u + PER *  1}          0
++                    {3u + PER *  1 + TT}  {VDD_VAL}
++                    {3u + PER *  4}       {VDD_VAL} 
++                    {3u + PER *  4 + TT}     0
++                    {3u + PER *  5}          0
++                    {3u + PER *  5 + TT}  {VDD_VAL}
++                    {3u + PER *  6}       {VDD_VAL} 
++                    {3u + PER *  6 + TT}     0
++                   )
 
 Rb_s b_s b 100
 Cb   b   0 {CA} 
 
 * DUT
-Xdut z a b vdd vss xor2_a
+Xdut z a b vdd vss and2_b
 
 * output load
 Cz z 0 {CZ} 
 
 
-* .tran 10p {3u + PER * 13}
+* .tran 10p {3u + PER * 7}
 
 * sweep transition time from : ~30ps  to: ~1.3 ns
 *
@@ -103,7 +99,7 @@ Cz z 0 {CZ}
       alter cz $out_load
 
       * run
-      let tstop = 3e-6 + $t_per * 13
+      let tstop = 3e-6 + $t_per * 7 
       set tstop = "$&tstop"
       tran 10p $tstop
 
@@ -146,110 +142,38 @@ Cz z 0 {CZ}
 
 
       ************************************************************************************
-      * a rising to z falling 
-      ************************************************************************************
-      meas tran tt__a_rise2 TRIG v(a) VAL=vol RISE=2 TARG v(a) VAL=voh RISE=2 
-      meas tran tt__z_fall2 TRIG v(z) VAL=voh FALL=2 TARG v(z) VAL=vol FALL=2 
-      meas tran td__a_rise2__z_fall2 TRIG v(a) VAL=vmid RISE=2 TARG v(z) VAL=vmid FALL=2
-
-      let dtime = td__a_rise2__z_fall2
-      set dtime = "$&dtime"
-      let ittime = tt__a_rise2
-      set ittime = "$&ittime"
-      let ttime = tt__z_fall2
-      set ttime = "$&ttime"
-      echo delay: a_rise__z_fall $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $dtime
-      echo trans: a_rise__z_fall $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $ttime
-
-
-
-      ************************************************************************************
-      * a falling to z rising 
-      ************************************************************************************
-      meas tran tt__a_fall2 TRIG v(a) VAL=voh FALL=2 TARG v(a) VAL=vol FALL=2 
-      meas tran tt__z_rise3 TRIG v(z) VAL=vol RISE=3 TARG v(z) VAL=voh RISE=3 
-      meas tran td__a_fall2__z_rise3 TRIG v(a) VAL=vmid FALL=2 TARG v(z) VAL=vmid RISE=3
-
-      let dtime = td__a_fall2__z_rise3
-      set dtime = "$&dtime"
-      let ittime = tt__a_fall2
-      set ittime = "$&ittime"
-      let ttime = tt__z_rise3
-      set ttime = "$&ttime"
-      echo delay: a_fall__z_rise $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $dtime
-      echo trans: a_fall__z_rise $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $ttime
-
-
-
-
-
-      ************************************************************************************
-      * b falling to z falling
-      ************************************************************************************
-      meas tran tt__b_fall1 TRIG v(b) VAL=voh FALL=1 TARG v(b) VAL=vol FALL=1 
-      meas tran tt__z_fall3 TRIG v(z) VAL=voh FALL=3 TARG v(z) VAL=vol FALL=3 
-      meas tran td__b_fall1__z_fall3 TRIG v(b) VAL=vmid FALL=1 TARG v(z) VAL=vmid FALL=3
-
-      let dtime = td__b_fall1__z_fall3
-      set dtime = "$&dtime"
-      let ittime = tt__b_fall1
-      set ittime = "$&ittime"
-      let ttime = tt__z_fall3
-      set ttime = "$&ttime"
-      echo delay: b_fall__z_fall $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $dtime
-      echo trans: b_fall__z_fall $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $ttime
-
-
-
-      ************************************************************************************
       * b rising to z rising 
       ************************************************************************************
       meas tran tt__b_rise2 TRIG v(b) VAL=vol RISE=2 TARG v(b) VAL=voh RISE=2 
-      meas tran tt__z_rise4 TRIG v(z) VAL=vol RISE=4 TARG v(z) VAL=voh RISE=4 
-      meas tran td__b_rise2__z_rise4 TRIG v(b) VAL=vmid RISE=2 TARG v(z) VAL=vmid RISE=4
+      meas tran tt__z_rise2 TRIG v(z) VAL=vol RISE=2 TARG v(z) VAL=voh RISE=2 
+      meas tran td__b_rise2__z_rise2 TRIG v(b) VAL=vmid RISE=2 TARG v(z) VAL=vmid RISE=2
 
-      let dtime = td__b_rise2__z_rise4
+      let dtime = td__b_rise2__z_rise2
       set dtime = "$&dtime"
       let ittime = tt__b_rise2
       set ittime = "$&ittime"
-      let ttime = tt__z_rise4
+      let ttime = tt__z_rise2
       set ttime = "$&ttime"
       echo delay: b_rise__z_rise $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $dtime
       echo trans: b_rise__z_rise $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $ttime
 
 
       ************************************************************************************
-      * b falling to z rising 
+      * b falling to z falling
       ************************************************************************************
       meas tran tt__b_fall2 TRIG v(b) VAL=voh FALL=2 TARG v(b) VAL=vol FALL=2 
-      meas tran tt__z_rise5 TRIG v(z) VAL=vol RISE=5 TARG v(z) VAL=voh RISE=5 
-      meas tran td__b_fall2__z_rise5 TRIG v(b) VAL=vmid FALL=2 TARG v(z) VAL=vmid RISE=5
+      meas tran tt__z_fall2 TRIG v(z) VAL=voh FALL=2 TARG v(z) VAL=vol FALL=2 
+      meas tran td__b_fall2__z_fall2 TRIG v(b) VAL=vmid FALL=2 TARG v(z) VAL=vmid FALL=2
 
-      let dtime = td__b_fall2__z_rise5
+      let dtime = td__b_fall2__z_fall2
       set dtime = "$&dtime"
       let ittime = tt__b_fall2
       set ittime = "$&ittime"
-      let ttime = tt__z_rise5
+      let ttime = tt__z_fall2
       set ttime = "$&ttime"
-      echo delay: b_fall__z_rise $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $dtime
-      echo trans: b_fall__z_rise $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $ttime
+      echo delay: b_fall__z_fall $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $dtime
+      echo trans: b_fall__z_fall $idx1 $idx2 in_fall: $ittime  out_load: $out_load  time: $ttime
 
-
-      ************************************************************************************
-      * b rising to z falling 
-      ************************************************************************************
-      meas tran tt__b_rise3 TRIG v(b) VAL=vol RISE=3 TARG v(b) VAL=voh RISE=3 
-      meas tran tt__z_fall5 TRIG v(z) VAL=voh FALL=5 TARG v(z) VAL=vol FALL=5 
-      meas tran td__b_rise3__z_fall5 TRIG v(b) VAL=vmid RISE=3 TARG v(z) VAL=vmid FALL=5
-
-      let dtime = td__b_rise3__z_fall5
-      set dtime = "$&dtime"
-      let ittime = tt__b_rise3
-      set ittime = "$&ittime"
-      let ttime = tt__z_fall5
-      set ttime = "$&ttime"
-      echo delay: b_rise__z_fall $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $dtime
-      echo trans: b_rise__z_fall $idx1 $idx2 in_rise: $ittime  out_load: $out_load  time: $ttime
 
       let idx2 = idx2 + 1
       set idx2 = "$&idx2"
