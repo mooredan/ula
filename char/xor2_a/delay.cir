@@ -8,6 +8,7 @@
 .csparam v_vdd = {VDD_VAL}
 .param FREQ=10.0Meg
 .param PER={1 / FREQ}
+.csparam t_per = {PER}
 
 .param TT=50p
 .param CA=1f
@@ -85,6 +86,9 @@ Cz z 0 {CZ}
   let idx1 = 0
   set idx1 = "$&idx1"
 
+  let t_per = $&t_per
+  set t_per = "$&t_per"
+
   foreach in_load 1f 500f 1p 2.5p 5p 10p
 
      let idx2 = 0
@@ -98,7 +102,10 @@ Cz z 0 {CZ}
       alter cb $in_load
       alter cz $out_load
 
-      run
+      * run
+      let tstop = 3e-6 + $t_per * 13
+      set tstop = "$&tstop"
+      tran 10p $tstop
 
       * echo in_load: $in_load
       * echo out_load: $out_load
@@ -256,6 +263,53 @@ Cz z 0 {CZ}
 * plot v(vdd) v(a) v(b) v(z)
 * plot v(a)
 * plot v(z)
+
+  ***********************************
+  * Do input capacitance measurements
+  ***********************************
+  let vmid = $&v_vdd * 0.5
+  set vmid = "$&vmid"
+  
+  alter ca 0
+  alter cb 0
+  alter cz 0
+  
+  * alter vvdd  dc 5.0
+  alter vvdd  dc $&v_vdd
+  alter va    dc $vmid
+  alter vb    dc $vmid
+  
+  let idx = 70
+  set idx = "$&idx"
+  
+  ***********************************
+  * set up and measure input pin a
+  ***********************************
+  alter va ac 1.0
+  
+  ac dec 10 1 100e6
+  
+  let freq = real(frequency[$idx])
+  set freq = "$&freq"
+  
+  let a_cap = '1.0 / (imag(v(a)[$idx] / i(va)[$idx]) * 2 * pi * real(frequency[$idx]))'
+  set a_cap = "$&a_cap"
+  echo incap: pin: a cap: $a_cap  freq: $freq
+  
+  ***********************************
+  * set up and measure input pin b
+  ***********************************
+  alter va ac 0.0
+  alter vb ac 1.0
+  
+  ac dec 10 1 100e6
+  
+  let freq = real(frequency[$idx])
+  set freq = "$&freq"
+  
+  let b_cap = '1.0 / (imag(v(b)[$idx] / i(vb)[$idx]) * 2 * pi * real(frequency[$idx]))'
+  set b_cap = "$&b_cap"
+  echo incap: pin: b cap: $b_cap  freq: $freq
 
   quit 0
 .endc

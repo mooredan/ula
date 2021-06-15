@@ -78,6 +78,8 @@ my %trans_loads;
 my %delay_itts;
 my %delay_loads;
 my %max_cap;
+my %max_trans;
+my %pin_cap;
 
 my %when_pin;
 
@@ -197,7 +199,14 @@ printf "  area : %g;\n", $area;
 foreach my $ipin (@input_pins) {
   printf "  pin(%s) {\n", $ipin;
   printf "    direction : input;\n";
+  if (defined $max_trans{$ipin}) {
+  printf "    max_transition : %.3f;\n", ($max_trans{$ipin} / 1.0e-9) * 0.95;
+  }
+  if (defined $pin_cap{$ipin}) {
+  printf "    capacitance : %.3f;\n", $pin_cap{$ipin} / 1.0e-12;
+  } else {
   printf "    capacitance : 0;\n";
+  }
   printf "  }\n";
 }
 
@@ -578,10 +587,18 @@ sub parse_delay_log {
    # Go through once to figure out input pins and output pins
    open(FH, "<$filename") or die "ERROR: $scriptname: Could not open $filename";
    while(<FH>) {
+      if (/^incap:/) {
+         # print;
+         my @tarray = split();
+         my $ipin = $tarray[2];
+         my $cap = $tarray[4];
+         $pin_cap{$ipin} = $cap;
+      }
       if (/^delay:/ || /^trans:/) {
          # print;
          my @tarray = split(); 
          my $arc_name = $tarray[1];
+         my $itt = $tarray[5];
          my $load = $tarray[7];
    
          unless(grep(/^$arc_name$/, @comb_arcs)) {
@@ -601,6 +618,7 @@ sub parse_delay_log {
          }
 
          # printf "opin: %s   load: %.3f\n", $opin, $load / 1.0e-12;
+         # get output pins' max capacitance
          if (defined($max_cap{$opin})) {
             if($load > $max_cap{$opin}) {
                $max_cap{$opin} = $load;
@@ -608,6 +626,16 @@ sub parse_delay_log {
          } else {
             $max_cap{$opin} = $load;
          }
+
+         # get input pins' max transition time
+         if (defined($max_trans{$ipin})) {
+            if($itt > $max_trans{$ipin}) {
+               $max_trans{$ipin} = $itt;
+            }
+         } else {
+            $max_trans{$ipin} = $itt;
+         }
+
       }
    }
    close(FH);
