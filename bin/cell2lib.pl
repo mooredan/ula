@@ -77,6 +77,7 @@ my %trans_itts;
 my %trans_loads;
 my %delay_itts;
 my %delay_loads;
+my %max_cap;
 
 my %when_pin;
 
@@ -209,6 +210,9 @@ foreach my $opin (@output_pins) {
   printf "    capacitance : 0;\n";
   if (defined $function{$opin}) {
   printf "    function : \"%s\";\n", $function{$opin};
+  if (defined $max_cap{$opin}) {
+  printf "    max_capacitance : %.3f;\n", ($max_cap{$opin} / 1.0e-12) * 0.95;
+  }
   }
   # foreach my $itr2 (@{ $associated_arcs{$opin} }) {
      # printf "   associated_arc: %s\n", $itr2;
@@ -578,6 +582,7 @@ sub parse_delay_log {
          # print;
          my @tarray = split(); 
          my $arc_name = $tarray[1];
+         my $load = $tarray[7];
    
          unless(grep(/^$arc_name$/, @comb_arcs)) {
             push(@comb_arcs, $arc_name);
@@ -594,7 +599,15 @@ sub parse_delay_log {
          unless(grep(/^$opin$/, @output_pins)) {
             push(@output_pins, $opin);
          }
-   
+
+         # printf "opin: %s   load: %.3f\n", $opin, $load / 1.0e-12;
+         if (defined($max_cap{$opin})) {
+            if($load > $max_cap{$opin}) {
+               $max_cap{$opin} = $load;
+            }
+         } else {
+            $max_cap{$opin} = $load;
+         }
       }
    }
    close(FH);
