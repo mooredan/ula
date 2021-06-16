@@ -1,32 +1,39 @@
 * Transient analysis of DFF
 
-.include ../cir/dff_b.cir
+.include ../../cir/dff_b.cir
 
-.lib ../device_models/AMI_C5N.lib TT
+.lib ../../device_models/AMI_C5N.lib TT
 
-.param vdd_val=5
-+      freq=10.0Meg
-+      per={1 / freq}
+.param VDD_VAL=5.0
+.param FREQ=250.0Meg
+.param PER={1 / FREQ}
+.param ttime=50p
+.param pwrtime = 5e-9
 
-.param tt=50p
+.csparam v_vdd = {VDD_VAL}
+.csparam ck_per = {PER}
+.csparam tt = {ttime}
+.csparam pwrt = {pwrtime}
+
+
 .param CD=1f
 .param CCK=1f
 .param CQ=100f
 
-.csparam v_vdd = {vdd_val}
+.csparam v_vdd = {VDD_VAL}
 
 
 * power supply
-Vvdd vdd 0 DC {vdd_val} PWL( 0 0  1u 0  2u {vdd_val})
+Vvdd vdd 0 DC {VDD_VAL} PWL( 0 0  {pwrtime / 3}  0  {pwrtime * 2 / 3} {VDD_VAL})
 Vvss vss 0 DC 0
 
 * input clock
-Vck ck_s 0 DC 0 PULSE ( 0 {vdd_val} 3u {tt} {tt} {per/2 - tt} {per} )
+Vck ck_s 0 DC 0 PULSE ( 0 {VDD_VAL} {pwrtime} {ttime} {ttime} {PER/2 - ttime} {PER} )
 Rck_s ck_s ck 100
 Cck ck 0 {CCK}
 
 * input data
-Vd   d_s 0 DC 0 PULSE ( 0 {vdd_val} {3u + per * 4 + per / 4} {tt} {tt} {per * 3} {per * 6})
+Vd   d_s 0 DC 0 PULSE ( 0 {VDD_VAL} {pwrtime + PER * 2 + PER / 4} {ttime} {ttime} {PER * 3} {PER * 6})
 Rd_s d_s d 100
 Cd   d   0 {CD} 
 
@@ -38,8 +45,6 @@ Cq q 0 {CQ}
 
 
 * .save all
-
-.tran 10p {3u + PER * 8}
 
 * sweep clock rise time from :        to: 1 ns
 *
@@ -57,73 +62,98 @@ Cq q 0 {CQ}
 
 .control
 
-  destroy all
+  let vol  = $&v_vdd * 0.20
+  set vol  = "$&vol"
 
-  let clk_frequency = 10.0e6
-  set clk_frequency = "$&clk_frequency"
+  let voh  = $&v_vdd * 0.80
+  set voh  = "$&voh"
 
-  let clk_period = 1.0/$clk_frequency
-  set clk_period = "$&clk_period"
+  let vmid = $&v_vdd * 0.50
+  set vmid = "$&vmid"
 
-  let period = $clk_period * 8
+  let ck_per = $&ck_per
+  set ck_per = "$&ck_per"
+
+  let period = $&ck_per * 8
   set period = "$&period"
 
-  let td = 3.0e-6 + $clk_period * 4 + $clk_period / 4
+  let ptime = $&pwrt
+  set ptime = "$&ptime"
+
+  let td = $ptime + $ck_per * 2 + $ck_per / 4
   set td = "$&td"
 
-  let tt = 50.0e-12
+  * let tt = 50.0e-12
   set tt = "$&tt"
-
   let pw = $period / 2 - $tt
   set pw = "$&pw"
 
-  echo clk_frequency: $clk_frequency
-  echo clk_period: $clk_period
+  let resolution_time = 10e-12
+  set resolution_time = "$&resolution_time"
 
-  echo period: $period
+  let tstop = $ptime + $ck_per * 8 
+  set tstop = "$&tstop"
+
+  echo ck_per: $ck_per
   echo td: $td
   echo tt: $tt
   echo pw: $pw
+  echo ptime: $ptime
+  echo resolution_time: $resolution_time
+  echo tstop: $tstop
 
-  let qrise_sample_time = 3.0e-6 + $clk_period * 5.75  
+  let qrise_sample_time = $ptime + $ck_per * 5.90  
   set qrise_sample_time  = "$&qrise_sample_time"
   echo qrise_sample_time: $qrise_sample_time  
+  
+  let idx1 = 0
+  set idx1 = "$&idx1"
 
-  * let incr = $clk_period / 4;
-  * set incr = "$&incr"
-
-
-  * foreach itr1 1f 500f 1p 2.5p 5p 10p
+  * foreach itr1 1f 500f 1p 2.5p 5p 10p 
   *    foreach itr2 1f 500f 1p 2.5p 5p 10p
 
-  foreach itr1 1f 500f 1p 2.5p 5p 10p 
-     foreach itr2 1f 500f 1p 2.5p 5p 10p
+
+  foreach itr1 1f
+
+     let idx2 = 0
+     set idx2 = "$&idx2"
+
+     foreach itr2 1f
 
       echo itr1: $itr1
       echo itr2: $itr2
 
+      destroy all
+
       alter cck $itr1
       alter cd  $itr2
 
-      let td = 3.0e-6 + $clk_period * 4 + $clk_period / 4
+      let td = $ptime + $ck_per * 2 + $ck_per / 4
       set td = "$&td"
 
-      let incr = $clk_period / 4;
+      let incr = $ck_per / 2;
       set incr = "$&incr"
 
       let search = 1
+      set search = "$&search"
 
-      while search eq 1
-      
+      let iterations = 0
+
+      let last_result = 1
+      set last_result = "$&last_result"
+
+      while $search eq 1
+
+
+         let iterations = iterations + 1
+
+         echo iteration: $&iterations 
+         echo last_result: $last_result
+
          alter @Vd[pulse] = [ 0 5 $td $tt $tt $pw $period]
 
-         run
-
-         let vdd_max = maximum(v(vdd))
-         let vol  = vdd_max * 0.20
-         let voh  = vdd_max * 0.80
-         set voh = "$&voh"
-         let vmid = vdd_max * 0.50
+         * run
+         tran 10p $tstop
 
 
           meas tran tt__d_rise  TRIG v(d)  VAL=vol RISE=1 TARG v(d)  VAL=voh RISE=1
@@ -132,11 +162,11 @@ Cq q 0 {CQ}
           meas tran td__d_rise__ck_rise TRIG v(d) VAL=vmid RISE=1 TARG v(ck) VAL=vmid RISE=6
           meas tran q_rise_voltage find v(q) at=$qrise_sample_time
 
-          * echo voh: $voh
+          echo voh: $voh
          
           let setup_time = td__d_rise__ck_rise
           set setup_time = "$&setup_time"
-          * echo setup_time: $setup_time
+          echo setup_time: $setup_time
 
           let capture_voltage = q_rise_voltage
           set capture_voltage = "$&capture_voltage"
@@ -147,44 +177,61 @@ Cq q 0 {CQ}
           
           let ck_rise_time = tt__ck_rise 
           set ck_rise_time = "$&ck_rise_time"
-          
 
-          if $capture_voltage lt $voh
-             echo step back delay
-             echo this td: $td
-             let td = $td - $incr
-             set td = "$&td"
-             echo next td: $td
-
-             * echo setting new increment
-             * echo this incr: $incr
-             let incr = incr / 2
-             set incr = "$&incr"
-             * echo next incr: $incr
-          else
-             echo this td: $td
-             * echo incr: $incr
-             let td = $td + $incr
-             set td = "$&td"
-             echo next td: $td
-          end
-
-          echo incr: $incr
 
           if $capture_voltage gt $voh
-             if $incr lt 10e-12
-                * echo search done
-                echo setup_time: $setup_time ck_rise_time: $ck_rise_time  d_rise_time: $d_rise_time
+             if $incr lt $resolution_time
+                echo search done after $&iterations iterations
+                echo setup: d_rise__ck_rise $idx1 $idx2 d_rise: $d_rise_time ck_rise: $ck_rise_time time: $setup_time
                 let search = 0
+                set search = "$&search" 
              end
           end
+      
+          if $search eq 1
+             if $capture_voltage lt $voh
+                echo not captured step back delay
+                echo this td: $td
 
+                * If last result was good, then halve the increment
+                * and start searching backwards
+                if $last_result eq 1  
+                   let incr = incr / 2
+                   set incr = "$&incr"
+                end
 
-       end     $ while 
+                let td = $td - $incr - $resolution_time 
+                set td = "$&td"
+                echo next td: $td
 
-       destroy all
+                let last_result = 0
+                set last_result = "$&last_result"
+             else
+                echo captured, increase delay
+                echo this td: $td
 
+                * If the last result was bad, then halve the increment
+                if $last_result eq 0  
+                   let incr = incr / 2
+                   set incr = "$&incr"
+                end
+
+                let td = $td + $incr
+                set td = "$&td"
+                echo next td: $td
+                let last_result = 1
+                set last_result = "$&last_result"
+             end
+             echo incr: $incr
+          end
+
+       end
+
+      let idx2 = idx2 + 1
+      set idx2 = "$&idx2"
     end
+    let idx1 = idx1 + 1
+    set idx1 = "$&idx1"
   end
 .endc
 
