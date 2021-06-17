@@ -128,12 +128,26 @@ if (-r "area.txt") {
 
 # Hashes / arrays to store gathered data
 my @comb_arcs = ();
-my %delays;
+my @setup_arcs = ();
+my @hold_arcs = ();
+
 my %trans;
 my %trans_itts;
 my %trans_loads;
+
+my %delays;
 my %delay_itts;
 my %delay_loads;
+
+my %setups;
+my %setup_itt1s;
+my %setup_itt2s;
+
+my %holds;
+my %hold_itt1s;
+my %hold_itt2s;
+
+
 my %max_cap;
 my %max_trans;
 my %pin_cap;
@@ -143,6 +157,9 @@ my %when_pin;
 
 foreach my $sim_result (@sim_results) {
    if($sim_result eq "delay.log" || $sim_result eq "cap.log" || $sim_result eq "ckq.log") {
+      parse_delay_log($sim_result);
+   }
+   if($sim_result eq "setup.log") {
       parse_delay_log($sim_result);
    }
 }
@@ -267,6 +284,69 @@ foreach my $opin (@output_pins) {
    $non_unate_associated_arcs{$opin} = [@non_unate_arcs];
 }
 
+# Similar: associate arcs with input pins
+my %related_setup_pins = ();
+my %setup_associated_arcs = ();
+foreach my $ipin (@input_pins) {
+   my @arc_array = ();
+   my @ipin_array = ();
+
+   foreach my $arc (@setup_arcs) {
+      my $this_arc = $arc;
+      $this_arc =~ s/__/ /;
+      $this_arc =~ s/_rise//g;
+      $this_arc =~ s/_fall//g;
+      (my $this_ipin1, my $this_ipin2) = split(/\s+/, $this_arc);
+      # printf "arc: $arc\n";
+      if($this_ipin1 eq $ipin) {
+         push(@arc_array, $arc);
+
+         unless(grep(/^$this_ipin2$/, @ipin_array)) {
+            push(@ipin_array, $this_ipin2);
+         }
+      } 
+
+   }
+
+   # printf "ipin: $ipin\n";
+   # printf "arc_array: @arc_array\n";
+   $associated_arcs{$ipin} = [@arc_array];
+
+   # printf "ipin_array: @ipin_array\n";
+   $related_setup_pins{$ipin} = [@ipin_array];
+
+   $setup_associated_arcs{$ipin} = [@arc_array];
+}
+
+
+my %related_hold_pins = ();
+my %hold_associated_arcs = ();
+foreach my $ipin (@input_pins) {
+   my @arc_array = ();
+   my @ipin_array = ();
+
+   foreach my $arc (@hold_arcs) {
+      my $this_arc = $arc;
+      $this_arc =~ s/__/ /;
+      $this_arc =~ s/_rise//g;
+      $this_arc =~ s/_fall//g;
+      (my $this_ipin1, my $this_ipin2) = split(/\s+/, $this_arc);
+      if($this_ipin1 eq $ipin) {
+         push(@arc_array, $arc);
+
+         unless(grep(/^$this_ipin2$/, @ipin_array)) {
+            push(@ipin_array, $this_ipin2);
+         }
+      } 
+   }
+   $associated_arcs{$ipin} = [@arc_array];
+   $related_hold_pins{$ipin} = [@ipin_array];
+   $hold_associated_arcs{$ipin} = [@arc_array];
+}
+
+
+
+
 
 
 ##############################################################
@@ -311,9 +391,69 @@ foreach my $ipin (@input_pins) {
   if ($ipin eq "ck" && $celltype eq "dff") {
   printf $OFH "    clock : true;\n";
   }
+
+   
+  # insert setup and hold arcs
+  foreach my $rpin (@{ $related_setup_pins{$ipin} }) {
+
+     # printf "rpin: $rpin\n";
+
+     my $first_arc = 0;
+     foreach my $arc (@{ $setup_associated_arcs{$ipin} }) {
+        # printf "   setup arc: $arc\n";
+        # is this arc associated with this pin
+        my $this_arc = $arc;
+        $this_arc =~ s/__/ /;
+        $this_arc =~ s/_rise//g;
+        $this_arc =~ s/_fall//g;
+        (my $this_ipin1, my $this_ipin2) = split(/\s+/, $this_arc);
+
+         
+        $this_arc = $arc;
+        $this_arc =~ s/__/ /;
+        (my $tran1, my $tran2) = split(/\s+/, $this_arc);
+        $tran2 =~ s/.*_//;
+        my $timing_type = "";
+        if($tran2 eq "rise") {
+           $timing_type = "setup_rising";
+        }
+        if($tran2 eq "fall") {
+           $timing_type = "setup_falling";
+        }
+
+        $tran1 =~ s/.*_//;
+        my $constraint = "";
+        if($tran1 eq "rise") {
+           $constraint = "rise_constraint";
+        }
+        if($tran1 eq "fall") {
+           $constraint = "fall_constraint";
+        }
+
+        # printf " --- this_ipin1: %s   this_ipin2: %s ---\n", $this_ipin1, $this_ipin2;
+
+        if ($this_ipin1 eq $ipin) {
+           # printf " ====   associated_arc: %s matches! ====\n", $arc;
+           if ($first_arc == 0) {
+              printf $OFH "    timing() {\n";
+              printf $OFH "      related_pin: \"%s\";\n", $this_ipin2; 
+              printf $OFH "      timing_type : %s;\n", $timing_type;
+              $first_arc = 1;
+           }
+           print_setup_template($arc, $constraint);
+           print_setup_itt1s($arc);
+           print_setup_itt2s($arc);
+           print_setup_values($arc);
+           printf $OFH "      }\n";
+        }
+     }
+     if ($first_arc != 0) {
+     printf $OFH "    } /* end of timing */\n"; # end of timing block
+     }
+  }
+
   printf $OFH "  }\n";
 }
-
 
 ##### output pins
 foreach my $opin (@output_pins) {
@@ -571,6 +711,25 @@ sub print_delay_template {
    printf $OFH "      cell_%s(delay_template_%dx%d) {\n", $out_tran, $last_j, $last_i;
 }
 
+sub print_setup_template {
+   my ($arc, $constraint) =  @_;
+
+   my $tmp = $arc;
+   $tmp =~ s/__/ /;
+   (my $in_tran, my $out_tran) = split(/\s+/, $tmp);
+   $out_tran =~ s/.*_//; 
+
+   my @tarray = @{ $setups{$arc} };
+   my $last_j = $#tarray;
+   my @subarray = @{ $tarray[0] };
+   my $last_i = $#subarray;
+
+   $last_j++;
+   $last_i++;
+
+   printf $OFH "      %s(setup_template_%dx%d) {\n", $constraint, $last_j, $last_i;
+}
+
 sub print_transition_template {
    my ($arc) =  @_;
 
@@ -653,6 +812,38 @@ sub print_delay_values {
    }
 }
 
+sub print_setup_values {
+   my ($key) =  @_;
+   my @tarray = @{ $setups{$key} };
+   my $last_j = $#tarray;
+   my @subarray = @{ $tarray[0] };
+   my $last_i = $#subarray;
+   
+   # printf "last_i: %d\n", $last_i;
+   # printf "last_j: %d\n", $last_j;
+   
+   for (my $j = 0; $j <= $last_j; $j++) {
+      for (my $i = 0; $i <= $last_i; $i++) {
+         my $value = $setups{$key}[$j][$i];
+   
+         if ($j == 0 && $i == 0) {
+            printf $OFH "        values ( \\\n";
+         }
+         if ($i == 0) {printf $OFH "          \"";}
+         printf $OFH "%.3f", $value / 1.0e-9;
+         if ($i < $last_i) {
+            printf $OFH ", ";
+         } else {
+            if ($j < $last_j) {
+               printf $OFH "\", \\\n";
+            } else {
+               printf $OFH "\");\n";
+            }
+         }
+      }
+   }
+}
+
 sub print_trans_itts {
    my ($key) =  @_;
    my @tarray = @{ $trans_itts{$key} };
@@ -673,6 +864,94 @@ sub print_trans_itts {
       }
    }
 }
+
+sub print_setup_itt1s {
+   my ($key) =  @_;
+   my @tarray = @{ $setup_itt1s{$key} };
+   my $last_j = $#tarray;
+
+   for (my $j = 0; $j <= $last_j; $j++) {
+      my @subarray = @{ $tarray[$j] };
+      my $average = calc_average(@subarray);
+
+      if($j == 0) {
+         printf $OFH "        index_1 (\"%.3f, ", $average / 1.0e-9;
+      } else {
+         if ($j == $last_j) {
+            printf $OFH "%.3f\");\n", $average / 1.0e-9;
+         } else {
+            printf $OFH "%.3f, ", $average / 1.0e-9;
+         }
+      }
+   }
+}
+
+sub print_setup_itt2s {
+   my ($key) =  @_;
+   my @tarray = @{ $setup_itt2s{$key} };
+   my $last_j = $#tarray;
+
+   for (my $j = 0; $j <= $last_j; $j++) {
+      my @subarray = @{ $tarray[$j] };
+      my $average = calc_average(@subarray);
+
+      if($j == 0) {
+         printf $OFH "        index_2 (\"%.3f, ", $average / 1.0e-9;
+      } else {
+         if ($j == $last_j) {
+            printf $OFH "%.3f\");\n", $average / 1.0e-9;
+         } else {
+            printf $OFH "%.3f, ", $average / 1.0e-9;
+         }
+      }
+   }
+}
+
+sub print_hold_itt1s {
+   my ($key) =  @_;
+   my @tarray = @{ $hold_itt1s{$key} };
+   my $last_j = $#tarray;
+
+   for (my $j = 0; $j <= $last_j; $j++) {
+      my @subarray = @{ $tarray[$j] };
+      my $average = calc_average(@subarray);
+
+      if($j == 0) {
+         printf $OFH "        index_1 (\"%.3f, ", $average / 1.0e-9;
+      } else {
+         if ($j == $last_j) {
+            printf $OFH "%.3f\");\n", $average / 1.0e-9;
+         } else {
+            printf $OFH "%.3f, ", $average / 1.0e-9;
+         }
+      }
+   }
+}
+
+sub print_hold_itt2s {
+   my ($key) =  @_;
+   my @tarray = @{ $hold_itt2s{$key} };
+   my $last_j = $#tarray;
+
+   for (my $j = 0; $j <= $last_j; $j++) {
+      my @subarray = @{ $tarray[$j] };
+      my $average = calc_average(@subarray);
+
+      if($j == 0) {
+         printf $OFH "        index_2 (\"%.3f, ", $average / 1.0e-9;
+      } else {
+         if ($j == $last_j) {
+            printf $OFH "%.3f\");\n", $average / 1.0e-9;
+         } else {
+            printf $OFH "%.3f, ", $average / 1.0e-9;
+         }
+      }
+   }
+}
+
+
+
+
 
 sub print_delay_itts {
    my ($key) =  @_;
@@ -824,7 +1103,48 @@ sub parse_delay_log {
          } else {
             $max_trans{$ipin} = $itt;
          }
+      }
+      if (/^setup:/) {
+         # print;
+         my @tarray = split(); 
+         my $arc_name = $tarray[1];
+         my $itt1 = $tarray[5];
+         my $itt2 = $tarray[7];
 
+         # print "tarray: @tarray\n";
+
+         unless(grep(/^$arc_name$/, @setup_arcs)) {
+            push(@setup_arcs, $arc_name);
+         }
+
+         $arc_name =~ s/__/ /;
+         $arc_name =~ s/_rise//g;
+         $arc_name =~ s/_fall//g;
+         (my $ipin1, my $ipin2) = split(/\s+/, $arc_name);
+
+         unless(grep(/^$ipin1$/, @input_pins)) {
+            push(@input_pins, $ipin1);
+         }
+         unless(grep(/^$ipin2$/, @input_pins)) {
+            push(@input_pins, $ipin2);
+         }
+
+         # get input pins' max transition time
+         if (defined($max_trans{$ipin1})) {
+            if($itt1 > $max_trans{$ipin1}) {
+               $max_trans{$ipin1} = $itt1;
+            }
+         } else {
+            $max_trans{$ipin1} = $itt1;
+         }
+
+         if (defined($max_trans{$ipin2})) {
+            if($itt2 > $max_trans{$ipin2}) {
+               $max_trans{$ipin2} = $itt2;
+            }
+         } else {
+            $max_trans{$ipin2} = $itt2;
+         }
       }
    }
    close(FH);
@@ -852,6 +1172,30 @@ sub parse_delay_log {
             $trans_itts{$key}[$idx1][$idx2] = $itt;
             $trans_loads{$key}[$idx2][$idx1] = $load;
          }
+         # print;
+      }
+
+      if (/^setup:/ || /^hold:/) {
+         my @tarray = split();
+         my $key = $tarray[1];
+         my $idx1 = $tarray[2]; 
+         my $idx2 = $tarray[3];
+         my $itt1 = $tarray[5];
+         my $itt2 = $tarray[7];
+         my $value = $tarray[9];
+
+         if (/^setup:/) {
+            $setups{$key}[$idx1][$idx2] = $value;
+            $setup_itt1s{$key}[$idx2][$idx1] = $itt1;
+            $setup_itt2s{$key}[$idx1][$idx2] = $itt2;
+         }
+
+         if (/^hold:/) {
+            $holds{$key}[$idx1][$idx2] = $value;
+            $hold_itt1s{$key}[$idx2][$idx1] = $itt1;
+            $hold_itt2s{$key}[$idx1][$idx2] = $itt2;
+         }
+   
          # print;
       }
    }
