@@ -1,32 +1,34 @@
 * Transient analysis of 
 
-.include ../../cir/and2_b.cir
+.include cell.cir
 
 .lib ../../device_models/AMI_C5N.lib TT
 
 .param VDD_VAL=5.0
-.csparam v_vdd = {VDD_VAL}
-.param FREQ=10.0Meg
+.param FREQ=50.0Meg
 .param PER={1 / FREQ}
-.csparam t_per = {PER}
-
+.param pwrtime = 5e-9
 .param TT=50p
 .param CA=1f
 .param CB=1f
 .param CZ=1f
 
+.csparam v_vdd = {VDD_VAL}
+.csparam t_per = {PER}
+.csparam pwrt = {pwrtime}
+
 * power supply
-Vvdd vdd 0 DC VDD_VAL PWL( 0 0  1u 0  2u {VDD_VAL})
+Vvdd vdd 0 DC {VDD_VAL} PWL( 0 0  {pwrtime / 3}  0  {pwrtime * 2 / 3} {VDD_VAL})
 Vvss vss 0 DC 0
 
 * input a
 Va   a_s 0 DC 0 PWL (                  0      0 
-+                    {3u + PER *  2}          0
-+                    {3u + PER *  2 + TT}  {VDD_VAL}
-+                    {3u + PER *  3}       {VDD_VAL} 
-+                    {3u + PER *  3 + TT}     0
-+                    {3u + PER *  4}          0
-+                    {3u + PER *  4 + TT}  {VDD_VAL}
++                    {pwrtime + PER *  2}          0
++                    {pwrtime + PER *  2 + TT}  {VDD_VAL}
++                    {pwrtime + PER *  3}       {VDD_VAL} 
++                    {pwrtime + PER *  3 + TT}     0
++                    {pwrtime + PER *  4}          0
++                    {pwrtime + PER *  4 + TT}  {VDD_VAL}
 +                   )
 Ra_s a_s a 100
 Ca   a   0 {CA} 
@@ -34,14 +36,14 @@ Ca   a   0 {CA}
 
 * input b
 Vb   b_s 0 DC 0 PWL (                  0      0 
-+                    {3u + PER *  1}          0
-+                    {3u + PER *  1 + TT}  {VDD_VAL}
-+                    {3u + PER *  4}       {VDD_VAL} 
-+                    {3u + PER *  4 + TT}     0
-+                    {3u + PER *  5}          0
-+                    {3u + PER *  5 + TT}  {VDD_VAL}
-+                    {3u + PER *  6}       {VDD_VAL} 
-+                    {3u + PER *  6 + TT}     0
++                    {pwrtime + PER *  1}          0
++                    {pwrtime + PER *  1 + TT}  {VDD_VAL}
++                    {pwrtime + PER *  4}       {VDD_VAL} 
++                    {pwrtime + PER *  4 + TT}     0
++                    {pwrtime + PER *  5}          0
++                    {pwrtime + PER *  5 + TT}  {VDD_VAL}
++                    {pwrtime + PER *  6}       {VDD_VAL} 
++                    {pwrtime + PER *  6 + TT}     0
 +                   )
 
 Rb_s b_s b 100
@@ -53,8 +55,6 @@ Xdut z a b vdd vss and2_b
 * output load
 Cz z 0 {CZ} 
 
-
-* .tran 10p {3u + PER * 7}
 
 * sweep transition time from : ~30ps  to: ~1.3 ns
 *
@@ -85,12 +85,17 @@ Cz z 0 {CZ}
   let t_per = $&t_per
   set t_per = "$&t_per"
 
-  foreach in_load 1f 500f 1p 2.5p 5p 10p
+  let ptime = $&pwrt
+  set ptime = "$&ptime"
+
+  foreach in_load 10e-15 500e-15 1e-12 3e-12 5e-12
+  * foreach in_load 1e-15
 
      let idx2 = 0
      set idx2 = "$&idx2"
 
-     foreach out_load 0.010e-12 0.050e-12 0.100e-12 0.250e-12 0.500e-12 1.0e-12 2.0e-12 
+     foreach out_load 10e-15 50e-15 100e-15 250e-15 500e-15
+     * foreach out_load 0.010e-12
 
       destroy all
 
@@ -99,7 +104,7 @@ Cz z 0 {CZ}
       alter cz $out_load
 
       * run
-      let tstop = 3e-6 + $t_per * 7 
+      let tstop = ptime + $t_per * 7 
       set tstop = "$&tstop"
       tran 10p $tstop
 

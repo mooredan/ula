@@ -2,7 +2,7 @@
 *
 * this can be used to determine the input capacitance
 
-.include ../../cir/xor2_a.cir
+.include cell.cir
 .lib ../../device_models/AMI_C5N.lib TT
 
 .param VDD_VAL=5.0

@@ -14,7 +14,6 @@ LIBNAME := dlm05_stdcells.lib
 all : $(LIBNAME)
 
 
-
 %/cell.lib :
 	+ $(MAKE) -C $(subst /cell.lib,,$@)
 
@@ -35,7 +34,6 @@ cells: $(CELLS)
 
 $(CELLS):
 	@ $(MAKE) -C $@
-
 
 
 .PHONY: $(CELLS_CLEAN)

@@ -1,6 +1,6 @@
 * Transient analysis of DFF
 
-.include ../../cir/dff_b.cir
+.include cell.cir
 
 .lib ../../device_models/AMI_C5N.lib TT
 

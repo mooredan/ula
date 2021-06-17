@@ -1,6 +1,6 @@
 * Transient analysis of 
 
-.include ../../cir/xor2_a.cir
+.include cell.cir
 
 .lib ../../device_models/AMI_C5N.lib TT
 
@@ -98,7 +98,7 @@ Cz z 0 {CZ}
      let idx2 = 0
      set idx2 = "$&idx2"
 
-     foreach out_load 10e-15 50e-15 100e-15 250e-15 500e-15
+     foreach out_load 10e-15 25e-15 50e-15 75e-15 100e-15
      * foreach out_load 0.010e-12
 
       destroy all
