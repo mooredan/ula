@@ -46,10 +46,6 @@ Xdut q d ck vdd vss dff_b
 * output load
 Cq q 0 {CQ} 
 
-
-
-* .tran 10p {pwrtime + PER * 14}
-
 * sweep clock rise time from :        to: 1 ns
 *
 *              cck (pF)         rise (ps)
@@ -59,7 +55,6 @@ Cq q 0 {CQ}
 *              1.0                146.8 
 *              2.5                355.8  
 *              5.0                702.2
-*             10.0               1395.2
 *
 * sweep output load     from : 10 fF   to: 2 pF  - seven loads
 
@@ -97,7 +92,6 @@ Cq q 0 {CQ}
       alter cck $in_load
       alter cq  $out_load
 
-      * run
       tran 10p $tstop
 
       * echo in_load: $in_load
@@ -149,12 +143,50 @@ Cq q 0 {CQ}
     set idx1 = "$&idx1"
   end
 
-* setplot tran1
-* plot v(vdd) v(ck) v(d) v(q)
-* plot v(ck) v(d)
-* plot v(ck)
-* plot v(d)
-* plot v(q)
+
+
+  ***********************************
+  * Do input capacitance measurements
+  ***********************************
+  alter cd  0
+  alter cck 0
+  alter cq  0
+  
+  alter vvdd  dc $&v_vdd
+  alter vd    dc $vmid
+  alter vck   dc $vmid
+  
+  let idx = 70
+  set idx = "$&idx"
+  
+  ***********************************
+  * set up and measure input pin d
+  ***********************************
+  alter vd ac 1.0
+  
+  ac dec 10 1 100e6
+  
+  let freq = real(frequency[$idx])
+  set freq = "$&freq"
+  
+  let d_cap = '1.0 / (imag(v(d)[$idx] / i(vd)[$idx]) * 2 * pi * real(frequency[$idx]))'
+  set d_cap = "$&d_cap"
+  echo incap: pin: d cap: $d_cap  freq: $freq
+  
+  ***********************************
+  * set up and measure input pin ck 
+  ***********************************
+  alter vd ac 0.0
+  alter vck ac 1.0
+  
+  ac dec 10 1 100e6
+  
+  let freq = real(frequency[$idx])
+  set freq = "$&freq"
+  
+  let ck_cap = '1.0 / (imag(v(ck)[$idx] / i(vck)[$idx]) * 2 * pi * real(frequency[$idx]))'
+  set ck_cap = "$&ck_cap"
+  echo incap: pin: ck cap: $ck_cap  freq: $freq
 
   quit 0
 
