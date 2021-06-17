@@ -211,7 +211,7 @@ Cq q 0 {CQ}
                    if $rise_fall eq 1
                       echo setup: d_rise__ck_rise $idx1 $idx2 d_rise: $d_tran_time ck_rise: $ck_rise_time time: $setup_time
                    else
-                      echo setup: d_fall__ck_rise $idx1 $idx2 d_rise: $d_tran_time ck_rise: $ck_rise_time time: $setup_time
+                      echo setup: d_fall__ck_rise $idx1 $idx2 d_fall: $d_tran_time ck_rise: $ck_rise_time time: $setup_time
                    end
                    let search = 0
                    set search = "$&search" 
