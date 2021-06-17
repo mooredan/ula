@@ -200,19 +200,30 @@ my %associated_arcs = ();
 my %related_pins = ();
 my %pos_unate_associated_arcs = ();
 my %neg_unate_associated_arcs = ();
+my %non_unate_associated_arcs = ();
 
 
 foreach my $opin (@output_pins) {
    my @arc_array = ();
    my @ipin_array = ();
-   my @positive_unate_arcs = ();
-   my @negative_unate_arcs = ();
+   my @pos_unate_arcs = ();
+   my @neg_unate_arcs = ();
+   my @non_unate_arcs = ();
    foreach my $arc (@comb_arcs) {
       my $this_arc = $arc;
       $this_arc =~ s/__/ /;
       $this_arc =~ s/_rise//g;
       $this_arc =~ s/_fall//g;
       (my $this_ipin, my $this_opin) = split(/\s+/, $this_arc);
+
+      # printf "\n";
+      # printf "arc: $arc\n";
+      # printf "celltype: $celltype\n";
+      # printf "opin: $opin\n";
+
+      # printf "this_ipin: $this_ipin\n";
+      # printf "this_opin: $this_opin\n";
+
 
       if($this_opin eq $opin) {
          # printf("This arc: %s belongs to output pin: %s\n", $arc, $opin);
@@ -230,22 +241,31 @@ foreach my $opin (@output_pins) {
       $in_tran =~ s/.*_//;
       $out_tran =~ s/.*_//;
 
-      if ($out_tran eq $in_tran) {
-         push(@positive_unate_arcs, $arc);
+      if ($celltype eq "dff" && $opin eq "q" && $this_ipin eq "ck") {
+         # printf("This arc: %s is designated as non_unate\n", $arc);
+         push(@non_unate_arcs, $arc);
       } else {
-         push(@negative_unate_arcs, $arc);
+         if ($out_tran eq $in_tran) {
+            # printf("This arc: %s is designated as pos_unate\n", $arc);
+            push(@pos_unate_arcs, $arc);
+         } else {
+            # printf("This arc: %s is designated as neg_unate\n", $arc);
+            push(@neg_unate_arcs, $arc);
+         }
       }
 
    }
    $associated_arcs{$opin} = [@arc_array];
    $related_pins{$opin} = [@ipin_array];
 
-   # printf "@positive_unate_arcs\n";
-   # printf "@negative_unate_arcs\n";
-   $pos_unate_associated_arcs{$opin} = [@positive_unate_arcs];
-   $neg_unate_associated_arcs{$opin} = [@negative_unate_arcs];
-}
+   # printf "pos_unate_arcs: @pos_unate_arcs\n";
+   # printf "neg_unate_arcs: @neg_unate_arcs\n";
+   # printf "non_unate_arcs: @non_unate_arcs\n";
 
+   $pos_unate_associated_arcs{$opin} = [@pos_unate_arcs];
+   $neg_unate_associated_arcs{$opin} = [@neg_unate_arcs];
+   $non_unate_associated_arcs{$opin} = [@non_unate_arcs];
+}
 
 
 
@@ -423,6 +443,81 @@ foreach my $opin (@output_pins) {
         if ($first_arc != 0) {
         printf $OFH "    } /* end of neg unate timing */\n"; # end of timing block
         }
+
+
+        $first_arc = 0;
+        foreach my $arc (@{ $non_unate_associated_arcs{$opin} }) {
+           # is this arc associated with this pin
+           my $this_arc = $arc;
+           $this_arc =~ s/__/ /;
+           $this_arc =~ s/_rise//g;
+           $this_arc =~ s/_fall//g;
+           (my $this_ipin, my $this_opin) = split(/\s+/, $this_arc);
+
+           $this_arc = $arc;
+           $this_arc =~ s/__/ /;
+           my($in_trans, $out_trans) = split(/\s+/, $this_arc);
+           $in_trans =~ s/.*_//;
+           $out_trans =~ s/.*_//;
+
+           if ($this_ipin eq $ipin) {
+
+              if ($first_arc == 0) {
+                 printf $OFH "    timing() {\n";
+                 printf $OFH "      related_pin: \"%s\";\n", $ipin; 
+                 if(defined($when_pin{$ipin})) {
+                 printf $OFH "      sdf_cond : \"%s\";\n", $when_pin{$ipin};
+                 }
+                 printf $OFH "      timing_sense : non_unate;\n";
+
+                 if($celltype eq "dff" && $ipin eq "ck" && $opin eq "q") {
+                    if($in_trans eq "rise") {
+                       printf $OFH "      timing_type : rising_edge;\n";
+                    }
+                    if($in_trans eq "fall") {
+                       printf $OFH "      timing_type : falling_edge;\n";
+                    }
+                 }
+
+                 if(defined($when_pin{$ipin})) {
+                 printf $OFH "      when : \"%s\";\n", $when_pin{$ipin};
+                 }
+
+                 # print "celltype: $celltype\n";
+                 # print "arc: $arc\n";
+                 # print "ipin: $ipin\n";
+                 # print "opin: $opin\n";
+
+                 $first_arc = 1;
+              }
+
+
+              $this_arc = $arc;  
+              $this_arc =~ s/__/ /;
+              (my $in_trans, my $out_trans) = split(/\s+/, $this_arc);
+              $in_trans =~ s/.*_//;
+              $out_trans =~ s/.*_//;
+
+              print_delay_template($arc);
+              print_delay_itts($arc);
+              print_delay_loads($arc);
+              print_delay_values($arc);
+              printf $OFH "      }\n";
+
+
+              print_transition_template($arc);
+              print_trans_itts($arc);
+              print_trans_loads($arc);
+              print_trans_values($arc);
+              printf $OFH "      }\n";
+
+           }
+        }
+        if ($first_arc != 0) {
+        printf $OFH "    } /* end of non unate timing */\n"; # end of timing block
+        }
+
+
   }
   printf $OFH "  } /* end of output pin */\n"; # end of output pin block
 }
@@ -684,6 +779,9 @@ sub parse_delay_log {
          my $ipin = $tarray[2];
          my $cap = $tarray[4];
          $pin_cap{$ipin} = $cap;
+         unless(grep(/^$ipin$/, @input_pins)) {
+            push(@input_pins, $ipin);
+         }
       }
       if (/^delay:/ || /^trans:/) {
          # print;
