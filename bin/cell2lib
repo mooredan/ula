@@ -40,7 +40,7 @@ if($opt_c) {
 # default values for config variables
 ######################################
 our @sim_results = ();
-my @possible_sim_results = ("delay.log", "cap.log", "setup.log", "hold.log");
+my @possible_sim_results = ("delay.log", "ckq.log", "cap.log", "setup.log", "hold.log");
 
 foreach my $logfile (@possible_sim_results) {
    if (-r $logfile) {
@@ -90,6 +90,7 @@ switch($celltype) {
    case "nand2" { unless(defined($function{"z"})) {$function{"z"} = "!(a*b)"}}
    case "inv"   { unless(defined($function{"z"})) {$function{"z"} = "!a"}}
    case "buf"   { unless(defined($function{"z"})) {$function{"z"} = "a"}}
+   case "dff"   { unless(defined($function{"q"})) {$function{"q"} = "IQ"}}
    else {
       printf STDERR "ERROR: $scriptname: Cell type \"%s\" is not recognized\n", $celltype;
       exit(1);
@@ -141,7 +142,7 @@ my %when_pin;
 
 
 foreach my $sim_result (@sim_results) {
-   if($sim_result eq "delay.log" || $sim_result eq "cap.log") {
+   if($sim_result eq "delay.log" || $sim_result eq "cap.log" || $sim_result eq "ckq.log") {
       parse_delay_log($sim_result);
    }
 }
@@ -266,6 +267,15 @@ if($target_file) {
 printf $OFH "cell(%s) {\n", $cellname;
 printf $OFH "  area : %.2f;\n", $area;
 
+
+if ($celltype eq "dff") {
+   printf $OFH "  ff (IQ, IQN) {\n";
+   printf $OFH "    next_state : \"d\";\n";
+   printf $OFH "    clocked_on : \"clk\";\n";
+   printf $OFH "  }\n";
+}
+
+
 ##### input pins
 foreach my $ipin (@input_pins) {
   printf $OFH "  pin(%s) {\n", $ipin;
@@ -277,6 +287,9 @@ foreach my $ipin (@input_pins) {
   printf $OFH "    capacitance : %.3f;\n", $pin_cap{$ipin} / 1.0e-12;
   } else {
   printf $OFH "    capacitance : 0;\n";
+  }
+  if ($ipin eq "ck" && $celltype eq "dff") {
+  printf $OFH "    clock : true;\n";
   }
   printf $OFH "  }\n";
 }

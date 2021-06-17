@@ -48,7 +48,7 @@ Cq q 0 {CQ}
 
 
 
-.tran 10p {pwrtime + PER * 4 + PER * 10}
+* .tran 10p {pwrtime + PER * 14}
 
 * sweep clock rise time from :        to: 1 ns
 *
@@ -80,7 +80,7 @@ Cq q 0 {CQ}
   let ptime = $&pwrt
   set ptime = "$&ptime"
 
-  let tstop = $ptime + $ck_per * 7 
+  let tstop = $ptime + $ck_per * 14 
   set tstop = "$&tstop"
 
   let idx1 = 0
@@ -97,7 +97,8 @@ Cq q 0 {CQ}
       alter cck $in_load
       alter cq  $out_load
 
-      run
+      * run
+      tran 10p $tstop
 
       * echo in_load: $in_load
       * echo out_load: $out_load
@@ -144,8 +145,8 @@ Cq q 0 {CQ}
       set idx2 = "$&idx2"
 
     end
-    let idx2 = idx2 + 1
-    set idx2 = "$&idx2"
+    let idx1 = idx1 + 1
+    set idx1 = "$&idx1"
   end
 
 * setplot tran1
