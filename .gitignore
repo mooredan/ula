@@ -18,6 +18,9 @@ b3v3_1check.log
 setup.log
 hold.log
 delay.log
+ckq.log
+cap.log
+cell.cir
 fail.log
 area.txt
 cell.lib

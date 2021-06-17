@@ -1,60 +1,54 @@
 * Transient analysis of DFF
 
-.include ../../cir/dff_c5n.cir
+.include cell.cir
 
 .lib ../../device_models/AMI_C5N.lib TT
 
-.param VDD_VAL=5
-+      FREQ=10.0Meg
-+      PER={1 / FREQ}
+.param VDD_VAL=5.0
+.param FREQ=100.0Meg
+.param PER={1 / FREQ}
+.param ttime=50p
+.param pwrtime = 5e-9
+.param d_period = {PER * 6}
 
-.param TT=50p
+.csparam v_vdd = {VDD_VAL}
+.csparam ck_per = {PER}
+.csparam tt = {ttime}
+.csparam pwrt = {pwrtime}
+.csparam d_per = {d_period}
+
+
 .param CD=1f
 .param CCK=1f
-.param CQ=1f
+.param CQ=100f
 
-.param VDD_20PCT = {VDD_VAL * 0.20} 
-.param VDD_50PCT = {VDD_VAL * 0.50} 
-.param VDD_80PCT = {VDD_VAL * 0.80} 
+.csparam v_vdd = {VDD_VAL}
 
 
 * power supply
-Vvdd vdd 0 DC VDD_VAL PWL( 0 0  1u 0  2u {VDD_VAL})
+Vvdd vdd 0 DC {VDD_VAL} PWL( 0 0  {pwrtime / 3}  0  {pwrtime * 2 / 3} {VDD_VAL})
 Vvss vss 0 DC 0
 
+
 * input clock
-Vck ck_s 0 DC 0 PULSE ( 0 {VDD_VAL} 3u {TT} {TT} {PER/2 - TT} {PER} )
+Vck ck_s 0 DC 0 PULSE ( 0 {VDD_VAL} pwrtime {ttime} {ttime} {PER/2 - ttime} {PER} )
 Rck_s ck_s ck 100
 Cck ck 0 {CCK}
 
 * input data
-Vd   d_s 0 DC 0 PULSE ( 0 {VDD_VAL} {3u + PER * 4 + PER / 4} {TT} {TT} {PER * 2} {PER * 4}) 
+Vd   d_s 0 DC 0 PULSE ( 0 {VDD_VAL} {pwrtime + PER * 4 + PER / 4} {ttime} {ttime} {PER * 2} {PER * 4}) 
 Rd_s d_s d 100
 Cd   d   0 {CD} 
 
 * DUT
-Xdut q d ck vdd vss dff_c5n
+Xdut q d ck vdd vss dff_b
 
 * output load
 Cq q 0 {CQ} 
 
 
-* .measure tran q_rise TRIG v(q) VAL=VDD_20PCT RISE=2 TARG v(q) VAL=VDD_80PCT RISE=2
-* .measure tran q_fall TRIG v(q) VAL=VDD_80PCT FALL=2 TARG v(q) VAL=VDD_20PCT FALL=2
 
-* .measure tran ck_rise_rise TRIG v(ck) VAL=VDD_20PCT RISE=10 TARG v(ck) VAL=VDD_80PCT RISE=10
-* .measure tran ck_fall_rise TRIG v(ck) VAL=VDD_80PCT FALL=10 TARG v(ck) VAL=VDD_20PCT FALL=10
-
-* .measure tran ck_rise_fall TRIG v(ck) VAL=VDD_20PCT RISE=12 TARG v(ck) VAL=VDD_80PCT RISE=10
-* .measure tran ck_fall_fall TRIG v(ck) VAL=VDD_80PCT FALL=12 TARG v(ck) VAL=VDD_20PCT FALL=10
-
-* .measure tran d_rise TRIG v(d) VAL=VDD_20PCT RISE=2 TARG v(d) VAL=VDD_80PCT RISE=2
-* .measure tran d_fall TRIG v(d) VAL=VDD_80PCT FALL=2 TARG v(d) VAL=VDD_20PCT FALL=2
-
-* .measure tran ckq_rise TRIG v(ck) VAL=VDD_50PCT RISE=10 TARG v(q) VAL=VDD_50PCT RISE=2
-* .measure tran ckq_fall TRIG v(ck) VAL=VDD_50PCT RISE=12 TARG v(q) VAL=VDD_50PCT FALL=2
-
-.tran 10p {3u + PER * 4 + PER * 10}
+.tran 10p {pwrtime + PER * 4 + PER * 10}
 
 * sweep clock rise time from :        to: 1 ns
 *
@@ -70,40 +64,99 @@ Cq q 0 {CQ}
 * sweep output load     from : 10 fF   to: 2 pF  - seven loads
 
 .control
-  destroy all
-  foreach itr1 1f 500f 1p 2.5p 5p 10p
-    foreach itr2 0.010e-12 0.050e-12 0.100e-12 0.250e-12 0.500e-12 1.0e-12 2.0e-12 
 
-      alter cck $itr1
-      alter cq  $itr2
+  let vol  = $&v_vdd * 0.20
+  set vol  = "$&vol"
+
+  let voh  = $&v_vdd * 0.80
+  set voh  = "$&voh"
+
+  let vmid = $&v_vdd * 0.50
+  set vmid = "$&vmid"
+
+  let ck_per = $&ck_per
+  set ck_per = "$&ck_per"
+
+  let ptime = $&pwrt
+  set ptime = "$&ptime"
+
+  let tstop = $ptime + $ck_per * 7 
+  set tstop = "$&tstop"
+
+  let idx1 = 0
+  set idx1 = "$&idx1"
+
+  foreach in_load 1f 500f 1p 2.5p 5p 10p
+    let idx2 = 0
+    set idx2 = "$&idx2"
+
+    foreach out_load 0.010e-12 0.050e-12 0.100e-12 0.250e-12 0.500e-12 1.0e-12 2.0e-12 
+
+      destroy all
+
+      alter cck $in_load
+      alter cq  $out_load
 
       run
 
-      let vdd_max = maximum(v(vdd))
-      let vol  = vdd_max * 0.20
-      let voh  = vdd_max * 0.80
-      let vmid = vdd_max * 0.50
+      * echo in_load: $in_load
+      * echo out_load: $out_load
 
-      echo itr1: $itr1
-      echo itr2: $itr2
-
-      meas tran tt__q_rise TRIG v(q) VAL=vol RISE=2 TARG v(q) VAL=voh RISE=2 
-      meas tran tt__q_fall TRIG v(q) VAL=voh FALL=2 TARG v(q) VAL=vol FALL=2 
-
+      ***************************************************************************************
+      * clock to q : ck rising to q rising
+      ***************************************************************************************
       meas tran tt__ck_rise__q_rise TRIG v(ck) VAL=vol RISE=10 TARG v(ck) VAL=voh RISE=10
-      meas tran tt__ck_rise__q_fall TRIG v(ck) VAL=vol RISE=12 TARG v(ck) VAL=voh RISE=12
-
+      meas tran tt__q_rise TRIG v(q) VAL=vol RISE=2 TARG v(q) VAL=voh RISE=2 
       meas tran td__ck_rise__q_rise TRIG v(ck) VAL=vmid RISE=10 TARG v(q) VAL=vmid RISE=2
+
+      let ittime = tt__ck_rise__q_rise
+      let ttime  = tt__q_rise
+      let dtime  = td__ck_rise__q_rise
+     
+      set ittime = "$&ittime"
+      set ttime = "$&ttime"
+      set dtime = "$&dtime"
+
+
+      echo trans: ck_rise__q_rise $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $ttime
+      echo delay: ck_rise__q_rise $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $dtime
+
+      ***************************************************************************************
+      * clock to q : ck rising to q falling
+      ***************************************************************************************
+      meas tran tt__ck_rise__q_fall TRIG v(ck) VAL=vol RISE=12 TARG v(ck) VAL=voh RISE=12
+      meas tran tt__q_fall TRIG v(q) VAL=voh FALL=2 TARG v(q) VAL=vol FALL=2 
       meas tran td__ck_rise__q_fall TRIG v(ck) VAL=vmid RISE=12 TARG v(q) VAL=vmid FALL=2
 
+      let ittime = tt__ck_rise__q_fall
+      let ttime  = tt__q_fall
+      let dtime  = td__ck_rise__q_fall
+
+      set ittime = "$&ittime"
+      set ttime = "$&ttime"
+      set dtime = "$&dtime"
+
+      echo trans: ck_rise__q_fall $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $ttime
+      echo delay: ck_rise__q_fall $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $dtime
+
+
+      let idx2 = idx2 + 1
+      set idx2 = "$&idx2"
+
     end
+    let idx2 = idx2 + 1
+    set idx2 = "$&idx2"
   end
+
 * setplot tran1
 * plot v(vdd) v(ck) v(d) v(q)
 * plot v(ck) v(d)
 * plot v(ck)
 * plot v(d)
 * plot v(q)
+
+  quit 0
+
 .endc
 
 .end
