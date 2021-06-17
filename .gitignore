@@ -18,5 +18,6 @@ b3v3_1check.log
 setup.log
 hold.log
 delay.log
+fail.log
 area.txt
 cell.lib
