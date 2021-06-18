@@ -1,6 +1,6 @@
 magic
 tech amic5n
-timestamp 1623372921
+timestamp 1623981996
 << nwell >>
 rect -130 550 880 1495
 << ntransistor >>
@@ -25,10 +25,10 @@ rect 285 95 465 400
 rect 525 345 645 400
 rect 525 295 565 345
 rect 615 295 645 345
-rect 525 175 645 295
-rect 525 125 565 175
-rect 615 125 645 175
-rect 525 95 645 125
+rect 525 185 645 295
+rect 525 135 565 185
+rect 615 135 645 185
+rect 525 95 645 135
 << pdiffusion >>
 rect 105 1315 225 1345
 rect 105 1265 135 1315
@@ -88,7 +88,7 @@ rect 525 700 645 765
 rect 135 320 185 370
 rect 135 125 185 175
 rect 565 295 615 345
-rect 565 125 615 175
+rect 565 135 615 185
 << pdcontact >>
 rect 135 1265 185 1315
 rect 135 1165 185 1215
@@ -202,21 +202,21 @@ rect 330 275 635 295
 rect 115 125 135 175
 rect 185 125 205 175
 rect 115 45 205 125
-rect 545 175 635 275
-rect 545 125 565 175
-rect 615 125 635 175
-rect 545 45 635 125
+rect 545 185 635 275
+rect 545 135 565 185
+rect 615 135 635 185
+rect 545 105 635 135
 rect 0 -45 750 45
 << labels >>
-flabel metal1 s 105 -25 105 -25 2 FreeSans 400 0 0 0 vss
-port 12 ne
-flabel metal1 s 95 1415 95 1415 2 FreeSans 400 0 0 0 vdd
-port 11 ne
-flabel metal1 s 135 550 135 550 2 FreeSans 400 0 0 0 a
-port 7 ne
 flabel nwell 0 585 0 585 2 FreeSans 400 0 0 0 vdd
 flabel metal1 s 360 470 360 470 2 FreeSans 400 0 0 0 z
-port 20 ne
+port 0 ne
+flabel metal1 s 135 550 135 550 2 FreeSans 400 0 0 0 a
+port 1 ne
 flabel metal1 s 616 445 616 445 2 FreeSans 400 0 0 0 b
-port 7 ne
+port 2 ne
+flabel metal1 s 95 1415 95 1415 2 FreeSans 400 0 0 0 vdd
+port 3 ne
+flabel metal1 s 105 -25 105 -25 2 FreeSans 400 0 0 0 vss
+port 4 ne
 << end >>

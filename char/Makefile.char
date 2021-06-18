@@ -38,6 +38,7 @@ cell.cir :
            done=$$(tail -1 $@ | grep -c -e 'done');\
 	   if [[ $$num_errors -ne 0 || $$done -ne 1 ]]; then\
 	      mv $@ fail.log;\
+	      echo "ERROR: Check fail.log";\
 	      false;\
 	   fi;\
         fi
