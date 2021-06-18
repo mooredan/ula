@@ -1,0 +1,68 @@
+#!/bin/bash
+
+do_elements () {
+   COUNT=1
+   while [[ $COUNT -le ${LEN} ]]; do
+      if [[ $COUNT -eq 1 ]]; then
+         echo -n "(\""
+      fi
+      echo -n 10${COUNT}.0
+      if [[ $COUNT -eq ${LEN} ]]; then
+         echo "\");"
+      else
+         echo -n ", "
+      fi
+      COUNT=$(expr ${COUNT} + 1)
+   done
+}
+
+do_indices () {
+   LEN=${ROWS}
+   echo -n "    index_1 "
+   do_elements
+   LEN=${COLS}
+   echo -n "    index_2 "
+   do_elements
+   echo "  }"
+}
+
+NUM_CELL_LIBS=$(find . -mindepth 2 -maxdepth 2 -name cell.lib | wc -l)
+if [[ ${NUM_CELL_LIBS} -eq 0 ]]; then
+   # do nothing
+   exit 0
+fi
+
+
+TABLES=$(grep table */cell.lib /dev/null | awk '{print $2}' \
+         | sed -e 's/(/ /' -e 's/)//' \
+         | awk '{print $2}' | sort -u)
+
+
+for TABLE in ${TABLES}
+do
+   NAME=$(echo ${TABLE} |  sed -e 's/table_/table /' | awk '{print $1}')
+   ROWS=$(echo ${TABLE} | sed -e 's/.*table_//' -e 's/x.*//')
+   COLS=$(echo ${TABLE} | sed -e 's/.*table_//' -e 's/.*x//')
+   TYPE=$(echo ${NAME} | sed -e 's/_table//')
+
+   echo "  lu_table_template(${TABLE}) {"
+
+   case ${TYPE} in 
+      "delay")
+         echo "    variable_1 : input_net_transition;"
+         echo "    variable_2 : total_output_net_capacitance;"
+         do_indices
+         ;;
+      "setup" | "hold") 
+         echo "    variable_1 : related_pin_transition;"
+         echo "    variable_2 : constrained_pin_transition;"
+         do_indices
+         ;;
+      *)
+         exit 1;
+         ;;
+   esac
+
+done
+
+exit 0

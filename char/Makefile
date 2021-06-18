@@ -20,12 +20,14 @@ all : $(LIBNAME)
 
 
 $(LIBNAME) : $(CELL_LIBS) templates/lib_header.txt
-	@ cat templates/lib_header.txt > $@;\
-	for i in $(CELL_LIBS); do\
+	@ cat templates/lib_header.txt > $@
+	@ gather_tables >> $@
+	@ echo "" >> $@
+	@ for i in $(CELL_LIBS); do\
 	   cat $${i} >> $@;\
 	   echo "" >> $@;\
-	done;\
-	echo "} /* end of library */" >> $@
+	done
+	@ echo "} /* end of library */" >> $@
 
 
 
