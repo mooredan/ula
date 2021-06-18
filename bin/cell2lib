@@ -371,7 +371,7 @@ printf $OFH "  area : %.2f;\n", $area;
 if ($celltype eq "dff") {
    printf $OFH "  ff (IQ, IQN) {\n";
    printf $OFH "    next_state : \"d\";\n";
-   printf $OFH "    clocked_on : \"clk\";\n";
+   printf $OFH "    clocked_on : \"ck\";\n";
    printf $OFH "  }\n";
 }
 
@@ -393,11 +393,9 @@ foreach my $ipin (@input_pins) {
   }
 
    
-  # insert setup and hold arcs
+  # insert setup arcs
   foreach my $rpin (@{ $related_setup_pins{$ipin} }) {
-
      # printf "rpin: $rpin\n";
-
      my $first_arc = 0;
      foreach my $arc (@{ $setup_associated_arcs{$ipin} }) {
         # printf "   setup arc: $arc\n";
@@ -407,7 +405,6 @@ foreach my $ipin (@input_pins) {
         $this_arc =~ s/_rise//g;
         $this_arc =~ s/_fall//g;
         (my $this_ipin1, my $this_ipin2) = split(/\s+/, $this_arc);
-
          
         $this_arc = $arc;
         $this_arc =~ s/__/ /;
@@ -452,8 +449,69 @@ foreach my $ipin (@input_pins) {
      }
   }
 
+  # insert hold arcs
+  foreach my $rpin (@{ $related_hold_pins{$ipin} }) {
+     # printf "rpin: $rpin\n";
+     my $first_arc = 0;
+     foreach my $arc (@{ $hold_associated_arcs{$ipin} }) {
+        # printf "   hold arc: $arc\n";
+        # is this arc associated with this pin
+        my $this_arc = $arc;
+        $this_arc =~ s/__/ /;
+        $this_arc =~ s/_rise//g;
+        $this_arc =~ s/_fall//g;
+        (my $this_ipin1, my $this_ipin2) = split(/\s+/, $this_arc);
+         
+        $this_arc = $arc;
+        $this_arc =~ s/__/ /;
+        (my $tran1, my $tran2) = split(/\s+/, $this_arc);
+        $tran2 =~ s/.*_//;
+        my $timing_type = "";
+        if($tran2 eq "rise") {
+           $timing_type = "hold_rising";
+        }
+        if($tran2 eq "fall") {
+           $timing_type = "hold_falling";
+        }
+
+        $tran1 =~ s/.*_//;
+        my $constraint = "";
+        if($tran1 eq "rise") {
+           $constraint = "rise_constraint";
+        }
+        if($tran1 eq "fall") {
+           $constraint = "fall_constraint";
+        }
+
+        # printf " --- this_ipin1: %s   this_ipin2: %s ---\n", $this_ipin1, $this_ipin2;
+
+        if ($this_ipin1 eq $ipin) {
+           # printf " ====   associated_arc: %s matches! ====\n", $arc;
+           if ($first_arc == 0) {
+              printf $OFH "    timing() {\n";
+              printf $OFH "      related_pin: \"%s\";\n", $this_ipin2; 
+              printf $OFH "      timing_type : %s;\n", $timing_type;
+              $first_arc = 1;
+           }
+           print_hold_template($arc, $constraint);
+           print_hold_itt1s($arc);
+           print_hold_itt2s($arc);
+           print_hold_values($arc);
+           printf $OFH "      }\n";
+        }
+     }
+     if ($first_arc != 0) {
+     printf $OFH "    } /* end of timing */\n"; # end of timing block
+     }
+  }
+
+
   printf $OFH "  }\n";
 }
+
+
+
+
 
 ##### output pins
 foreach my $opin (@output_pins) {
@@ -708,7 +766,7 @@ sub print_delay_template {
    $last_j++;
    $last_i++;
 
-   printf $OFH "      cell_%s(delay_template_%dx%d) {\n", $out_tran, $last_j, $last_i;
+   printf $OFH "      cell_%s(delay_table_%dx%d) {\n", $out_tran, $last_j, $last_i;
 }
 
 sub print_setup_template {
@@ -727,7 +785,26 @@ sub print_setup_template {
    $last_j++;
    $last_i++;
 
-   printf $OFH "      %s(setup_template_%dx%d) {\n", $constraint, $last_j, $last_i;
+   printf $OFH "      %s(setup_table_%dx%d) {\n", $constraint, $last_j, $last_i;
+}
+
+sub print_hold_template {
+   my ($arc, $constraint) =  @_;
+
+   my $tmp = $arc;
+   $tmp =~ s/__/ /;
+   (my $in_tran, my $out_tran) = split(/\s+/, $tmp);
+   $out_tran =~ s/.*_//; 
+
+   my @tarray = @{ $holds{$arc} };
+   my $last_j = $#tarray;
+   my @subarray = @{ $tarray[0] };
+   my $last_i = $#subarray;
+
+   $last_j++;
+   $last_i++;
+
+   printf $OFH "      %s(hold_table_%dx%d) {\n", $constraint, $last_j, $last_i;
 }
 
 sub print_transition_template {
@@ -746,7 +823,7 @@ sub print_transition_template {
    $last_j++;
    $last_i++;
 
-   printf $OFH "      %s_transition(delay_template_%dx%d) {\n", $out_tran, $last_j, $last_i;
+   printf $OFH "      %s_transition(delay_table_%dx%d) {\n", $out_tran, $last_j, $last_i;
 }
 
 
