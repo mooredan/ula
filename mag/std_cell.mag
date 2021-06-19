@@ -41,7 +41,7 @@ use nand2_b  nand2_b_0
 timestamp 1623372921
 transform 1 0 5100 0 1 0
 box -130 -45 880 1495
-use dff_c5n  dff_c5n_0
+use dff_b  dff_b_0
 timestamp 1623365459
 transform 1 0 0 0 1 0
 box -130 -45 3285 1495

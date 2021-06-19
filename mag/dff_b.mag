@@ -1,8 +1,8 @@
 magic
 tech amic5n
-timestamp 1623365459
+timestamp 1624144082
 << nwell >>
-rect -130 550 3285 1495
+rect -130 550 3280 1495
 << ntransistor >>
 rect 165 95 225 375
 rect 355 95 415 375
@@ -37,7 +37,6 @@ rect -10 165 1650 430
 rect 1830 165 3160 430
 rect -10 0 3160 165
 << pselect >>
-rect 2570 1440 2805 1445
 rect -10 1240 3160 1440
 rect -10 835 1650 1240
 rect 1830 835 3160 1240
@@ -821,20 +820,18 @@ rect 395 435 2545 455
 flabel ndiffusion s 1055 195 1055 195 2 FreeSans 400 0 0 0 x6
 flabel ndiffusion 635 195 635 195 2 FreeSans 400 0 0 0 x5
 flabel metal1 s 845 165 845 165 2 FreeSans 400 0 0 0 nmas
-flabel metal1 s 225 -15 225 -15 2 FreeSans 400 0 0 0 vss
-port 5 s
 flabel metal1 260 610 260 610 2 FreeSans 400 0 0 0 nck
 flabel metal1 s 415 800 415 800 2 FreeSans 400 0 0 0 d
-port 2 s
+port 1 s
 flabel metal1 s 455 1395 455 1395 2 FreeSans 400 0 0 0 vdd
-port 4 n
+port 3 n
 flabel pdiffusion s 1055 1065 1055 1065 2 FreeSans 400 0 0 0 x2
 flabel pdiffusion s 665 1065 665 1065 2 FreeSans 400 0 0 0 x1
 flabel metal1 s 1115 770 1115 770 2 FreeSans 400 0 0 0 nmas
 flabel metal1 s 1405 285 1405 285 2 FreeSans 400 0 0 0 mas
 flabel metal1 s 1420 1065 1420 1065 2 FreeSans 400 0 0 0 mas
 flabel metal1 s 950 465 950 465 2 FreeSans 400 0 0 0 ck
-port 3 ne
+port 2 ne
 flabel metal1 s 845 925 845 925 2 FreeSans 400 0 0 0 nmas
 flabel pdiffusion s 2040 1065 2040 1065 2 FreeSans 400 0 0 0 x3
 flabel ndiffusion s 2040 165 2040 165 2 FreeSans 400 0 0 0 x7
@@ -843,6 +840,8 @@ flabel metal1 s 2085 610 2085 610 2 FreeSans 400 0 0 0 nck
 flabel ndiffusion s 2460 165 2460 165 2 FreeSans 400 0 0 0 x8
 flabel pdiffusion s 2460 1185 2460 1185 2 FreeSans 400 0 0 0 x4
 flabel metal1 s 2835 710 2835 710 2 FreeSans 400 0 0 0 q
-port 1 e
+port 0 e
 flabel metal1 s 2490 800 2490 800 2 FreeSans 400 0 0 0 nslv
+flabel metal1 s 5 5 5 5 2 FreeSans 400 0 0 0 vss
+port 4 s
 << end >>
