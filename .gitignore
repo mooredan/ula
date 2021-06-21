@@ -26,3 +26,4 @@ area.txt
 cell.lib
 *.mapped.v
 yosys.log
+*.lef

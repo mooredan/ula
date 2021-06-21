@@ -1,0 +1,103 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Getopt::Std;
+use File::Basename;
+use Data::Dumper qw(Dumper);
+use Verilog::Netlist;
+
+my $scriptname = basename($0);
+
+my $usage = sprintf("Usage: %s -c [cellname] -p [portname]", $scriptname);
+# declare the perl command line flags/options we want to allow
+my %options=();
+getopts("c:p:h", \%options);
+
+if(defined($options{h})) {
+   print "$usage\n";
+   exit(1);
+}
+
+
+unless(defined($options{c})) {
+   printf STDERR "ERROR: $scriptname: Option -c is required\n";
+   exit(1);
+}
+
+unless(defined($options{p})) {
+   printf STDERR "ERROR: $scriptname: Option -p is required\n";
+   exit(1);
+}
+
+unless(defined($ENV{PROJECT_DIR})) {
+   printf STDERR "ERROR: $scriptname: Environment variable \$PROJECT_DIR must be set\n";
+   exit(1);
+}
+
+my $PROJECT_DIR = $ENV{PROJECT_DIR};
+unless (-d $PROJECT_DIR) {
+   printf STDERR "ERROR: $scriptname: $PROJECT_DIR is not a directory\n";
+   exit(1);
+}
+
+
+my $verilog_dir = "$PROJECT_DIR/verilog";
+unless (-d $verilog_dir) {
+   printf STDERR "ERROR: $scriptname: $verilog_dir is not a directory\n";
+   exit(1);
+}
+
+my $cellname = $options{c};
+my $portname = $options{p};
+
+my $verilog_file = $verilog_dir . "/" . $cellname . ".v";
+
+unless( -r $verilog_file ) {
+   printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $verilog_file;
+   exit(1);
+}
+
+my $errors = 0;
+
+# Prepare netlist
+my $nl = new Verilog::Netlist();
+$nl->read_file(filename=>$verilog_file);
+
+$nl->link();
+#$nl->lint();  # Optional, see docs; probably not wanted
+$nl->exit_if_error();
+
+my $module = $nl->find_module($cellname);
+
+unless($module) {
+   printf STDERR "ERROR: $scriptname: Could not find module \"%s\" in file \"%s\"\n",
+             $cellname, $verilog_file;
+   exit(1);
+}
+
+my $port =  $module->find_port($portname);
+
+unless($port) {
+   printf STDERR "ERROR: $scriptname: Could not find port \"%s\" on module \"%s\" in file \"%s\"\n",
+             $portname, $cellname, $verilog_file;
+   exit(1);
+}
+
+my $dir = $port->direction;
+
+unless ($dir) {
+   printf STDERR "ERROR: $scriptname: Could not get direction of port \"%s\" on module \"%s\" in file \"%s\"\n",
+             $portname, $cellname, $verilog_file;
+   exit(1);
+}
+
+if ($dir eq "out") {
+   printf "output\n";
+}
+if ($dir eq "in") {
+   printf "input\n";
+}
+if ($dir eq "inout") {
+   printf "$dir\n";
+}
+exit(0);

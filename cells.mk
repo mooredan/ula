@@ -1,6 +1,15 @@
-CELLS += inv_c
-CELLS += inv_b
-CELLS += mtc2
+STDCELLS += and2_b
+STDCELLS += buf_b
+STDCELLS += dff_b
+STDCELLS += inv_a
+STDCELLS += inv_b
+STDCELLS += nand2_b
+STDCELLS += nor2_b
+STDCELLS += xor2_a
+
+# CELLS += inv_c
+# CELLS += inv_b
+# CELLS += mtc2
 # CELLS += inv_a
 # CELLS += inv_d
 # CELLS += inv_e

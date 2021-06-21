@@ -484,4 +484,8 @@ port 2 ne
 flabel nwell 10 555 10 555 2 FreeSans 400 0 0 0 vdd
 flabel metal1 s 6 5 6 5 2 FreeSans 400 0 0 0 vss
 port 4 ne
+<< properties >>
+string LEFsite core
+string LEFclass CORE
+string LEFsymmetry X Y
 << end >>

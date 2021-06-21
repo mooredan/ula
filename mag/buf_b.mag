@@ -203,4 +203,8 @@ port 1 ne
 flabel nwell 10 600 10 600 2 FreeSans 400 0 0 0 vdd
 flabel metal1 s 5 5 5 5 2 FreeSans 400 0 0 0 vss
 port 3 ne
+<< properties >>
+string LEFsite core
+string LEFclass CORE
+string LEFsymmetry X Y
 << end >>

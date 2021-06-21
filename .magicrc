@@ -45,8 +45,8 @@ if {[info exists ::env(PROJECT_DIR)]} {
 ###################################################
 # Font for menu
 ###################################################
-font create newfont -family Tahoma -size 12
-option add *Font newfont
+# font create newfont -family Tahoma -size 12
+# option add *Font newfont
 
 macro Meta_XK_Down  "stretch d 1"
 macro Meta_XK_Left  "stretch l 1"

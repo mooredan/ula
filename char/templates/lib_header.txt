@@ -1,4 +1,4 @@
-library(dlm05_stdcells) {
+library(amic5n_stdcells) {
 
   delay_model : table_lookup;
   in_place_swap_mode : match_footprint;

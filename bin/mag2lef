@@ -1,0 +1,316 @@
+#!/bin/bash
+
+SCRIPTNAME=$(basename $0)
+
+usage() {
+   echo "Usage: ${SCRIPTNAME} -c <cellname> [-d]" 1>&2
+   exit 1
+}
+
+help() {
+   echo "Help" 1>&2
+   exit 1
+}
+
+DEBUG=0
+
+
+while getopts "hc:d" o; do
+    case "${o}" in
+        h)
+            help
+            ;;
+        c)
+            CELL=${OPTARG}
+            ;;
+        d)
+            DEBUG=1
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+# if [ -z "${s}" ] || [ -z "${p}" ]; then
+#     usage
+# fi
+#
+# echo "s = ${s}"
+# echo "p = ${p}"
+
+if [ -z "${CELL}" ]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Option -c must be specified"
+   exit 1
+fi
+
+# Check for necessary environment variables
+if [[ -z ${PROJECT_DIR+x} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Environment variable ${PROJECT_DIR} must be set"
+   exit 1
+fi
+
+if [[ -z ${TECH+x} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Environment variable ${TECH} must be set"
+   exit 1
+fi
+
+if [[ ! -r ${TECH} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Tech file: ${TECH} is not readable"
+   exit 1
+fi
+
+TOOL_DIR="/usr/local/bin"
+TOOL_NAME="magic"
+TOOL_PATH="${TOOL_DIR}/${TOOL_NAME}"
+
+if [[ ! -e ${TOOL_PATH} ]]; then
+   >&2 echo ERROR: ${TOOL_PATH} does not exist
+   exit 1
+fi
+
+if [[ ! -x ${TOOL_PATH} ]]; then
+   >&2 echo ERROR: ${TOOL_PATH} is not executable 
+   exit 1
+fi
+
+
+MAG_DIR="${PROJECT_DIR}/mag"
+
+if [[ ! -d ${MAG_DIR} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Directory ${MAG_DIR} does not exist" 2>&1
+   exit 1
+fi
+
+# Locate magic file for cell
+MAG_FILE="${MAG_DIR}/${CELL}.mag"
+if [[ ! -r ${MAG_FILE} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: File ${MAG_FILE} is not readable" 2>&1
+   exit 1
+fi
+
+
+# 
+LEF_DIR="${PROJECT_DIR}/lef"
+if [[ ! -d ${LEF_DIR} ]]; then
+   mkdir ${LEF_DIR}
+fi
+if [[ ! -d ${LEF_DIR} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Directory ${LEF_DIR} does not exist" 2>&1
+   exit 1
+fi
+
+RCFILE="${PROJECT_DIR}/.magicrc"
+if [[ ! -r ${RCFILE} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: File ${RCFILE} is not readable" 2>&1
+   exit 1
+fi
+
+
+# Cleanup last run if it exists
+MAG_LEF_FILE="${MAG_DIR}/${CELL}.lef"
+LEF_FILE="${LEF_DIR}/${CELL}.lef"
+
+if [[ -e ${MAG_LEF_FILE} ]]; then
+   rm -f ${MAG_LEF_FILE}
+fi
+if [[ -e ${MAG_LEF_FILE} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: Could not delete existing ${MAG_LEF_FILE}" 2>&1
+   exit 1
+fi
+
+if [[ -e ${LEF_FILE} ]]; then
+   rm -f ${LEF_FILE}
+fi
+if [[ -e ${LEF_FILE} ]]; then
+    >&2 echo "ERROR: ${SCRIPTNAME}: Could not delete existing ${LEF_FILE}" 2>&1
+   exit 1
+fi
+
+set -e
+# set -x
+# ensure that the tool is in the path
+# PATH_TO_TOOL=$(which ${TOOL})
+
+# Look at the .mag file and see if the pre-requisite properties are
+# present
+
+for property in LEFsite LEFclass LEFsymmetry
+do
+   if [[ $(grep -c ${property} ${MAG_FILE}) -eq 0 ]]; then
+      >&2 echo ERROR: ${SCRIPTNAME}: ${MAG_FILE} does not contain property \"${property}\"
+      exit 1
+   fi
+done
+
+
+# make a temporary working directory
+TMPDIR=$(mktemp --tmpdir=/tmp --directory ${SCRIPTNAME}_XXXXX)
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo TMPDIR: ${TMPDIR}
+fi
+
+if [[ ! -d ${TMPDIR} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Temporary directory was not created"
+   exit 1
+fi
+
+TCL_FILE="${TMPDIR}/${SCRIPTNAME}.tcl"
+
+cat <<EOF > ${TCL_FILE}
+set SUB vss
+cd ${TMPDIR}
+puts [format "pwd: %s" [pwd]]
+path search ${TMPDIR}
+path search +${MAG_DIR}
+load ${CELL}
+drc off
+box values -100um -100um 100um 100um
+select area nwell,pselect,nselect
+delete
+box -100um 14.4um 100um 100um
+select area m1
+delete
+box -100um -100um 100um 0
+select area m1
+delete
+lef write
+flush
+quit
+EOF
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo
+   echo ================ ${TCL_FILE} =================== 
+   cat ${TCL_FILE}
+   echo ================================================
+   echo
+fi
+
+
+LOG="${TMPDIR}/${TOOL_NAME}.log"
+
+# Run the tool from the temp directory
+cd ${TMPDIR}
+
+CMD="${TOOL_PATH} -dnull -noconsole -rcfile ${RCFILE} < ${TCL_FILE} > ${LOG} 2>&1"
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo ${CMD}
+fi
+
+${TOOL_PATH} -dnull -noconsole -rcfile ${RCFILE} < ${TCL_FILE} > ${LOG} 2>&1
+rtn=$?
+
+if [[ ${rtn} -ne 0 ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: rtn value non-zero: ${rtn}"
+   exit 1
+fi
+
+if [[ ! -r ${LOG} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: File ${LOG} is not readable"
+   exit 1
+fi
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo
+   echo -n ================ ${LOG} =================== 
+   cat ${LOG}
+   echo ================================================
+   echo
+fi
+
+if [[ ${DEBUG} -eq 1 ]]; then
+    echo TMPDIR: ${TMPDIR}
+   /bin/ls -l ${TMPDIR}
+fi
+
+
+set +e
+ERRORS=$(grep -c -e "couldn't be read" ${LOG})
+if [[ ${ERRORS} -ne 0 ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: ${ERRORS} errors in ${LOG}"
+   exit 1
+fi
+
+
+# was the extract file created?
+TMP_LEF_FILE="${TMPDIR}/${CELL}.lef"
+if [[ ! -r ${TMP_LEF_FILE} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: File ${TMP_LEF_FILE} is not readable, check ${LOG}"
+   exit 1
+fi
+
+set +e
+# set -x
+WARNINGS=$(grep -e "Total of .* warnings" ${LOG} | awk '{print $3}')
+ERRORS=$(grep -c -e 'Failed' -e 'Usage:' -e 'No such file' ${LOG})
+
+if [[ ${ERRORS} -ne 0 ]]; then
+   rm -f ${MAG_LEF_FILE}
+   >&2 echo "ERROR: ${SCRIPTNAME}: ${ERRORS} in ${LOG}"
+   exit 1
+fi
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo WARNINGS: ${WARNINGS}
+fi
+
+if [[ ${WARNINGS} -ne 0 ]]; then
+   echo "WARNING: ${SCRIPTNAME}: ${WARNINGS} warnings in ${LOG}" 2>&1
+   grep Feedback ${LOG}
+fi
+
+# clean up some things in the LEF FILE
+sed -i -e '/FOREIGN /s/;/0.000 0.000 ;/' \
+       -e '/END LIBRARY/d' \
+       -e '/VERSION /d' \
+       -e '/DIVIDERCHAR /d' \
+       -e '/BUSBITCHARS /d' \
+       -e '/NOWIREEXTENSIONATPIN ON/d' \
+       ${TMP_LEF_FILE}
+
+sed -i -e '/PIN vdd/a\
+    DIRECTION INOUT \;\
+    USE POWER \;\
+    SHAPE ABUTMENT \;' ${TMP_LEF_FILE}
+
+sed -i -e '/PIN vss/a\
+    DIRECTION INOUT \;\
+    USE GROUND \;\
+    SHAPE ABUTMENT \;' ${TMP_LEF_FILE}
+
+# get the ports and figure out directions
+
+for pin in $(grep -e 'PIN ' ${TMP_LEF_FILE} | awk '{print $2}')
+do
+   if [[ ${pin} = "vdd" || ${pin} = "vss" ]]; then
+      continue;
+   fi
+   dir=$(get_portdir -c  ${CELL} -p ${pin})
+   rtn=$?
+   if [[ ${rtn} -ne 0 ]]; then
+      echo "ERROR: ${SCRIPTNAME}: Error retreiving pin direction for pin ${pin}"
+      exit 1;
+   fi
+   dir=$(echo ${dir} | tr '[a-z]' '[A-Z]')
+   # echo pin: ${pin} dir: ${dir}
+
+   sed -i -e "/PIN ${pin}/a\    DIRECTION ${dir} \;" ${TMP_LEF_FILE}
+
+done
+
+cp -p ${TMP_LEF_FILE} ${LEF_FILE}
+
+if [[ ! -r ${LEF_FILE} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Copy to ${LEF_FILE} not successful"
+   exit 1
+fi
+
+if [[ ${ERRORS} -eq 0 && ${WARNINGS} -eq 0 ]]; then
+   if [[ ${DEBUG} -eq 0 ]]; then
+      rm -rf ${TMPDIR}
+   fi
+fi
+
+exit 0

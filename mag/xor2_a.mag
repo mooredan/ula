@@ -327,4 +327,8 @@ flabel pdiffusion s 920 1085 920 1085 2 FreeSans 200 0 0 0 p2
 flabel metal1 s 5 5 5 5 2 FreeSans 400 0 0 0 vss
 port 4 ne
 flabel nwell 265 610 265 610 2 FreeSans 400 0 0 0 vdd
+<< properties >>
+string LEFsite core
+string LEFclass CORE
+string LEFsymmetry X Y
 << end >>

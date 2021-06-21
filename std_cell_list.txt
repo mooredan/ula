@@ -1,2 +1,9 @@
 inv_b
+inv_a
 buf_b
+and2_b
+nand2_b
+or2_b
+nor2_b
+xor2_a
+dff_b
