@@ -159,7 +159,8 @@ foreach my $sim_result (@sim_results) {
    if($sim_result eq "delay.log" || $sim_result eq "cap.log" || $sim_result eq "ckq.log") {
       parse_delay_log($sim_result);
    }
-   if($sim_result eq "setup.log") {
+   if($sim_result eq "setup.log" || $sim_result eq "hold.log") {
+   # if($sim_result eq "setup.log") {
       parse_delay_log($sim_result);
    }
 }
@@ -921,6 +922,38 @@ sub print_setup_values {
    }
 }
 
+sub print_hold_values {
+   my ($key) =  @_;
+   my @tarray = @{ $holds{$key} };
+   my $last_j = $#tarray;
+   my @subarray = @{ $tarray[0] };
+   my $last_i = $#subarray;
+   
+   # printf "last_i: %d\n", $last_i;
+   # printf "last_j: %d\n", $last_j;
+   
+   for (my $j = 0; $j <= $last_j; $j++) {
+      for (my $i = 0; $i <= $last_i; $i++) {
+         my $value = $holds{$key}[$j][$i];
+   
+         if ($j == 0 && $i == 0) {
+            printf $OFH "        values ( \\\n";
+         }
+         if ($i == 0) {printf $OFH "          \"";}
+         printf $OFH "%.3f", $value / 1.0e-9;
+         if ($i < $last_i) {
+            printf $OFH ", ";
+         } else {
+            if ($j < $last_j) {
+               printf $OFH "\", \\\n";
+            } else {
+               printf $OFH "\");\n";
+            }
+         }
+      }
+   }
+}
+
 sub print_trans_itts {
    my ($key) =  @_;
    my @tarray = @{ $trans_itts{$key} };
@@ -1181,17 +1214,25 @@ sub parse_delay_log {
             $max_trans{$ipin} = $itt;
          }
       }
-      if (/^setup:/) {
+      if (/^setup:/ || /^hold:/) {
          # print;
-         my @tarray = split(); 
+         my @tarray = split();
+         my $meas = $tarray[0];
          my $arc_name = $tarray[1];
          my $itt1 = $tarray[5];
          my $itt2 = $tarray[7];
 
          # print "tarray: @tarray\n";
 
-         unless(grep(/^$arc_name$/, @setup_arcs)) {
-            push(@setup_arcs, $arc_name);
+         if ($meas eq "setup:") {
+            unless(grep(/^$arc_name$/, @setup_arcs)) {
+               push(@setup_arcs, $arc_name);
+            }
+         }
+         if ($meas eq "hold:") {
+            unless(grep(/^$arc_name$/, @hold_arcs)) {
+               push(@hold_arcs, $arc_name);
+            }
          }
 
          $arc_name =~ s/__/ /;
