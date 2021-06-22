@@ -4,6 +4,7 @@ use strict;
 use Getopt::Std;
 use File::Basename;
 use Data::Dumper qw(Dumper);
+use Verilog::Netlist;
 
 my $scriptname = basename($0);
 
@@ -45,14 +46,14 @@ my $cellname = $options{c};
 my $mag_file = $mag_dir . "/" . $cellname . ".mag";
 
 unless( -r $mag_file ) {
-   printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $mag_file;
+   printf STDERR "ERROR: $scriptname: $cellname: File \"%s\" is not readable\n", $mag_file;
    exit(1);
 }
 
 my $errors = 0;
 
 open(FH, "<$mag_file") or die 
-    "ERROR: $scriptname: Could not open file: %s", $mag_file;
+    "ERROR: $scriptname: $cellname: Could not open file: %s", $mag_file;
 
 
 # lists to hold the rectangles
@@ -77,7 +78,7 @@ while(<FH>) {
    if (/^tech\s/) {
       my ($tag, $tech) = split();
       if ($tech ne "amic5n") {
-         printf STDERR ("ERROR: $scriptname: Input tech of %s is not supported\n", $tech);
+         printf STDERR ("ERROR: $scriptname: $cellname: Input tech of %s is not supported\n", $tech);
          exit(1);
       }
       next;
@@ -96,12 +97,12 @@ while(<FH>) {
          while(<FH>) {
             last if (/^<< .* >>/);
             unless(/^rect /) {
-               printf STDERR "ERROR: $scriptname: This line is not a rect: $_";
+               printf STDERR "ERROR: $scriptname: $cellname: This line is not a rect: $_";
                exit;
             }
             my @coords = split();
             if($coords[0] ne "rect") {
-               printf STDERR "ERROR: $scriptname: Unexpected line:\n%s", $_;
+               printf STDERR "ERROR: $scriptname: $cellname: Unexpected line:\n%s", $_;
                exit(1);
             }
             shift(@coords);
@@ -173,7 +174,7 @@ while(<FH>) {
 
             # my @coords = split();
             # if($coords[0] ne "rect") {
-               # printf STDERR "ERROR: $scriptname: unexpected line:\n%s", $_;
+               # printf STDERR "ERROR: $scriptname: $cellname: unexpected line:\n%s", $_;
                # exit(1);
             # }
             # shift(@coords);
@@ -244,7 +245,7 @@ foreach my $layer (@layers) {
 }
 
 unless(grep(/^metal1$/, @layers)) {
-   printf STDERR "ERROR: $scriptname: No metal1 found in cell\n";
+   printf STDERR "ERROR: $scriptname: $cellname: No metal1 found in cell\n";
    exit(1);
 }
 
@@ -255,19 +256,19 @@ $height = $height - 90;
 # printf "height: %d\n", $height;
 
 if ($height % 160 != 0) {
-   printf STDERR "ERROR: $scriptname: Height must be a multiple of 1.6um\n";
+   printf STDERR "ERROR: $scriptname: $cellname: Height must be a multiple of 1.6um\n";
    $errors++;
 }
 
 if ($height != 1440) {
-   printf STDERR "ERROR: $scriptname: Height must be 14.4um\n";
+   printf STDERR "ERROR: $scriptname: $cellname: Height must be 14.4um\n";
    $errors++;
 }
 
 # width needs to be a multiple of 1.5um
 
 if ($width % 150 != 0) {
-   printf STDERR "ERROR: $scriptname: Width must be a multiple of 1.5um\n";
+   printf STDERR "ERROR: $scriptname: $cellname: Width must be a multiple of 1.5um\n";
    $errors++;
 }
 
@@ -283,15 +284,15 @@ foreach my $layer (@layers) {
       my $width = $max_x{$layer} - $min_x{$layer};
     
       if ($min_x{$layer} != 0) {
-         printf STDERR "ERROR: $scriptname: $layer not aligned to x = 0\n";
+         printf STDERR "ERROR: $scriptname: $cellname: $layer not aligned to x = 0\n";
          $errors++;
       }
       if ($min_y{$layer} != -45) {
-         printf STDERR "ERROR: $scriptname: $layer must extend south to -0.45um\n";
+         printf STDERR "ERROR: $scriptname: $cellname: $layer must extend south to -0.45um\n";
          $errors++;
       }
       if ($max_y{$layer} != ($height + 45)) {
-         printf STDERR "ERROR: $scriptname: $layer must extend north to %.2f\n",
+         printf STDERR "ERROR: $scriptname: $cellname: $layer must extend north to %.2f\n",
          ($height + 45) / 100;
          $errors++;
       }
@@ -300,71 +301,73 @@ foreach my $layer (@layers) {
 
    if ($layer eq "nwell") {
       if ($min_x{$layer} != -130) {
-         printf STDERR "ERROR: $scriptname: $layer needs to extend west to -1.3 um\n";
+         printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend west to -1.3 um\n";
          $errors++;
       }
       if ($max_x{$layer} != ($width + 130)) {
-          printf STDERR "ERROR: $scriptname: $layer needs to extend east to %.2f um\n",
+          printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend east to %.2f um\n",
           ($width + 130) / 100;
           $errors++;
       }
       if ($max_y{$layer} != ($height + 55)) {
-          printf STDERR "ERROR: $scriptname: $layer needs to extend north to %.2f um\n",
+          printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend north to %.2f um\n",
           ($height + 55) / 100;
           $errors++;
       }
    }
 
-   if ($layer eq "nselect") {
-      if ($min_x{$layer} != -10) {
-         printf STDERR "ERROR: $scriptname: $layer needs to extend west to -0.1 um\n";
-         $errors++;
+   unless($cellname =~ /nwsx/) {
+      if ($layer eq "nselect") {
+         if ($min_x{$layer} != -10) {
+            printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend west to -0.1 um\n";
+            $errors++;
+         }
+         if ($max_x{$layer} != ($width + 10)) {
+             printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend east to %.2f um\n",
+             ($width + 10) / 100;
+             $errors++;
+         }
+         if ($min_y{$layer} != 0) {
+             printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend south to 0.0 um\n";
+             $errors++;
+         }
       }
-      if ($max_x{$layer} != ($width + 10)) {
-          printf STDERR "ERROR: $scriptname: $layer needs to extend east to %.2f um\n",
-          ($width + 10) / 100;
-          $errors++;
-      }
-      if ($min_y{$layer} != 0) {
-          printf STDERR "ERROR: $scriptname: $layer needs to extend south to 0.0 um\n";
-          $errors++;
-      }
-   }
 
-   if ($layer eq "pselect") {
-      if ($min_x{$layer} != -10) {
-         printf STDERR "ERROR: $scriptname: $layer needs to extend west to -0.1 um\n";
-         $errors++;
-      }
-      if ($max_x{$layer} != ($width + 10)) {
-          printf STDERR "ERROR: $scriptname: $layer needs to extend east to %.2f um\n",
-          ($width + 10) / 100;
-          $errors++;
-      }
-      if ($max_y{$layer} != $height) {
-          printf STDERR "ERROR: $scriptname: $layer needs to extend north to %.2f um\n",
-          ($height / 100);
-          $errors++;
+      if ($layer eq "pselect") {
+         if ($min_x{$layer} != -10) {
+            printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend west to -0.1 um\n";
+            $errors++;
+         }
+         if ($max_x{$layer} != ($width + 10)) {
+             printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend east to %.2f um\n",
+             ($width + 10) / 100;
+             $errors++;
+         }
+         if ($max_y{$layer} != $height) {
+             printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend north to %.2f um\n",
+             ($height / 100);
+             $errors++;
+         }
       }
    }
 
 
    if ($layer eq "polysilicon") {
       if ($min_y{$layer} < 30) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend south past 0.30 um\n";
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend south past 0.30 um\n";
          $errors++;
       }
       if ($max_y{$layer} > $height - 30) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend north past %.2f um\n",
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend north past %.2f um\n",
             ($height - 30) / 100;
          $errors++;
       }
       if ($min_x{$layer} < 30) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend west past 0.30 um\n";
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend west past 0.30 um\n";
          $errors++;
       }
       if ($max_x{$layer} > $width - 30) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend east past %.2f um\n",
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend east past %.2f um\n",
             ($width - 30) / 100;
          $errors++;
       }
@@ -372,20 +375,20 @@ foreach my $layer (@layers) {
 
    if ($layer eq "ndiffusion" || $layer eq "pdiffusion") {
       if ($max_x{$layer} > $width - 45) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend east past %.2f um\n",
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend east past %.2f um\n",
             ($width - 45) / 100;
          $errors++;
       }
       if ($min_x{$layer} < 45) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend west past 0.45 um\n";
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend west past 0.45 um\n";
          $errors++;
       }
       if ($min_y{$layer} < 45) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend south past 0.45 um\n";
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend south past 0.45 um\n";
          $errors++;
       }
       if ($max_y{$layer} > $height - 45) {
-         printf STDERR "ERROR: $scriptname: $layer cannot extend north past %.2f um\n",
+         printf STDERR "ERROR: $scriptname: $cellname: $layer cannot extend north past %.2f um\n",
             ($height - 45) / 100;
          $errors++;
       }
@@ -398,17 +401,69 @@ foreach my $layer (@layers) {
           $min_x{$layer} <= 0 ||
           $max_x{$layer} >= $width) {
 
-         printf STDERR "ERROR: $scriptname: All rectangles on $layer must be contained within\n";
+         printf STDERR "ERROR: $scriptname: $cellname: All rectangles on $layer must be contained within\n";
          $errors++;
       }
    }
 }
 
+my $got_verports = 0;
+my @verport_names = ();
+my %verport_dir;
+
 ###############################################################
 # check for verilog model, and get the ports
 # for later comparison
 ###############################################################
+my $verilog_dir = "$PROJECT_DIR/verilog";
+unless (-d $verilog_dir) {
+   printf STDERR "ERROR: $scriptname: $verilog_dir is not a directory\n";
+   $errors++;
+} else {
 
+   my $verilog_file = $verilog_dir . "/" . $cellname . ".v";
+
+   if(! -r $verilog_file ) {
+      printf STDERR "ERROR: $scriptname: File \"%s\" is not readable\n", $verilog_file;
+      $errors++;
+   } else {
+   
+   
+      my $nl = new Verilog::Netlist();
+      $nl->read_file(filename=>$verilog_file);
+      
+      $nl->link();
+      $nl->exit_if_error();
+      
+      my $module = $nl->find_module($cellname);
+
+      if(defined($module)) {
+         # print "cellname: $cellname\n";
+         my @ports = $module->ports_ordered;
+
+         if(@ports) { 
+            $got_verports = 1;
+            foreach my $port (@ports) {
+               my $name =  $port->name;
+               push (@verport_names, $name);
+               my $dir = $port->direction;
+               if ($dir eq "in") {
+                  $verport_dir{$name} = "input";
+               }
+               if ($dir eq "out") {
+                  $verport_dir{$name} = "output";
+               }
+               if ($dir eq "inout") {
+                  $verport_dir{$name} = $dir;
+               }
+            }
+         }
+      } else {
+         printf STDERR "ERROR: $scriptname: module $cellname not found in file: %s\n", $verilog_file;
+         $errors++;
+      }
+   }
+}
 
 
 
@@ -422,11 +477,11 @@ foreach my $itr (@label_lls) {
    my $y = $coor[1];
 
    if ($x <= 0 || $y <= 0) {
-      printf STDERR "ERROR: $scriptname: label at %d,%d is outside of bounding box\n", $x, $y;
+      printf STDERR "ERROR: $scriptname: $cellname: label at %d,%d is outside of bounding box\n", $x, $y;
       $errors++;
    }
    if ($x >= $width || $y >= $height) {
-      printf STDERR "ERROR: $scriptname: label at %d,%d is outside of bounding box\n", $x, $y;
+      printf STDERR "ERROR: $scriptname: $cellname: label at %d,%d is outside of bounding box\n", $x, $y;
       $errors++;
    }
 }
@@ -434,7 +489,7 @@ foreach my $itr (@label_lls) {
 # Make sure that the ports are consecutive
 for (my $i = 0 ; $i <= $#ports; $i++) {
    unless(defined($ports[$i])) {
-      printf STDERR "ERROR: $scriptname: ports need to be numbered consecutively starting at index 0\n";
+      printf STDERR "ERROR: $scriptname: $cellname: ports need to be numbered consecutively starting at index 0\n";
       $errors++;
       last;
    }
@@ -442,9 +497,36 @@ for (my $i = 0 ; $i <= $#ports; $i++) {
 
 my $port = pop(@ports);
 if ($port ne "vss") {
-   printf STDERR "ERROR: $scriptname: last port indexed needs to be \"vss\", got \"$port\"\n";
+   printf STDERR "ERROR: $scriptname: $cellname: last port indexed needs to be \"vss\", got \"$port\"\n";
    $errors++;
 }
+$port = pop(@ports);
+if ($port ne "vdd") {
+   printf STDERR "ERROR: $scriptname: $cellname: second to last port indexed needs to be \"vdd\", got \"$port\"\n";
+   $errors++;
+}
+
+
+if ($got_verports) {
+   if ($#ports != $#verport_names) {
+      printf STDERR "ERROR: $scriptname: $cellname: .mag file has %d signal ports whereas .v file has %d\n",
+      $#ports + 1, $#verport_names + 1;
+      $errors++;
+   } else {
+      # check order
+      my $mismatch = 0;
+      for(my $i = 0; $i <= $#ports; $i++) {
+         if($ports[$i] ne $verport_names[$i]) {
+            $mismatch = 1;
+         }      
+      }
+      if ($mismatch) {
+         printf STDERR "ERROR: $scriptname: $cellname: There is a port order or name mismatch between the .mag file and the .v file\n";
+         $errors++;
+      }
+   }
+}
+
 
 
 ###################################################################
@@ -466,7 +548,7 @@ foreach my $property_line (@property_lines) {
 
 foreach my $property (@props_needed) {
    if ($property_found{$property} != 1) {
-      printf STDERR "ERROR: $scriptname: no %s property found\n", $property;
+      printf STDERR "ERROR: $scriptname: $cellname: no %s property found\n", $property;
       $errors++;
    }
 }

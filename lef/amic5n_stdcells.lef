@@ -328,13 +328,13 @@ MACRO buf_c
     DIRECTION OUTPUT ;
     PORT
       LAYER metal1 ;
-        RECT 6.950 8.450 7.850 12.800 ;
-        RECT 10.750 8.450 11.650 12.800 ;
-        RECT 6.950 7.550 11.650 8.450 ;
-        RECT 10.750 5.250 11.650 7.550 ;
-        RECT 6.950 4.350 11.650 5.250 ;
-        RECT 6.950 1.350 7.850 4.350 ;
-        RECT 10.750 1.350 11.650 4.350 ;
+        RECT 6.750 8.450 7.650 12.800 ;
+        RECT 10.550 8.450 11.450 12.800 ;
+        RECT 6.750 7.550 11.450 8.450 ;
+        RECT 10.550 5.250 11.450 7.550 ;
+        RECT 6.750 4.350 11.450 5.250 ;
+        RECT 6.750 1.350 7.650 4.350 ;
+        RECT 10.550 1.350 11.450 4.350 ;
     END
   END z
   PIN a
@@ -342,7 +342,7 @@ MACRO buf_c
     ANTENNAGATEAREA 5.670000 ;
     PORT
       LAYER metal1 ;
-        RECT 1.150 5.950 2.050 6.850 ;
+        RECT 0.950 5.950 1.850 6.850 ;
     END
   END a
   PIN vdd
@@ -352,9 +352,9 @@ MACRO buf_c
     PORT
       LAYER metal1 ;
         RECT 0.000 13.950 12.000 14.400 ;
-        RECT 1.150 7.450 2.050 13.950 ;
-        RECT 5.050 7.450 5.950 13.950 ;
-        RECT 8.850 9.050 9.750 13.950 ;
+        RECT 0.950 7.450 1.850 13.950 ;
+        RECT 4.850 7.450 5.750 13.950 ;
+        RECT 8.650 9.050 9.550 13.950 ;
     END
   END vdd
   PIN vss
@@ -363,17 +363,17 @@ MACRO buf_c
     SHAPE ABUTMENT ;
     PORT
       LAYER metal1 ;
-        RECT 1.150 0.450 2.050 3.900 ;
-        RECT 5.050 0.450 5.950 3.900 ;
-        RECT 8.850 0.450 9.750 3.650 ;
+        RECT 0.950 0.450 1.850 3.900 ;
+        RECT 4.850 0.450 5.750 3.900 ;
+        RECT 8.650 0.450 9.550 3.650 ;
         RECT 0.000 0.000 12.000 0.450 ;
     END
   END vss
   OBS
       LAYER metal1 ;
-        RECT 3.050 6.850 3.950 13.350 ;
-        RECT 3.050 5.950 9.950 6.850 ;
-        RECT 3.050 1.050 3.950 5.950 ;
+        RECT 2.850 6.850 3.750 13.350 ;
+        RECT 2.850 5.950 9.750 6.850 ;
+        RECT 2.850 1.050 3.750 5.950 ;
   END
 END buf_c
 
@@ -564,20 +564,20 @@ MACRO inv_c
   CLASS CORE ;
   FOREIGN inv_c 0.000 0.000 ;
   ORIGIN 0.000 0.000 ;
-  SIZE 7.500 BY 14.400 ;
+  SIZE 9.000 BY 14.400 ;
   SYMMETRY X Y ;
   SITE core ;
   PIN z
     DIRECTION OUTPUT ;
     PORT
       LAYER metal1 ;
-        RECT 2.400 8.450 3.300 12.800 ;
-        RECT 6.200 8.450 7.100 12.800 ;
-        RECT 2.400 7.550 7.100 8.450 ;
-        RECT 6.200 5.250 7.100 7.550 ;
-        RECT 2.400 4.350 7.100 5.250 ;
-        RECT 2.400 1.350 3.300 4.350 ;
-        RECT 6.200 1.350 7.100 4.350 ;
+        RECT 3.750 8.450 4.650 12.800 ;
+        RECT 7.550 8.450 8.450 12.800 ;
+        RECT 3.750 7.550 8.450 8.450 ;
+        RECT 7.550 5.250 8.450 7.550 ;
+        RECT 3.750 4.350 8.450 5.250 ;
+        RECT 3.750 1.350 4.650 4.350 ;
+        RECT 7.550 1.350 8.450 4.350 ;
     END
   END z
   PIN a
@@ -585,7 +585,7 @@ MACRO inv_c
     ANTENNAGATEAREA 15.480000 ;
     PORT
       LAYER metal1 ;
-        RECT 0.500 5.950 5.400 6.850 ;
+        RECT 1.850 5.950 6.750 6.850 ;
     END
   END a
   PIN vdd
@@ -594,9 +594,10 @@ MACRO inv_c
     SHAPE ABUTMENT ;
     PORT
       LAYER metal1 ;
-        RECT 0.000 13.950 7.500 14.400 ;
-        RECT 0.500 7.450 1.400 13.950 ;
-        RECT 4.300 9.050 5.200 13.950 ;
+        RECT 0.000 13.950 9.000 14.400 ;
+        RECT 0.700 7.600 2.750 13.950 ;
+        RECT 5.650 9.050 6.550 13.950 ;
+        RECT 1.800 7.450 2.750 7.600 ;
     END
   END vdd
   PIN vss
@@ -605,12 +606,75 @@ MACRO inv_c
     SHAPE ABUTMENT ;
     PORT
       LAYER metal1 ;
-        RECT 0.500 0.450 1.400 3.900 ;
-        RECT 4.300 0.450 5.200 3.650 ;
-        RECT 0.000 0.000 7.500 0.450 ;
+        RECT 1.850 3.400 2.750 3.900 ;
+        RECT 0.700 0.450 2.750 3.400 ;
+        RECT 5.650 0.450 6.550 3.650 ;
+        RECT 0.000 0.000 9.000 0.450 ;
     END
   END vss
 END inv_c
+
+MACRO inv_d
+  CLASS CORE ;
+  FOREIGN inv_d 0.000 0.000 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 18.000 BY 14.400 ;
+  SYMMETRY X Y ;
+  SITE core ;
+  PIN z
+    DIRECTION OUTPUT ;
+    PORT
+      LAYER metal1 ;
+        RECT 2.550 8.450 3.450 12.900 ;
+        RECT 6.350 8.450 7.250 12.900 ;
+        RECT 10.150 8.450 11.050 12.900 ;
+        RECT 13.950 8.450 14.850 12.900 ;
+        RECT 2.550 7.550 16.750 8.450 ;
+        RECT 15.850 5.250 16.750 7.550 ;
+        RECT 2.550 4.350 16.750 5.250 ;
+        RECT 2.550 1.250 3.450 4.350 ;
+        RECT 6.350 1.250 7.250 4.350 ;
+        RECT 10.150 1.250 11.050 4.350 ;
+        RECT 13.950 1.250 14.850 4.350 ;
+    END
+  END z
+  PIN a
+    DIRECTION INPUT ;
+    ANTENNAGATEAREA 42.239998 ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.650 5.950 15.050 6.850 ;
+    END
+  END a
+  PIN vdd
+    DIRECTION INOUT ;
+    USE POWER ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 13.950 18.000 14.400 ;
+        RECT 0.650 7.450 1.550 13.950 ;
+        RECT 4.450 9.050 5.350 13.950 ;
+        RECT 8.250 9.050 9.150 13.950 ;
+        RECT 12.050 9.050 12.950 13.950 ;
+        RECT 15.850 9.050 16.750 13.950 ;
+    END
+  END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.650 0.450 1.550 3.900 ;
+        RECT 4.450 0.450 5.350 3.650 ;
+        RECT 8.250 0.450 9.150 3.650 ;
+        RECT 12.050 0.450 12.950 3.750 ;
+        RECT 15.850 0.450 16.750 3.650 ;
+        RECT 0.000 0.000 18.000 0.450 ;
+    END
+  END vss
+END inv_d
 
 MACRO nand2_b
   CLASS CORE ;
@@ -804,5 +868,115 @@ MACRO xor2_a
         RECT 7.050 4.350 12.050 5.250 ;
   END
 END xor2_a
+
+MACRO tie0_b
+  CLASS CORE ;
+  FOREIGN tie0_b 0.000 0.000 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 4.500 BY 14.400 ;
+  SYMMETRY X Y ;
+  SITE core ;
+  PIN z
+    DIRECTION OUTPUT ;
+    PORT
+      LAYER metal1 ;
+        RECT 3.050 1.050 3.950 5.250 ;
+    END
+  END z
+  PIN vdd
+    DIRECTION INOUT ;
+    USE POWER ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 13.950 4.500 14.400 ;
+        RECT 1.150 7.450 2.050 13.950 ;
+    END
+  END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 1.150 0.450 2.050 3.900 ;
+        RECT 0.000 0.000 4.500 0.450 ;
+    END
+  END vss
+  OBS
+      LAYER metal1 ;
+        RECT 3.050 6.850 3.950 13.350 ;
+        RECT 1.150 5.950 3.950 6.850 ;
+  END
+END tie0_b
+
+MACRO tie1_b
+  CLASS CORE ;
+  FOREIGN tie1_b 0.000 0.000 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 4.500 BY 14.400 ;
+  SYMMETRY X Y ;
+  SITE core ;
+  PIN z
+    DIRECTION OUTPUT ;
+    PORT
+      LAYER metal1 ;
+        RECT 3.050 1.050 3.950 13.350 ;
+    END
+  END z
+  PIN vdd
+    DIRECTION INOUT ;
+    USE POWER ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 13.950 4.500 14.400 ;
+        RECT 1.150 7.450 2.050 13.950 ;
+    END
+  END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 1.150 0.450 2.050 3.900 ;
+        RECT 0.000 0.000 4.500 0.450 ;
+    END
+  END vss
+  OBS
+      LAYER metal1 ;
+        RECT 1.150 5.400 2.050 6.850 ;
+  END
+END tie1_b
+
+MACRO nwsx
+  CLASS CORE ;
+  FOREIGN nwsx 0.000 0.000 ;
+  ORIGIN 1.300 0.450 ;
+  SIZE 5.600 BY 15.400 ;
+  SYMMETRY X Y ;
+  SITE core ;
+  PIN vdd
+    DIRECTION INOUT ;
+    USE POWER ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 13.950 3.000 14.850 ;
+        RECT 1.050 10.450 1.950 13.950 ;
+    END
+  END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 1.050 0.450 1.950 2.900 ;
+        RECT 0.000 -0.450 3.000 0.450 ;
+    END
+  END vss
+END nwsx
 
 END LIBRARY

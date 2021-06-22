@@ -5,10 +5,13 @@ STDCELLS += dff_b
 STDCELLS += inv_a
 STDCELLS += inv_b
 STDCELLS += inv_c
+STDCELLS += inv_d
 STDCELLS += nand2_b
 STDCELLS += nor2_b
 STDCELLS += xor2_a
 STDCELLS += tie0_b
+STDCELLS += tie1_b
+STDCELLS += nwsx
 
 # CELLS += inv_c
 # CELLS += inv_b

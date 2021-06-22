@@ -1,0 +1,66 @@
+magic
+tech amic5n
+timestamp 1622328588
+<< nwell >>
+rect -130 550 430 1495
+<< nselect >>
+rect 10 670 290 1440
+<< pselect >>
+rect 10 0 290 430
+<< psubstratepdiff >>
+rect 45 270 255 300
+rect 45 220 125 270
+rect 175 220 255 270
+rect 45 170 255 220
+rect 45 120 125 170
+rect 175 120 255 170
+rect 45 90 255 120
+<< nsubstratendiff >>
+rect 45 1315 255 1345
+rect 45 1265 125 1315
+rect 175 1265 255 1315
+rect 45 1215 255 1265
+rect 45 1165 125 1215
+rect 175 1165 255 1215
+rect 45 1115 255 1165
+rect 45 1065 125 1115
+rect 175 1065 255 1115
+rect 45 1035 255 1065
+<< nsubstratencontact >>
+rect 125 1265 175 1315
+rect 125 1165 175 1215
+rect 125 1065 175 1115
+<< psubstratepcontact >>
+rect 125 220 175 270
+rect 125 120 175 170
+<< metal1 >>
+rect 0 1395 300 1485
+rect 105 1315 195 1395
+rect 105 1265 125 1315
+rect 175 1265 195 1315
+rect 105 1215 195 1265
+rect 105 1165 125 1215
+rect 175 1165 195 1215
+rect 105 1115 195 1165
+rect 105 1065 125 1115
+rect 175 1065 195 1115
+rect 105 1045 195 1065
+rect 105 270 195 290
+rect 105 220 125 270
+rect 175 220 195 270
+rect 105 170 195 220
+rect 105 120 125 170
+rect 175 120 195 170
+rect 105 45 195 120
+rect 0 -45 300 45
+<< labels >>
+flabel metal1 s 95 1415 95 1415 2 FreeSans 400 0 0 0 vdd
+port 0 ne
+flabel metal1 s 105 25 105 25 2 FreeSans 400 0 0 0 vss
+port 1 ne
+flabel nwell 10 575 10 575 2 FreeSans 400 0 0 0 vdd
+<< properties >>
+string LEFsite core
+string LEFclass CORE
+string LEFsymmetry X Y
+<< end >>
