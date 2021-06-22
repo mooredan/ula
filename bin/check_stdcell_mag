@@ -63,6 +63,7 @@ open(FH, "<$mag_file") or die
 my %rects; 
 
 my @ports = ();
+my @property_lines = ();
 
 my @label_lls = ();
 # 
@@ -107,6 +108,17 @@ while(<FH>) {
             
             push( @{$rects{$layer}} , [ @coords ] );
 
+            $lastposition = tell(FH);
+         }
+         seek FH, $lastposition, 0;
+         next;
+      }
+
+      if ($layer eq "properties") {
+         while(<FH>) {
+            last if (/^<< .* >>/);
+            chomp();
+            push(@property_lines, $_);
             $lastposition = tell(FH);
          }
          seek FH, $lastposition, 0;
@@ -358,6 +370,27 @@ foreach my $layer (@layers) {
       }
    }
 
+   if ($layer eq "ndiffusion" || $layer eq "pdiffusion") {
+      if ($max_x{$layer} > $width - 45) {
+         printf STDERR "ERROR: $scriptname: $layer cannot extend east past %.2f um\n",
+            ($width - 45) / 100;
+         $errors++;
+      }
+      if ($min_x{$layer} < 45) {
+         printf STDERR "ERROR: $scriptname: $layer cannot extend west past 0.45 um\n";
+         $errors++;
+      }
+      if ($min_y{$layer} < 45) {
+         printf STDERR "ERROR: $scriptname: $layer cannot extend south past 0.45 um\n";
+         $errors++;
+      }
+      if ($max_y{$layer} > $height - 45) {
+         printf STDERR "ERROR: $scriptname: $layer cannot extend north past %.2f um\n",
+            ($height - 45) / 100;
+         $errors++;
+      }
+   }
+
    # these must be contained within the bounding box
    if ($layer =~ /contact/ || $layer =~ /diff/ || $layer =~ /transistor/) {
       if ($min_y{$layer} <= 0 ||
@@ -371,6 +404,17 @@ foreach my $layer (@layers) {
    }
 }
 
+###############################################################
+# check for verilog model, and get the ports
+# for later comparison
+###############################################################
+
+
+
+
+###############################################################
+# check ports
+###############################################################
 # Make sure that all label origins are within the bounding box
 foreach my $itr (@label_lls) {
    my @coor = @$itr;
@@ -398,8 +442,33 @@ for (my $i = 0 ; $i <= $#ports; $i++) {
 
 my $port = pop(@ports);
 if ($port ne "vss") {
-      printf STDERR "ERROR: $scriptname: last port indexed needs to be \"vss\", got \"$port\"\n";
+   printf STDERR "ERROR: $scriptname: last port indexed needs to be \"vss\", got \"$port\"\n";
+   $errors++;
+}
+
+
+###################################################################
+# Check for required properties
+###################################################################
+my %property_found = ();
+
+my @props_needed = ("LEFsite", "LEFclass", "LEFsymmetry");
+
+foreach my $property (@props_needed) {
+   $property_found{$property} = 0;
+}
+
+foreach my $property_line (@property_lines) {
+   my @tarray = split(/\s+/, $property_line);
+   my $property = $tarray[1];
+   $property_found{$property} = 1;
+}
+
+foreach my $property (@props_needed) {
+   if ($property_found{$property} != 1) {
+      printf STDERR "ERROR: $scriptname: no %s property found\n", $property;
       $errors++;
+   }
 }
 
 

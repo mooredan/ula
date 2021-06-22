@@ -6,6 +6,7 @@ STDCELLS += inv_b
 STDCELLS += nand2_b
 STDCELLS += nor2_b
 STDCELLS += xor2_a
+STDCELLS += tie0_b
 
 # CELLS += inv_c
 # CELLS += inv_b

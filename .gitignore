@@ -27,3 +27,4 @@ cell.lib
 *.mapped.v
 yosys.log
 *.lef
+xcircuit.*.log
