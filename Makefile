@@ -2,11 +2,13 @@ SHELL = /bin/bash
 
 include cells.mk
 
+# make -C ps
+# make -C mag
+# make -C lvs
 
 all :
-	make -C ps
-	make -C mag
-	make -C lvs
+	$(MAKE) -C lef 
+	$(MAKE) -C char
 
 .PHONY: check
 check :
