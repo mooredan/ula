@@ -1,0 +1,1 @@
+../synth/gray_counter/gray_counter.mapped.v
