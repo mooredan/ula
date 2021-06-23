@@ -84,6 +84,15 @@ while(<FH>) {
       next;
    }
 
+   if (/^magscale\s/) {
+      my ($tag, $n, $d) = split();
+      if ($n != 1 || $d != 1) {
+         printf STDERR ("ERROR: $scriptname: $cellname: magscale with n=%d and d=%d is not supported\n", $n, $d);
+         exit(1);
+      }
+      next;
+   }
+
    if (/^<< .* >>/) {
       # printf "Found this line: $_";
       my @tarray = split();

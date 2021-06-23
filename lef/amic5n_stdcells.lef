@@ -921,7 +921,7 @@ MACRO tie1_b
     DIRECTION OUTPUT ;
     PORT
       LAYER metal1 ;
-        RECT 3.050 1.050 3.950 13.350 ;
+        RECT 3.050 7.550 3.950 13.350 ;
     END
   END z
   PIN vdd
@@ -946,15 +946,16 @@ MACRO tie1_b
   END vss
   OBS
       LAYER metal1 ;
-        RECT 1.150 5.400 2.050 6.850 ;
+        RECT 1.150 5.950 3.950 6.850 ;
+        RECT 3.050 1.050 3.950 5.950 ;
   END
 END tie1_b
 
 MACRO nwsx
   CLASS CORE ;
   FOREIGN nwsx 0.000 0.000 ;
-  ORIGIN 1.300 0.450 ;
-  SIZE 5.600 BY 15.400 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 3.000 BY 14.400 ;
   SYMMETRY X Y ;
   SITE core ;
   PIN vdd
@@ -963,7 +964,7 @@ MACRO nwsx
     SHAPE ABUTMENT ;
     PORT
       LAYER metal1 ;
-        RECT 0.000 13.950 3.000 14.850 ;
+        RECT 0.000 13.950 3.000 14.400 ;
         RECT 1.050 10.450 1.950 13.950 ;
     END
   END vdd
@@ -974,7 +975,7 @@ MACRO nwsx
     PORT
       LAYER metal1 ;
         RECT 1.050 0.450 1.950 2.900 ;
-        RECT 0.000 -0.450 3.000 0.450 ;
+        RECT 0.000 0.000 3.000 0.450 ;
     END
   END vss
 END nwsx
