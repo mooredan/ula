@@ -4,7 +4,7 @@ puts $PROJECT_DIR
 
 set DESIGN gray_counter
 
-set LIB ${PROJECT_DIR}/char/dlm05_stdcells.lib
+set LIB ${PROJECT_DIR}/char/amic5n_stdcells.lib
 
 yosys -import
 # Synthesis script for yosys created by qflow
