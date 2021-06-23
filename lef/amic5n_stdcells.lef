@@ -954,19 +954,17 @@ END nor2_b
 MACRO or2_b
   CLASS CORE ;
   FOREIGN or2_b 0.000 0.000 ;
-  ORIGIN 0.000 0.000 ;
-  SIZE 10.500 BY 14.400 ;
+  ORIGIN 1.300 0.450 ;
+  SIZE 17.600 BY 15.400 ;
   SYMMETRY X Y ;
   SITE core ;
   PIN z
     DIRECTION OUTPUT ;
     PORT
       LAYER metal1 ;
-        RECT 4.800 3.750 5.700 13.350 ;
-        RECT 2.650 0.450 3.550 3.750 ;
-        RECT 4.800 2.750 7.850 3.750 ;
-        RECT 6.950 0.450 7.850 2.750 ;
-        RECT 0.000 0.000 10.500 0.450 ;
+        RECT 7.050 3.650 7.950 13.350 ;
+        RECT 7.050 2.750 9.950 3.650 ;
+        RECT 9.050 1.050 9.950 2.750 ;
     END
   END z
   PIN a
@@ -974,7 +972,7 @@ MACRO or2_b
     ANTENNAGATEAREA 1.860000 ;
     PORT
       LAYER metal1 ;
-        RECT 0.300 1.150 1.450 2.050 ;
+        RECT 0.300 5.950 2.050 6.850 ;
     END
   END a
   PIN b
@@ -982,7 +980,7 @@ MACRO or2_b
     ANTENNAGATEAREA 1.860000 ;
     PORT
       LAYER metal1 ;
-        RECT 8.500 10.750 10.200 11.650 ;
+        RECT 12.950 5.950 14.700 6.850 ;
     END
   END b
   PIN vdd
@@ -991,22 +989,121 @@ MACRO or2_b
     SHAPE ABUTMENT ;
     PORT
       LAYER metal1 ;
-        RECT 0.000 13.950 10.500 14.400 ;
-        RECT 1.500 11.250 3.550 13.950 ;
-        RECT 2.650 7.450 3.550 11.250 ;
-        RECT 6.950 7.450 7.850 13.950 ;
+        RECT 0.000 13.950 15.000 14.850 ;
+        RECT 0.950 12.450 1.850 13.950 ;
+        RECT 0.950 11.550 2.550 12.450 ;
+        RECT 0.950 7.450 1.850 11.550 ;
+        RECT 5.050 7.100 5.950 13.950 ;
+        RECT 9.050 7.100 9.950 13.950 ;
+        RECT 13.150 12.450 14.050 13.950 ;
+        RECT 12.450 11.550 14.050 12.450 ;
+        RECT 13.150 7.450 14.050 11.550 ;
     END
   END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.950 0.450 1.850 3.900 ;
+        RECT 5.050 0.450 5.950 3.900 ;
+        RECT 13.150 0.450 14.050 3.900 ;
+        RECT 0.000 -0.450 15.000 0.450 ;
+    END
+  END vss
   OBS
       LAYER metal1 ;
-        RECT 0.550 5.250 1.450 8.450 ;
-        RECT 9.050 5.250 9.950 8.450 ;
-        RECT 0.550 4.350 4.150 5.250 ;
-        RECT 6.550 4.350 9.950 5.250 ;
-        RECT 0.550 3.000 1.450 4.350 ;
-        RECT 9.050 2.850 9.950 4.350 ;
+        RECT 3.050 6.300 3.950 8.900 ;
+        RECT 3.050 5.400 5.800 6.300 ;
+        RECT 3.050 2.850 3.950 5.400 ;
+        RECT 11.050 5.250 11.950 8.900 ;
+        RECT 9.200 4.350 11.950 5.250 ;
+        RECT 11.050 2.850 11.950 4.350 ;
   END
 END or2_b
+
+MACRO or2_c
+  CLASS CORE ;
+  FOREIGN or2_c 0.000 0.000 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 19.500 BY 14.400 ;
+  SYMMETRY X Y ;
+  SITE core ;
+  PIN z
+    DIRECTION OUTPUT ;
+    PORT
+      LAYER metal1 ;
+        RECT 14.250 8.450 15.150 12.800 ;
+        RECT 18.050 8.450 18.950 12.800 ;
+        RECT 14.250 7.550 18.950 8.450 ;
+        RECT 18.050 5.250 18.950 7.550 ;
+        RECT 14.250 4.350 18.950 5.250 ;
+        RECT 14.250 1.350 15.150 4.350 ;
+        RECT 18.050 1.350 18.950 4.350 ;
+    END
+  END z
+  PIN a
+    DIRECTION INPUT ;
+    ANTENNAGATEAREA 9.570000 ;
+    PORT
+      LAYER metal1 ;
+        RECT 2.050 5.400 2.950 6.850 ;
+    END
+  END a
+  PIN b
+    DIRECTION INPUT ;
+    ANTENNAGATEAREA 9.570000 ;
+    PORT
+      LAYER metal1 ;
+        RECT 9.300 4.350 10.200 5.250 ;
+    END
+  END b
+  PIN vdd
+    DIRECTION INOUT ;
+    USE POWER ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 13.950 19.500 14.400 ;
+        RECT 2.450 9.150 3.350 13.950 ;
+        RECT 11.200 7.600 13.250 13.950 ;
+        RECT 16.150 9.050 17.050 13.950 ;
+        RECT 12.300 7.450 13.250 7.600 ;
+    END
+  END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.550 0.450 1.450 3.900 ;
+        RECT 4.650 0.450 5.550 2.400 ;
+        RECT 8.800 0.450 9.700 3.750 ;
+        RECT 12.350 3.400 13.250 3.900 ;
+        RECT 11.200 0.450 13.250 3.400 ;
+        RECT 16.150 0.450 17.050 3.650 ;
+        RECT 0.000 0.000 19.500 0.450 ;
+    END
+  END vss
+  OBS
+      LAYER metal1 ;
+        RECT 0.550 8.450 1.450 13.350 ;
+        RECT 4.550 13.250 5.450 13.350 ;
+        RECT 8.800 13.250 9.700 13.350 ;
+        RECT 4.550 12.350 9.700 13.250 ;
+        RECT 4.550 8.450 5.450 12.350 ;
+        RECT 0.550 7.550 5.450 8.450 ;
+        RECT 6.900 6.850 7.800 11.750 ;
+        RECT 8.800 7.450 9.700 12.350 ;
+        RECT 6.900 5.950 17.250 6.850 ;
+        RECT 6.900 3.900 7.800 5.950 ;
+        RECT 2.450 3.000 7.800 3.900 ;
+        RECT 2.450 1.050 3.350 3.000 ;
+        RECT 6.900 1.050 7.800 3.000 ;
+  END
+END or2_c
 
 MACRO xor2_a
   CLASS CORE ;
