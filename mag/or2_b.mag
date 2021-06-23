@@ -300,4 +300,8 @@ flabel metal1 s 865 1085 865 1085 2 FreeSans 400 0 0 0 b
 port 2 ne
 flabel metal1 s 5 5 5 5 2 FreeSans 400 0 0 0 vss
 port 4 ne
+<< properties >>
+string LEFsite core
+string LEFclass CORE
+string LEFsymmetry X Y
 << end >>

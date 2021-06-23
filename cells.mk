@@ -1,6 +1,8 @@
 STDCELLS += and2_b
+STDCELLS += and2_c
 STDCELLS += buf_b
 STDCELLS += buf_c
+STDCELLS += buf_d
 STDCELLS += dff_b
 STDCELLS += inv_a
 STDCELLS += inv_b
@@ -8,6 +10,7 @@ STDCELLS += inv_c
 STDCELLS += inv_d
 STDCELLS += nand2_b
 STDCELLS += nor2_b
+STDCELLS += or2_b
 STDCELLS += xor2_a
 STDCELLS += tie0_b
 STDCELLS += tie1_b
