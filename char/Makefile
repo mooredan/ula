@@ -8,7 +8,7 @@ CELLS := $(shell $(FIND) * -mindepth 0 -maxdepth 0 -type d -exec test -e '{}/Mak
 CELL_LIBS := $(addsuffix /cell.lib,$(CELLS))
 CELLS_CLEAN := $(patsubst %,%.clean,$(CELLS))
 
-LIBNAME := amic5n_stdcells.lib
+LIBNAME := amic5n_tt.lib
 
 
 all : $(LIBNAME)
