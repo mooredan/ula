@@ -7,7 +7,7 @@ include ../cells.mk
 
 LEFS := $(addsuffix .lef, $(STDCELLS))
 
-LIBNAME := amic5n_stdcells.lef
+LIBNAME := amic5n_std_cell.lef
 
 
 all : $(LIBNAME)
@@ -18,9 +18,12 @@ all : $(LIBNAME)
 	mag2lef -c $*
 
 
-$(LIBNAME) : $(LEFS) lib_header.txt
+$(LIBNAME) : $(LEFS)
 	@ echo "# LEF" > $@
-	@ cat lib_header.txt >> $@
+	@ echo "VERSION 5.7 ;" >> $@
+	@ echo "BUSBITCHARS \"[]\" ;" >> $@
+	@ echo "DIVIDERCHAR  \"/\" ;" >> $@
+	@ echo "" >> $@
 	@ for lef in $(LEFS); do cat $${lef} >> $@; done
 	@ echo "END LIBRARY" >> $@
 
