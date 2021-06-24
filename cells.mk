@@ -16,6 +16,8 @@ STDCELLS += xor2_a
 STDCELLS += tie0_b
 STDCELLS += tie1_b
 STDCELLS += nwsx
+STDCELLS += fill1
+STDCELLS += fill2
 
 # CELLS += mtc2
 # CELLS += nor2_a
