@@ -1,0 +1,19 @@
+magic
+tech amic5n
+timestamp 1624550056
+<< nwell >>
+rect -130 550 430 1495
+<< nselect >>
+rect -10 0 310 430
+<< pselect >>
+rect -10 670 310 1440
+<< metal1 >>
+rect 0 1395 300 1485
+rect 0 -45 300 45
+<< labels >>
+flabel metal1 s 5 5 5 5 2 FreeSans 400 0 0 0 vss
+port 3 ne
+flabel metal1 s 20 1415 20 1415 2 FreeSans 400 0 0 0 vdd
+port 2 ne
+flabel nwell 245 600 245 600 2 FreeSans 400 0 0 0 vdd
+<< end >>
