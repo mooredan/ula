@@ -36,6 +36,8 @@ if($opt_c) {
 }
 
 
+
+
 ######################################
 # default values for config variables
 ######################################
@@ -53,14 +55,15 @@ our $cellname = basename(getcwd);
 
 our @output_pins = ();
 our @input_pins = ();
-
 our %function;
+our %max_cap;
+our %max_trans;
 
 
 
 our $area = 21.6; # default value, 1 track wide by 1 cell height
 
-if ($opt_c) {
+if ($opt_c || -r $config_file) {
    require $config_file;
 }
 
@@ -91,6 +94,8 @@ switch($celltype) {
    case "inv"   { unless(defined($function{"z"})) {$function{"z"} = "!a"}}
    case "buf"   { unless(defined($function{"z"})) {$function{"z"} = "a"}}
    case "dff"   { unless(defined($function{"q"})) {$function{"q"} = "IQ"}}
+   case "tie0"  { unless(defined($function{"z"})) {$function{"z"} = "0"}}
+   case "tie1"  { unless(defined($function{"z"})) {$function{"z"} = "1"}}
    else {
       printf STDERR "ERROR: $scriptname: Cell type \"%s\" is not recognized\n", $celltype;
       exit(1);
@@ -148,8 +153,6 @@ my %hold_itt1s;
 my %hold_itt2s;
 
 
-my %max_cap;
-my %max_trans;
 my %pin_cap;
 
 my %when_pin;

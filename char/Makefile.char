@@ -46,7 +46,7 @@ cell.cir :
 area.txt : ${PROJECT_DIR}/mag/$(CELL).mag
 	get_stdcell_area -c $(CELL) > $@
 
-cell.lib : $(LOGS) area.txt
+cell.lib : $(LOGS) area.txt $(wildcard cfg.pl)
 	cell2lib -o $@
 
 
