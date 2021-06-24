@@ -1211,6 +1211,26 @@ cell(or2_c) {
   } /* end of output pin */
 } /* end of cell */
 
+cell(tie0_b) {
+  area : 64.80;
+  pin(z) {
+    direction : output;
+    capacitance : 0;
+    function : "0";
+    max_capacitance : 0.475;
+  } /* end of output pin */
+} /* end of cell */
+
+cell(tie1_b) {
+  area : 64.80;
+  pin(z) {
+    direction : output;
+    capacitance : 0;
+    function : "1";
+    max_capacitance : 0.475;
+  } /* end of output pin */
+} /* end of cell */
+
 cell(xor2_a) {
   area : 216.00;
   pin(a) {

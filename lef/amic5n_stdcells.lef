@@ -954,8 +954,8 @@ END nor2_b
 MACRO or2_b
   CLASS CORE ;
   FOREIGN or2_b 0.000 0.000 ;
-  ORIGIN 1.300 0.450 ;
-  SIZE 17.600 BY 15.400 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 15.000 BY 14.400 ;
   SYMMETRY X Y ;
   SITE core ;
   PIN z
@@ -989,7 +989,7 @@ MACRO or2_b
     SHAPE ABUTMENT ;
     PORT
       LAYER metal1 ;
-        RECT 0.000 13.950 15.000 14.850 ;
+        RECT 0.000 13.950 15.000 14.400 ;
         RECT 0.950 12.450 1.850 13.950 ;
         RECT 0.950 11.550 2.550 12.450 ;
         RECT 0.950 7.450 1.850 11.550 ;
@@ -1009,7 +1009,7 @@ MACRO or2_b
         RECT 0.950 0.450 1.850 3.900 ;
         RECT 5.050 0.450 5.950 3.900 ;
         RECT 13.150 0.450 14.050 3.900 ;
-        RECT 0.000 -0.450 15.000 0.450 ;
+        RECT 0.000 0.000 15.000 0.450 ;
     END
   END vss
   OBS
@@ -1286,5 +1286,59 @@ MACRO nwsx
     END
   END vss
 END nwsx
+
+MACRO fill1
+  CLASS CORE ;
+  FOREIGN fill1 0.000 0.000 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 1.500 BY 14.400 ;
+  SYMMETRY X Y ;
+  SITE core ;
+  PIN vdd
+    DIRECTION INOUT ;
+    USE POWER ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 13.950 1.500 14.400 ;
+    END
+  END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 0.000 1.500 0.450 ;
+    END
+  END vss
+END fill1
+
+MACRO fill2
+  CLASS CORE ;
+  FOREIGN fill2 0.000 0.000 ;
+  ORIGIN 0.000 0.000 ;
+  SIZE 3.000 BY 14.400 ;
+  SYMMETRY X Y ;
+  SITE core ;
+  PIN vdd
+    DIRECTION INOUT ;
+    USE POWER ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 13.950 3.000 14.400 ;
+    END
+  END vdd
+  PIN vss
+    DIRECTION INOUT ;
+    USE GROUND ;
+    SHAPE ABUTMENT ;
+    PORT
+      LAYER metal1 ;
+        RECT 0.000 0.000 3.000 0.450 ;
+    END
+  END vss
+END fill2
 
 END LIBRARY
