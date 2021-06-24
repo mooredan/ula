@@ -1,0 +1,2 @@
+set_layer_rc -via via1 -resistance 1.0
+set_layer_rc -via via2 -resistance 1.0

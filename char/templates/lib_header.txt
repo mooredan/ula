@@ -14,6 +14,7 @@ library(amic5n_stdcells) {
   default_fanout_load : 1;
   default_inout_pin_cap : 0.02;
   default_input_pin_cap : 0.02;
+  default_max_transition : 1.5;
   default_output_pin_cap : 0.00;
   slew_upper_threshold_pct_rise : 80;
   slew_lower_threshold_pct_rise : 20;
