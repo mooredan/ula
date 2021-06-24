@@ -1,6 +1,6 @@
 magic
 tech amic5n
-timestamp 1624550056
+timestamp 1624550057
 << nwell >>
 rect -130 550 430 1495
 << nselect >>
@@ -12,8 +12,12 @@ rect 0 1395 300 1485
 rect 0 -45 300 45
 << labels >>
 flabel metal1 s 5 5 5 5 2 FreeSans 400 0 0 0 vss
-port 3 ne
+port 1 ne
 flabel metal1 s 20 1415 20 1415 2 FreeSans 400 0 0 0 vdd
-port 2 ne
+port 0 ne
 flabel nwell 245 600 245 600 2 FreeSans 400 0 0 0 vdd
+<< properties >>
+string LEFsite core
+string LEFclass CORE
+string LEFsymmetry X Y
 << end >>
