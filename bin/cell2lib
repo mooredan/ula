@@ -96,6 +96,12 @@ switch($celltype) {
    case "dff"   { unless(defined($function{"q"})) {$function{"q"} = "IQ"}}
    case "tie0"  { unless(defined($function{"z"})) {$function{"z"} = "0"}}
    case "tie1"  { unless(defined($function{"z"})) {$function{"z"} = "1"}}
+   case "nwsx"  { }
+   case "fill1" { }
+   case "fill2" { }
+   case "fill4" { }
+   case "fill8" { }
+   case "fill16" { }
    else {
       printf STDERR "ERROR: $scriptname: Cell type \"%s\" is not recognized\n", $celltype;
       exit(1);
