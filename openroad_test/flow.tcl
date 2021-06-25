@@ -33,11 +33,11 @@ auto_place_pins metal2
 
 ################################################################
 # Tapcell insertion
-eval tapcell $tapcell_args
+### eval tapcell $tapcell_args
 
 ################################################################
 # Power distribution network insertion
-pdngen -verbose $pdn_cfg
+### pdngen -verbose $pdn_cfg
 
 ################################################################
 # Global placement
@@ -54,7 +54,7 @@ set_dont_use $dont_use
 #   -init_density_penalty $global_place_density_penalty \
 #   -pad_left $global_place_pad -pad_right $global_place_pad
 
-global_placement
+global_placement -verbose 10
 
 
 
@@ -91,7 +91,7 @@ report_check_types -max_slew -max_capacitance -max_fanout -violators
 
 # Clone clock tree inverters next to register loads
 # so cts does not try to buffer the inverted clocks.
-repair_clock_inverters
+##### repair_clock_inverters
 
 clock_tree_synthesis -root_buf $cts_buffer -buf_list $cts_buffer -sink_clustering_enable
 
@@ -124,15 +124,21 @@ utl::metric "DPL::errors" $dpl_errors
 
 ################################################################
 # Global routing
+puts {Starting global routing....}
 set route_guide [make_result_file ${design}_${platform}.route_guide]
+
 foreach layer_adjustment $global_routing_layer_adjustments {
   lassign $layer_adjustment layer adjustment
   set_global_routing_layer_adjustment $layer $adjustment
 }
+
 set_routing_layers -signal $global_routing_layers \
   -clock $global_routing_clock_layers
+
+
 global_route -guide_file $route_guide \
-  -overflow_iterations 100
+  -overflow_iterations 100 \
+  -verbose 2
 
 set antenna_report [make_result_file ${design}_${platform}_ant.log]
 set antenna_errors [check_antennas -simple_report -report_file $antenna_report]
@@ -146,15 +152,19 @@ if { $antenna_errors > 0 } {
 set verilog_file [make_result_file ${design}_${platform}.v]
 write_verilog -remove_cells $filler_cells $verilog_file
 
+set routed_def [make_result_file ${design}_${platform}_globalroute.def]
+write_def $routed_def
+
+
 ################################################################
 # Detailed routing
-
+puts {Starting detailed routing...}
 set_thread_count [exec getconf _NPROCESSORS_ONLN]
 detailed_route -guide $route_guide \
                -output_guide [make_result_file "${design}_${platform}_output_guide.mod"] \
                -output_drc [make_result_file "${design}_${platform}_route_drc.rpt"] \
                -output_maze [make_result_file "${design}_${platform}_maze.log"] \
-               -verbose 0
+               -verbose 1
 
 set drv_count [detailed_route_num_drvs]
 utl::metric "DRT::drv" $drv_count
