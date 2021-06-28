@@ -11,12 +11,12 @@ STDCELLS_CLEAN := $(patsubst %,%.clean,$(STDCELLS))
 
 LIBNAME := amic5n_tt.lib
 
-all : cells $(LIBNAME)
-
 
 %/cell.lib :
 	+ $(MAKE) -C $(subst /cell.lib,,$@) -f ../Makefile.char
 
+
+all : cells $(LIBNAME)
 
 
 $(LIBNAME) : $(CELL_LIBS) templates/lib_header.txt
@@ -35,6 +35,7 @@ $(LIBNAME) : $(CELL_LIBS) templates/lib_header.txt
 cells: $(STDCELLS)
 
 $(STDCELLS):
+	@ if [[ ! -d $@ ]]; then mkdir $@; fi
 	@ $(MAKE) -C $@ -f ../Makefile.char
 
 
