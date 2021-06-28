@@ -328,6 +328,7 @@ flabel metal1 s 5 5 5 5 2 FreeSans 400 0 0 0 vss
 port 4 ne
 flabel nwell 265 610 265 610 2 FreeSans 400 0 0 0 vdd
 << properties >>
+string FIXED_BBOX 0 0 1500 1440
 string LEFsite core
 string LEFclass CORE
 string LEFsymmetry X Y

@@ -286,11 +286,9 @@ style gdsii
  calma 46 0
 
  layer CV1 via1
- squares 0 60 90
  calma 50 0
 
  layer CV2 via2
- squares 0 60 90
  calma 61 0
 
  templayer XPAD1 pad

@@ -807,6 +807,7 @@ port 1 ne
 flabel metal1 s 1185 470 1185 470 2 FreeSans 400 0 0 0 z
 port 0 ne
 << properties >>
+string FIXED_BBOX 0 0 2700 1440
 string LEFsite core
 string LEFclass CORE
 string LEFsymmetry X Y

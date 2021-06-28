@@ -542,8 +542,9 @@ if ($got_verports) {
 # Check for required properties
 ###################################################################
 my %property_found = ();
+my %property_values = ();
 
-my @props_needed = ("LEFsite", "LEFclass", "LEFsymmetry");
+my @props_needed = ("LEFsite", "LEFclass", "LEFsymmetry", "FIXED_BBOX");
 
 foreach my $property (@props_needed) {
    $property_found{$property} = 0;
@@ -553,6 +554,9 @@ foreach my $property_line (@property_lines) {
    my @tarray = split(/\s+/, $property_line);
    my $property = $tarray[1];
    $property_found{$property} = 1;
+
+   my @last_elements = @tarray[2 .. $#tarray];
+   $property_values{$property} = join(" ", @last_elements);
 }
 
 foreach my $property (@props_needed) {
@@ -562,6 +566,45 @@ foreach my $property (@props_needed) {
    }
 }
 
+my $this_property = "FIXED_BBOX";
+if($property_found{$this_property}) {
+  my $values = $property_values{$this_property};
+  # printf "values: $values\n";
+
+  my ($llx, $lly, $urx, $ury) = split(/\s+/, $values);
+
+  if ($llx != 0 || $lly != 0 || $urx != $width || $ury != $height) {
+      printf STDERR "ERROR: $scriptname: $cellname: Value of property $this_property needs to be  0 0 $width $height\n";
+      $errors++;
+  }  
+}
+
+$this_property = "LEFsite";
+if($property_found{$this_property}) {
+  my $values = $property_values{$this_property};
+  if ($values ne "core") {
+      printf STDERR "ERROR: $scriptname: $cellname: Value of property $this_property needs to be \"core\"\n";
+      $errors++;
+  }  
+}
+
+$this_property = "LEFclass";
+if($property_found{$this_property}) {
+  my $values = $property_values{$this_property};
+  if ($values ne "CORE") {
+      printf STDERR "ERROR: $scriptname: $cellname: Value of property $this_property needs to be \"CORE\"\n";
+      $errors++;
+  }  
+}
+
+$this_property = "LEFsymmetry";
+if($property_found{$this_property}) {
+  my $values = $property_values{$this_property};
+  if ($values ne "X Y") {
+      printf STDERR "ERROR: $scriptname: $cellname: Value of property $this_property needs to be \"X Y\"\n";
+      $errors++;
+  }  
+}
 
 # print Dumper @label_lls;
 # print Dumper @ports;
