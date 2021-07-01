@@ -47,12 +47,12 @@ fi
 
 # Check for necessary environment variables
 if [[ -z ${PROJECT_DIR+x} ]]; then
-   >&2 echo "ERROR: ${SCRIPTNAME}: Environment variable ${PROJECT_DIR} must be set"
+   >&2 echo "ERROR: ${SCRIPTNAME}: Environment variable PROJECT_DIR must be set"
    exit 1
 fi
 
 if [[ -z ${TECH+x} ]]; then
-   >&2 echo "ERROR: ${SCRIPTNAME}: Environment variable ${TECH} must be set"
+   >&2 echo "ERROR: ${SCRIPTNAME}: Environment variable TECH must be set"
    exit 1
 fi
 
