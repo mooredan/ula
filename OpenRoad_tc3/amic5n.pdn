@@ -1,0 +1,55 @@
+
+
+# POWER or GROUND #Std. cell rails starting with power or ground rails at the bottom of the core area
+set ::rails_start_with "GROUND" ;
+
+# POWER or GROUND #Upper metal stripes starting with power or ground rails at the left/bottom of the core area
+set ::stripes_start_with "POWER" ;
+
+# Power nets
+set ::power_nets "vdd"
+set ::ground_nets "vss"
+
+
+set pdngen::global_connections {
+  vdd {
+    {inst_name .* pin_name vdd}
+  }
+  vss {
+    {inst_name .* pin_name vss}
+  }
+}
+
+##===> Power grid strategy
+# Ensure pitches and offsets will make the stripes fall on track
+
+pdngen::specify_grid stdcell {
+    name grid
+    rails {
+        metal1 {width 0.9 offset 0}
+        metal2 {width 0.9 offset 0}
+    }
+    straps {
+        metal3 {width 2.2 pitch 81 offset 1.5}
+    }
+    connect {{metal1 metal2} {metal2 metal3}}
+}
+
+# pdngen::specify_grid macro {
+#     orient {R0 R180 MX MY}
+#     power_pins "VPWR"
+#     ground_pins "VGND"
+#     blockages "met1 met2 met3"
+#     connect {{met4_PIN_ver met5}}
+# }
+# 
+# # Need a different strategy for rotated rams to connect to rotated pins
+# # No clear way to do this for a 5 metal layer process
+# pdngen::specify_grid macro {
+#     orient {R90 R270 MXR90 MYR90}
+#     power_pins "VPWR"
+#     ground_pins "VGND"
+#     blockages "met1 met2 met3 met4"
+#     connect {{met4_PIN_hor met5}}
+# }
+
