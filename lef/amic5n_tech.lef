@@ -124,9 +124,9 @@ VIARULE viagen21 GENERATE
 END viagen21
 
 VIARULE viagen32 GENERATE
-  LAYER metal3 ;
-    ENCLOSURE 0.2 0.2 ;
   LAYER metal2 ;
+    ENCLOSURE 0.2 0.2 ;
+  LAYER metal3 ;
     ENCLOSURE 0.2 0.2 ;
   LAYER via2 ;
     RECT -0.25 -0.25 0.25 0.25 ;
