@@ -19,6 +19,9 @@ STDCELLS += nwsx
 STDCELLS += fill1
 STDCELLS += fill2
 STDCELLS += decap5
+STDCELLS += decap6
+STDCELLS += decap7
+STDCELLS += decap8
 
 # CELLS += mtc2
 # CELLS += nor2_a
