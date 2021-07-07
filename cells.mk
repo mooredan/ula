@@ -21,6 +21,9 @@ STDCELLS += fill2
 STDCELLS += decap3
 STDCELLS += decap4
 STDCELLS += decap5
+STDCELLS += decap6
+STDCELLS += decap7
+STDCELLS += decap8
 
 # CELLS += mtc2
 # CELLS += nor2_a
