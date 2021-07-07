@@ -102,6 +102,8 @@ switch($celltype) {
    case "fill4" { }
    case "fill8" { }
    case "fill16" { }
+   case "decap3" { }
+   case "decap4" { }
    case "decap5" { }
    else {
       printf STDERR "ERROR: $scriptname: Cell type \"%s\" is not recognized\n", $celltype;

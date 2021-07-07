@@ -18,6 +18,8 @@ STDCELLS += tie1_b
 STDCELLS += nwsx
 STDCELLS += fill1
 STDCELLS += fill2
+STDCELLS += decap3
+STDCELLS += decap4
 STDCELLS += decap5
 
 # CELLS += mtc2

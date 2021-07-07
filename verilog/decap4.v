@@ -1,4 +1,4 @@
 `celldefine
-module decap5 ();
+module decap4 ();
 endmodule
 `endcelldefine
