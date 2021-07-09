@@ -1,0 +1,260 @@
+#!/bin/bash
+
+SCRIPTNAME=$(basename $0)
+
+usage() {
+   echo "Usage: ${SCRIPTNAME} -c <cellname> [-d]" 1>&2
+   exit 1
+}
+
+help() {
+   echo "Help" 1>&2
+   exit 1
+}
+
+DEBUG=0
+
+
+while getopts "hc:d" o; do
+    case "${o}" in
+        h)
+            help
+            ;;
+        c)
+            CELL=${OPTARG}
+            ;;
+        d)
+            DEBUG=1
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+# if [ -z "${s}" ] || [ -z "${p}" ]; then
+#     usage
+# fi
+#
+# echo "s = ${s}"
+# echo "p = ${p}"
+
+if [ -z "${CELL}" ]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Option -c must be specified"
+   exit 1
+fi
+
+# Check for necessary environment variables
+if [[ -z ${PROJECT_DIR+x} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Environment variable PROJECT_DIR must be set"
+   exit 1
+fi
+
+TOOL_DIR="/usr/local/bin"
+TOOL_NAME="xcircuit"
+TOOL_PATH="${TOOL_DIR}/${TOOL_NAME}"
+
+if [[ ! -e ${TOOL_PATH} ]]; then
+   >&2 echo ERROR: ${TOOL_PATH} does not exist
+   exit 1
+fi
+
+if [[ ! -x ${TOOL_PATH} ]]; then
+   >&2 echo ERROR: ${TOOL_PATH} is not executable 
+   exit 1
+fi
+
+
+PS_DIR="${PROJECT_DIR}/ps"
+
+if [[ ! -d ${PS_DIR} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: Directory ${PS_DIR} does not exist" 2>&1
+   exit 1
+fi
+
+# Locate xcircuit file for cell
+PS_FILE="${PS_DIR}/${CELL}.ps"
+if [[ ! -r ${PS_FILE} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: File ${PS_FILE} is not readable" 2>&1
+   exit 1
+fi
+
+
+# 
+SP_DIR="${PROJECT_DIR}/sp"
+if [[ ! -d ${SP_DIR} ]]; then
+   mkdir ${SP_DIR}
+fi
+if [[ ! -d ${SP_DIR} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: Directory ${SP_DIR} does not exist" 2>&1
+   exit 1
+fi
+
+RCFILE="${PROJECT_DIR}/.xcircuitrc"
+if [[ ! -r ${RCFILE} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: File ${RCFILE} is not readable" 2>&1
+   exit 1
+fi
+
+
+# Cleanup last run if it exists
+PS_SP_FILE="${PS_DIR}/${CELL}.sp"
+SP_FILE="${SP_DIR}/${CELL}.sp"
+
+if [[ -e ${PS_SP_FILE} ]]; then
+   rm -f ${PS_SP_FILE}
+fi
+if [[ -e ${PS_SP_FILE} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: Could not delete existing ${PS_SP_FILE}" 2>&1
+   exit 1
+fi
+
+if [[ -e ${SP_FILE} ]]; then
+   rm -f ${SP_FILE}
+fi
+if [[ -e ${SP_FILE} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: Could not delete existing ${SP_FILE}" 2>&1
+   exit 1
+fi
+
+set -e
+# set -x
+# ensure that the tool is in the path
+# PATH_TO_TOOL=$(which ${TOOL})
+
+
+# make a temporary working directory
+TMPDIR=$(mktemp --tmpdir=/tmp --directory ${SCRIPTNAME}_XXXXX)
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo TMPDIR: ${TMPDIR}
+fi
+
+if [[ ! -d ${TMPDIR} ]]; then
+   echo "ERROR: ${SCRIPTNAME}: Temporary directory was not created" 2>&1
+   exit 1
+fi
+
+TCL_FILE="${TMPDIR}/${SCRIPTNAME}.tcl"
+
+cat <<EOF > ${TCL_FILE}
+set CELLNAME ${CELL}
+page load  \$CELLNAME
+netlist write spice sp false
+quit
+EOF
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo
+   echo ================ ${TCL_FILE} =================== 
+   cat ${TCL_FILE}
+   echo ================================================
+   echo
+fi
+
+
+RC_FILE="${TMPDIR}/.xcircuitrc"
+
+cat <<EOF > ${RC_FILE}
+set PROJECT_DIR \$env(PROJECT_DIR)
+config search lib  ".:\$XCIRCUIT_LIB_DIR:\$PROJECT_DIR/lps"
+config search file ".:\$PROJECT_DIR/ps"
+EOF
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo
+   echo ================ ${RC_FILE} =================== 
+   cat ${RC_FILE}
+   echo ================================================
+   echo
+fi
+
+LOG="${TMPDIR}/${TOOL_NAME}.log"
+
+# Run the tool from the temp directory
+cd ${TMPDIR}
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo PWD: $(/bin/pwd)
+fi
+
+
+
+CMD="${TOOL_PATH} -nowindow -noconsole < ${TCL_FILE} > ${LOG} 2>&1"
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo ${CMD}
+fi
+
+${TOOL_PATH} -nowindow -noconsole < ${TCL_FILE} > ${LOG} 2>&1
+rtn=$?
+
+if [[ ${rtn} -ne 0 ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: rtn value non-zero: ${rtn}"
+   exit 1
+fi
+
+if [[ ! -r ${LOG} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: File ${LOG} is not readable"
+   exit 1
+fi
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo
+   echo -n ================ ${LOG} =================== 
+   cat ${LOG}
+   echo ================================================
+   echo
+fi
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   /bin/ls -l ${TMPDIR}
+fi
+
+set +e
+ERRORS=$(grep -c -e "couldn't be read" ${LOG})
+if [[ ${ERRORS} -ne 0 ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: ${ERRORS} errors in ${LOG}"
+   exit 1
+fi
+
+# was the spice file created?
+TMP_SP_FILE="${TMPDIR}/${CELL}.sp"
+if [[ ! -r ${TMP_SP_FILE} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: File ${TMP_SP_FILE} is not readable, check ${LOG}"
+   exit 1
+fi
+
+set +e
+# set -x
+WARNINGS=$(grep -e "Total of .* warnings" ${LOG} | awk '{print $3}')
+ERRORS=$(grep -c -e 'Failed' -e 'Usage:' -e 'No such file' ${LOG})
+
+if [[ ${ERRORS} -ne 0 ]]; then
+   rm -f ${PS_SP_FILE}
+   >&2 echo "ERROR: ${SCRIPTNAME}: ${ERRORS} in ${LOG}"
+   exit 1
+fi
+
+if [[ ${DEBUG} -eq 1 ]]; then
+   echo WARNINGS: ${WARNINGS}
+fi
+
+if [[ ${WARNINGS} -ne 0 ]]; then
+   echo "WARNING: ${SCRIPTNAME}: ${WARNINGS} warnings in ${LOG}" 2>&1
+   grep Feedback ${LOG}
+fi
+
+cp -p ${TMP_SP_FILE} ${SP_FILE}
+
+if [[ ! -r ${SP_FILE} ]]; then
+   >&2 echo "ERROR: ${SCRIPTNAME}: Copy to ${SP_FILE} not successful"
+   exit 1
+fi
+
+if [[ ${ERRORS} -eq 0 && ${WARNINGS} -eq 0 ]]; then
+   if [[ ${DEBUG} -eq 0 ]]; then
+      rm -rf ${TMPDIR}
+   fi
+fi
+
+exit 0

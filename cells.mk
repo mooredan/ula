@@ -4,6 +4,7 @@ STDCELLS += buf_b
 STDCELLS += buf_c
 STDCELLS += buf_d
 STDCELLS += dff_b
+STDCELLS += dffr_b
 STDCELLS += inv_a
 STDCELLS += inv_b
 STDCELLS += inv_c

@@ -327,8 +327,8 @@ foreach my $layer (@layers) {
 
    unless($cellname =~ /nwsx/) {
       if ($layer eq "nselect") {
-         if ($min_x{$layer} != -10) {
-            printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend west to -0.1 um\n";
+         if ($min_x{$layer} != -10 && $min_x{$layer} != 10) {
+            printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend west to -0.1 um (or 0.1um)\n";
             $errors++;
          }
          if ($max_x{$layer} != ($width + 10)) {
@@ -343,13 +343,13 @@ foreach my $layer (@layers) {
       }
 
       if ($layer eq "pselect") {
-         if ($min_x{$layer} != -10) {
-            printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend west to -0.1 um\n";
+         if ($min_x{$layer} != -10 && $min_x{$layer} != 10) {
+            printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend west to -0.1 um (or 0.1 um)\n";
             $errors++;
          }
-         if ($max_x{$layer} != ($width + 10)) {
-             printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend east to %.2f um\n",
-             ($width + 10) / 100;
+         if ($max_x{$layer} != ($width + 10) && $max_x{$layer} != ($width - 10)) {
+             printf STDERR "ERROR: $scriptname: $cellname: $layer needs to extend east to %.2f um (or %.2f um)\n",
+             ($width + 10) / 100, ($width - 10) / 100 ;
              $errors++;
          }
          if ($max_y{$layer} != $height) {

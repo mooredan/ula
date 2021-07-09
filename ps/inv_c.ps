@@ -1,7 +1,7 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%Title: inv_c.ps
-%%Creator: XCircuit v0.0 rev314453014
-%%CreationDate: Sat Nov 24 14:25:44 2018
+%%Creator: XCircuit v0.0 rev1020583797
+%%CreationDate: Fri Jul  9 13:57:42 2021
 %%Pages: 1
 %%BoundingBox: 68 68 196 301
 %%DocumentNeededResources: font Times-Roman Times-RomanISO 
@@ -111,10 +111,10 @@
 /begingate {dup type /dicttype ne {1 dict} if begin	% default params
 	dup type /dicttype ne {1 dict} if begin		% instanced params
 	/hlevel hlevel 1 add def /defColor currentcolor sce 3 array astore
-	def gsave sce translate 0 0 moveto neg rotate dup type /nametype
-	eq not { dup abs currentlinewidth exch div setlinewidth } { pop }
-	ifelse dup abs scale clipped 1 and 1 eq {/clipped clipped 1 add def}
-	if} bind def
+	def gsave sce dup type /nametype eq { pop } if translate 0 0 moveto
+	neg rotate dup type /nametype eq not { dup abs currentlinewidth exch
+	div setlinewidth } { pop } ifelse dup abs scale clipped 1 and 1 eq
+	{/clipped clipped 1 add def} if} bind def
 /endgate { /hlevel hlevel 1 sub def grestore defColor aload pop cRedef
 	scb end end endclip} bind def
 
@@ -212,7 +212,7 @@ endgate
 (inv_c) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
 mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
 0.180 0.545 0.341 scb
-mark ( %pz %pa %pvdd %pvss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
 0.000 1.000 64 -128 infolabel
 sce
 1.000 0.000 48 0 digital::invert
@@ -278,7 +278,7 @@ begingate
 1 1.000 0 0 0 32 2 polygon
 1 1.000 -32 32 32 32 2 polygon
 (vdd) {/Times-Roman cf} 2 17 0.000 0.900 0 38 label
-0.933 0.604 0.000 scb
+0.934 0.604 0.000 scb
 (vdd) {/Times-Roman cf} 2 13 0.000 1.000 0 0 pinglobal
 endgate
 } def
@@ -290,7 +290,7 @@ begingate
 1 1.000 -32 -32 32 -32 2 polygon
 1 1.000 -18 -46 18 -46 2 polygon
 1 1.000 -4 -60 4 -60 2 polygon
-0.933 0.604 0.000 scb
+0.934 0.604 0.000 scb
 (vss) {/Times-Roman cf} 2 1 0.000 1.000 0 0 pinglobal
 endgate
 } def
@@ -315,8 +315,8 @@ endgate
 1.0000 inchscale
 2.6000 setlinewidth 864 12 translate
 
-1.000 0.000 -480 544 <</@index (1001) /@width (5.7u) >> c5devlib::nMOS
-1.000 0.000 -480 800 <</@index (1000) /@width (12u) >> c5devlib::pMOS
+1.000 0.000 -480 544 <</@fingers (3) /@index (1001) /@width (2.75u) >> c5devlib::nMOS
+1.000 0.000 -480 800 <</@fingers (3) /@index (1000) /@width (5.85u) >> c5devlib::pMOS
 1 1.000 -544 800 -608 800 -608 544 -544 544 4 polygon
 1 1.000 -480 608 -480 736 2 polygon
 1 1.000 -672 672 -608 672 2 polygon

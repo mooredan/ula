@@ -1,0 +1,87 @@
+SHELL := /bin/bash
+
+CELL := $(shell basename `/bin/pwd`)
+
+CELL_MAG := ${PROJECT_DIR}/mag/$(CELL).mag
+CELL_EXT := ${PROJECT_DIR}/ext/$(CELL).ext
+CELL_CIR := ${PROJECT_DIR}/cir/$(CELL).cir
+CELL_PS := ${PROJECT_DIR}/ps/$(CELL).ps
+CELL_SP := ${PROJECT_DIR}/sp/$(CELL).sp
+
+
+all : PASS
+
+
+$(CELL_EXT) : $(CELL_MAG)
+	mag2ext -c $(CELL)
+
+$(CELL_CIR) : $(CELL_EXT)
+	ext2cir -c $(CELL)
+
+$(CELL_SP) : $(CELL_PS)
+	ps2sp -c $(CELL)
+
+
+# default setup.tcl file if none exists
+setup.tcl :
+	@ echo ignore class c > $@
+	@ echo property nfet remove as ad ps pd >> $@
+	@ echo property pfet remove as ad ps pd >> $@
+	
+
+lvs.tcl :
+	@ echo set layout [list $(CELL_CIR) $(CELL)] > $@
+	@ echo set schematic [list $(CELL_SP) $(CELL)] >> $@
+	@ echo lvs \$$layout \$$schematic setup.tcl lvs.log >> $@
+	@ echo verify >> $@
+
+
+.PRECIOUS : netgen.log
+netgen.log : $(CELL_CIR) $(CELL_SP) lvs.tcl setup.tcl
+	@ rm -f $@  netgen.fail.log lvs.log lvs.fail.log PASS
+	netgen -batch source lvs.tcl > netgen.log 2>&1
+	@ if [[ ! -r lvs.log ]]; then \
+	   echo ERROR: cell: $(CELL) - lvs.log not readable;\
+	   mv netgen.log netgen.fail.log;\
+	   false;\
+	fi
+
+
+PASS : netgen.log
+	@ if [[ ! -r lvs.log ]]; then \
+	   echo ERROR: cell: $(CELL) - lvs.log not readable;\
+	   false;\
+	fi
+	@ CIRCUIT_PASS=`grep -c -e 'Circuits match uniquely.' lvs.log`; \
+	NETLIST_PASS=`grep -c -e 'Netlists match uniquely.' lvs.log`; \
+	PIN_PASS=`grep -c -e 'Cell pin lists are equivalent.' lvs.log`; \
+	NO_MATCH=`grep -c -e 'Netlists do not match.' lvs.log`; \
+	MISMATCH=`grep -c -e '\*\*Mismatch\*\*' lvs.log`; \
+	PROP_ERR=`grep -c -e 'Property errors were found.' lvs.log`; \
+	if [[ $${CIRCUIT_PASS} -eq 0 || \
+              $${NETLIST_PASS} -eq 0 || \
+              $${PIN_PASS} -eq 0 || \
+              $${NO_MATCH} -ne 0 || \
+              $${MISMATCH} -ne 0 || \
+              $${PROP_ERR} -ne 0 ]]; then \
+	   mv netgen.log netgen.fail.log; \
+	   mv lvs.log lvs.fail.log; \
+	   false;\
+	else \
+	   touch $@; \
+	fi
+
+
+
+.PHONY: clean
+clean :
+	- @ rm -f PASS
+	- @ rm -f lvs.tcl
+	- @ rm -f lvs.log lvs.fail.log
+	- @ rm -f netgen.log  netgen.fail.log
+
+
+.PHONY: info
+info :
+	@ echo CELL: $(CELL)
+

@@ -1,6 +1,7 @@
 .*.swp
 .*.swo
 cir/
+sp/
 ext/
 mag/*.cir
 mag/*.sp
