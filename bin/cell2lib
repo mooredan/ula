@@ -103,6 +103,8 @@ switch($celltype) {
    case "fill4" { }
    case "fill8" { }
    case "fill16" { }
+   case "decap3" { }
+   case "decap4" { }
    case "decap5" { }
    case "decap6" { }
    case "decap7" { }
