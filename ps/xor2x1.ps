@@ -1,7 +1,7 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%Title: xor2x1.ps
-%%Creator: XCircuit v0.0 rev202460182
-%%CreationDate: Fri Nov 23 19:33:21 2018
+%%Creator: XCircuit v0.0 rev-805822603
+%%CreationDate: Mon Jul 12 12:19:06 2021
 %%Pages: 1
 %%BoundingBox: 68 68 484 553
 %%DocumentNeededResources: font Times-Roman Times-RomanISO 
@@ -111,10 +111,10 @@
 /begingate {dup type /dicttype ne {1 dict} if begin	% default params
 	dup type /dicttype ne {1 dict} if begin		% instanced params
 	/hlevel hlevel 1 add def /defColor currentcolor sce 3 array astore
-	def gsave sce translate 0 0 moveto neg rotate dup type /nametype
-	eq not { dup abs currentlinewidth exch div setlinewidth } { pop }
-	ifelse dup abs scale clipped 1 and 1 eq {/clipped clipped 1 add def}
-	if} bind def
+	def gsave sce dup type /nametype eq { pop } if translate 0 0 moveto
+	neg rotate dup type /nametype eq not { dup abs currentlinewidth exch
+	div setlinewidth } { pop } ifelse dup abs scale clipped 1 and 1 eq
+	{/clipped clipped 1 add def} if} bind def
 /endgate { /hlevel hlevel 1 sub def grestore defColor aload pop cRedef
 	scb end end endclip} bind def
 
@@ -276,7 +276,7 @@ begingate
 1 1.000 0 0 0 32 2 polygon
 1 1.000 -32 32 32 32 2 polygon
 (vdd) {/Times-Roman cf} 2 17 0.000 0.900 0 38 label
-0.933 0.604 0.000 scb
+0.934 0.604 0.000 scb
 (vdd) {/Times-Roman cf} 2 13 0.000 1.000 0 0 pinglobal
 endgate
 } def
@@ -288,7 +288,7 @@ begingate
 1 1.000 -32 -32 32 -32 2 polygon
 1 1.000 -18 -46 18 -46 2 polygon
 1 1.000 -4 -60 4 -60 2 polygon
-0.933 0.604 0.000 scb
+0.934 0.604 0.000 scb
 (vss) {/Times-Roman cf} 2 1 0.000 1.000 0 0 pinglobal
 endgate
 } def
@@ -313,8 +313,8 @@ endgate
 1.0000 inchscale
 2.6000 setlinewidth 864 636 translate
 
-1.000 0.000 -480 -128 <</@index (1011) /@width (6u) >> c5devlib::nMOS
-1.000 0.000 -480 128 <</@index (1005) /@width (12u) >> c5devlib::pMOS
+1.000 0.000 -480 -128 <</@index (1011) /@width (1.25u) >> c5devlib::nMOS
+1.000 0.000 -480 128 <</@index (1005) /@width (1.85u) >> c5devlib::pMOS
 1 1.000 -544 128 -608 128 -608 -128 -544 -128 4 polygon
 1 1.000 -480 -64 -480 64 2 polygon
 1 1.000 -672 0 -608 0 2 polygon
@@ -325,8 +325,8 @@ endgate
 1 1.000 -480 -256 -480 -192 2 polygon
 1.000 0.000 -608 0 generic::dot
 1.000 0.000 -480 0 generic::dot
-1.000 0.000 -480 544 <</@index (1006) /@width (6u) >> c5devlib::nMOS
-1.000 0.000 -480 800 <</@index (1000) /@width (12u) >> c5devlib::pMOS
+1.000 0.000 -480 544 <</@index (1006) /@width (1.25u) >> c5devlib::nMOS
+1.000 0.000 -480 800 <</@index (1000) /@width (1.85u) >> c5devlib::pMOS
 1 1.000 -544 800 -608 800 -608 544 -544 544 4 polygon
 1 1.000 -480 608 -480 736 2 polygon
 1 1.000 -672 672 -608 672 2 polygon
@@ -343,23 +343,23 @@ endgate
 (b) {/Times-Roman cf} 2 16 0.000 1.000 -672 0 pinlabel
 (nb) {/Times-Roman cf} 2 16 0.000 1.000 -352 0 pinlabel
 sce
-1.000 0.000 -32 800 <</@index (1001) /@width (12u) >> c5devlib::pMOS
+1.000 0.000 -32 800 <</@index (1001) /@width (4.8u) >> c5devlib::pMOS
 1.000 0.000 -32 896 c5devlib::vdd
 1 1.000 -32 864 -32 896 2 polygon
-1.000 0.000 -32 544 <</@index (1002) /@width (12u) >> c5devlib::pMOS
-1.000 0.000 -32 128 <</@index (1008) /@width (6u) >> c5devlib::nMOS
-1.000 0.000 -32 -128 <</@index (1007) /@width (6u) >> c5devlib::nMOS
+1.000 0.000 -32 544 <</@index (1002) /@width (4.8u) >> c5devlib::pMOS
+1.000 0.000 -32 128 <</@index (1008) /@width (3.05u) >> c5devlib::nMOS
+1.000 0.000 -32 -128 <</@index (1007) /@width (3.05u) >> c5devlib::nMOS
 1 1.000 -32 672 -32 736 2 polygon
 1 1.000 -32 192 -32 320 2 polygon
 1 1.000 -32 -64 -32 0 2 polygon
 1.000 0.000 -32 -256 c5devlib::vss
 1 1.000 -32 -256 -32 -192 2 polygon
-1.000 0.000 288 800 <</@index (1004) /@width (12u) >> c5devlib::pMOS
+1.000 0.000 288 800 <</@index (1004) /@width (4.8u) >> c5devlib::pMOS
 1.000 0.000 288 896 c5devlib::vdd
 1 1.000 288 864 288 896 2 polygon
-1.000 0.000 288 544 <</@index (1003) /@width (12u) >> c5devlib::pMOS
-1.000 0.000 288 128 <</@index (1009) /@width (6u) >> c5devlib::nMOS
-1.000 0.000 288 -128 <</@index (1010) /@width (6u) >> c5devlib::nMOS
+1.000 0.000 288 544 <</@index (1003) /@width (4.8u) >> c5devlib::pMOS
+1.000 0.000 288 128 <</@index (1009) /@width (3.05u) >> c5devlib::nMOS
+1.000 0.000 288 -128 <</@index (1010) /@width (3.05u) >> c5devlib::nMOS
 1 1.000 288 672 288 736 2 polygon
 1 1.000 288 192 288 320 2 polygon
 1 1.000 288 -64 288 0 2 polygon
@@ -373,10 +373,10 @@ sce
 1 1.000 192 128 224 128 2 polygon
 1 1.000 192 -128 224 -128 2 polygon
 1.000 0.000 0.000 scb
-(x3) {/Times-Roman cf} 2 16 0.000 1.000 -32 0 pinlabel
-(x4) {/Times-Roman cf} 2 16 0.000 1.000 288 0 pinlabel
-(x1) {/Times-Roman cf} 2 16 0.000 1.000 -32 672 pinlabel
-(x2) {/Times-Roman cf} 2 16 0.000 1.000 288 672 pinlabel
+(n2) {/Times-Roman cf} 2 16 0.000 1.000 -32 0 pinlabel
+(n1) {/Times-Roman cf} 2 16 0.000 1.000 288 0 pinlabel
+(p1) {/Times-Roman cf} 2 16 0.000 1.000 -32 672 pinlabel
+(p2) {/Times-Roman cf} 2 16 0.000 1.000 288 672 pinlabel
 sce
 1 1.000 -32 608 -32 672 2 polygon
 1 1.000 288 608 288 672 2 polygon
@@ -389,8 +389,8 @@ sce
 1 1.000 288 320 416 320 2 polygon
 1.000 0.000 0.000 scb
 (z) {/Times-Roman cf} 2 16 0.000 1.000 416 320 pinlabel
-(nb) {/Times-Roman cf} 2 16 0.000 1.000 -128 800 pinlabel
-(a) {/Times-Roman cf} 2 16 0.000 1.000 -128 544 pinlabel
+(a) {/Times-Roman cf} 2 16 0.000 1.000 -128 800 pinlabel
+(nb) {/Times-Roman cf} 2 16 0.000 1.000 -128 544 pinlabel
 (na) {/Times-Roman cf} 2 16 0.000 1.000 -128 128 pinlabel
 (nb) {/Times-Roman cf} 2 16 0.000 1.000 -128 -128 pinlabel
 (b) {/Times-Roman cf} 2 16 0.000 1.000 192 800 pinlabel
@@ -399,8 +399,8 @@ sce
 1.000 0.000 -32 320 generic::dot
 1.000 0.000 288 320 generic::dot
 1.000 0.000 0.000 scb
-(b) {/Times-Roman cf} 2 16 0.000 1.000 192 -128 pinlabel
-(a) {/Times-Roman cf} 2 16 0.000 1.000 192 128 pinlabel
+(a) {/Times-Roman cf} 2 16 0.000 1.000 192 -128 pinlabel
+(b) {/Times-Roman cf} 2 16 0.000 1.000 192 128 pinlabel
 0.180 0.545 0.341 scb
 ( z a b vdd vss) (spice1:.subckt %n) {/Times-Roman cf} 3 17 0.000 1.000 -82 
 -380 infolabel
