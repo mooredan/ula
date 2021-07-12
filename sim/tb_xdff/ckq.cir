@@ -1,0 +1,109 @@
+* Transient analysis of DFF
+
+.include ../../cir/xdff_b.cir
+
+.lib ../../device_models/AMI_C5N.lib TT
+
+.param VDD_VAL=5
++      FREQ=10.0Meg
++      PER={1 / FREQ}
+
+.param TT=50p
+.param CD=1f
+.param CCK=1f
+.param CQ=1f
+
+.param VDD_20PCT = {VDD_VAL * 0.20} 
+.param VDD_50PCT = {VDD_VAL * 0.50} 
+.param VDD_80PCT = {VDD_VAL * 0.80} 
+
+
+* power supply
+Vvdd vdd 0 DC VDD_VAL PWL( 0 0  1u 0  2u {VDD_VAL})
+Vvss vss 0 DC 0
+
+* input clock
+Vck ck_s 0 DC 0 PULSE ( 0 {VDD_VAL} 3u {TT} {TT} {PER/2 - TT} {PER} )
+Rck_s ck_s ck 100
+Cck ck 0 {CCK}
+
+* input data
+Vd   d_s 0 DC 0 PULSE ( 0 {VDD_VAL} {3u + PER * 4 + PER / 4} {TT} {TT} {PER * 2} {PER * 4}) 
+Rd_s d_s d 100
+Cd   d   0 {CD} 
+
+* DUT
+Xdut q d ck vdd vss xdff_b
+
+* output load
+Cq q 0 {CQ} 
+
+
+* .measure tran q_rise TRIG v(q) VAL=VDD_20PCT RISE=2 TARG v(q) VAL=VDD_80PCT RISE=2
+* .measure tran q_fall TRIG v(q) VAL=VDD_80PCT FALL=2 TARG v(q) VAL=VDD_20PCT FALL=2
+
+* .measure tran ck_rise_rise TRIG v(ck) VAL=VDD_20PCT RISE=10 TARG v(ck) VAL=VDD_80PCT RISE=10
+* .measure tran ck_fall_rise TRIG v(ck) VAL=VDD_80PCT FALL=10 TARG v(ck) VAL=VDD_20PCT FALL=10
+
+* .measure tran ck_rise_fall TRIG v(ck) VAL=VDD_20PCT RISE=12 TARG v(ck) VAL=VDD_80PCT RISE=10
+* .measure tran ck_fall_fall TRIG v(ck) VAL=VDD_80PCT FALL=12 TARG v(ck) VAL=VDD_20PCT FALL=10
+
+* .measure tran d_rise TRIG v(d) VAL=VDD_20PCT RISE=2 TARG v(d) VAL=VDD_80PCT RISE=2
+* .measure tran d_fall TRIG v(d) VAL=VDD_80PCT FALL=2 TARG v(d) VAL=VDD_20PCT FALL=2
+
+* .measure tran ckq_rise TRIG v(ck) VAL=VDD_50PCT RISE=10 TARG v(q) VAL=VDD_50PCT RISE=2
+* .measure tran ckq_fall TRIG v(ck) VAL=VDD_50PCT RISE=12 TARG v(q) VAL=VDD_50PCT FALL=2
+
+.tran 10p {3u + PER * 4 + PER * 10}
+
+* sweep clock rise time from :        to: 1 ns
+*
+*              cck (pF)         rise (ps)
+*              ===========================
+*              0.001               30.8 
+*              0.5                 79.2
+*              1.0                146.8 
+*              2.5                355.8  
+*              5.0                702.2
+*             10.0               1395.2
+*
+* sweep output load     from : 10 fF   to: 2 pF  - seven loads
+
+* .control
+*   destroy all
+*   foreach itr1 1f 500f 1p 2.5p 5p 10p
+*     foreach itr2 0.010e-12 0.050e-12 0.100e-12 0.250e-12 0.500e-12 1.0e-12 2.0e-12 
+* 
+*       alter cck $itr1
+*       alter cq  $itr2
+* 
+*       run
+* 
+*       let vdd_max = maximum(v(vdd))
+*       let vol  = vdd_max * 0.20
+*       let voh  = vdd_max * 0.80
+*       let vmid = vdd_max * 0.50
+* 
+*       echo itr1: $itr1
+*       echo itr2: $itr2
+* 
+*       meas tran tt__q_rise TRIG v(q) VAL=vol RISE=2 TARG v(q) VAL=voh RISE=2 
+*       meas tran tt__q_fall TRIG v(q) VAL=voh FALL=2 TARG v(q) VAL=vol FALL=2 
+* 
+*       meas tran tt__ck_rise__q_rise TRIG v(ck) VAL=vol RISE=10 TARG v(ck) VAL=voh RISE=10
+*       meas tran tt__ck_rise__q_fall TRIG v(ck) VAL=vol RISE=12 TARG v(ck) VAL=voh RISE=12
+* 
+*       meas tran td__ck_rise__q_rise TRIG v(ck) VAL=vmid RISE=10 TARG v(q) VAL=vmid RISE=2
+*       meas tran td__ck_rise__q_fall TRIG v(ck) VAL=vmid RISE=12 TARG v(q) VAL=vmid FALL=2
+* 
+*     end
+*   end
+* * setplot tran1
+* * plot v(vdd) v(ck) v(d) v(q)
+* * plot v(ck) v(d)
+* * plot v(ck)
+* * plot v(d)
+* * plot v(q)
+* .endc
+
+.end
