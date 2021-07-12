@@ -24,7 +24,9 @@ $(CELL_SP) : $(CELL_PS)
 
 # default setup.tcl file if none exists
 setup.tcl :
-	@ echo ignore class c > $@
+	@ echo permute default > $@
+	@ echo property default >> $@
+	@ echo ignore class c >> $@
 	@ echo property nfet remove as ad ps pd >> $@
 	@ echo property pfet remove as ad ps pd >> $@
 	

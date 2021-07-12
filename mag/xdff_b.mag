@@ -1,8 +1,8 @@
 magic
 tech amic5n
-timestamp 1625766115
+timestamp 1626039717
 << nwell >>
-rect -150 550 4780 1495
+rect -130 550 4780 1495
 << ntransistor >>
 rect 265 95 325 375
 rect 455 95 515 375
@@ -1189,8 +1189,8 @@ flabel ndiffusion s 3640 150 3640 150 2 FreeSans 400 0 0 0 x8
 flabel metal1 s 4235 710 4235 710 2 FreeSans 400 0 0 0 q
 port 0 e
 << properties >>
-string LEFclass CORE
 string LEFsite core
-string FIXED_BBOX 0 0 3150 1440
+string LEFclass CORE
+string FIXED_BBOX 0 0 4650 1440
 string LEFsymmetry X Y
 << end >>
