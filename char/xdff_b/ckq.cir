@@ -1,0 +1,195 @@
+* Transient analysis of DFF
+
+.include cell.cir
+
+.lib ../../device_models/AMI_C5N.lib TT
+
+.param VDD_VAL=5.0
+.param FREQ=100.0Meg
+.param PER={1 / FREQ}
+.param ttime=50p
+.param pwrtime = 5e-9
+.param d_period = {PER * 6}
+
+.csparam v_vdd = {VDD_VAL}
+.csparam ck_per = {PER}
+.csparam tt = {ttime}
+.csparam pwrt = {pwrtime}
+.csparam d_per = {d_period}
+
+
+.param CD=1f
+.param CCK=1f
+.param CQ=100f
+
+.csparam v_vdd = {VDD_VAL}
+
+
+* power supply
+Vvdd vdd 0 DC {VDD_VAL} PWL( 0 0  {pwrtime / 3}  0  {pwrtime * 2 / 3} {VDD_VAL})
+Vvss vss 0 DC 0
+
+
+* input clock
+Vck ck_s 0 DC 0 PULSE ( 0 {VDD_VAL} pwrtime {ttime} {ttime} {PER/2 - ttime} {PER} )
+Rck_s ck_s ck 100
+Cck ck 0 {CCK}
+
+* input data
+Vd   d_s 0 DC 0 PULSE ( 0 {VDD_VAL} {pwrtime + PER * 4 + PER / 4} {ttime} {ttime} {PER * 2} {PER * 4}) 
+Rd_s d_s d 100
+Cd   d   0 {CD} 
+
+* DUT
+Xdut q d ck vdd vss xdff_b
+
+* output load
+Cq q 0 {CQ} 
+
+* sweep clock rise time from :        to: 1 ns
+*
+*              cck (pF)         rise (ps)
+*              ===========================
+*              0.001               30.8 
+*              0.5                 79.2
+*              1.0                146.8 
+*              2.5                355.8  
+*              5.0                702.2
+*
+* sweep output load     from : 10 fF   to: 2 pF  - seven loads
+
+.control
+
+  let vol  = $&v_vdd * 0.20
+  set vol  = "$&vol"
+
+  let voh  = $&v_vdd * 0.80
+  set voh  = "$&voh"
+
+  let vmid = $&v_vdd * 0.50
+  set vmid = "$&vmid"
+
+  let ck_per = $&ck_per
+  set ck_per = "$&ck_per"
+
+  let ptime = $&pwrt
+  set ptime = "$&ptime"
+
+  let tstop = $ptime + $ck_per * 14 
+  set tstop = "$&tstop"
+
+  let idx1 = 0
+  set idx1 = "$&idx1"
+
+  foreach in_load 1f 500f 1p 2.5p 5p 10p
+    let idx2 = 0
+    set idx2 = "$&idx2"
+
+    foreach out_load 0.010e-12 0.050e-12 0.100e-12 0.250e-12 0.500e-12 1.0e-12 2.0e-12 
+
+      destroy all
+
+      alter cck $in_load
+      alter cq  $out_load
+
+      tran 10p $tstop
+
+      * echo in_load: $in_load
+      * echo out_load: $out_load
+
+      ***************************************************************************************
+      * clock to q : ck rising to q rising
+      ***************************************************************************************
+      meas tran tt__ck_rise__q_rise TRIG v(ck) VAL=vol RISE=10 TARG v(ck) VAL=voh RISE=10
+      meas tran tt__q_rise TRIG v(q) VAL=vol RISE=2 TARG v(q) VAL=voh RISE=2 
+      meas tran td__ck_rise__q_rise TRIG v(ck) VAL=vmid RISE=10 TARG v(q) VAL=vmid RISE=2
+
+      let ittime = tt__ck_rise__q_rise
+      let ttime  = tt__q_rise
+      let dtime  = td__ck_rise__q_rise
+     
+      set ittime = "$&ittime"
+      set ttime = "$&ttime"
+      set dtime = "$&dtime"
+
+
+      echo trans: ck_rise__q_rise $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $ttime
+      echo delay: ck_rise__q_rise $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $dtime
+
+      ***************************************************************************************
+      * clock to q : ck rising to q falling
+      ***************************************************************************************
+      meas tran tt__ck_rise__q_fall TRIG v(ck) VAL=vol RISE=12 TARG v(ck) VAL=voh RISE=12
+      meas tran tt__q_fall TRIG v(q) VAL=voh FALL=2 TARG v(q) VAL=vol FALL=2 
+      meas tran td__ck_rise__q_fall TRIG v(ck) VAL=vmid RISE=12 TARG v(q) VAL=vmid FALL=2
+
+      let ittime = tt__ck_rise__q_fall
+      let ttime  = tt__q_fall
+      let dtime  = td__ck_rise__q_fall
+
+      set ittime = "$&ittime"
+      set ttime = "$&ttime"
+      set dtime = "$&dtime"
+
+      echo trans: ck_rise__q_fall $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $ttime
+      echo delay: ck_rise__q_fall $idx1 $idx2 in_rise:  $ittime  out_load: $out_load  time: $dtime
+
+
+      let idx2 = idx2 + 1
+      set idx2 = "$&idx2"
+
+    end
+    let idx1 = idx1 + 1
+    set idx1 = "$&idx1"
+  end
+
+
+
+  ***********************************
+  * Do input capacitance measurements
+  ***********************************
+  alter cd  0
+  alter cck 0
+  alter cq  0
+  
+  alter vvdd  dc $&v_vdd
+  alter vd    dc $vmid
+  alter vck   dc $vmid
+  
+  let idx = 70
+  set idx = "$&idx"
+  
+  ***********************************
+  * set up and measure input pin d
+  ***********************************
+  alter vd ac 1.0
+  
+  ac dec 10 1 100e6
+  
+  let freq = real(frequency[$idx])
+  set freq = "$&freq"
+  
+  let d_cap = '1.0 / (imag(v(d)[$idx] / i(vd)[$idx]) * 2 * pi * real(frequency[$idx]))'
+  set d_cap = "$&d_cap"
+  echo incap: pin: d cap: $d_cap  freq: $freq
+  
+  ***********************************
+  * set up and measure input pin ck 
+  ***********************************
+  alter vd ac 0.0
+  alter vck ac 1.0
+  
+  ac dec 10 1 100e6
+  
+  let freq = real(frequency[$idx])
+  set freq = "$&freq"
+  
+  let ck_cap = '1.0 / (imag(v(ck)[$idx] / i(vck)[$idx]) * 2 * pi * real(frequency[$idx]))'
+  set ck_cap = "$&ck_cap"
+  echo incap: pin: ck cap: $ck_cap  freq: $freq
+
+  quit 0
+
+.endc
+
+.end

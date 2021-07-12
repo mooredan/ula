@@ -1,7 +1,7 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%Title: buf_d.ps
-%%Creator: XCircuit v0.0 rev144788502
-%%CreationDate: Fri Nov 30 07:22:08 2018
+%%Creator: XCircuit v0.0 rev-1747280011
+%%CreationDate: Sun Jul 11 13:04:16 2021
 %%Pages: 1
 %%BoundingBox: 68 68 328 301
 %%DocumentNeededResources: font Times-Roman Times-RomanISO 
@@ -111,10 +111,10 @@
 /begingate {dup type /dicttype ne {1 dict} if begin	% default params
 	dup type /dicttype ne {1 dict} if begin		% instanced params
 	/hlevel hlevel 1 add def /defColor currentcolor sce 3 array astore
-	def gsave sce translate 0 0 moveto neg rotate dup type /nametype
-	eq not { dup abs currentlinewidth exch div setlinewidth } { pop }
-	ifelse dup abs scale clipped 1 and 1 eq {/clipped clipped 1 add def}
-	if} bind def
+	def gsave sce dup type /nametype eq { pop } if translate 0 0 moveto
+	neg rotate dup type /nametype eq not { dup abs currentlinewidth exch
+	div setlinewidth } { pop } ifelse dup abs scale clipped 1 and 1 eq
+	{/clipped clipped 1 add def} if} bind def
 /endgate { /hlevel hlevel 1 sub def grestore defColor aload pop cRedef
 	scb end end endclip} bind def
 
@@ -211,7 +211,7 @@ endgate
 (buf_d) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
 mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
 0.180 0.545 0.341 scb
-mark ( %pz %pa %pvdd %pvss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
+mark ( %pz %pa vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 
 0.000 1.000 64 -128 infolabel
 sce
 1.000 0.000 48 0 digital::buffer
@@ -314,12 +314,8 @@ endgate
 1.0000 inchscale
 2.6000 setlinewidth 1216 -20 translate
 
-1.000 0.000 -480 544 <</p_jst 28 /@index (4) /@model (nfet) /@length (0.6u) 
-/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 40 /p_xps1 16 /p_yps1 8 
-/p_xps2 16 /p_yps2 -16 /@subs (vss) /@width (5.7u) >> c5devlib::nMOS
-1.000 0.000 -480 800 <</p_jst 28 /@index (3) /@model (pfet) /@length (0.6u) 
-/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 16 /p_xps1 16 /p_yps1 -8 
-/p_xps2 16 /p_yps2 48 /@subs (vdd) /@width (12u) >> c5devlib::pMOS
+1.000 0.000 -480 544 <</@index (4) /@fingers (8) /@width (2.85u) >> c5devlib::nMOS
+1.000 0.000 -480 800 <</@index (3) /@fingers (8) /@width (5.95u) >> c5devlib::pMOS
 1 1.000 -544 800 -608 800 -608 544 -544 544 4 polygon
 1 1.000 -480 608 -480 736 2 polygon
 1 1.000 -480 672 -352 672 2 polygon
@@ -336,8 +332,8 @@ endgate
 infolabel
 (spice-1:.ends) {/Times-Roman cf} 2 16 0.000 1.000 -786 212 infolabel
 sce
-1.000 0.000 -832 544 <</@index (2) /@width (3.0u) >> c5devlib::nMOS
-1.000 0.000 -832 800 <</@index (1) /@width (5.7u) >> c5devlib::pMOS
+1.000 0.000 -832 544 <</@fingers (3) /@index (2) /@width (2.75u) >> c5devlib::nMOS
+1.000 0.000 -832 800 <</@fingers (3) /@index (1) /@width (5.85u) >> c5devlib::pMOS
 1 1.000 -896 800 -960 800 -960 544 -896 544 4 polygon
 1 1.000 -832 608 -832 736 2 polygon
 1 1.000 -1024 672 -960 672 2 polygon

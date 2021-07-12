@@ -3,6 +3,7 @@ STDCELLS += and2_c
 STDCELLS += buf_b
 STDCELLS += buf_c
 STDCELLS += buf_d
+STDCELLS += xdff_b
 STDCELLS += dff_b
 STDCELLS += dffr_b
 STDCELLS += inv_a

@@ -1,9 +1,9 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%Title: and2_b.ps
-%%Creator: XCircuit v0.0 rev-1504791987
-%%CreationDate: Sat Feb 16 17:42:07 2019
+%%Creator: XCircuit v0.0 rev-1747280011
+%%CreationDate: Sun Jul 11 12:41:05 2021
 %%Pages: 1
-%%BoundingBox: 68 68 448 441
+%%BoundingBox: 68 68 636 697
 %%DocumentNeededResources: font Times-Roman Times-RomanISO 
 %%EndComments
 %%BeginProlog
@@ -111,10 +111,10 @@
 /begingate {dup type /dicttype ne {1 dict} if begin	% default params
 	dup type /dicttype ne {1 dict} if begin		% instanced params
 	/hlevel hlevel 1 add def /defColor currentcolor sce 3 array astore
-	def gsave sce translate 0 0 moveto neg rotate dup type /nametype
-	eq not { dup abs currentlinewidth exch div setlinewidth } { pop }
-	ifelse dup abs scale clipped 1 and 1 eq {/clipped clipped 1 add def}
-	if} bind def
+	def gsave sce dup type /nametype eq { pop } if translate 0 0 moveto
+	neg rotate dup type /nametype eq not { dup abs currentlinewidth exch
+	div setlinewidth } { pop } ifelse dup abs scale clipped 1 and 1 eq
+	{/clipped clipped 1 add def} if} bind def
 /endgate { /hlevel hlevel 1 sub def grestore defColor aload pop cRedef
 	scb end end endclip} bind def
 
@@ -227,6 +227,53 @@ sce
 endgate
 } def
 
+/c5devlib::nMOS {
+<</@subs (vss) /p_yps2 -16 /p_xps2 16 /p_yps1 8 /p_xps1 16 /p_yps 40 /p_xps 16 /p_rot 
+0 /@fingers (1) /@class (M) /@width (1u) /@length (0.6u) /@model (nfet) /@index 
+(?) /p_jst 28 >> begingate
+1 1.000 0 -64 0 -28 -32 -28 -32 28 0 28 0 64 6 polygon
+1 1.000 -44 -28 -44 28 2 polygon
+1 1.000 -44 0 -64 0 2 polygon
+1.000 0.000 0.000 scb
+(G) {/Times-Roman cf} 2 7 0.000 1.000 -64 0 pinlabel
+(S) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
+(D) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
+0.180 0.545 0.341 scb
+mark @fingers ( m=) @length ( l=) @width ( w=) @model ( ) @subs ( %pD %pG %pS ) 
+@index @class (spice:) {/Times-Roman cf} ctmk 4 0.000 1.000 -244 -139 infolabel
+mark ( %x %y) @width ( ) @length (sim:n %pG %pD %pS ) {/Times-Roman cf} ctmk 4 
+0.000 1.000 -244 -187 infolabel
+0.647 0.165 0.165 scb
+mark @fingers (=) {Tf} {Tf} (M) {CR} @length (=) {Tf} (L) {hS} {CR} @width (=) 
+{Ts} (W) {/Times-Roman cf} ctmk p_jst p_rot 0.700 p_xps2 p_yps2 label
+0.000 0.000 1.000 scb
+mark @index @class {/Times-Roman cf} ctmk 20 p_rot 0.700 p_xps p_yps label
+sce
+mark @model {/Times-RomanISO cf} ctmk 20 p_rot 0.700 p_xps1 p_yps1 label
+endgate
+} def
+
+/generic::dot {
+% trivial
+begingate
+248 1.000 0 0 6 0.000 360.000 xcarc
+1.000 0.000 0.000 scb
+(x) {/Times-Roman cf} 2 29 -0.000 1.000 0 0 pinlabel
+endgate
+} def
+
+/c5devlib::vss {
+% trivial
+begingate
+1 1.000 0 0 0 -32 2 polygon
+1 1.000 -32 -32 32 -32 2 polygon
+1 1.000 -18 -46 18 -46 2 polygon
+1 1.000 -4 -60 4 -60 2 polygon
+0.933 0.604 0.000 scb
+(vss) {/Times-Roman cf} 2 1 0.000 1.000 0 0 pinglobal
+endgate
+} def
+
 /c5devlib::pMOS {
 <</@subs (vdd) /p_yps2 48 /p_xps2 16 /p_yps1 -8 /p_xps1 16 /p_yps 16 /p_xps 16 /p_rot 
 0 /@fingers (1) /@class (M) /@width (1u) /@length (0.6u) /@model (pfet) /@index 
@@ -254,32 +301,6 @@ mark @model {/Times-RomanISO cf} ctmk 16 p_rot 0.700 p_xps p_yps label
 endgate
 } def
 
-/c5devlib::nMOS {
-<</@subs (vss) /p_yps2 -16 /p_xps2 16 /p_yps1 8 /p_xps1 16 /p_yps 40 /p_xps 16 /p_rot 
-0 /@fingers (1) /@class (M) /@width (1u) /@length (0.6u) /@model (nfet) /@index 
-(?) /p_jst 28 >> begingate
-1 1.000 0 -64 0 -28 -32 -28 -32 28 0 28 0 64 6 polygon
-1 1.000 -44 -28 -44 28 2 polygon
-1 1.000 -44 0 -64 0 2 polygon
-1.000 0.000 0.000 scb
-(G) {/Times-Roman cf} 2 7 0.000 1.000 -64 0 pinlabel
-(S) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
-(D) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
-0.180 0.545 0.341 scb
-mark @fingers ( m=) @length ( l=) @width ( w=) @model ( ) @subs ( %pD %pG %pS ) 
-@index @class (spice:) {/Times-Roman cf} ctmk 4 0.000 1.000 -244 -139 infolabel
-mark ( %x %y) @width ( ) @length (sim:n %pG %pD %pS ) {/Times-Roman cf} ctmk 4 
-0.000 1.000 -244 -187 infolabel
-0.647 0.165 0.165 scb
-mark @fingers (=) {Tf} {Tf} (M) {CR} @length (=) {Tf} (L) {hS} {CR} @width (=) 
-{Ts} (W) {/Times-Roman cf} ctmk p_jst p_rot 0.700 p_xps2 p_yps2 label
-0.000 0.000 1.000 scb
-mark @index @class {/Times-Roman cf} ctmk 20 p_rot 0.700 p_xps p_yps label
-sce
-mark @model {/Times-RomanISO cf} ctmk 20 p_rot 0.700 p_xps1 p_yps1 label
-endgate
-} def
-
 /c5devlib::vdd {
 % trivial
 begingate
@@ -291,24 +312,14 @@ begingate
 endgate
 } def
 
-/generic::dot {
+/generic::circle {
 % trivial
 begingate
-248 1.000 0 0 6 0.000 360.000 xcarc
+1 1.000 16 0 6 0.000 360.000 xcarc
+1 1.000 0 0 10 0 2 polygon
 1.000 0.000 0.000 scb
-(x) {/Times-Roman cf} 2 29 -0.000 1.000 0 0 pinlabel
-endgate
-} def
-
-/c5devlib::vss {
-% trivial
-begingate
-1 1.000 0 0 0 -32 2 polygon
-1 1.000 -32 -32 32 -32 2 polygon
-1 1.000 -18 -46 18 -46 2 polygon
-1 1.000 -4 -60 4 -60 2 polygon
-0.933 0.604 0.000 scb
-(vss) {/Times-Roman cf} 2 1 0.000 1.000 0 0 pinglobal
+(out) {/Times-Roman cf} 2 4 -0.000 1.000 16 0 pinlabel
+(out) {/Times-Roman cf} 2 7 -0.000 1.000 0 0 pinlabel
 endgate
 } def
 
@@ -319,72 +330,102 @@ endgate
 %%PageOrientation: Landscape
 /pgsave save def bop
 % project::and2_b is_symbol
-90 rotate 0 -513 translate
+90 rotate 0 -765 translate
 1.0000 inchscale
-2.6000 setlinewidth 288 636 translate
+2.6000 setlinewidth 1526 1308 translate
 
-1.000 0.000 352 352 <</@index (6) /p_jst 28 /@model (pfet) /@length (0.6u) 
-/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 16 /p_xps1 16 /p_yps1 -8 
-/p_xps2 16 /p_yps2 48 /@subs (vdd) /@width (5.7u) >> c5devlib::pMOS
-1.000 0.000 0 352 <</@index (5) /p_jst 28 /@model (pfet) /@length (0.6u) 
-/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 16 /p_xps1 16 /p_yps1 -8 
-/p_xps2 16 /p_yps2 48 /@subs (vdd) /@width (5.7u) >> c5devlib::pMOS
-1.000 0.000 0 96 <</@index (4) /p_jst 28 /@model (nfet) /@length (0.6u) /@class 
-(M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 40 /p_xps1 16 /p_yps1 8 /p_xps2 16 
-/p_yps2 -16 /@subs (vss) /@width (6u) >> c5devlib::nMOS
-1.000 0.000 0 -128 <</@index (3) /p_jst 28 /@model (nfet) /@length (0.6u) 
-/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 40 /p_xps1 16 /p_yps1 8 
-/p_xps2 16 /p_yps2 -16 /@subs (vss) /@width (6u) >> c5devlib::nMOS
-1.000 0.000 0 480 c5devlib::vdd
-1.000 0.000 352 480 c5devlib::vdd
-1 1.000 0 416 0 480 2 polygon
-1 1.000 352 416 352 480 2 polygon
-1 1.000 0 160 0 288 2 polygon
-1 1.000 0 -64 0 32 2 polygon
-1 1.000 0 192 352 192 352 288 3 polygon
-1 1.000 -96 352 -64 352 2 polygon
-1 1.000 256 352 288 352 2 polygon
-1 1.000 -96 96 -64 96 2 polygon
-1 1.000 -96 -128 -64 -128 2 polygon
-1.000 0.000 0 192 generic::dot
-1.000 0.000 352 192 generic::dot
-1.000 0.000 0 -256 c5devlib::vss
-1 1.000 0 -256 0 -192 2 polygon
+1.000 0.000 0 -192 <</@index (5) /@width (3.05u) >> c5devlib::nMOS
+1 1.000 -96 -192 -64 -192 2 polygon
+1.000 0.000 -352 -64 generic::dot
+1.000 0.000 0 -64 generic::dot
+1.000 0.000 0 -320 c5devlib::vss
+1 1.000 0 -320 0 -256 2 polygon
 1.000 0.000 0.000 scb
-(a) {/Times-Roman cf} 2 16 0.000 1.000 -96 352 pinlabel
-(b) {/Times-Roman cf} 2 16 0.000 1.000 256 352 pinlabel
-(a) {/Times-Roman cf} 2 16 0.000 1.000 -96 -128 pinlabel
-(b) {/Times-Roman cf} 2 16 0.000 1.000 -96 96 pinlabel
+(nb) {/Times-Roman cf} 2 16 0.000 1.000 -96 -192 pinlabel
 sce
-1 1.000 352 192 512 192 2 polygon
-1.000 0.000 0.000 scb
-(z) {/Times-Roman cf} 2 16 0.000 1.000 896 192 pinlabel
-(x1) {/Times-Roman cf} 2 16 0.000 1.000 0 -32 pinlabel
+1 1.000 0 -64 160 -64 2 polygon
 0.180 0.545 0.341 scb
-( z a b vdd vss) (spice1:.subckt %n) {/Times-Roman cf} 3 17 0.000 1.000 222 
--380 infolabel
-(spice-1:.ends) {/Times-Roman cf} 2 16 0.000 1.000 222 -444 infolabel
-sce
-1.000 0.000 704 352 <</@index (2) /@width (5.7u) /@subs (vdd) /p_yps2 48 
-/p_xps2 16 /p_yps1 -8 /p_xps1 16 /p_yps 16 /p_xps 16 /p_rot 0 /@fingers (1) 
-/@class (M) /@length (0.6u) /@model (pfet) /p_jst 28 >> c5devlib::pMOS
-1.000 0.000 704 480 c5devlib::vdd
-1 1.000 704 416 704 480 2 polygon
-1.000 0.000 704 96 <</p_jst 28 /@index (1) /@model (nfet) /@length (0.6u) 
-/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 40 /p_xps1 16 /p_yps1 8 
-/p_xps2 16 /p_yps2 -16 /@subs (vss) /@width (3u) >> c5devlib::nMOS
-1 1.000 704 160 704 288 2 polygon
-1 1.000 704 192 896 192 2 polygon
-1 1.000 640 96 608 96 608 352 640 352 4 polygon
-1 1.000 512 192 608 192 2 polygon
-1.000 0.000 704 -32 c5devlib::vss
-1 1.000 704 -32 704 32 2 polygon
-1.000 0.000 608 192 generic::dot
-1.000 0.000 704 192 generic::dot
+( z a b vdd vss) (spice1:.subckt %n) {/Times-Roman cf} 3 17 0.000 1.000 -370 
+-748 infolabel
+(spice-1:.ends) {/Times-Roman cf} 2 16 0.000 1.000 -370 -812 infolabel
 1.000 0.000 0.000 scb
-(x2) {/Times-Roman cf} 2 16 0.000 1.000 448 192 pinlabel
+(z) {/Times-Roman cf} 2 16 0.000 1.000 96 -64 pinlabel
 sce
-1.000 0.000 656 -352 project::and2_b
+1.000 0.000 64 -720 project::and2_b
+1.000 0.000 -1024 256 <</p_jst 28 /@index (4) /@model (pfet) /@length (0.6u) 
+/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 16 /p_xps1 16 /p_yps1 -8 
+/p_xps2 16 /p_yps2 48 /@subs (vdd) /@width (1.85u) >> c5devlib::pMOS
+1.000 0.000 -1024 384 c5devlib::vdd
+1 1.000 -1024 320 -1024 384 2 polygon
+1 1.000 -1024 64 -1024 192 2 polygon
+1.000 0.000 -1024 -96 <</p_jst 28 /@index (3) /@model (nfet) /@length (0.6u) 
+/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 40 /p_xps1 16 /p_yps1 8 
+/p_xps2 16 /p_yps2 -16 /@subs (vss) /@width (1.25u) >> c5devlib::nMOS
+1 1.000 -1024 -32 -1024 64 2 polygon
+1.000 0.000 -1024 -224 c5devlib::vss
+1 1.000 -1024 -224 -1024 -160 2 polygon
+-1.000 0.000 -1312 96 generic::circle
+1.000 0.000 0.000 scb
+(a) {/Times-Roman cf} 2 16 0.000 1.000 -1328 96 pinlabel
+sce
+1 1.000 -1312 96 -1152 96 -1152 256 -1088 256 4 polygon
+1 1.000 -1152 96 -1152 -96 -1088 -96 3 polygon
+1.000 0.000 -1152 96 generic::dot
+1.000 0.000 -1024 96 generic::dot
+1 1.000 -1024 96 -832 96 2 polygon
+1.000 0.000 0.000 scb
+(na) {/Times-Roman cf} 2 16 0.000 1.000 -896 96 pinlabel
+sce
+1.000 0.000 -1024 -576 <</p_jst 28 /@index (2) /@model (pfet) /@length (0.6u) 
+/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 16 /p_xps1 16 /p_yps1 -8 
+/p_xps2 16 /p_yps2 48 /@subs (vdd) /@width (1.85u) >> c5devlib::pMOS
+1.000 0.000 -1024 -448 c5devlib::vdd
+1 1.000 -1024 -512 -1024 -448 2 polygon
+1 1.000 -1024 -768 -1024 -640 2 polygon
+1.000 0.000 -1024 -928 <</p_jst 28 /@index (1) /@model (nfet) /@length (0.6u) 
+/@class (M) /@fingers (1) /p_rot 0 /p_xps 16 /p_yps 40 /p_xps1 16 /p_yps1 8 
+/p_xps2 16 /p_yps2 -16 /@subs (vss) /@width (1.25u) >> c5devlib::nMOS
+1 1.000 -1024 -864 -1024 -768 2 polygon
+1.000 0.000 -1024 -1056 c5devlib::vss
+1 1.000 -1024 -1056 -1024 -992 2 polygon
+-1.000 0.000 -1312 -736 generic::circle
+1.000 0.000 0.000 scb
+(b) {/Times-Roman cf} 2 16 0.000 1.000 -1328 -736 pinlabel
+sce
+1 1.000 -1312 -736 -1152 -736 -1152 -576 -1088 -576 4 polygon
+1 1.000 -1152 -736 -1152 -928 -1088 -928 3 polygon
+1.000 0.000 -1152 -736 generic::dot
+1.000 0.000 -1024 -736 generic::dot
+1 1.000 -1024 -736 -832 -736 2 polygon
+1.000 0.000 0.000 scb
+(nb) {/Times-Roman cf} 2 16 0.000 1.000 -896 -736 pinlabel
+sce
+1.000 0.000 -352 352 <</@fingers (2) /@width (6.45u) /@index (7) >> c5devlib::pMOS
+1.000 0.000 -352 480 c5devlib::vdd
+1 1.000 -352 416 -352 480 2 polygon
+1 1.000 -352 160 -352 288 2 polygon
+1 1.000 -448 352 -416 352 2 polygon
+1.000 0.000 0.000 scb
+(na) {/Times-Roman cf} 2 16 0.000 1.000 -448 352 pinlabel
+sce
+1.000 0.000 -352 96 <</@fingers (2) /@width (6.45u) /@index (8) >> c5devlib::pMOS
+1 1.000 -448 96 -416 96 2 polygon
+1.000 0.000 0.000 scb
+(nb) {/Times-Roman cf} 2 16 0.000 1.000 -448 96 pinlabel
+sce
+1.000 0.000 -352 -192 <</@width (3.05u) /@index (5) >> c5devlib::nMOS
+1 1.000 -448 -192 -416 -192 2 polygon
+1.000 0.000 -352 -320 c5devlib::vss
+1 1.000 -352 -320 -352 -256 2 polygon
+1.000 0.000 0.000 scb
+(na) {/Times-Roman cf} 2 16 0.000 1.000 -448 -192 pinlabel
+sce
+1 1.000 -352 32 -352 -64 2 polygon
+1 1.000 -352 -128 -352 -64 2 polygon
+1 1.000 0 -128 0 -64 2 polygon
+1 1.000 -352 -64 0 -64 2 polygon
+1.000 0.000 0.000 scb
+(x1) {/Times-Roman cf} 2 16 0.000 1.000 -352 224 pinlabel
 pgsave restore showpage
 
 %%Trailer

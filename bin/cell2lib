@@ -93,6 +93,7 @@ switch($celltype) {
    case "nand2" { unless(defined($function{"z"})) {$function{"z"} = "!(a*b)"}}
    case "inv"   { unless(defined($function{"z"})) {$function{"z"} = "!a"}}
    case "buf"   { unless(defined($function{"z"})) {$function{"z"} = "a"}}
+   case "xdff"  { unless(defined($function{"q"})) {$function{"q"} = "IQ"}}
    case "dff"   { unless(defined($function{"q"})) {$function{"q"} = "IQ"}}
    case "dffr"  { unless(defined($function{"q"})) {$function{"q"} = "IQ"}}
    case "tie0"  { unless(defined($function{"z"})) {$function{"z"} = "0"}}

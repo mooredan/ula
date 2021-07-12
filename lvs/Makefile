@@ -12,7 +12,6 @@ STDCELLS_CLEAN := $(patsubst %,%.clean,$(STDCELLS))
 
 all : cells
 
-
 .PHONY: cells $(STDCELLS)
 cells: $(STDCELLS)
 
