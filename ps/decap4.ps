@@ -1,5 +1,5 @@
 %!PS-Adobe-3.0 EPSF-3.0
-%%Title: decap3.ps
+%%Title: decap4.ps
 %%Creator: XCircuit v0.0 rev71810933
 %%CreationDate: Mon Jul 12 13:53:30 2021
 %%Pages: 1
@@ -189,11 +189,11 @@
 
 %%BeginSetup
 
-/project::decap3 {
-% decap3 is_schematic
+/project::decap4 {
+% decap4 is_schematic
 <</@link (%n) /@class (X) /@index (?) >> begingate
 0.000 0.000 1.000 scb
-(decap3) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+(decap4) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
 mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
 0.180 0.545 0.341 scb
 mark ( vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 0.000 1.000 
@@ -291,16 +291,16 @@ endgate
 
 %%EndSetup
 
-%%Page: decap3 1
+%%Page: decap4 1
 %%PageOrientation: Landscape
 /pgsave save def bop
-% project::decap3 is_symbol
+% project::decap4 is_symbol
 90 rotate 0 -471 translate
 1.0000 inchscale
 2.6000 setlinewidth 805 12 translate
 
-1.000 90.000 -480 544 <</@length (1.2u) /@index (1001) /@width (3.05u) >> c5devlib::nMOS
-1.000 270.000 -480 800 <</@length (1.2u) /@index (1000) /@width (6.35u) >> c5devlib::pMOS
+1.000 90.000 -480 544 <</@length (2.7u) /@index (1001) /@width (3.05u) >> c5devlib::nMOS
+1.000 270.000 -480 800 <</@length (2.7u) /@index (1000) /@width (6.35u) >> c5devlib::pMOS
 1.000 0.000 -480 992 c5devlib::vdd
 1.000 0.000 -480 352 c5devlib::vss
 0.180 0.545 0.341 scb
@@ -308,7 +308,7 @@ endgate
 infolabel
 (spice-1:.ends) {/Times-Roman cf} 2 16 0.000 1.000 -434 180 infolabel
 sce
-1.000 0.000 -176 416 project::decap3
+1.000 0.000 -176 416 project::decap4
 1 1.000 -544 800 -576 800 -576 960 -384 960 -384 800 -432 800 6 polygon
 1 1.000 -560 544 -576 544 -576 400 -384 400 -384 544 -416 544 -432 544 7 
 polygon

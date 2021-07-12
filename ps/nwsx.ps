@@ -1,9 +1,9 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%Title: nwsx.ps
 %%Creator: XCircuit v0.0 rev71810933
-%%CreationDate: Mon Jul 12 12:57:21 2021
+%%CreationDate: Mon Jul 12 13:24:37 2021
 %%Pages: 1
-%%BoundingBox: 68 68 282 133
+%%BoundingBox: 68 68 246 217
 %%DocumentNeededResources: font Times-Roman 
 %%EndComments
 %%BeginProlog
@@ -221,6 +221,32 @@ begingate
 endgate
 } def
 
+/c5devlib::Capacitor {
+<</p_yps1 16 /p_xps1 48 /p_yps -16 /p_xps 48 /@class (C) /@value (1.0) /@units 
+(p) /@index (?) /p_jst 20 /p_rot 0 >> begingate
+1 1.000 0 -64 0 -6 2 polygon
+1 1.000 0 64 0 6 2 polygon
+1 1.000 -32 6 32 6 2 polygon
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
+(2) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+mark @units @value ( %p1 %p2 ) @index @class (spice:) {/Times-Roman cf} ctmk 4 
+0.000 1.000 -208 -160 infolabel
+(sim:e %p1 %p2) {/Times-Roman cf} 2 4 0.000 1.000 -208 -208 infolabel
+0.647 0.165 0.165 scb
+mark (F) @units {hS} @value {/Times-Roman cf} ctmk p_jst p_rot 0.700 p_xps 
+p_yps label
+0.180 0.545 0.341 scb
+mark @index @class (pcb:) {/Times-Roman cf} ctmk 20 0.000 1.000 -208 -256 
+infolabel
+0.000 0.000 1.000 scb
+mark @index @class {/Times-Roman cf} ctmk 20 p_rot 0.700 p_xps1 p_yps1 label
+sce
+1 1.000 -32 -6 32 -6 2 polygon
+endgate
+} def
+
 
 %%EndSetup
 
@@ -228,11 +254,11 @@ endgate
 %%PageOrientation: Landscape
 /pgsave save def bop
 % project::nwsx is_symbol
-90 rotate 0 -267 translate
+90 rotate 0 -351 translate
 1.0000 inchscale
 2.6000 setlinewidth 805 12 translate
 
-1.000 0.000 -576 448 c5devlib::vdd
+1.000 0.000 -480 672 c5devlib::vdd
 1.000 0.000 -480 416 c5devlib::vss
 0.180 0.545 0.341 scb
 ( vdd vss) (spice1:.subckt %n) {/Times-Roman cf} 3 17 0.000 1.000 -402 244 
@@ -240,6 +266,9 @@ infolabel
 (spice-1:.ends) {/Times-Roman cf} 2 16 0.000 1.000 -434 180 infolabel
 sce
 1.000 0.000 -176 416 project::nwsx
+1.000 0.000 -480 544 <</@units (f) /@index (1) /@value (2.16) >> c5devlib::Capacitor
+1 1.000 -480 608 -480 672 2 polygon
+1 1.000 -480 416 -480 496 2 polygon
 pgsave restore showpage
 
 %%Trailer
