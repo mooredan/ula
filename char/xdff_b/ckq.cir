@@ -82,10 +82,12 @@ Cq q 0 {CQ}
   set idx1 = "$&idx1"
 
   foreach in_load 1f 500f 1p 2.5p 5p 10p
+  * foreach in_load 1f
     let idx2 = 0
     set idx2 = "$&idx2"
 
     foreach out_load 0.010e-12 0.050e-12 0.100e-12 0.250e-12 0.500e-12 1.0e-12 2.0e-12 
+    * foreach out_load 0.010e-12
 
       destroy all
 
@@ -101,8 +103,8 @@ Cq q 0 {CQ}
       * clock to q : ck rising to q rising
       ***************************************************************************************
       meas tran tt__ck_rise__q_rise TRIG v(ck) VAL=vol RISE=10 TARG v(ck) VAL=voh RISE=10
-      meas tran tt__q_rise TRIG v(q) VAL=vol RISE=2 TARG v(q) VAL=voh RISE=2 
-      meas tran td__ck_rise__q_rise TRIG v(ck) VAL=vmid RISE=10 TARG v(q) VAL=vmid RISE=2
+      meas tran tt__q_rise TRIG v(q) VAL=vol RISE=2 TARG v(q) VAL=voh RISE=3 
+      meas tran td__ck_rise__q_rise TRIG v(ck) VAL=vmid RISE=10 TARG v(q) VAL=vmid RISE=3
 
       let ittime = tt__ck_rise__q_rise
       let ttime  = tt__q_rise
@@ -120,8 +122,8 @@ Cq q 0 {CQ}
       * clock to q : ck rising to q falling
       ***************************************************************************************
       meas tran tt__ck_rise__q_fall TRIG v(ck) VAL=vol RISE=12 TARG v(ck) VAL=voh RISE=12
-      meas tran tt__q_fall TRIG v(q) VAL=voh FALL=2 TARG v(q) VAL=vol FALL=2 
-      meas tran td__ck_rise__q_fall TRIG v(ck) VAL=vmid RISE=12 TARG v(q) VAL=vmid FALL=2
+      meas tran tt__q_fall TRIG v(q) VAL=voh FALL=2 TARG v(q) VAL=vol FALL=3 
+      meas tran td__ck_rise__q_fall TRIG v(ck) VAL=vmid RISE=12 TARG v(q) VAL=vmid FALL=3
 
       let ittime = tt__ck_rise__q_fall
       let ttime  = tt__q_fall
@@ -145,50 +147,50 @@ Cq q 0 {CQ}
 
 
 
-  ***********************************
-  * Do input capacitance measurements
-  ***********************************
-  alter cd  0
-  alter cck 0
-  alter cq  0
-  
-  alter vvdd  dc $&v_vdd
-  alter vd    dc $vmid
-  alter vck   dc $vmid
-  
-  let idx = 70
-  set idx = "$&idx"
-  
-  ***********************************
-  * set up and measure input pin d
-  ***********************************
-  alter vd ac 1.0
-  
-  ac dec 10 1 100e6
-  
-  let freq = real(frequency[$idx])
-  set freq = "$&freq"
-  
-  let d_cap = '1.0 / (imag(v(d)[$idx] / i(vd)[$idx]) * 2 * pi * real(frequency[$idx]))'
-  set d_cap = "$&d_cap"
-  echo incap: pin: d cap: $d_cap  freq: $freq
-  
-  ***********************************
-  * set up and measure input pin ck 
-  ***********************************
-  alter vd ac 0.0
-  alter vck ac 1.0
-  
-  ac dec 10 1 100e6
-  
-  let freq = real(frequency[$idx])
-  set freq = "$&freq"
-  
-  let ck_cap = '1.0 / (imag(v(ck)[$idx] / i(vck)[$idx]) * 2 * pi * real(frequency[$idx]))'
-  set ck_cap = "$&ck_cap"
-  echo incap: pin: ck cap: $ck_cap  freq: $freq
-
-  quit 0
+   ***********************************
+   * Do input capacitance measurements
+   ***********************************
+   alter cd  0
+   alter cck 0
+   alter cq  0
+   
+   alter vvdd  dc $&v_vdd
+   alter vd    dc $vmid
+   alter vck   dc $vmid
+   
+   let idx = 70
+   set idx = "$&idx"
+   
+   ***********************************
+   * set up and measure input pin d
+   ***********************************
+   alter vd ac 1.0
+   
+   ac dec 10 1 100e6
+   
+   let freq = real(frequency[$idx])
+   set freq = "$&freq"
+   
+   let d_cap = '1.0 / (imag(v(d)[$idx] / i(vd)[$idx]) * 2 * pi * real(frequency[$idx]))'
+   set d_cap = "$&d_cap"
+   echo incap: pin: d cap: $d_cap  freq: $freq
+   
+   ***********************************
+   * set up and measure input pin ck 
+   ***********************************
+   alter vd ac 0.0
+   alter vck ac 1.0
+   
+   ac dec 10 1 100e6
+   
+   let freq = real(frequency[$idx])
+   set freq = "$&freq"
+   
+   let ck_cap = '1.0 / (imag(v(ck)[$idx] / i(vck)[$idx]) * 2 * pi * real(frequency[$idx]))'
+   set ck_cap = "$&ck_cap"
+   echo incap: pin: ck cap: $ck_cap  freq: $freq
+ 
+   quit 0
 
 .endc
 
