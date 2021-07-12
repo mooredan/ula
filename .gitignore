@@ -29,3 +29,6 @@ cell.lib
 yosys.log
 lef/*.lef
 xcircuit.*.log
+lvs/*/
+!lvs/Makefile
+!lvs/Makefile.lvs
