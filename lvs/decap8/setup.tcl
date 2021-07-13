@@ -1,0 +1,2 @@
+permute default
+property default

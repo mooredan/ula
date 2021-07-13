@@ -1,7 +1,7 @@
 %! PostScript set of library objects for XCircuit
 %  Version: 3.10
 %  Library name is: c5devlib
-%  Author: Dan Moore <mooredan@centos7.suncup.org>
+%  Author: Dan Moore,,, <mooredan@lemur>
 %
 
 % Depend c5devlib::NPNModel generic::arrowhead
@@ -227,6 +227,40 @@ endgate
 
 1.000 90.000 <</@substype (sub) /p_xps -48 /p_yps 24 /p_yps1 -24 /p_xps2 80 /p_yps2 -24 
 /p_rot 270 >> /c5devlib::MiMCap libinst
+
+/c5devlib::Poly2Cap {
+<</@substype (sub) (lindex {sub well} 0) pop /@length (1u) /@width (1u) /p_yps2 
+72 /p_xps2 64 /p_yps1 24 /p_xps1 48 /p_yps 104 /p_xps 64 /p_rot 0 /@class (X) /@units 
+() /@index (?) /p_jst 20 >> begingate
+1 1.000 0 -64 0 -6 2 polygon
+1 1.000 0 64 0 6 2 polygon
+1 1.000 -32 6 32 6 2 polygon
+1.000 0.000 0.000 scb
+(2) {/Times-Roman cf} 2 9 0.000 1.000 -48 64 pinlabel
+(3) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+mark @width ( W=) @length ( L=) @units ( %p1 %p2 %p3 poly2capacitor) @index 
+(spice:X) {/Times-Roman cf} ctmk 4 0.000 1.000 -208 -160 infolabel
+0.000 0.000 1.000 scb
+mark @index @class {/Times-Roman cf} ctmk 20 p_rot 0.700 p_xps p_yps label
+0.647 0.165 0.165 scb
+mark @length {Tf} (=) {Tf} (L) {CR} @width {Ts} {hS} (=) 
+{Ts} {hS} (W) {/Times-RomanISO cf} ctmk 28 p_rot 0.700 p_xps2 p_yps2 label
+sce
+1 1.000 0 -80 74 66.000 114.000 xcarc
+1 1.000 0 64 0 122 2 polygon
+1 1.000 0 192 0 134 2 polygon
+1 1.000 -32 134 32 134 2 polygon
+1 1.000 0 48 74 66.000 114.000 xcarc
+1.000 0.000 0.000 scb
+(1) {/Times-Roman cf} 2 9 0.000 1.000 0 192 pinlabel
+sce
+1 1.000 -48 64 0 64 2 polygon
+endgate
+} def
+
+1.000 90.000 <</@substype (sub) /p_xps -48 /p_yps 24 /p_yps1 -24 /p_xps2 80 /p_yps2 -24 
+/p_rot 270 >> /c5devlib::Poly2Cap libinst
 
 /c5devlib::IndModel {
 <</@size (175u) /@width (2.5u) /@sep (2.5u) /@turns (6.5) /@substype (sub) 

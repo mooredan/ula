@@ -1,9 +1,9 @@
 %!PS-Adobe-3.0 EPSF-3.0
-%%Title: decap5.ps
-%%Creator: XCircuit v0.0 rev-417104011
-%%CreationDate: Mon Jul 12 21:01:59 2021
+%%Title: decap6.ps
+%%Creator: XCircuit v0.0 rev105598837
+%%CreationDate: Mon Jul 12 21:20:04 2021
 %%Pages: 1
-%%BoundingBox: 68 68 358 339
+%%BoundingBox: 68 68 376 339
 %%DocumentNeededResources: font Times-Roman Times-RomanISO 
 %%EndComments
 %%BeginProlog
@@ -189,11 +189,11 @@
 
 %%BeginSetup
 
-/project::decap5 {
-% decap5 is_schematic
+/project::decap6 {
+% decap6 is_schematic
 <</@link (%n) /@class (X) /@index (?) >> begingate
 0.000 0.000 1.000 scb
-(decap5) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
+(decap6) {/Times-Roman cf} 2 21 0.000 1.000 64 64 label
 mark @index @class {/Times-Roman cf} ctmk 17 0.000 1.000 96 -48 label
 0.180 0.545 0.341 scb
 mark ( vdd vss %n) @index @class (spice:) {/Times-Roman cf} ctmk 17 0.000 1.000 
@@ -295,13 +295,13 @@ endgate
 
 %%EndSetup
 
-%%Page: decap5 1
+%%Page: decap6 1
 %%PageOrientation: Landscape
 /pgsave save def bop
-% project::decap5 is_symbol
+% project::decap6 is_symbol
 90 rotate 0 -471 translate
 1.0000 inchscale
-2.6000 setlinewidth 960 12 translate
+2.6000 setlinewidth 1008 12 translate
 
 1.000 0.000 -480 992 c5devlib::vdd
 1.000 0.000 -608 544 c5devlib::vss
@@ -310,19 +310,25 @@ endgate
 infolabel
 (spice-1:.ends) {/Times-Roman cf} 2 16 0.000 1.000 -434 180 infolabel
 sce
-1.000 0.000 -176 416 project::decap5
+1.000 0.000 -176 416 project::decap6
 1 1.000 -480 960 -480 992 2 polygon
 1.000 0.000 -480 928 generic::dot
-1.000 0.000 -480 704 <</@width (3u) /@index (1) /@length (10.4u) >> c5devlib::Poly2Cap
+1.000 0.000 -480 704 <</@width (4.5u) /@index (1) /@length (10.4u) >> c5devlib::Poly2Cap
 1 1.000 -480 960 -480 896 2 polygon
 1 1.000 -480 928 -288 928 -288 576 -480 576 -480 656 5 polygon
 1 1.000 -608 544 -608 768 -528 768 3 polygon
-1.000 0.000 -736 864 <</p_rot 0 /p_jst 20 /@index (1) /@class (C) /p_xps 48 
-/p_yps -16 /p_xps1 48 /p_yps1 16 /@value (13.32) /@units (f) >> c5devlib::Capacitor
+1.000 0.000 -784 864 <</@index (1) /@value (14.58) /@units (f) >> c5devlib::Capacitor
 1.000 0.000 -480 960 generic::dot
 1.000 0.000 -608 768 generic::dot
-1 1.000 -736 928 -736 960 -480 960 3 polygon
-1 1.000 -736 800 -736 768 -608 768 3 polygon
+1 1.000 -784 928 -784 960 -528 960 3 polygon
+1 1.000 -784 800 -784 768 -656 768 3 polygon
+1.000 0.000 -784 656 <</@units (f) /@value (2.15) /@index (2) >> c5devlib::Capacitor
+1 1.000 -528 960 -480 960 2 polygon
+1 1.000 -656 768 -608 768 2 polygon
+1 1.000 -784 720 -784 768 2 polygon
+1 1.000 -784 592 -784 576 -608 576 3 polygon
+1.000 0.000 -608 576 generic::dot
+1.000 0.000 -784 768 generic::dot
 pgsave restore showpage
 
 %%Trailer
