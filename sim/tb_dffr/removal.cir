@@ -1,0 +1,224 @@
+* Transient analysis of DFF
+
+.include ../../cir/dffr_b.cir
+
+.lib ../../device_models/AMI_C5N.lib TT
+
+.param VDD_VAL=5
+.param FREQ=10.0Meg
+.param PER={1 / FREQ}
+.param pwrtime = 5.0e-9
+* .param rndelay = 19.969e-9
+* .param rndelay = 0.0
+.param rndelay = {PER * 0.5}
+
+.param TT=50p
+.param CD=1f
+.param CRN=1f
+.param CCK=2.0p
+.param CQ=100f
+
+
+.csparam v_vdd = {VDD_VAL}
+.csparam t_per = {PER}
+.csparam t_pwr = {pwrtime}
+.csparam t_rndelay = {rndelay}
+.csparam t_tt = {TT}
+
+
+
+* power supply
+Vvdd vdd 0 DC {VDD_VAL} PWL( 0 0  {pwrtime / 3}  0  {pwrtime * 2 / 3} {VDD_VAL})
+Vvss vss 0 DC 0
+
+* input clock
+Vck ck_s 0 DC 0 PULSE ( 0 {VDD_VAL} {pwrtime} {TT} {TT} {PER/2 - TT} {PER} )
+Rck_s ck_s ck 100
+Cck ck 0 {CCK}
+
+* input data
+* Vd   d_s 0 DC 0 PWL (             0 0
+* +                     {pwrtime * 2} 0
+* +                     {pwrtime * 2 + TT} {VDD_VAL})
+Vd   d_s 0 DC {VDD_VAL}
+Rd_s d_s d 100
+Cd   d   0 {CD} 
+
+* reset (active low)
+Vrn rn_s 0 DC {VDD_VAL} PWL ( 0 {VDD_VAL} 
++ {pwrtime * 2 + 1.75 * PER} {VDD_VAL} 
++ {pwrtime * 2 + 1.75 * PER + TT} 0
++ {pwrtime * 2 + 2.75 * PER + rndelay} 0
++ {pwrtime * 2 + 2.75 * PER + rndelay + TT} {VDD_VAL}) 
+Rrn_s rn_s rn 100
+Crn   rn   0 {CRN} 
+
+* DUT
+Xdut q d ck rn vdd vss dffr_b
+
+* output load
+Cq q 0 {CQ} 
+
+
+.tran 10p {pwrtime + PER * 4}
+
+* sweep clock rise time from :        to: 1 ns
+*
+*              cck (pF)         rise (ps)
+*              ===========================
+*              0.001               30.8 
+*              0.5                 79.2
+*              1.0                146.8 
+*              2.5                355.8  
+*              5.0                702.2
+*             10.0               1395.2
+*
+* sweep output load     from : 10 fF   to: 2 pF  - seven loads
+
+
+* .control
+*    destroy all
+*    run
+*    * plot v(vdd)
+*    * plot v(ck) v(d) v(rn) v(q)
+*    plot v(ck) v(rn) v(q)
+*    * plot v(q)
+* .endc
+
+
+
+.control
+  let v_vdd = $&v_vdd
+  set v_vdd = "$&v_vdd"
+
+  let vol  = $v_vdd * 0.20
+  set vol  = "$&vol"
+
+  let voh  = $v_vdd * 0.80
+  set voh  = "$&voh"
+
+  let vmid = $v_vdd * 0.50
+  set vmid = "$&vmid"
+
+  let idx1 = 0
+  set idx1 = "$&idx1"
+
+  let t_per = $&t_per
+  set t_per = "$&t_per"
+  let t_pwr = $&t_pwr
+  set t_pwr = "$&t_pwr"
+  let t_tt = $&t_tt
+  set t_tt = "$&t_tt"
+
+  let resolution_time = 10e-12
+  set resolution_time = "$&resolution_time"
+
+  let tstop = $t_pwr + $t_per * 4
+  set tstop = "$&tstop"
+
+
+  echo vol: $vol
+  echo vmid: $vmid
+  echo voh: $voh
+
+  let t_sample = $t_pwr + $t_per * 3.75
+  set t_sample = "$&t_sample"
+  echo t_sample: $t_sample
+
+
+  let t0 = 0.0
+  let t1 = $t_pwr * 2 + 1.75 * $t_per
+  let t2 = $t_pwr * 2 + 1.75 * $t_per + $t_tt
+
+  set t0 = "$&t0"
+  set t1 = "$&t1"
+  set t2 = "$&t2"
+
+  let t_rndelay = $&t_rndelay
+  set t_rndelay = "$&t_rndelay"
+
+
+  * foreach itr1 1f 500f 1p 2.5p 5p 10p
+  foreach itr1 1f
+  * foreach itr2 1f 500f 1p 2.5p 5p 10p
+    foreach itr2 1f
+
+      echo itr1: $itr1
+      echo itr2: $itr2
+
+      alter crn $itr1
+      alter cck $itr2
+
+
+      let incr = $t_per / 4;
+      set incr = "$&incr"
+
+      let search = 1
+      set search = "$&search"
+
+      let iterations = 0
+
+
+
+      while $search eq 1
+         let iterations = iterations + 1
+         echo iteration: $&iterations
+
+
+
+
+
+         let t3 = $t_pwr * 2 + 2.75 * $t_per + $t_rndelay
+         let t4 = $t_pwr * 2 + 2.75 * $t_per + $t_rndelay + $t_tt
+         set t3 = "$&t3"
+         set t4 = "$&t4"
+
+
+         alter @Vrn[pwl] = [ $t0 $v_vdd $t1 $v_vdd $t2 0 $t3 0 $t4 $v_vdd ] 
+
+         tran 10p $tstop 
+
+         meas tran tt__rn_rise TRIG v(rn) VAL=$vol RISE=1 TARG v(rn) VAL=$voh RISE=1
+
+
+         meas tran tt__ck_rise TRIG v(ck) VAL=$vol RISE=4 TARG v(ck) VAL=$voh RISE=4
+         meas tran td__rn_rise__ck_rise TRIG v(rn) VAL=$vmid RISE=1 TARG v(ck) VAL=$vmid RISE=4
+         meas tran q_voltage find v(q) at=$t_sample
+
+
+         set tt__ck_rise = "$&tt__ck_rise"
+         set tt__rn_rise = "$&tt__rn_rise"
+         set td__rn_rise__ck_rise =  "$&td__rn_rise__ck_rise"
+         set q_voltage =  "$&q_voltage"
+
+         echo tt__ck_rise: $tt__ck_rise 
+         echo tt__rn_rise: $tt__rn_rise 
+         echo td__rn_rise__ck_rise: $td__rn_rise__ck_rise  
+         echo q_voltage: $q_voltage
+
+
+         let search = 0
+         set search = "$&search"
+
+     end
+
+     * let idx2 = idx2 + 1
+     * set idx2 = "$&idx2"
+
+    end
+
+    * let idx1 = idx1 + 1
+    * set idx1 = "$&idx1"
+
+  end
+  setplot tran1
+
+  plot v(rn) v(ck) v(q)
+* plot v(vdd) v(ck) v(d) v(q)
+* plot v(ck) v(d)
+* plot v(ck)
+* plot v(d)
+* plot v(q)
+.endc
+
+.end
