@@ -143,12 +143,11 @@ Cq q 0 {CQ}
   foreach itr1 1f 500f 1p 2.5p 5p 10p
   * foreach itr1 1f
 
+    let idx2 = 0
+    set idx2 = "$&idx2"
 
    foreach itr2 1f 500f 1p 2.5p 5p 10p
     * foreach itr2 1f
-
-      let idx2 = 0
-      set idx2 = "$&idx2"
 
       echo itr1: $itr1
       echo itr2: $itr2

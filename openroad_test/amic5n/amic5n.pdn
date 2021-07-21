@@ -1,7 +1,8 @@
 
 
 # POWER or GROUND #Std. cell rails starting with power or ground rails at the bottom of the core area
-set ::rails_start_with "POWER" ;
+# set ::rails_start_with "POWER" ;
+set ::rails_start_with "GROUND" ;
 
 # POWER or GROUND #Upper metal stripes starting with power or ground rails at the left/bottom of the core area
 set ::stripes_start_with "POWER" ;
@@ -26,12 +27,12 @@ set pdngen::global_connections {
 pdngen::specify_grid stdcell {
     name grid
     rails {
-        metal2 {width 0.9 offset 0}
+        metal2 {width 0.9 offset 1.6}
     }
-    straps {
-        metal3 {width 1.600 pitch 27.200 offset 13.600}
-    }
-    connect {{metal2 metal3}}
+    # straps {
+    #     metal3 {width 1.600 pitch 27.200 offset 13.600}
+    # }
+    # connect {{metal2 metal3}}
 }
 
 # pdngen::specify_grid macro {

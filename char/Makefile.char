@@ -9,6 +9,7 @@ CIRS += $(wildcard delay.cir)
 CIRS += $(wildcard ckq.cir)
 CIRS += $(wildcard setup.cir)
 CIRS += $(wildcard hold.cir)
+CIRS += $(wildcard removal.cir)
 
 LOGS = $(CIRS:.cir=.log)
 

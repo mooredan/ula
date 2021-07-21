@@ -34,7 +34,7 @@ Rd_s d_s d 100
 Cd   d   0 {CD} 
 
 * reset (active low)
-Vrn rn_s 0 DC 0 
+Vrn rn_s 0 DC 0  PWL ( 0 0 2.5u 0 2.6u {VDD_VAL})
 Rrn_s rn_s rn 100
 Crn   rn   0 {CRN} 
 

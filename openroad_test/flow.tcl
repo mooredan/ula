@@ -68,9 +68,7 @@ write_def $global_place_def
 
 ################################################################
 # Repair max slew/cap/fanout violations and normalize slews
-
 estimate_parasitics -placement
-
 repair_design
 
 repair_tie_fanout -separation $tie_separation $tielo_port
